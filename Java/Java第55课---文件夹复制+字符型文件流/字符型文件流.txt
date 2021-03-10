@@ -1,0 +1,74 @@
+知识回顾
+	字节型文件流
+		FileInputStream
+		FileOutputStream
+
+		1.所在的包java.io
+		2.各自继承关系	
+			InputStream/OutputStream
+		3.构造方法
+			利用file对象构建   
+			new FileInputStream(file);	new OutputStream(file,true);
+			利用string对象构建
+			new FileInputStream("");	new OutputStream("",true);
+		4.常用的方法操作文件中的内容
+			int code = read();		write(int code);
+			int count = read(byte[])	write(byte[]);
+			close();			close();
+			available(); 多少字节缓存	flush();
+			skip(long count)
+
+		小任务
+		1.文件的复制
+			C://Test.txt---->D://test//Test.txt
+		2.文件的加密
+			读取文件中的内容
+			在中间做一个手脚
+			写入新文件
+		3.文件夹的复制
+			递归方式
+			配合着流操作
+
+====================================================================
+
+	字符型文件流
+		FileReader	FileWriter
+		只能操作纯文本文件(文件右键打开方式 记事本打开 能看懂)
+		.txt 
+
+		FileReader
+		1.java.io包
+		2.继承  InputStreamReader    Reader
+		3.构造方法
+		4.常用
+			read()
+			read(char[])
+		FileWriter
+		1.java.io包
+		2.继承 OutputStreamWriter  Writer
+		3.构造方法
+			带file参数   带file,boolean参数
+			带String参数  带String,boolean参数
+		4.常用
+			write(int)
+			write(char[])
+			write(string)
+			flush    close
+
+
+		FileInputStream/FileOutputStream
+		FileReader/FileWriter
+		read	write
+
+
+
+
+
+
+
+
+
+
+
+
+

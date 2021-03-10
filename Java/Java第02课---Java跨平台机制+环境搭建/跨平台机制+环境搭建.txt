@@ -1,0 +1,66 @@
+知识回顾
+	1.Java语言的创始人	James-Gosling
+	2.Java语言的公司	SUN	Standford   University  Network--->SUN  Microsystems
+	3.Java语言的几个重大事件
+		1995  正式发布
+		1996  正式发布了可以下载的JDK工具包  JDK1.0
+		1999  发布第二代Java平台 简称Java2  细化三个不同的版本
+			标准版    Standard  Edition	J2SE
+			企业版    Enterprise  Edition	J2EE
+			微型版    Micro   Edition	J2ME
+		2004  JDK1.5版本  添加很多新的特性   Java5
+		2005  Java6版本
+		2009  Oracle公司 74亿$  收购了SUN
+	4.Java语言的特点
+		*跨平台性	平台(操作系统)
+		面向对象	
+		简单性	多继承  指针。。。
+		健壮性(鲁棒性)   垃圾回收  异常处理  
+		多线程	
+		大数据开发相关
+==========================================================
+			中国人(中文)Java
+	翻译(中日)		翻译(中英)			翻译(中印)-------->JVM虚拟机
+	日本(日语)    	美国(美式英文)   NHL冰球	印度尼西亚(印尼)
+	Windows		Linux			MacOS
+
+	JVM	Java  Virtual  Machine虚拟机
+		内存中开辟一块空间	源文件   编译   字节码
+
+		Java计算机高级编程语言
+		程序存储在哪里?-----程序就是英文----存储在一个地方(文件)
+		我们写完的程序--计算机不认识--编译   我们写好的源文件编译成计算机识别的字节码文件
+		最终有两个文件   源文件    字节码文件  两个文件存在哪?--硬盘上
+		计算机的硬件组成
+		内存(条形 8G 芯片 寻址 临时执行使用)  硬盘(矩形 1T 机械 扇区 永久性保存)
+
+		硬盘上的文件  不同的格式  后缀名区分不同的格式
+		.txt  .doc  .ppt  .xls  .mp4  .mp3  .rar  .exe  运行环境支持
+		源文件.java(文本文档打开)	字节码.class
+	
+	JRE	Java  Runtime  Environment  运行环境
+		运行别人写好的java程序
+
+	JDK	Java  Development  Kit   开发工具包
+		开发时需要用到的工具
+		javac.exe	编译工具
+		java.exe   执行工具	底层doc命令窗口中看到效果
+
+	想要做Java开发  需要搭建环境(我们的电脑中安装JDK)
+	需要JDK安装程序？？？	官方网站下载
+	Oracle公司的产品	www.oracle.com
+	安装JDK
+	卸载
+	
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+知识回顾
+	String类  非常重要及特殊的引用数据类型
+	1.所属的包java.lang  不需要import导入
+	2.默认继承Object  自己是final的  实现Serializable  CharSequence  Comparable
+	*3.String类的特性
+		不可变特性--->长度  内容
+	*4.String对象的创建
+		常量值  无参数构造方法  有参数  String  byte[]  char[]
+	*5.String类及对象内存中的存储
+		字符串常量池   堆内存对象空间
+		== equals()区别
+		"a"+"b"+"c"
+	**6.String类中的常用方法
+		第一个梯队(重写的方法)
+		equals() hashCode() compareTo()   toString()
+		第二个梯队(常用的方法)
+		charAt codePointAt substring length concat matches()
+		split replace indexof toCharArray getBytes......
+		第三个梯队(一般不常用)
+		contains  toUpperCase  toLowerCase  trim  isEmpty valueOf....
+====================================================================
+小任务(以下任务要求设计成方法)
+	1.设计一个方法 将字符串反转   ok-->ko
+	2.设计一个方法 将给定字符串的正序和反序进行连接  ok-->okko
+	3.设计一个方法 判断给定字符串是否是回文    abccba   abcba
+	4.设计一个方法 将给定的字符串右位移x位置  (helloworld,2) --> ldhellowor
+	5.设计一个方法 寻找若干字符串中最长的那个  ab,abc,abcd--->abcd
+	6.设计一个方法 统计给定字母在字符串中出现的次数   "this is a test of java","a"--->3
+	7.设计一个方法 将给定的字符串每一个首字母大写   "this is a test of java"--->"This Is A Test Of Java"
+	8.设计一个方法 获取给定字符串中的全部数字   "za1o1zbp24tcq"--->1124
+
+	StringBuffer  StringBuilder区别
+	正则表达式
+
+
+
+
+
+
+
+
+

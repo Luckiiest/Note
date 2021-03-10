@@ -1,0 +1,127 @@
+知识回顾
+	String类
+	1.所属的包java.lang 没有继承类 默认继承Object
+	2.实现了三个接口  Serializable  CharSequence  Comparable<>
+	3.String是一个非常特殊的引用数据类型，创建对象方式如下
+		String str = "abc";
+		String str = new String();
+		String str = new String("abc");
+		String str = new String(byte[] value);
+		String str = new String(char[] value);
+	4.String类的不可变特性	public final class String{  private final char[] value; }
+		体现在长度及内容
+		长度不可变是由于: 数组的长度是固定的 用final修饰数组(引用地址不能改变)
+		内容不可变是由于: private修饰的属性只能在本类中访问
+	5.String类中的常用方法
+		1.boolean = equals(Object obj);
+		   继承自Object类中的方法  重写啦  改变了规则  比较字符串中的字面值
+		   ==  equals()区别
+			equalsIgnoreCase();
+		2.int = hashCode();
+		   继承自Object类中的方法  重写啦  31*h+和
+		3.int = compareTo();
+		   实现自Comparable接口  实现方法   结果按照字典排布(unicode编码)顺序
+		   按照两个字符串的长度较小的那个(次数)来进行循环
+		   若每次的字符不一致 则直接返回code之差 
+		   若比较之后都一致  则直接返回长度之差
+			compareToIgnoreCase();
+		4.String = toString()
+		   没有重写过的toString从Object类中继承过来的
+		   类名@hashCode(16进制形式)
+		   String类重写啦  返回的是String对象的字面值
+		-----------------------------------------------------------------------------------
+		5.char = charAt(int index);
+		   返回给定index位置对应的字符
+		   int = codePointAt(int index);
+		   返回给定index位置对应字符的code码
+		6.int = length();
+		   返回字符串的长度   (其实就是底层char[] value属性的长度)
+		   注意:  区别数组length是属性  String的length()方法    集合size()方法
+		7.String = concat(String str);
+		   将给定的str拼接在当前String对象的后面
+		   注意:  方法执行完毕需要接受返回值   String的不可变特性
+		            concat方法与   +拼接的性能问题
+		            开发中若遇到频繁的拼接字符串--->通常使用StringBuilder/StringBuffer
+	========================================================
+		8.boolean = contains(CharSequence s);
+		   判断给定的s是否在字符串中存在
+		9. startsWith(String prefix);
+		    endsWith(String suffix);
+		   判断此字符串是否已xx开头/结尾
+		10.byte[] = getBytes();   --->    getBytes(String charsetName);
+		     char[] = toCharArray();
+		   将当前的字符串转化成数组   "我爱你中国"   char[]  '我' '爱' '你' '中' '国'
+		11. int index = indexOf(int/String str [,int fromIndex] );   四个方法重载
+		   找寻给定的元素在字符串中第一次出现的索引位置   若字符串不存在则返回-1
+		      lastIndexOf(int/String str , [int fromIndex]);
+		   找寻给定的元素在字符串中最后一次出现的索引位置  若不存在则返回-1
+		12.boolean = isEmpty();
+		   判断当前字符串是否为空字符串  (length是否为0)
+		   注意： 与null之间的区别
+		13.replace();
+		     replaceAll();
+		     replaceFirst(); 换第一次出现的那个字串
+		   将给定的字符串替换成另外的字符串
+		14.String[] = split(String regex [,int limit限度界限]);
+		   按照给定的表达式将原来的字符串拆分开的
+		15.String = substring(int beginIndex [,int endIndex]);
+		   将当前的字符串截取一部分   
+		   从beginIndex开始至endIndex结束  [beginIndex,endIndex)
+		   若endIndex不写 则默认到字符串最后
+		16.String = toUpperCase();
+		     String = toLowerCase();
+		  将全部字符串转换成大写/小写
+		17.String = trim();
+		  去掉字符串前后多余的空格
+		18.boolean = matches(String regex)
+		  regular有规律的 expression表达式
+		  正则表达式
+================================================================
+		1.String包  java.lang
+		2.构造方法  常量 无参数 带参数String byte[] char[]
+		3.不可变特性
+			长度 内容
+		4.String内存机制
+			常量"abc" 字符串常量池      构造方法new
+			==  equals()区别
+			"a"+"b"+"c"+"d";  产生几个对象
+		5.String与StringBuffer与StringBuilder区别
+		6.常用的方法
+			第一梯队(重写)
+			equals  hashCode  compareTo  toString
+			第二梯队(常用)
+			charAt()  codePointAt()
+			indexOf()  lastIndexOf()
+			substring()  split()  replace()
+			length()  concat()  contains();  trim();
+			getBytes()   toCharArray()  matches()
+			第三梯队(一般)
+			toUpperCase()  toLowerCase()
+			startsWith()  endsWith();
+			isEmpty();
+		7.正则表达式
+================================================================
+	小任务(以下任务要求设计成方法)
+	1.设计一个方法 将字符串反转   ok-->ko
+	2.设计一个方法 将给定字符串的正序和反序进行连接  ok-->okko
+	3.设计一个方法 判断给定字符串是否是回文    abccba   abcba
+	4.设计一个方法 将给定的字符串右位移x位置  (helloworld,2) --> ldhellowor
+	5.设计一个方法 寻找若干字符串中最长的那个  ab,abc,abcd--->abcd
+	6.设计一个方法 统计给定字母在字符串中出现的次数   "this is a test of java","a"--->3
+	7.设计一个方法 将给定的字符串每一个首字母大写   "this is a test of java"--->"This Is A Test Of Java"
+	8.设计一个方法 获取给定字符串中的全部数字   "za1o1zbp24tcq"--->1124
+
+	包装类  数学相关  日期相关  字符串相关
+	集合相关---Box
+
+
+
+
+
+
+
+
+
+
+
+

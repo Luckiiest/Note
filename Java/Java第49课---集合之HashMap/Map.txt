@@ -1,0 +1,110 @@
+知识回顾
+	集合
+	Collection		Map
+	以value形式		以key-value形式
+	List  Queue  Set
+
+	Set
+	特点  无序无重复
+	无序: 添加的顺序 获取的顺序不一致 (不是集合本身是否有序 Tree自然有序)
+	无重复: 添加的元素不能一致 (如果出现重复元素 只存第一个 不再存入)
+
+	HashSet(HashMap--->数据存储结构 散列表)
+	TreeSet(TreeMap--->数据存储结构 二叉树)
+
+	set集合家族的基本使用
+		增删改查
+		add(E e)   remove(E e)  没有修改  iterator迭代器(增强for)   size();
+						hasNext();
+						E = next();
+	set集合的无重复特性
+		HashSet	无重复原则有两个方法同时起作用
+			equals	hashCode
+			默认比较的是两个对象的地址  若第二个对象地址与之前的一致  不再存入
+			如果想要改变其比较的规则  可以重写上述两个方法
+		TreeSet	无重复原则有一个方法起作用
+			compareTo
+			上述这个方法不是每一个对象都有的
+			若想要将某一个对象存入TreeSet集合中  需要让对象所属的类实现接口Comparable
+			实现接口后将compareTo方法重写  返回值int  负数靠前排布 整数排列靠后
+
+========================================================================
+	Map   映射   通过某一个key可以直接定位到一个value值
+	存储的方式以  键值对  存储   key-value
+	key无序无重复   value无序可重复
+	key无序还是一样，指的是存入顺序与取得顺序不一致
+	key无重复当然指的是 元素不能一致
+
+	1.map基本使用
+		HashMap
+		TreeMap
+		Properties
+		
+	HashMap
+	1.包 java.util
+	2.如何创建对象
+	3.基本方法
+		增删改查
+		增put(key,value)	存放一组映射关系   key-value
+			1.key存储的顺序与取得顺序不同
+			2.不同的key可以存储相同的value
+			3.key若有相同的 则将 原有的value覆盖而不是拒绝存入(跟set刚好相反)
+		删E = remove(key);
+		改put(key,value1)    put(key,value2)
+		   replace(key,newValue)
+		查E = get(key)
+		遍历map集合?	key不一定什么样
+			获取到所有的key	遍历key	通过key获取value
+			Set<Key> = keySet()获取全部的key
+			Set<Entry> = entrySet();
+		size();
+	4.除了上述几个常用的方法外  其他API中提供的方法
+		clear   containsKey(key)   containsValue(value)
+		getOrDefault(key,defaultValue);如果key存在就返回对应的value 若没有找到则返回默认值
+		isEmpty()
+		putAll(map)
+		putIfAbsent(key,value);//如果key不存在才向集合内添加  如果key存在就不添加啦
+	5.map集合在什么情形下用?
+		1.想要存储一组元素
+			数组  or  集合    如果存储的元素以后长度不变用数组  如果长度以后不确定 用集合
+		2.如果发现长度以后不确定--->集合
+			List  Set  Map
+			List家族有序的   存储有顺序用这个
+				ArrayList		更适合遍历轮询
+				LinkedList	更适合插入和删除
+				Stack		LIFO
+			Set家族无重复    存储元素希望自动去掉重复元素用这个
+				Hash	性能更高
+				Tree	希望存进去的元素自动去重复  同时还能自动排序
+			Map家族k-v      通过唯一的k快速找寻v用这个
+				Hash	性能更高
+				Tree	希望存进去的元素key自动排序
+	6.登录小流程
+		能体会每一个不同集合的特点
+	7.HashMap底层的数据结构存储
+		散列表的形式	数组+链表
+		Person对象存入HashMap中?  可以
+		hashCode方法---->不同的对象 可以产生相同的hashCode码的
+		不同的hashCode码-->不同的对象
+		
+
+	小任务
+		题目做成选择题
+			1.以下哪个选项不是Java的基本类型?
+			   A.short   B.boolean  C.String  D.char
+			   请您输入认为正确的选项?
+			2.以下哪个选项是Java的基本类型?
+			   A.Short   B.Boolean  C.String  D.char
+			   请您输入认为正确的选项?
+
+		学生考试之前需要先登录认证
+		设计一个学生  考试机  老师关系		
+		考试机存储好多题目----题库10道
+		考试机随机生成试卷的方法5道
+		学生利用生成的试卷考试-->答案 5个选项 A D B C A
+		老师负责批卷子   最终成绩
+
+		类的设计 方法 属性
+		类之间的关系
+		String类型的常用方法
+		集合的选择与使用(包含数组)

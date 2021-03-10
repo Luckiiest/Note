@@ -1,0 +1,24 @@
+知识回顾
+	File类
+	1.java.io包中的一个类
+	2.通过带参数的构造方法创建对象
+	*3.file对象与真实硬盘中文件的关系
+		file对象(内存中)	-----	文件(硬盘中)
+	4.File类中常用的方法
+		canRead  canWrite  isHidden  *length  lastModifered  isFile  isDirectory
+		*getAbsolutePath()   getName()
+			绝对路径---相对路径(工程的根目录去找)
+		*createNewFile()   *mkdir()  *mkdirs()
+		*File = getParentFile()    getParent()
+		*File[] = listFiles()	       list();
+		*delete()
+==================================================================
+	1.文件夹的遍历----需要一个递归
+	2.文件夹的删除----需要一个递归
+	3.文件夹的路径(找父目录)
+
+	文件流来完成---->读取文件内容  将内容写入文件
+	4.文件的复制
+	5.文件的加密
+
+	文件夹的复制

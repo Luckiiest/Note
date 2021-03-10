@@ -1,0 +1,103 @@
+知识回顾
+	类是用来描述对象
+	反射可以理解为是用来描述类的
+
+	Class	类本身
+	Package	类所在的包
+	Field	类中的属性
+	Method	类中的方法
+	Constructor  类中的构造方法
+	*Annotation   类中的注解
+
+	如何获取Class
+	1.Class中静态方法  forName("类全名")
+	2.类.class关键字
+	3.对象引用.getClass()方法
+
+	Class中的常用方法
+		int = getModifiers();	获取类的修饰符(权限+特征)
+		String = getName();	获取类的全名(包名.类名)
+		String = getSimpleName();	获取类简单名(只有类名 缺少包)
+		Class = getSuperClass();	获取当前类父类的对应Class
+		Class[] = getInterfaces();	获取当前类父亲接口
+		Package p = getPackage();	获取当前类所属的包
+			p.getName();	获取包名(Package类中的方法)
+		Class[] = getClasses();	获取类中的内部类
+		--------------------------------------------------------------------
+		Object = newInstance();	获取当前类的对象(相当于调用类中无参数的构造方法)
+			若类中不存在无参数构造方法	抛出异常NoSuchMethodException
+		Field = getField("属性名");	获取类中的属性(公有的 自己类+父类)
+		Field[] = getFields();	获取类中的全部属性(公有的 自己类+父类)
+		Field = getDeclaredField("属性名");	获取当前类中的属性(公有+私有 自己类)
+		Field = getDeclaredFields();		获取当前类中全部的属性(公有+私有 自己类)
+
+	Field类中的常用方法
+		int = getModifiers	获取属性修饰符(权限+特征)
+		Class = getType	获取属性的类型对应的那个class
+		String = getName	获取属性的名字
+		操作属性
+		set(对象,值);	给属性赋值
+		Object = get(对象)	从某个对象内取得属性的值
+		如果是私有属性不能直接操作的
+		setAccessable(true);  设置一个使用权  准入
+=========================================================================
+
+	如何操作类中的方法
+		Class类中的方法
+		Method m = class.getMethod("方法名",Class...参数类型);	获取公有的方法(自己类+父类)
+		Method[] = clazz.getMethods();	获取所有的方法(公有 自己+父类)
+		Method = getDeclaredMethod("方法名字",参数类型的class...)	获取一个方法(自己类 公有 私有)
+		Method[] = getDeclaredMethods();			获取全部的方法(自己类 公有 私有)
+		获取构造方法
+		Constructor = clazz.getConstructor(Class...参数类型)
+		Constructor[] cons = clazz.getConstructors();
+            		clazz.getDeclaredConstructor();
+            		clazz.getDeclaredConstructors();
+
+	Method类中的常用
+		int mm = m.getModifiers();//获取方法的修饰符(权限+特征)
+            		Class mrt = m.getReturnType();//获取返回值数据类型
+            		String mn = m.getName();//获取方法的名字
+            		Class[] mpts = m.getParameterTypes();//获取方法参数列表的类型
+            		Class[] mets = m.getExceptionTypes();//获取方法抛出异常的类型
+		如何操作方法
+		调用方法   让他执行一次
+		Object result = invoke(对象,执行方法需要传递的所有参数...);
+		若方法是私有的方法  不允许操作
+		可以设置setAccessable(true)   设置方法使用权  准入
+
+	Constructor类中的常用方法
+		con.getModifiers();
+            		con.getName();
+            		con.getParameterTypes();
+            		con.getExceptionTypes();
+		如何操作构造方法
+		执行一次   创建对象
+		Object = newInstance(执行构造方法时的所有参数);
+		con.setAccessible(true);
+========================================================================
+	
+	String---->类---->对象
+	设计一个方法   给一个字符串(类)   返回一个对象   对象里面还有属性值
+
+	考试系统    Question类型
+	ATM系统   User类型		
+	Question和User类型都是我们自定义的
+	两个类的目的不是为了做什么逻辑功能
+	他们只为了存储某些值   看似是个对象  更像是个容器
+	Service   Dao   实体domain/javabean
+
+	设计一个小工具  替代我们自己创建对象的过程
+	传递一个字符串  帮我们创建一个对象  同时还能将对象内的所有属性赋值
+	//Spring开源框架	IOC控制反转   DI(依赖注入)
+	//Inversion  Of  Control	对象的控制权反转
+	//Dependency  Injection	对象的控制权是别人的  别人创建对象的同时 帮我们自动注入属性值
+
+	Question q = new Question();
+	q.setTitle("");
+	q.setAnswer("");
+
+
+
+
+

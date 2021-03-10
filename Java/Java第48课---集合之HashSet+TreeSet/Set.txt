@@ -1,0 +1,85 @@
+知识回顾
+	集合
+	Collection		Map
+	以value形式存储		以key-value形式存储
+	List    Queue    Set
+	有序可重复        无序无重复	key无序无重复value无序可重复
+	*ArrayList        HashSet	HashMap
+	Vector	        TreeSet	TreeMap
+	Stack(LIFO)
+	*LinkedList
+
+	add()	        add()
+	remove()         remove()
+	set()
+	get()	        iterator()
+	size()                size()
+
+	1.集合的应用
+		集合就是一个小容器    增删改查
+	2.集合使用的情形
+		各自集合的特点
+	3.底层原理
+		数据结构的存储方式
+	4.自己尝试实现
+=======================================================
+
+	Collection	以value形式存在
+	Set		无序无重复
+	1.具体的实现类
+		HashSet
+		TreeSet
+	2.基本的使用
+	3.无序   无重复
+		无序：我们使用集合存放元素的顺序  集合内取出来的顺序不一致
+		集合本身是有自己的算法排布顺序  hash算法
+
+	HashSet---->(HashMap (数组+链表) 散列表 临接连表)
+		1.java.util
+		2.如何创建对象   无参数  有参数
+		3.集合容器的基本使用
+			增删改查
+			boolean = add(value)   addAll(collection c)   retainAll   removeAll
+			boolean = remove(Object)
+			没有修改方法
+			iterator()  获取一个迭代器对象
+			size()
+		4.无重复的原则
+			首先通过String类型和Person类型存储
+			大概猜测  无重复的原则  利用equals方法进行比较
+			如果我们想要让Person对象的name一致 认为是同一个对象
+			我们可以重写equals方法
+			重写了equals方法  发现还没有产生无重复的效果
+			证明可能原则不止equals一个方法这么简单
+			还有另一个规则同时起着作用 hashCode方法  int
+			五个Person对象只剩一个   第一次存储的   还是最后一次存储
+			set集合是发现重复的元素 拒绝存入  存储的是第一个
+		
+	TreeSet-----(TreeMap 二叉树 利用Node(left item right))
+		无序无重复  java.util
+		无参数构造方法    带Collection构造方法
+		基本常用方法
+			add(E e)  iterator()  remove(E e)  没有修改  size()
+		无重复的规则是如何实现的
+			treeSet集合本身有顺序   我们指的无序存入的和取出来的不一致
+			compareTo---->String类  按照字母的自然顺序排布(Unicode)
+			如果想要把自己写的类型 比如Person对象存入TreeSet集合里
+			不能随意的存储	需要让自己写的类先实现Comparable接口
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

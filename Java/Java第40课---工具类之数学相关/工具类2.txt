@@ -1,0 +1,121 @@
+知识回顾
+	Java中提供的类------官方API帮助文档
+		Application  Programming  Interface
+		应用程序编程接口，一些预先创建好的类及方法，目的是为了让我们更好进行程序开发
+	包装类  数学相关  日期相关  字符串相关  集合相关  异常相关
+	I/O相关  线程相关  网络相关  反射注解  GUI相关
+
+	包装类
+	1.包装类有八个 与八个基本类型一一对应   Integer   Character
+	2.包装类存在java.lang包中  不需要import导入
+	3.包装类中有六个与数字相关  都继承自Number
+		给我们提供了对应类型的方法   intValue   floatValue   将包装类对象拆包成基本类型
+	4.包装类每一个都有与自己类型匹配的构造方法
+		Integer(10)      Float(3.4)
+	5.包装类中除了Character以外其他的七个都含有String类型的构造方法
+		Integer("10")  Float("3.4");
+	6.参考API帮助文档找寻常用的方法
+		intValue();
+		Integer.parseInt("123");
+		new Integer("123");
+	7.尤其注意在笔试中出现的 问题
+		==  equals方法的区别
+		Integer类的加载   有一个静态空间  Integer[]  cache
+================================================================
+	与数学相关的类
+	Math
+	1.所属的包java.lang
+	2.Math构造方法是私有的  我们不能直接调用创建对象
+	3.由于Math中提供的属性及方法都是static  不需要创建对象
+	4.常用的方法
+		abs()返回给定数字的绝对值    (参数 int long float double)
+		double = ceil()向上取整
+		double = floor()向下取整
+		double = rint()临近的整数 如果两边距离一样 则返回偶数
+		int = round()  四舍五入的整数
+		max(a,b)  min(a,b)    (参数int  long  float  double)
+		pow(a,b)  a的b次方  (参数double 返回值double)
+		sqrt(double a)  获取给定参数的平方根
+		double = random();	  随机产生一个     [0.0--1.0)
+	5.Math.random()计算小数的时候精确程度可能有些损失
+		0-9之间的随机整数
+		int value = (int)(Math.random()*10);
+		5.0---10.9之间的小数
+		(Math.random()*6)+5
+		0.0---0.99999 * 6
+		(0.0---5.49999)+5
+
+	Random类
+	1.在java.util包中的类   需要import导入
+	2.没有任何继承关系  默认继承Object类
+	3.查找构造方法--->如何创建对象
+		Random r = new Random();
+	4.类中提供的常用方法
+		r.nextInt();   随机产生 int取值范围的整数 有正有负
+		r.nextInt(int bound);   随机产生一个  [0--bound)  整数  
+			注意bound必须为正数  否则会出现如下的运行时异常
+			IllegalArgumentException
+		r.nextFloat()  随机产生一个 [0.0---1.0)
+		r.nextBoolean()   随机产生一个boolean值   true  false
+
+	UUID类
+	1.所属的包  java.util    需要import导入
+	2.没有任何继承关系  默认继承Object类
+	3.构造方法有  没有无参数的  我们通常不会创建对象
+		UUID uuid = UUID.randomUUID();
+        		System.out.println(uuid.toString());//数据库表格主键 primary key
+		产生一个32位的随机元素 每一个位置是一个16进制的数字
+
+	BigInteger类 大整数		long  -2的63次方 ~ 2的63次方-1
+	1.所属的包java.math  需要import导入
+	2.继承自Number   
+	3.如何创建对象   提供的构造方法全部都是带参数的
+		通常利用带String参数的构造方法创建这个类的对象
+		BigInteger  bi = new BigInteger("123");	
+	4.类中的常用方法
+		做四则运算 
+		add()   subtract()   multiply()   divide()
+	5.小例子   设计一个方法 用来计算给定数字的阶乘  5   1*2*3*4*5==120
+		//设计一个方法  用来计算给定数字的阶乘
+		//参数   返回值
+		public BigInteger factorial(int num){
+			BigInteger result = new BigInteger("1");
+			for(int i=1;i<=num;i++){
+				result = result.multiply(new BigInteger(i+""));
+			}
+			return result;
+		}
+	
+	BigDecima类    超过了double取值范围
+	1.所属的包  java.math包
+	2.继承Number类
+	3.通常也是可以通过 带String参数 构建对象
+	4.类中的常用方法
+		做四则运算 
+		add()   subtract()   multiply()   divide()
+		两个参数前面是保留小数点之后的位数  后面参数是设置的模式
+		对象.setScale(2,BigDecimal.ROUND_DOWN);
+	
+
+	将小数点之前和之后的位数都能处理的类---->格式化
+	DecimalFormat
+	1.所属的包 java.text
+	2.import导入才能使用
+	3.通过带String参数的构造方法创建一个格式化对象   0  #
+	4.调用format方法将一个小数格式化成一个字符串
+		DecimalFormat df = new DecimalFormat("000.###");// 0 #
+        		String value = df.format(12.45);
+        		System.out.println(value);
+====================================================================
+	日期相关
+	Date
+	Calendar
+	TimeZone
+	*字符串相关
+	String
+	StringBuffer
+	StringBuilder
+	
+
+
+

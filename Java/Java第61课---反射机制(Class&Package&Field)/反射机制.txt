@@ -1,0 +1,77 @@
+新的知识点
+	底层的技术----反射技术
+
+	String类时候  隐约提起过
+	非常特殊的引用数据类型
+	String s = "abc"; //new String("abc");
+	不可变特性
+	String不可变特性体现在  长度  内容
+		public final class String{
+			private final char[] value;
+		}
+	内容好像不是真的不让变  可以通过反射技术修改
+	*一会儿学完了反射操作属性  尝试修改一下String中的value值
+
+	反射 reflect
+	面向对象的变成思想
+	类	从很多对象中抽取出来的公有的特征行为  抽象描述   用来描述一组对象
+	对象	现实生活中 先存在了好多对象 很多相同特征 相同行为
+
+	类是用来描述一组对象
+	反射机制认为是用来描述一组类
+	可以与之前学习File对比着学习
+
+	Class		用来描述类本身
+	Package		用来描述类所属的包
+	Field		用来描述类中的属性
+	Method		用来描述类中的方法
+	Constructor	用来描述类中的构造方法
+	Annotation	用来描述类中的注解
+	
+	1.如何获取Class
+		如下三种方式
+		Class clazz = Class.forName("包名.类名");
+		Class clazz = 类名.class;
+		Class clazz = 对象.getClass();//Object类中的方法
+	2.Class中的常用方法
+		1.int result = getModifiers();	获取类的修饰符(权限 特征)
+			每一个修饰符 用一个整数来进行表示
+            			0开始---0 1 2 4 8 16 32 64 128 256 512
+            			0--默认不写  1--public  2--private  4--protected
+            			8--static   16--final  32--synchronized  64volatile
+            			128--transient  256--native  512--interface  1024--abstract
+		2.String name = getName();获取名字
+		3.String simpleName = getSimpleName();简单名
+		4.Package p = getPackage();
+			p.getName();
+		5.Class sclazz = getSuperClass();//获取超类(父类)
+		6.Class[] classes = getInterface();
+		-----------------------------------------------------------------------
+		7.Object obj = newInstance();//默认调用无参数构造方法创建对象
+		8.Field f = getField("属性名");
+		   Field[] fs = getFields();
+		   如上的两个方法只能获取公有的属性  但是包含继承过来的父类属性
+		9.getDeclaredField("属性");
+		   Field[] fs = getDeclaredFields();
+		   如上的两个方法能获取公有的和私有的属性  但是只能获取本类中的属性
+	3.Field类中的常用方法
+		int = getModifers()
+		Class = getType()
+		String = getName()
+		操作属性  向里面存值
+		set(对象,值)  
+		操作属性  从里面取值
+		值 = get(对象)
+		setAccessable(true); 可以修改属性被操作
+
+		对象 = new();//创建对象空间  当前对象空间里有自己的一套元素(属性 方法)
+		对象.属性 = 值;
+
+		属性 = 类.getField();
+		属性.赋值(哪个对象,值);
+		
+
+		值 = 对象.属性	值 = 属性.取值(哪个对象)
+
+
+

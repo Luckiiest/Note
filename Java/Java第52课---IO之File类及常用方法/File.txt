@@ -1,0 +1,86 @@
+知识回顾
+		Throwable
+	Error		        Exception
+	错误		        异常
+	通常是一些物理性错误        人为规定的不正常现象
+	StackOverflowError		运行时RuntimeException----->熟悉常见的运行时异常
+	OutOfMemoryError		编译时
+
+	Error和RuntimeException这一类的异常   运行时  javac编译的时候不检测
+	不需要主动添加处理异常的手段  当然我们愿意的话  也可以添加
+	除了上述以外其他的异常都需要做检测  要求我们必须添加处理异常的手段  编译不过去
+
+	处理异常的手段
+	try{}catch(){}finally{}
+		1.try不能单独出现  后面必须跟着其他的一个结构  catch或finally都可以
+		2.catch可以出现很多个  要么多个catch捕获的异常没有继承关系  要么先捕获小 再捕获大
+		3.finally可有可无的  若添加了这个结构 则必须执行  即便是放在方法中 之前有return 也会执行
+		4.注意方法内部返回值问题
+		5.finally可能会出现一个笔试题   final  finally  finalize区别
+	throws
+		1.只能在方法和构造方法结构上存在(抛出异常)
+		2.谁调用此方法  谁处理异常
+		3.抛出的异常也可以有多个  用,隔开  
+
+	自定义
+		1.写一个类  继承Exception   RuntimeException
+		2.类中可以写带String参数的构造方法  可以做细致的说明
+		3.通过throw关键字   new一个异常的对象
+========================================================================
+
+	I/O相关	输入/输出	   流(数据流动)
+	数据流动的方向   读数据(输入Input)   写数据(输出output)
+	文件流  字符流  对象流  网络流....
+
+	1.什么叫文件
+		一种电脑的存储形式
+		文件有不同的格式   .txt   .doc   .ppt   .mp4   .jpg   .rar   ...
+		文件夹?----目录路径
+		File----->与电脑上的文件或文件夹产生一一对应的映射关系
+		File是一个类
+		1.java.io包中
+		2.文件或目录路径名的抽象表示形式
+		3.File与真实硬盘中的文件或文件夹  不是一个东西
+		   File是在内存中的一个对象<---映射--->硬盘上的文件或文件夹
+		4.File类中的常用的方法
+		   canRead()   canWrite()   isHidden()   isFile()   isDirectory()
+		   length()获取文件中字节的个数
+		   lastModified()获取文件最后的修改时间--->毫秒值
+		   *String path = getAbsolutePath()  获取文件的绝对路径   D://test//Test.txt
+			绝对路径<---->相对路径
+			绝对路径可以通过完整的字符串  定位盘符 文件夹 文件
+			相对路径没有盘符的写法           当前工程(项目)所在的位置找寻
+					C:\Users\Administrator\IdeaProjects\TestFile
+		   String name = getName() 获取文件的名字    Test.txt
+		   *boolean = createNewFile()  创建新的文件
+		   *boolean = mkdir	              创建新的文件夹  外层没有 不能创建
+		   *boolean = mkdirs             创建新的文件夹  外层没有 可以自动创建
+		   String pname = getParent()  获取当前file的父亲file名字
+		   *File file = getParentFile()      获取当前file的父亲file对象
+		   String[] names = list()            获取当前file的所有儿子名字
+		   *File[] files = listFiles()             获取当前file的所有儿子对象
+		   *boolean = delete()	删除文件或空的文件夹  不能删除带元素的文件夹
+	2.什么叫文件流   做什么
+		读取文件中的内容		向文件中写内容
+		文件输入流		文件输出流
+		字节型文件输入流		字节型文件输出流
+		字符型文件输入流		字符型文件输出流
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+Java核心思想
+	面向对象的编程思想
+	类和类的关系
+	类中成员的描述   对象创建
+Java工具类
+	包装类   数学相关   日期相关   字符串相关
+	集合相关的类
+	考试机   学生   老师
+=================================================
+异常/错误
+	程序运行过程中，可能会发生一些不被期望的效果，肯定会阻止我们的程序按照指令去执行
+	这种不被预期出现的效果，肯定需要抛出来告诉我们
+
+	在Java中有一个定义好的规则Throwable（可以抛出的）
+
+	Error错误
+	通常是一些物理性的，JVM虚拟机本身出现的问题，程序指令是处理不了的
+
+	Exception异常
+	通常是一种人为规定的不正常的现象，通常是给定的程序指令产生了一些不符合规范的事情
+
+			Throwable类实现了一个序列化接口
+	Error(错误)			Exception(异常)
+	StackOverflowError		RuntimeException(运行时)   IOException。。。。。
+	OutOfMemoryError
+
+	异常的分支体系
+	运行时异常(非检查异常)
+		Error和RuntimeException都算作运行时异常
+		javac编译的时候，不会提示和发现的，
+		在程序编写时不要求必须做处理，如果我们愿意可以添加处理手段(try throws)
+		要求大家出现这样异常的时候 知道怎么产生及如何修改
+		1.InputMisMatchException 输入不匹配
+			int value = input.nextInt();//   abc
+		*2.NumberFormatException 数字格式化
+			int value = Integer.parseInt("123.45");
+		3.NegativeArraySizeException 数组长度负数
+			int[] array = new int[-2];
+		*4.ArrayIndexOutOfBoundsException 数组索引越界
+			int[] array = {1,2,3};
+			array[5];
+		*5.NullPointerException 空指针异常
+			int[][] array = new int[3][];
+			array[0][0] =10;
+			Person p = null;
+			p.getName();
+		6.ArithmeticException 数字异常
+			10/0	整数不允许除以0	Infinity小数除以0会产生无穷
+		*7.ClassCastException 造型异常
+			Person p = new Teacher();
+			Student s = (Student)p;
+		*8.StringIndexOutOfBoundsException 字符串越界
+			String str = "abc";
+			str.charAt(5);
+		*9.IndexOutOfBoundsException 集合越界
+			List家族
+			ArrayList  list = new ArrayList();
+			list.add(); list.add(); list.add();
+			list.get(5);
+		10.IllegalArgumentException 非法参数异常
+			ArrayList  list = new ArrayList(-1);
+	编译时异常(检查异常)
+		除了Error和RuntimeException以外其他的异常
+		javac编译的时候  强制要求我们必须为这样的异常做处理(try或throws)
+		因为这样的异常在程序运行过程中极有可能产生问题的
+		异常产生后后续的所有执行就停止啦
+		1.InterruptException
+			try{
+				Thread.sleep(5000);
+			}catch(Exception e){
+	
+			}
+		后续还会有很多的编译时异常
+===============================================================
+
+	添加处理异常的手段
+	处理异常不是   异常消失了
+	处理异常指的是   处理掉异常之后   后续的代码不会因为此异常而终止执行
+
+	两种手段
+	try{}catch(){}[ finally{} ]
+	1.try不能单独的出现
+	2.后面必须添加catch或finally
+	3.catch有一组括号 (NullPointerException) 目的是为了捕获某一种异常
+	4.catch可以有很多个存在
+		捕获的异常之间没有任何的继承关系
+		捕获的异常需要从小到大进行捕获
+	5.finally不是必须存在的
+		若存在finally结构  则必须执行
+		引申一个小问题:   final   finally  finalize区别
+			final  特征修饰符  修饰变量 属性 方法 类
+				修饰变量 基本类型 值不能改变 引用类型 地址不能改变(如果变量没有初值 给一次机会赋值)
+				修饰属性 特点与修饰变量类似 (要求必须给属性赋初始值 否则编译报错)
+				修饰方法 不能被子类重写
+				修饰类    不能被其他的子类继承
+			finally 处理异常手段的一部分
+				try{}catch(){}后面的一个部分
+				这个部分可有可无  如果有只能含有一份 且必须执行
+			finalize 是Object类中的一个protected方法
+				对象没有任何引用指向的时候 -- 会被GC回收
+				当对象回收的时候 默认调用finalize方法
+				若想要看到对象回收的效果  可以重写 public void finalize(){}
+	6.处理异常放在方法内部 可能还会有小问题
+		如果在方法内部含有返回值
+		不管返回值return关键字在哪里   finally一定会执行完毕
+		返回值的具体结果   看情况
+	------------------------------------------------------------
+	throws抛出
+	1.异常只能在方法上抛出  属性是不能处理异常的
+	2.方法  构造
+	3.方法可以抛出不止一个异常  通过，隔开
+	4.抛出的异常与多个catch类似  要么没关系 要么先抛出小异常
+
+	-------------------------------------------------------------
+	Throwable的分支
+	Exception   Error
+	运行时
+	编译时
+	两种处理异常的手段 try  throws
+	常用的运行时异常  后续见到的编译时异常
+	
+	我们也可以自己创建异常----自定义异常
+	1.自己描述一个异常的类
+	2.让我们自己的类继承
+		如果继承是RuntimeException---->运行时异常(不需要必须添加处理手段)
+		如果继承是Exception-------------->编译时异常(必须添加处理手段)
+	3.创建一个当前自定义异常类的对象
+		通过throw关键字  主动产生异常
+	4.当我们设计描述的方法(事情)  之前没有相关的异常能描述我的问题Box
+		这个时候才会利用自定义异常来描述
+===================================================================
+	I/O相关
+	线程相关
+	网络相关
+	反射注解
+
+
+
+
+
+
+
+
+
+
+
+
+

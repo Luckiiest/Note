@@ -1,0 +1,85 @@
+知识回顾
+	0.System类    java.lang包
+		in  out对象属性	gc();  exit(0);
+		long time = currentTimeMillis();  获取当前系统时间--->1970-1-1 00:80:00  毫秒形式
+	1.Date类       java.util包   (java.sql)
+		无参数构造方法  new Date();    new Date(long time);
+		after();   before();   compareTo();
+		setTime()   getTime();   
+	2.SimpleDateFormat类    java.text包
+		带String参数的构造方法    new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
+		String value = 对象.format(date);
+	3.Calender类    java.util包
+		需要通过类中的一个方法创建对象
+		Calender c = Calendar.newInstance();//默认当前系统时间的一个对象
+		after()  before()  setTime()  getTime()
+		set(Calender.YEAR，值);     get(Calender.YEAR);
+		getTimeInMillis();
+		getTimeZone();//获取对应的时区
+	4.TimeZone类   java.util包
+		需要通过类中的一个方法创建对象
+		TimeZone tz = TimeZone.getDefault();
+		getID();    getDisplayName();
+	-------------------------------------------------------------------------------------
+	String类---->引用类型    java.lang包
+		0.常见的String笔试题
+			==  equals方法的区别
+				==可以比较基本类型  可以比较引用类型
+				     比较基本类型比较值 比较引用类型比较地址
+				equals只能比较引用类型(方法)
+				     默认比较地址this==obj 
+				     如果想要修改其比较规则  可以重写equals方法
+				     通常重写equals方法时会伴随着重写hashCode方法
+				     比如String类  比如Integer
+			*String的不可变特性
+				长度及内容
+			String与StringBuffer区别
+			StringBuffer与StringBuilder区别
+			String对象的存储
+				"abc"---->字符串常量池
+				new String("abc")--->堆内存
+				"a"+"b"+"c"+"d"
+			*String中常用的方法
+		1.存在哪儿   java.lang包   
+			没有任何继承关系  实现三个接口Serializable, CharSequence, Comparable<String>
+		2.如何构建对象
+			String str = "abc"; //直接将字符串常量赋值给str   (字符串常量池)
+			String str = new String();//无参数构造方法创建空的对象
+			String str = new String("abc");//带string参数的构造方法创建对象
+			String str = new String(byte[] )//将数组中的每一个元素转化成对应的char 组合成String
+			String str = new String(char[] )//将数组中的每一个char元素拼接成最终的String
+		3.String的不可变特性
+			String类中包含一个private final char[] value;
+			体现在两个地方   长度及内容
+			长度--->final修饰的数组   数组长度本身不变  final修饰数组的地址也不变
+			内容--->private修饰的属性  不能在类的外部访问
+		*4.常用的方法
+			boolean = equals(Object obj);
+				//继承自Object 重写啦  比较两个字串中的字面值是否相等
+			int = hashCode();
+				//继承自Object 重写啦  将当前字符串的每一个char元素拆开 乘以31求和
+			int = compareTo(String str);
+				//实现自Comparable接口  实现啦  按照字典(Unicode编码)索引的顺序比较
+			String = toString();
+				//继承自Object 重写啦 不再输出 类名@hashCode  字符串中的字面值
+			--------------------------------------------------------------------
+			char = charAt(int index);//"abc"   0-->a
+				//返回给定index对应位置的那个char值
+			int = codePointAt(int index);//"abc"   0-->97
+				//返回给定index对应位置的那个char所对应的code码
+			int = length();
+				//返回字符串的长度
+			String = concat(String);
+				//将给定的字符串拼接在当前字符串之后
+
+			//自己回去查看API文档
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+知识回顾
+	集合
+	集合是用来存储一组元素----容器   与数组类似
+	数组创建后长度不可以再次改变   集合创建后长度是可以改变  (数据结构 Array  Linked  Hash  Tree)
+
+	集合的分支体系
+	Collection		Map
+	以value形式存储		以key-value形式存储
+	List	    Set	     Queue
+	有序可重复    无序无重复	key无序无重复  value无序可以重复
+
+	java.util包
+	*ArrayList
+	1.底层是利用(动态)数组形式实现	1.5
+	2.ArrayList特点适合遍历轮询   不适合插入删除
+	3.如何构建一个ArrayList对象
+		无参数构造方法    带默认容量构造方法
+	4.ArrayList中常用的方法
+		增删改查	add(E e)  remove(index)  set(index value)  get(index)   size()
+		类中其他常用的方法
+			addAll并集   removeAll差集   ratainAll交集
+			indexOf()  lastIndexOf()  contains()  List=subList()
+			isEmpty()  clear()   ensureCapacity()  iterator();迭代器
+			toArray(T[] x);  trimToSize();
+	5.泛型
+		用来规定数据类型
+		注意:  泛型  造型
+		在类或接口描述的时候  可以使用某种符号来表示一个未知的类型
+		在类型使用的时候  需要一个具体类型来代替
+		注意:  泛型需要使用引用数据类型来代替
+		1.泛型类  2.泛型接口  3.泛型方法  4.方法参数泛型限制  
+=====================================================================
+	List
+
+	Vector类
+	1.java.util包
+	2.是ArrayList集合的早期版本	(StringBuffer早期  StringBuilder后来)
+		Vector底层也是利用(动态)数组的形式存储
+		Vector是线程同步的(synchronized)  安全性高  效率低
+	3.扩容方式与ArrayList不同
+		默认是扩容2倍   可以通过构造方法创建对象时修改这一机制
+	4.构造方法
+	5.常用方法
+
+	Stack类	栈
+	1.java.util包
+	2.构造方法只有一个无参数
+	3.除了继承自Vacton类的方法外还有特殊的方法
+		push(E e)将某一个元素压入栈顶(add())
+		E = pop()将某一个元素从栈顶取出并删掉(E = remove())
+		E = peek()查看栈顶的一个元素 不删除(get())
+		boolean = empty()判断栈内元素是否为空(isEmpty())
+		int = search()查找给定的元素在占中的位置(indexOf())
+	4.中国象棋   悔棋
+		栈中存储每一次操作的步骤
+		撤销功能
+
+	Queue接口
+	1.java.util		通常子类LinkedList   ArrayDeque
+	2.通常无参数构造方法创建
+	3.一般方法
+		add()
+		element()---->get()
+		remove()
+		boolean = offer(E e);//相当于add	不会抛出异常
+		E = peek();//相当于 element方法
+		E = poll();剪短//  相当于remove()
+	4.双十一零点秒杀
+		所有进入秒杀系统的人存入队列
+
+	ArrayList
+	LinkedList类
+	1.java.util包	自己封装过LinkedBox   内部类Node<T>对象(节点 prev item next)
+	2.底层使用双向链表的数据结构形式来存储
+		适合于插入或删除  不适合遍历轮询
+	3.构建对象
+		无参数构造方法   带参数的构造方法(collection)
+	4.常用的方法
+		增删改查   add()  remove()  set()  get()  size()	offer  poll   peek
+		手册中提供的其他常用方法
+		addAll   addFist   addLast()  clear()  contains()
+		element()  getFirst()  getLast()  indexOf()  lastIndex()
+		.....
+	5.插入删除的特性是否像想的那样
+		对比ArrayList  Linked
+
+
+
+
+
+
+
+		
+
+
+
+

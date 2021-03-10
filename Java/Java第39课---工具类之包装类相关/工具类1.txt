@@ -1,0 +1,101 @@
+知识回顾
+	1.枚举(类)
+	      可以将某些类中的对象一一列举出来    类中的对象具有有限的个数
+	      1.通过enum来描述枚举     class   interface   enum
+	      2.可以在枚举类中直接列举对象    public enum Day{  monday,tuesday }
+	      3.通过枚举类直接访问属性名(枚举对象)
+	      4.通过枚举对象调用  发现有很多的方法
+		每一个自己定义的enum枚举类型 都默认继承java.lang.Enum   Object
+		有两个私有属性name枚举对象名字   ordinal顺序(在枚举类中的索引)
+		name()  ordinal()获取相关属性信息的方法
+		Day enum = Day.valueOf("name");
+		Day[] days = Day.values();
+		monday.compareTo(tuesday);
+	      5.可以在enum中定义自己的一般属性  一般方法
+		必须在枚举类描述的第一行  列举枚举对象的样子 分号结尾
+		添加自己定义的私有属性
+		提供私有的构造方法(带参数)  我们自己是不能调用构造方法
+	      6.自己定义的enum不能再继承别的类(单继承)
+		可以实现多个接口   添加具体的方法
+	      7.可以使用在switch语句中   
+	2.内存管理的问题
+	      栈内存----变量空间   方法临时执行空间       从创建开始执行完毕  立即回收
+	      堆内存----我们自己new申请对象空间     垃圾回收器GC    对象空间没有任何引用指向视为垃圾
+	      方法区----常量  类模板  静态成员   有且只有一份   不回收
+		public class Test{
+			public Person p = new Person();//聚合关系
+		}
+		Test t = new Test();
+		Person p = t.p;
+		p = null;
+		t.p = null;
+		System.gc();
+		为了能看到对象被回收的效果
+		1.重写类中的finalize方法    从Object继承过来的
+		2.Runtime类  单例模式  Runtime.getRuntime();获取对象   
+			long  =  maxMemory   totalMemory   freeMemory
+			OutOfMemoryError 堆内存溢出错误
+			StackOverflowError 栈内存溢出错误
+======================================================================
+	Java开发者写好的类-----专业的文档  API(建议下载一个.chm)
+	包装类(封装类)
+	数学相关
+	日期相关
+	*字符串
+	*集合相关(ArrayBox LinkedBox)
+	*异常相关
+	输入输出相关I/O
+	线程相关
+	网络通信
+	反射注解
+	GUI  Swing
+======================================================================
+	1.类所在的包
+	2.类的关系   自己默认继承 实现
+	3.是否可以创建对象  调用    方法本身静态的
+	4.类中提供的常用方法
+
+	包装类(封装类)  1.5版本之后  自动拆装包
+	byte---Byte   short---Short   int---Integer  long---Long
+	float---Float  double---Double  char---Character   boolean---Boolean
+	1.八个包装类都在同一个包下   java.lang包   不需要import导包直接使用
+	2.八个包装类中有六个是与数字相关  都默认继承父类Number
+	3.八个包装类都实现了Serializable, Comparable
+	4.八个包装类都有带自己对应类型参数的构造方法
+	   八个包装类中有七个(除了Character)还有构造方法重载   带String类型
+	5.创建对象  对象调用方法
+		有六个与数字相关的类都继承Number     xxxValue();  将一个包装类类型转化为对应的基本类型(拆包)
+		Integer i1 = new Integer(10);//引用数据类型 包装类
+		int value = i1.intValue();
+
+		Integer i2 = 10;
+		int value = new Integer(10);
+
+		int value = Integer.parseInt("123");	Float.parseFloat("123.45")
+		int value = new Integer("123");
+	6.经常在笔试中出现的问题
+		Integer i1 = 10;
+		Integer i2 = 10;
+		Integer i3 = new Integer(10);
+		Integer i4 = new Integer(10);
+		System.out.println(i1==i2);//  true--->如果数字范围超过127false
+		System.out.println(i1==i3);//  false
+		System.out.println(i3==i4);//  false
+		System.out.println(i1.equals(i2));//true
+		System.out.println(i1.equals(i3));//true
+		System.out.println(i3.equals(i4));//true
+		1.==与equals()区别
+		==可以比较基本数据类型  也可以比较引用数据类型  (变量中存储的内容)
+		如果比较基本类型比较是变量中存储的值
+		如果比较引用类型比较是变量中存储的地址引用
+		equals()是Object类中继承过来的方法  每一个引用类型都可以调用
+		默认继承的equals()方法比较与==一致  如果想要改变比较规则 可以重写equals方法
+		由于Integer类就重写了equals() 所以Integer比较的是数值
+		2.考察Integer类加载的时候  自己有一个静态的空间
+		空间内立即加载 Integer类型的数组  内存储256个Integer对象   -128 ~ 127
+		如果我们用的对象范围在这之内Integer i1 = 10;  直接取静态区中找对应的对象
+		如果我们用的对象范围超出了这个Integer i1 = 1000;  会帮我们创建一个新的Integer对象
+		
+
+
+

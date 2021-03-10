@@ -1,0 +1,82 @@
+知识回顾
+	Collection		Map
+				以key-value形式存储
+	HashMap
+	1.java.util包
+	2.构造方法创建对象   无参数  带默认容量的  带map参数的构造方法
+	3.特点   (数组+链表)底层散列表形式存储  key无序无重复  value无序可重复
+		找寻某一个唯一元素的时候建议使用map   更适合于查找唯一元素
+		Map$Entry
+	4.常用方法
+		增删改查
+		put(key,value)
+		remove(key)
+		replace(key);--->put()map集合第二次存储相同的key 则会覆盖之前的value
+		get(key)
+		keySet();获取全部的key   entrySet();获取全部的entry(Node)对象   Map$Entry
+		size();
+		-----------------------------------
+		putAll  clear  containsKey containsValue isEmpty 
+		E value = getOrDefault(key,defaultValue);若key存在就返回value 若不存在则返回defaultValue
+		putIfAbsent(key,value);key若不存在就存入 若存在就放弃
+		
+=======================================================================
+	TreeMap		自然有序  按照Unicode编码自然有序
+			map集合中的key需要可比较的   key的对象需要实现Comparable接口
+	1.java.util包
+	2.构造方法
+		无参数  带map参数
+	3.常用方法
+		put  get   remove  replace  size
+	4.底层数据结构的存储
+		红黑二叉树
+==================================================================
+	小任务
+		题目做成选择题
+			1.以下哪个选项不是Java的基本类型?
+			   A.short   B.boolean  C.String  D.char
+			   请您输入认为正确的选项?
+			2.以下哪个选项是Java的基本类型?
+			   A.Short   B.Boolean  C.String  D.char
+			   请您输入认为正确的选项?
+		学生考试之前需要先登录认证
+		设计一个学生  考试机  老师关系		
+		考试机存储好多题目----题库10道
+		考试机随机生成试卷的方法5道
+		学生利用生成的试卷考试-->答案 5个选项 A D B C A
+		老师负责批卷子   最终成绩
+
+		类的设计 方法 属性
+		类之间的关系
+		String类型的常用方法
+		集合的选择与使用(包含数组)
+
+
+	1.考试的题目该如何存储?
+		自己描述一个类--->一个题目类型
+		有两个属性---题干  真实答案
+		public class Question{
+			private String title;
+			private Stirng answer;
+		}
+	2.有几个实体类(3个)  类的关系?
+		考试机
+		   属性---题库 存储好多Question类型的对象
+		             set无重复
+		   方法---随机抽题目 试卷
+		学生
+		   方法---考试(试卷)
+		老师
+		   方法---批卷子(学生最终的选项，真实的试卷)
+	3.具体添加每一个类中的成员描述
+		涉及到如何选择容器来存储的问题
+	4.具体的执行验证
+
+
+
+
+
+
+
+
+

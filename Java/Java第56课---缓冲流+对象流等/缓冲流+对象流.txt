@@ -1,0 +1,139 @@
+知识回顾
+	字符型文件流
+		FileReader	FileWriter
+		只能操作纯文本的文件.txt   .properties
+
+		1.java.io包
+		2.带参数的构造方法  File      String   boolean
+		3.创建字符流对象的时候  会产生编译时异常  FileNotFoundException
+		4.基本使用
+		int code = read();		write(int code);
+		int count = read(char[]);	write(char[]);
+					write(String);
+		close()			flush();	close();
+===================================================================
+	字符集
+	字符   文字和符号总称(Character)
+	不同国家的数字和符号是一样的   字母
+	不同国家的文字   中文   日文   韩文
+	计算机最早产生是按照英语单词  单个字符设计的
+	字母  数字  符号-----1字节   8bit   256
+	如果计算机想要处理除了上述字母符号以外的其他字符---比如中文2字节
+	需要将中文进行字符编码----->拆分 和 组合
+	拆分合组合的规则---所谓的字符编码
+	常见的字符编码
+		ASCII	American Standard Code for Information Interchange
+		ISO-8859-1
+		GB2312   GB18030   GBK	BIG5
+		Unicode
+		UTF-8   UTF-16
+		平台(操作系统)默认字符集GBK	Linux(MacOS)默认字符集UTF-8
+		编程序使用的开发环境(IDE)   Idea-->UTF-8   Eclipse-->GBK
+		注意在用记事本存储文字    流操作纯文本形式的时候
+		字符的形式采用UTF-8
+		String s = "你我他";
+		byte[] = s.getBytes("UTF-8");
+		new String(byte[],"UTF-8");
+		
+=================================================================
+	文件流
+		FileInputStream/FileOutputStream
+		         FileReader/FileWriter
+	缓冲流
+		在流管道内增加缓存的数据
+		让我们使用流读取的文字更加的流畅
+		高级流--->创建通过低级流
+		BufferedInputStream/BufferedOutputStream
+		         BufferedReader/BufferedWriter
+
+		BufferedInputStream
+		构建方式  使用低级流构建
+		基本使用与低级流的方法完全一致
+		read()  skip()  available()  close()
+
+		BufferedOutputStream
+		构建方式  使用低级流构建   注意 缓冲流构建的时候没有boolean类型的参数
+		基本使用与低级流的方法完全一致
+		write()   flush()  close()
+		
+
+		数组  box  集合(List Set Map)--->做真实数据的存储
+		都不好--->临时性的存储  都在内存中
+		文件----->永久性的存储  存储在硬盘上
+
+		BufferedReader
+			String value = readLine();
+		BufferedWriter
+			write(String)
+			newLine()
+===================================================================
+			File
+			InputStream	OutputStream
+			Reader		Writer
+
+	*文件流
+		低级
+			字节型	FileInputStream  FileOutputStream
+			字符型	FileReader  FileWriter	字符集65279
+		*缓冲
+			字节型	BufferedInputStream  BufferedOutputStream
+			字符型	BufferedReader	BufferedWriter
+	数组流
+		byte数组		ByteArrayInputStream	ByteArrayOutputStream
+		char数组		CharArrayReader		CharArrayWriter
+	数据流			DataInputStream		DataOutputStream
+	字符串流			StringReader		StringWriter
+	*对象流			ObjectInputStream		ObjectOutputStream
+		
+		File+流
+		1.为什么要有文件?
+			文件永久性的保存信息	将很多的数据直接存入文件----数据持久化
+		2.如果按照以行为单位写信息
+			好处在于每一行记录的信息都是相关的
+			信息我们可以读取出来   直接看懂文件
+			不好在于第一不安全  直接看懂
+			不好在于只能记录String信息 不能记录一些动作(方法)
+		3.读取出来的信息 String ---> Person
+		4.如果能将对象拆分成字节码 直接写入文件
+			将对象直接存入文件中----对象流
+
+	
+		对象的序列化/反序列化
+		对象的序列化指的是 
+			将一个完整的对象 拆分成字节碎片 记录在文件中
+		对象的反序列化指的是
+			将文件中记录的对象随便 反过来组合成一个完整的对象
+		如果想要将对象序列化到文件中
+			需要让对象实现Serializable接口
+			是一个示意性接口
+			同时为了让对象可以反序列化
+			需要让对象中多存在一个属性  private long serialVersionUID = 任意L;
+		如果想要将对象反序列化
+			需要给对象提供一个序列化的版本号  1.7版本-->String   1.8-->String
+
+	小任务
+	1.实现一个银行业务系统
+	2.要求有如下的业务功能
+		登录
+		查询余额
+		存款
+		取款
+		转账
+		开户
+		销户
+	3.记录银行的用户信息
+		账号--密码--余额	BufferedReader  readLine	ObjectOutputStream
+
+
+
+
+
+
+
+
+
+
+
+
+
+

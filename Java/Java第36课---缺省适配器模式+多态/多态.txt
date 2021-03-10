@@ -1,0 +1,184 @@
+
+	最早学一个变量------>内存空间(小容器)	只有一个
+	后来学一个数组------>内存空间(小容器)	存储一组一样的数据类型
+		好处是在于堆内存中存储的地址连续   便于循环遍历
+		数组创建时必须指定长度    频繁的添加或删除元素  个数固定就很不方便
+	再后来学习如何描述类--->利用自己描述的类ArrayBox创建对象(小容器)	存储一组元素
+		长度对于使用者来讲是可变的    便于循环遍历(底层就是数组)
+		频繁的在ArrayBox中插入元素   从中间位置删除元素   性能不高
+	上次学习利用链式结构--->利用自己描述的类LinkedBox创建对象(小容器)	存储一组元素
+		长度对于使用者来讲是可变的    双向链表结构  (底层实现Node对象 节点)
+		更加适合于插入元素或删除元素
+		每一个node对象的地址不是连续  循环效率比较慢
+	为了便于用于使用Box--->定义一个规则----->定义一个接口
+
+		//为了将所有的box规则统一起来  让使用者用起来更加方便
+		public interface Box{
+			public boolean add(element);添加到末尾
+			public void add(int index,int element);  在给定的位置中插入一个元素
+			public void addAll();   将给定的box中所有的元素添加至我们现在的box中
+			public int get(index);
+			public int remove(index);
+			public int size();
+		}
+		有了box可以做统一的规则约束
+		每一个子类都实现同一个规则   用户使用起来很容易
+		如果按照上述的方式来实现   规则添加了新的方法   所有的子类都跟着添加新的方法
+
+		设计模式
+		适配器模式  Adapter
+
+		定义一个规则--->和尚  吃斋  念经  打坐  撞钟  习武
+		缺省适配器模式
+		鲁智深   鲁达   形态丑陋   面貌凶顽
+		             此人上应天星  心地刚直   虽时下凶顽  命中驳杂  久后却得清净  证果非凡  汝等皆不及他
+
+		public abstract class AbstractBox implements Box{
+			public boolean add(element);
+			public void add(int index,int element){//具体化
+				//抛出自定义异常
+			}
+			public void addAll(){//具体化
+				//抛出自定义异常
+			}
+			public int get(index);
+			public int remove(index);
+			public int size();
+
+			public void rangeCheck(int index){
+				if(index<0 || index>=size){
+					自定义的异常
+				}
+			}
+		}
+-------------------------------------------------------------------------------------------------------------
+		public class ArrayBox extends AbstractBox{
+			属性用来存储真实数据elementDate[]
+			属性用来记录有效元素个数  int size;
+
+			public boolean add(element){
+				//1.确保数组内部容量
+				//2.将element元素存入数组的最后位置  size++
+				//3.返回一个true告知用户添加成功
+			}
+			public int get(index){
+				//1.检测index范围是否合法
+				//2.将index位置的元素从数组中取出 并返回
+			}
+			public int remove(index){
+				//1.检测index范围是否合法
+				//2.获取index位置上的元素----保留起来
+				//3.从index开始至size-1位置   将后面元素逐一前移覆盖
+				//4.最后有效的那个元素删掉  --size
+				//5.保留起来的旧元素返回
+			}
+			public int size(){
+				//return this.size;
+			}
+		}
+------------------------------------------------------------------------------------------------------------------
+		//这是一个自定义的类型----节点
+		public class Node{
+			Node prev;
+			int item;
+			Node next;
+		}
+		public class LinkedBox extends AbstractBox{
+			属性存储首节点first
+			属性存储尾节点last
+			属性存储有效元素的个数size
+
+			public boolean add(element){
+				//找一个人 将element添加在链表末尾
+				//告知添加成功
+			}
+			public int get(index){
+				//检测index是否合法
+				//找一个人  帮我们找到index位置的那个Node对象
+				//将node中item数据返回
+			}
+			public int remove(index){
+				//检测index是否合法
+				//找一个人  帮我们找到index位置的那个Node对象
+				//找一个人  帮我们将node对象删除   将删掉node对象中的旧数据返回
+				//将旧数据返回
+			}
+			public int size(){
+				返回有效元素的个数
+			}
+		}
+
+===========================================================================
+
+	Java面向对象的四大特性
+		继承  封装  多态  (抽象)
+
+	多态
+	同一个对象 体现出来的多种不同形态(身份)  将一种行为表现出不同的效果
+	要想实现多态的效果 需要现有继承关系
+
+	体现:
+		1.父类类型的引用  指向  子类的对象
+		   Person p = new Teacher();
+		2.该引用只能调用父类中定义的属性或方法
+
+		3.如果子类中将父类的方法重写，那么调取方法后执行的结果是子类重写之后的那个结果
+			如果父类与子类有同名的属性  		执行父类的属性
+			如果父类与子类有同名的方法(重载)	执行子类重写之后的方法
+		4.若想要调用子类中独有的成员
+			(强制类型转化)  造型 铸型  (向上/向下转型)
+		5.造型时(强制向下转型时) 可能会出现一个运行时异常
+			ClassCastException   造型  铸型 异常
+			如果想要避免造型的异常  可以用instanceof关键字来进行判断
+			对象  instanceof  类
+
+			InputMismatchException 输入不匹配
+			NumberFormateException   数字格式化异常
+			ArrayIndexOutOfBoundsException  数组索引越界
+			NegativeArraySizeException   数组长度负数
+			NullPointerException  空指针异常
+			ArithmeticException  算数异常
+			ClassCastException   造型异常  将对象的类型还原时  与真实类型不匹配
+
+			StackOverflowError  栈内存溢出错误
+-------------------------------------------------------------------------------------------------------------------
+					Object
+					hashCode  equals  toString  getClass   ....
+					Animal
+					name属性   eat  sleep
+		Person					Pig
+		name属性   重eat  重sleep  独talk		name属性  重sleep
+	Teacher			Student
+	name  重eat  独有teach	name属性  重talk  独study
+
+			Object o = new Teacher();
+			o.hashCode()   o.toString() 
+			Animal a = (Animal)o;
+			a.hashCode()  a.toString()  a.name  a.eat()  a.sleep()
+			Person p = (Person)o;
+			p.hashCode(); p.name  p.eat  p.sleep  p.talk
+			Teacher t = (Teacher)o;
+			t.hashCode();  t.name  t.eat  t.sleep  t.talk  t.teach
+			
+			Student s = (Student)o;
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,103 @@
+知识回顾
+	1.Math类    java.lang包
+		所有的属性和方法都是静态的  不需要创建对象
+		abs()  max()  min()  ceil()  floor()  round()  sqrt()  pow()  random()
+	2.Random类   java.util包
+		需要导包  通过无参数构造方法创建对象
+		nextInt();  nextInt(int bound);  nextFloat()  nextDouble()  nextBoolean();
+	3.UUID类   java.util包
+		UUID uuid = UUID.randomUUID();
+		uuid.toString();   32位 16进制的元素
+	4.BigInteger类   BigDecimal类    java.math包
+		需要导包  通过带String参数的构造方法创建对象
+		add()  substract()  multiply()  divide()	阶乘
+		Decimal对象.setScale(位数，设置模式);设置小数点之后保留的位数
+	5.DecimalFormat类   java.text包---->格式化
+		导包使用  通过带String参数的构造方法创建对象   String-->一种格式
+		DecimalFormat  df =  new  DecimalFormat("###.###");// #  0
+		String value = df.format(123.45);//给定的数字格式化成上述的效果
+==================================================================
+	包装类   数学相关
+	Scanner类
+	1.所属的包java.util包  需要import导包
+	2.通过一个带输入流的构造方法创建对象
+	3.常用方法    nextInt()  nextFloat()   next()   nextLine()
+	
+	System类
+	1.所属的包java.lang包 不需要导入
+	2.不需要创建对象  通过类名就可以访问
+	3.有三个属性及若干的方法
+		三个属性out   in   err
+		方法gc()  exit(0);  currentTimeMillis();
+
+	日期相关
+	Date类
+	1.通常使用的是java.util包
+	2.导包 拿来使用  构建对象
+	3.通常使用无参数的构造方法  或者带long构造方法
+	4.Date类中常用的方法
+		before();  after();
+		setTime()  getTime();----->long
+		compareTo();   -1  1  0
+	5.可以处理一个Date日期的格式
+
+	DateFormat类
+	1.包java.text 需要导包使用
+	2.此类是一个抽象类  不能创建对象   子类来使用
+	3.SimpleDateFormat类   是DateFormat的子类
+	4.调用带String参数的构造方法创建format对象
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        		String v = sdf.format(date1);//通过sdf对象将date1格式化成你描述的样子
+
+	Calendar类   1.1版本
+	1.所属的包java.util  需要导包
+	2.有构造方法  用protected修饰的  通常访问不到   通常会调用默认的getInstance();
+	3.常用方法
+		after()  before()
+		setTime()  getTime()---->Date
+		getTimeInMillis()----time
+		getTimeZone()---TimeZone
+		Calendar里面包含一个date属性  可以操作date的某一个局部信息
+		set   get
+		calendar.set(Calendar.YEAR,2015);
+        		int year = calendar.get(Calendar.YEAR);
+
+	TimeZone
+	1.java.util包
+	2.可以通过calendar对象.getTimeZone()获取  或   TimeZone.getDefault();
+	3.常用方法
+		tz.getID()	   ---->    Asia/Shanghai
+        		tz.getDisplayName()   中国标准时间
+
+===================================================================
+	包装类--->1.5版本之后  自动拆装包装   String--int    Integer x = 1;
+	数学相关->
+	日期相关->Date 基本日期
+
+	*字符串相关
+	1.String类
+	2.所属的包是java.lang包  不用导入
+	3.找寻构造方法创建对象
+		String s1 = "abc";
+		String s2 = new String("abc");
+		String是一个非常特殊的引用数据类型  可以像基本类型一样 创建 赋值
+	4.String类的特性
+	*5.String类中常用的方法 20+
+	6.笔试中经常会考察大家关于String的特点
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

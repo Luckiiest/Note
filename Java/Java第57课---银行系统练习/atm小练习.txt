@@ -1,0 +1,75 @@
+知识回顾
+	I/O	流
+	1.File
+		对象---->内存中
+		文件/文件夹  映射关系
+		通过file对象操作硬盘中的文件或文件夹
+		文件夹的遍历   文件夹的删除----->递归
+	2.操作文件中的内容
+		FileInputStream	FileOutputStream
+		FileReader	FileWriter
+		四个基础流--->低级流
+		read		write
+	3.缓冲流---->将低级流包装起来(包装流)
+		从使用方式来讲没有什么差别
+		从性能上来讲比低级流好一些
+		BufferedInputStream	BufferedOutputStream
+		BufferedReader		BufferedWriter
+		四个对象的构建需要低级流作为参数
+		String value = readLine()	write(String)  newLine()
+	4.其他的一些流
+		对象流
+		对象的序列化---对象的反序列化
+		序列化--->一个对象拆分成有规律的字节--->写入文件
+		反序列化->文件中有规律的字节--->组合成一个完整的对象
+
+		以前存储数据才用的方式是   变量 数组 集合 对象---->临时性  在内存中
+		有了文件后   将数据存储在文件中  ---> 将数据永久的保存起来   数据的持久化
+			name-age   字符串的方式将信息拼接  存入文件  BufferedReader读取
+			想要记录一些事情(方法)  对象才有方法
+		如果想将一个对象序列化到文件中
+			需要让对象所属的类  实现一个接口(规则)  Serializable  示意性
+			需要让对象存在一个序列化的版本号   serialVersionUID 属性通常私有静态
+			private static final long serialVersionUID = 随机产生一个L;
+		---------------------------------------------------------------------------------------
+		数组流
+			ByteArrayInputStream	ByteArrayOutputStream
+			CharArrayReader		CharArrayWriter
+		数据流
+			DataInputStream		DataOutputStream
+		转换流
+		打印流
+			InputSreamReader		PrintWriter
+	
+========================================================================
+
+	小任务
+	1.实现一个银行业务系统---->网上银行
+	2.要求有如下的业务功能
+		登录
+		查询余额
+		存款
+		取款
+		转账
+		开户
+		销户
+	3.记录银行的用户信息
+		账号--密码--余额	BufferedReader  readLine
+
+	分析如上的小任务
+	1.底层数据如何存储	才用文件形式.txt    每一行记录一个人的所有信息  账号-密码-余额
+		文件存储在一个固定的位置   C://test    
+		文件存储在当前工程的内部
+	2.业务出发   
+
+
+
+
+
+
+
+
+
+
+
+

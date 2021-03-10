@@ -1,0 +1,141 @@
+知识回顾
+	StringBuffer和StringBuilder类
+	1.两个类的区别
+		StringBuffer是早期版本  1.0
+		StringBuilder是后来版本 1.5
+		早期版本  线程同步    安全性高  效率低
+		后期版本  线程非同步 安全性低 效率高
+	2.所属的包 继承 实现关系
+		java.lang包
+		实现接口   Serializable,CharSequence,Appendable
+			注意  String 实现的接口Serializable,CharSequence,Comparable
+			        String类中有一个compareTo方法   StringBuffer/StringBuilder  append方法
+	3.如上两个类 可变字符串
+		注意 String不可变字符串
+	4.对象创建不太一样
+		String 可以用常量 可以用构造方法
+		如上两个类只能用构造方法  
+	5.常用的方法
+		String类中没有的方法
+		append()  insert()  delete()  deleteCharAt()  reverse()
+		String类中同名的方法
+		charAt() codePointAt()  length()  indexOf()  lastIndexOf()
+		substring()  replace()
+		一般常用的方法
+		ensureCapacity()  capacity()  setCharAt()  setLength()  trimToSize();
+	-----------------------------------------------------------------------------------------
+	正则表达式regex	(Regular  Expression)
+		正则表达式有固定的规律的格式，匹配字符串
+	1.用于字符串格式的校验
+	2.按照某种字符串的格式 进行拆分 替换
+	3.在比较大段的字符串中寻找 符合某种格式的子字符串
+		有一些匹配格式的符号写法
+		[abc]    [^abc]    [a-zA-Z]   [a-z[^bc]]
+		.  \d  \D  \s  \S  \w  \W
+		有一些用来匹配出现次数
+		? 0-1  *0-n +1-n  {n}  {n,}  {n,m}
+		Pattern p = Pattern.compile("regex");
+		Matcher m = p.matcher(str);
+		m.matches();//String类中的方法类似
+		m.find();  m.group();
+==================================================================
+	
+	包装类   数学相关  日期相关
+	字符串相关   集合相关  异常相关
+	IO相关   线程相关   网络相关   反射注解   *GUI
+
+	变量---容器
+		存储一个元素
+
+	数组---容器
+	一组具有某种特性的数据存放在一起
+		存储一组元素(数据类型一致)	长度固定
+
+	集合---容器  与数组类似  集合的长度存储之后还能改变
+	集合是用来存储一组元素
+	可以理解为集合是我们封装的Box  只不过比我们写的更加的优秀  更多的方法
+
+				集合java.util
+	Collection			Map
+	存储的都是value			存储的是以key-value形式存在
+	List		Set	
+	有序可重复	无序无重复	key无需无重复 value无需可重复
+
+	序 : 顺序	添加进去的元素  取得元素的顺序一致   注意指的不是集合自己的顺序
+	重复：两个对象元素一致
+
+	ArrayList  Vector区别--->StringBuilder  StringBuffer
+
+
+	List集合
+	1.ArrayList   3.Vector   2.LinkedList
+	
+	1.ArrayList----->底层就是一个数组
+		所属的包 java.util
+		如何创建对象
+		无参数构造方法    带默认空间的构造方法    带collection参数的构造方法
+		常用的方法---小容器
+			存 add
+			取 get
+			删 remove
+			改 set
+			个数  size
+
+			add(E e)   add(int index,E e)
+			addAll(Collection c);   add(int index,Collection c)
+			clear();将集合内的全部元素清除
+			boolean = contains(Object);找寻某一个给定的元素是否在集合中拥有
+			ensureCapacity(int minCapacity);
+			E = get(int index);
+			int = indexOf(Object obj);  lastIndexOf();
+			boolean = isEmpty();
+			Iterator = list.iterator();//迭代器
+			remove(int index)  remove(Object obj)
+			removeAll()差集
+			retainAll();交集
+			E = set(int index,E value)
+			int size();
+			List = subList(int begin,int end);
+			toArray();	集合变成数组
+			toArray(T[] );
+			trimToSize();// 变成有效元素个数那么长
+
+		关于泛型的问题：
+		由于arrayList底层是一个Object[]  什么类型都可以存进去
+		取出来的时候多态的效果 需要自己造型 显得用起来非常的麻烦
+		JDK1.5之后--->泛型
+		用来规定数据类型的，定义的时候用一个符号代替某种类型
+		在使用的时候用具体的数据类型 将定义的那个符号替换掉
+		泛型可以用在哪里?
+		1.泛型类
+			类定义的时候描述某种数据类型  集合的使用就是这样
+		2.泛型接口
+			与泛型类的使用基本一致   子类实现接口时必须添加泛型
+		3.泛型方法
+			方法调用时传参数   方法的泛型与类无关   带有泛型的方法可以不放在带有泛型的类中
+		4.高级泛型  规范边界  extends  super
+
+	=====================================
+		总结
+		集合有很多类  非常庞大的一个系统
+		1.了解集合的每一个具体的分支 各自特点
+		2.常用的集合的方法
+		3.每一个集合的特点
+		4.集合底层的原理
+		5.最好能手动自己封装
+		
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
