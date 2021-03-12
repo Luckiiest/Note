@@ -1,4 +1,6 @@
-#### 第一课 HTML5结构
+# HTML5
+
+## HTML5结构
 ---
 
 - `HTML5` 是新一代的 `HTML`
@@ -8,7 +10,7 @@
 
 ![一些总结--from-dunitian](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/1.png)
 
-##### 常用的一些新的结构标签
+### 常用的一些新的结构标签
 ---
 
 ![结构标签](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/2.png)
@@ -27,7 +29,7 @@
   - `adress`这个元素显示`article`或整个文档的合同信息，且位于`footer`这个元素之中
   - `time`显示人和机器可读的日期和时间，而且机器可读的时间戳是属性`datetime`的值第二个可选的是`pubtime`用于表示出版日期值
 
-##### 删除的`HTML`标签
+### 删除的`HTML`标签
 ---
 
 - 纯表现的元素：
@@ -66,10 +68,10 @@
 
 ![草图--from-dunitian](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/kuang.png)
 
-#### 第二课 HTML5智能表单
+## HTML5智能表单
 ---
 
-##### HTML4.01 form表单复习
+### HTML4.01 form表单复习
 ---
 
 - `input`表单`type`属性值
@@ -82,7 +84,7 @@
     - `type="file"`           上传文件
     - `type="reset"	 `    重置
 
-##### HTML5智能表单
+### HTML5智能表单
 ---
 
 - `input`表单`type`属性值：
@@ -101,7 +103,7 @@
     - `type="tel" `    显示电话号码
 
 
-##### Input 类型 - Date Pickers（日期选择器）
+### Input 类型 - Date Pickers（日期选择器）
 ---
 
 - **`HTML5` 拥有多个可供选取日期和时间的新输入类型：
@@ -114,7 +116,7 @@
     - `datetime`  选取时间、日、月、年（UTC 时间）
     - `datetime-local`  选取时间、日、月、年（本地时间）
 
-##### HTML5新增表单属性
+### HTML5新增表单属性
 ---
 - `required:` `required `内容不能为空
 - `placeholder:` 表单提示信息
@@ -126,7 +128,7 @@
 - `datalist:` 输入框选择列表配合`list`使用 ` list`值为`datalist`的`id`值
 - `output:` 计算或脚本输出
 
-##### 表单验证
+### 表单验证
 ---
 
 - `validity`对象，通过下面的`valid`可以查看验证是否通过，如果八种验证都返回`true`,一种验证失败返回`false`
@@ -138,567 +140,8 @@
     - `patternMismatch`: 输入值不满足`pattern`正则，返回`true`
     - `cusomError`
       - `setCustomValidity()`
-    
-#### 第三课 css3选择器
----
 
-![css3新特性预览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/6.png)
-
-![css3属性快速一览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/7.png)
-
-- `CSS3`发展史简介
-  
-    - `HTML`的诞生 20世纪90年代初
-    - `1996`年底，	`CSS`第一版诞生
-    - `1998`年`5`月 	`CSS2`正式发布
-    - `2004`年 	`CSS2.1`发布
-    - `CSS3`的发布	`2002 ` `2003`  `2004` `2005`  `2007` `2009` `2010`
-
-
-- **模块化开发**
-
-    - `CSS1` 中定义了网页的基本属性：
-        - 字体、颜色、基本选择器等
-    - `CSS2`中在`CSS1`的基础上添加了高级功能
-         - 浮动和定位、高级选择器等(子选择器、相邻选择器、通用选择器)
-    - `CSS3`遵循的是模块化开发。发布时间并不是一个时间点，而是一个时间段
-
-- **`CSS`选择器复习**
-
-    - 通用选择器：`* ` 选择到所有的元素
-    - 选择子元素：`>` 选择到元素的直接后代
-    - 相邻兄弟选择器：`+ `选择到紧随目标元素后的第一个元素
-    - 普通兄弟选择器：`~ `选择到紧随其后的所有兄弟元素
-    - 伪元素选择器：
-    	- `::first-line` 匹配文本块的首行
-    	- `::first-letter` 选择文本块的首字母
-    - 伪类选择器：
-    	- `:before`,`:after`在元素内容前面、后面添加内容(相当于行内元素)
-
-
-- **CSS3结构选择器**
-
-![CSS3结构选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/8.png)
-
-
-- **`Css3` 属性选择器**
-
-
-![Css3属性选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/9.png)
-
-
-- **`CSS3`伪类选择器**
-
-  - **UI伪类选择器：**
-    - `:enabled `选择启用状态元素
-    - `:disabled` 选择禁用状态元素
-    - `:checked `选择被选中的`input`元素（单选按钮或复选框）
-    - `:default` 选择默认元素
-    - `:valid`、`invalid` 根据输入验证选择有效或无效的`input`元素
-    - `:in-range`、`out-of-range`选择指定范围之内或者之外受限的元素
-    - `:required`、`optional `根据是否允许:`required`属性选择`input`元素
-
-  - **动态伪类选择器：**
-    - `:link `选择链接元素
-    - `:visited` 选择用户以访问的元素
-    - `:hover` 鼠标悬停其上的元素
-    - `:active `鼠标点击时触发的事件
-    - `:focus` 当前获取焦点的元素
-
-  - **其他伪类选择器**：
-    - `:not(<选择器>) `对括号内选择器的选择取反
-    - `:lang(<目标语言>)` 基于`lang`全局属性的元素
-    - `:target` `url`片段标识符指向的元素
-      - `:empty`选择内容为空的元素
-    - `:selection `鼠标光标选择元素内容
-
-#### 第四课 CSS3新增文本属性
----
-
-- **CSS文本属性复习**
-    - `white-space`：对象内空格的处理方式
-      - `nowrap` 控制文本不换行
-		
-      - `pre` 空白会被浏览器保留
-
-      - `pre-line` 合并空白  保留换行符
-
-      - `pre-wrap` 保留空白  正常换行
-
-    - `direction`：文本流的方向
-      - `ltr` 文本从左向右
-      - `rtl`  文本从右往左
-
-    - `unicode-bidi`：用于同一个页面里存在从不同方向读进的文本显示。与`direction`属性一起使用
-
-- **CSS3新增文本属性**
-
-    - `color:rgba()`;
-    - `text-overflow`:是否使用一个省略标记（...）标示对象内文本的溢出
-    - `text-align`:文本的对齐方式
-    - `text-transform`:文字的大小写
-    - `text-decoration`:文本的装饰线，复合属性
-    - `text-shadow`:文本阴影
-    - `text-fill-color`:文字填充颜色
-    - `text-stroke`:复合属性。设置文字的描边
-    - `tab-size`:制表符的长度
-    - `word-wrap`:当前行超过指定容器的边界时是否断开转行
-    - `word-break`:规定自动换行的处理方法
-
-
-- **`text-overflow:`是否使用一个省略标记（`...`）标示对象内文本的溢出**
-    - `clip`： 默认值 无省略号
-    - `ellipsis`：当对象内文本溢出时显示省略标记（`...`）。
-    - **注意**：该属性需配合`over-flow:hidden`属性(超出处理)还有 `white-space:nowrap`(禁止换行)配合使用，否则无法看到效果
-
-- **`text-align`:文本的对齐方式**
-    - `css1`
-    - `left`:默认值 左对齐
-    - `right`:右对齐
-    - `center`:居中
-    - `justify`： 内容两端对齐。
-    - `css3`
-    - `start`:开始边界对齐
-    - `end`:结束边界对齐
-
-- **`text-transform`**:文字的大小写
-    - **`css1`**
-        - `none`：	默认值 无转换 
-        - `capitalize`： 	将每个单词的第一个字母转换成大写 
-        - `uppercase`：	转换成大写 
-        - `lowercase`：	转换成小写
-    - **`css3`**
-        - `full-width`：	将左右字符设为全角形式。不支持
-        - `full-size-kana`：将所有小假名字符转换为普通假名。不支持
-			- 例如：土耳其语
-
-- **`text-decoration`:文本的装饰线，复合属性(只火狐支持)**
-    - `text-decoration-line `：
-         - 指定文本装饰的种类。相当于`CSS1`时的`text-decoration`属性
-    - `text-decoration-style` ：
-        - `指定文本装饰的样式。
-    - `text-decoration-color`：
-         - `指定文本装饰的颜色。
-    - `blink`： 指定文字的装饰是闪烁。  `opera`和`firefox`
-    - `text-decoration` : `#F00 double overline`   `CSS3`实例
-
-- **`text-shadow`:文本阴影**
-    - 取值：`x ` `y`   `blur` `color`,......
-        - `x  `  	横向偏移
-        - `y `   	纵向偏移
-        - `blur `     模糊距离(灰度)
-        - `color`    阴影颜色
-
-- `text-fill-color`:文字填充颜色
-- `text-stroke`:复合属性。设置文字的描边
-  - `text-stroke-width`:文字的描边厚度 
-  - `text-stroke-color`:文字的描边颜色 
-- `tab-size`:制表符的长度   
-    - 默认值为`8`(一个`tab`键的空格字节长度)，在	`pre`标签之内才会有显示
-- `word-wrap`:当前行超过指定容器的边界时是否断开转行
-	- `normal`： 默认值
-	- 允许内容顶开或溢出指定的容器边界。 
-- `break-word`：
-    - 内容将在边界内换行。如果需要，单词内部允许断行
-
-
-#### 第五课 CSS3盒模型
----
-
-- CSS盒模型复习
-
-![标准盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/w3c.jpg)
-
-![IE盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/ie.jpg)
-
-- **CSS3弹性盒模型**
-
-   - **以下6个属性设置在容器上**
-     - `flex-direction`
-     - `flex-wrap`
-     - `flex-flow`
-     - `justify-content`
-     - `align-items`
-     - `align-content`
-   -  **属性详解**
-      - `flex-direction: row` | `row-reverse` | `column` | `column-reverse`;
-      - `flex-wrap: nowrap` | `wrap` | `wrap-reverse`;
-      - `flex-flow`属性是`flex-direction`属性和`flex-wrap`属性的简写形式，默认值为`row nowrap`
-         -  `flex-flow: <flex-direction> || <flex-wrap>`;
-      - `justify-content`属性定义了项目在主轴上的对齐方式。
-         - `justify-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around`;
-      - `align-items`属性定义项目在交叉轴上如何对齐。
-         - `align-items: flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
-      - `align-content`属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
-         - `align-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around` | `stretch`;
-
-   - **以下6个属性设置在项目上**
-     - `order`
-     - `flex-grow`
-     - `flex-shrink`
-     - `flex-basis`
-     - `flex`
-     - `align-self`
-
-- **属性详解**
-     - `order`属性定义项目的排列顺序。数值越小，排列越靠前，默认为`0`
-     - `flex-grow`属性定义项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大。
-     - `flex-shrink`属性定义了项目的缩小比例，默认为`1`，即如果空间不足，该项目将缩小。
-     - `flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为`auto`，即项目的本来大小。
-     - `flex`属性是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写，默认值为`0 1 auto`。后两个属性可选。
-     - `align-self`属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
-        - `align-self: auto` | `flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
-
-
-![flex布局语法篇小结](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/10.png)
-
-- 拓展阅读
-    - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
-    - [flex布局实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
-
-
-#### 第六课 css3新增背景属性
----
-
-- **CSS背景属性复习**
-  - `background`:
-	  - `background-color`:背景颜色
-	  - `background-image`:背景图片
-	  - `background-repeat`:背景重复
-	  - `background-position`:背景定位
-	  - `background-attachment`:背景固定(`scroll/fixed)`
-
-- **CSS3新增背景属性**
-
-- `background-size`  背景尺寸
-	- `background-size:x y` 水平 垂直方向的尺寸，像素/百分比/auto/…
-	- `background-size:100% 100%`
-	- `background-size:cover` 比例放大
-    - `background-size:contain` 包含（图片不溢出）
-
-- 多背景
-  - `background-image:url(1.jpg),url(2.jpg)`;
-
-- `background-origin ` 背景区域定位
-  - `border-box`： 从`borde`r区域开始显示背景。 
-  - `padding-box`： 从`padding`区域开始显示背景。 
-  - `content-box`： 从`content`内容区域开始显示背
-- `background-clip`   背景绘制区域
-  - `border-box`： 从`border`区域向外裁剪背景。 
-  - `padding-box`： 从`padding`区域向外裁剪背景。 
-  - `content-box`： 从`content`区域向外裁剪背景。 
-- `text`:背景填充文本
-  - `no-clip`： 从`border`区域向外裁剪背景
-  
-- **颜色渐变**
-  - **线性渐变**：`linear-gradient`(起点/角度，颜色 位置，...,)
-      - 起点：`left/top/right/bottom/left top...... `默认`top`
-      - 角度：逆时针方向 `0-360`度
-      - 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
-
-    - `repeating-linear-gradient`  线性渐变重复平铺
-       - `IE`低版本渐变(滤镜)：
-	   - `filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');`
-
-  - **径向渐变**：`radial-gradient`(起点(圆心位置), 形状/半径/大小，颜色1，颜色2)
-      - 起点：`left/top/right/bottom`或具体值/百分比
-      - 形状：`ellipse`(椭圆)、`circle`(正圆)
-      - 大小：具体数值或百分比，也可以是关键字（`closest-side`(最近端), `closest-corner`最近角), `farthest-side`(最远端), f`arthest-corner`(最远角), `contain`(包含) ,`cover`(覆盖)）;
-
-
-
-#### 第七课 css3新增颜色属性
----
-
-- **CSS颜色属性复习**
-
-    - `color name `    颜色英文名称命名
-    - `HEX`方式         十六进制方式
-    - `rgb`方式           三原色配色方式
-
-- **CSS3新增颜色属性**
-
-    - **`rgba()`**
-
-|名称|颜色|颜色|取值|
-|---|---|---|---|
-|r    |     red      |	  红色   |  0-255|
-|g     |   green   |  绿色  |  0-255|
-|b     |   blue    |   蓝色   |  0-255|
-|a      |  alpha    | 透明  |   0-1|
-
-
-- **`HSL`模式  `HSLA`模式**
-
-    - `H`： `Hue`(色调)。
-        - 0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：`0 - 360` 
-    - `S`：` Saturation`(饱和度)。取值为：0.0% - 100.0% 
-    - `L`： `Lightness`(亮度)。取值为：0.0% - 100.0%
-    - `A`:    `alpha  `   透明度   0~1之间
-    
-    - 语法:`HSLA(H,S,L,A)`
-
-- HSL色轮
-
-
-![HSL色轮](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/11.png)
-
-
-- 透明颜色：`transparent`
-    - 实例：`border`实现三角箭头、风车等
-
-- 透明度：
-	- `opacity`
-	- 取值：`0-1`之间
-	- 注：低版本的`IE`浏览器不兼容,需用IE浏览器的滤镜实现相同效果，`filter:alpha(opacity=50)`
-	- 对于低版本的火狐浏览器需添加内核前缀，`-moz-opacity`
-
-
-#### 第八课 CSS3边框系列
----
-
-##### 圆角-阴影
----
-
-- 边框圆角
-    - 在` CSS2 `中添加圆角矩形需要技巧。我们必须为每个圆角使用不同的图片
-    - 在 `CSS3 `中，创建圆角是非常容易的
-    - 在` CSS3 `中，`border-radius `属性用于创建圆角
-    
-- **`border-radius`边框圆角写法**
-  - `border-radius: 2em 1em 4em / 0.5em 3em;`
-  - 等价于
-```css
-border-top-left-radius: 2em 0.5em;
-border-top-right-radius: 1em 3em;
-border-bottom-right-radius: 4em 0.5em;
-border-bottom-left-radius: 1em 3em;
-```
-
-- **`box-shadow`方框添加阴影**
-    - 语法：`box-shadow:x-shadow y-shadow blur spread color inset;`
-    
-    - **box-shadow的API**
-        - `x-shadow	` 必需。水平阴影的位置。允许负值。	
-        - `y-shadow` 	必需。垂直阴影的位置。允许负值。	
-        - `blur	` 	可选。模糊距离。	
-        - `spread` 	可选。阴影的尺寸。	
-        - `color` 	可选。阴影的颜色。请参阅 `CSS `颜色值	
-        - `inset` 	可选。将外部阴影 (`outset`) 改为内部阴影
-    - 实例：`box-shadow:10px 10px 5px 5px #888888;`
-    
-##### 边框系列-图片
----
-
-- **`border-image`语法**
-
-|属性|	版本|	简介|
-|---|---|---|
-|border-image|	CSS3|	设置或检索对象的边框使用图像来填充|
-|border-image-source| CSS3|设置或检索对象的边框是否用图像定义样式或图像来源路径|
-|border-image-slice|	CSS3|	设置或检索对象的边框背景图的分割方式|
-|border-image-width|	CSS3|	设置或检索对象的边框厚度|
-|border-image-outset|	CSS3|	设置或检索对象的边框背景图的扩展|
-|border-image-repeat|	CSS3|	设置或检索对象的边框图像的平铺方式|
-
-- **`border-image-slice`**
-  - 设置或检索对象的边框背景图的分割方式
-  
-
-![Paste_Image.png](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/12.png)
-
-- **`border-image-repeat`**
-  - 用于指定边框背景图的重复方式
-  - 取值：
-    - `stretch`： 指定用拉伸方式来填充边框背景图。 *默认的
-    - `repeat`： 指定用平铺方式来填充边框背景图。当图片碰到边界时，如果超过则被截断。 
-    - `round`： 指定用平铺方式来填充边框背景图。图片会根据边框的尺寸动态调整图片的大小	直至正好可以铺满整个边框。写本文档时仅Firefox能看到该效果 
-
-    
-#### 第九课 CSS3运动体系
----
-
-##### 过渡
----
-
-- 过渡：给改变添加过程
-    - 什么是过渡
-    - 过渡效果由哪几部分组成
-    - 过渡可以干些什么
-    
-- `transition` 过渡属性
-
-- `transition: property duration timing-function delay`;
-	- `transition-property:`过渡属性的名称
-    	- `none `  没有过渡属性
-    	- `all  `      所有属性都过渡(默认值)
-    	- `property `   具体属性名称(`property1`,`property2`...)
-	- `transition-duration:`过渡属性花费的时间
-	    - `time `  秒或毫秒
-	- `transition-timing-function:`过渡效果速度曲线
-	    - `time `  秒或毫秒
-	- `transition-delay:`过渡效果延迟时间
-  
-- **`transition-timing-function`:过渡效果速度曲线**
-	- `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
-	- `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
-	- `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
-	- `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
-	- `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
-	- `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
-
-- 过渡完成事件   
-![过渡完成事件](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/13.png)
-
-- `Webkit`内核： 
-```javascript
-obj.addEventListener('webkitTransitionEnd',function(){})
-```
-
-- 标准: 
-
-```javascript
-obj.addEventListener('transitionend',function(){})
-```
-
-##### 动画
----
-
-- 什么是`CSS3` 动画？
-  - 通过 `CSS3`，我们能够创建动画，这可以在许多网页中取代动画图片、`Flash` 动画以及 `JavaScript`
-
-- **动画接口**
-
-
-|属性  | 描述 |
-|---|---|
-| @keyframes|	规定动画。|
-| animation	|所有动画属性的简写属性，除了 animation-play-state 属性。|
-| animation-name	|规定 @keyframes 动画的名称。|
-| animation-duration	|规定动画完成一个周期所花费的秒或毫秒。|
-| animation-timing-function|	规定动画的速度曲线。|
-| animation-delay	|规定动画何时开始。|
-| animation-iteration-count	|规定动画被播放的次数。|
-| animation-direction	|规定动画是否在下一周期逆向地播放。|
-| animation-play-state|	规定动画是否正在运行或暂停。|
-| animation-fill-mode	|规定对象动画时间之外的状态。|
-
-- **animation-timing-function速度曲线**
-
-
-|值 |	描述 
-|---|---|
-|linear 	|动画从头到尾的速度是相同的。| 
-|ease |	默认。动画以低速开始，然后加快，在结束前变慢。| 
-|ease-in |	动画以低速开始。 |
-|ease-out |	动画以低速结束。 |
-|ease-in-out |	动画以低速开始和结束。 |
-|cubic-bezier(n,n,n,n) |	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。 |
-
-- 在谷歌浏览器里面需要加上`-webkit-`
-`IE6,7,8,9`不支持`css3`运动
-
-- 拓展阅读
-  - [CSS3动画简介](http://note.youdao.com/noteshare?id=c4f5a977a7b3aa256a3c28aa64d6f989)
-
-
-- **CSS3盒模型阴影**
-
-    - `box-shadow:inset x y blur spread color`
-    - `inset`：投影方式
-    - `inset`：内投影
-    - `outset`：外投影 默认(不能设置)
-    - `x`、`y`：阴影偏移
-    - `blur`：模糊半径（灰度）
-    - `spread`：扩展阴影半径
-    -  先扩展原有形状，再开始画阴影
-    - `color`
-
-- **`CSS3`盒模型倒影**
-
-- `box-reflect` 倒影
-	- 方向 ` above|below|left|right;`
-	- 距离
-    - 渐变（可选）
-
-- **CSS3其他盒模型**
-  
-    - `box-sizing` 盒模型解析模式
-    - `content-box`  标准盒模型(和`css2`一样的计算)
-    - `width/height=border+padding+content`
-    - `border-box` 怪异盒模型` width/height`与设置的值一样 ，`content`减小
-    
-- 扩展阅读
-  - [学会使用css3的box-sizing布局](http://www.jianshu.com/p/e2eb0d8c9de6)
-
-
-#### 第十课 transform 2D转换
----
-
-- **`Css3`平面转换方法**
-  - `translate() `		移动
-  - `rotate()`		旋转
-  - `scale()`		缩放
-  - `skew()`		翻转
-  - `matrix()	`	矩阵
-
-
-- **transform**:
-	- `rotate()`  旋转函数 (deg)
-        - `deg`  度数
-	- `skew(X,Y)` 倾斜函数 (deg) 
-        - `skewX()`
-        - `skewY()`
-	- `scale(X,Y)` 缩放函数 (正数、负数和小数)
-        - `scaleX()`
-        - `scaleY()`
-	- `translate(X,Y)` 位移函数(px)
-        - `translateX()`
-        - `translateY()`
-
-
-- **`rotate()` 旋转方法**
-  - 用于旋转元素角度
-  - 例：`rotate(30deg) `
-    - 把元素顺时针旋转 30 度
-
-- **`translate()`位置方法**
-  - 用于移动元素位置
-    - 例：`translate(50px,100px)`
-      - 把元素从左侧移动 50 像素，从顶端移动 100 像素。
-  - 其实有些类似于我们的相对定位
-
-- **`scale()`尺寸方法**
-  - 方法用于改变元素尺寸
-    - 例：`scale(2,4)` 
-      - 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍
-
-- **`skew()` 翻转方法**
-  - 通过 `skew() `方法，元素翻转给定的角度
-   - 例：`transform: skew(30deg,20deg);`
-     - 把元素围绕 `X `轴把元素翻转` 30` 度，围绕 `Y` 轴翻转 `20 `度
-
-#### 第十一课 transform 3D转换
----
-
-- **`Css3`立体转换**
-    - `transform-style（preserve-3d）` 建立`3D`空间（指定元素的子元素展示的场景是在3D场景还是平面(投影)场景）
-    - `Perspective` 视角（指定观察者与z=0平面的距离，从而让元素及子元素看起来有3D透视位置效果
-	值：集体的带单位数值）
-    - `Perspective- origin` 视角基点
-       - 值：取值类似于变换基准
-    - `transform-origin`：坐标轴基点（变换基准）
-      - 值：具体的坐标值/百分比/(`left`/`right`/`center`/`top`/`bottom`)
-	默认 `center center`
-
-- **transform 新增函数**
-    - `rotateX()`
-    - `rotateY()`
-    - `rotateZ()`
-    - `translateZ()`
-    - `scaleZ()`
-
-#### 第十二课 视频音频
+## 视频/音频
 ---
 
 - 视频音频格式的简单介绍
@@ -717,7 +160,7 @@ obj.addEventListener('transitionend',function(){})
     - `MEPG4=`带有H.264视频编码`+AAC`音频编码的`MPEG4`文件
     - `WebM=`带有`VP8`视频编码`+Vorbis`音频编码的`WebM`格式
 
-##### `Video`的使用
+### `Video`的使用
 ---
 
 - **单独用法**
@@ -763,7 +206,7 @@ obj.addEventListener('transitionend',function(){})
 |load()|	videoWidth|	progress|
 |canPlayType()|	videoHeight|	error|
 
-#### 第十三课 canvas
+## canvas
 ---
 
 - 标签 `<canvas>`
@@ -891,7 +334,7 @@ obj.addEventListener('transitionend',function(){})
 	- [HTML5 API大盘点](http://jartto.wang/2016/07/25/make-an-inventory-of-html5-api/)
 
 
-#### 第十四课 SVG绘图
+## SVG绘图
 ---
 
 - **svg是什么**
@@ -966,10 +409,10 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
     - `xlink:href`(图片地址)
 
 
-#### 第十五课 地理信息与本地存储
+## 地理信息与本地存储
 ---
 
-##### 地理位置
+### 地理位置
 ---
 
 - 经度  :   南北极的连接线
@@ -1190,7 +633,7 @@ btn.onclick = function(){
 
 [在线演示](http://codepen.io/poetries/pen/xgGwaZ)
 
-##### 本地存储
+### 本地存储
 ---
 
 - **`Storage`**
@@ -1226,7 +669,7 @@ btn.onclick = function(){
     - `url` :  触发该脚本变化的文档的url
     - 注：`session`同窗口才可以,例子：`iframe`操作
 
-#### 第十六课 HTML5新增JS方法
+## HTML5新增JS方法
 ---
 
 
@@ -1309,7 +752,7 @@ loadScript("js/async.js",function(){
 
 
 
-#### 第十七课 HTML5拖拽事件
+## HTML5拖拽事件
 ---
 
 - 图片自带拖拽功能
@@ -1610,8 +1053,568 @@ function inserAfter(newItem,targerItem){
 
 [在线演示](http://codepen.io/poetries/pen/XpbEOW)
 
+# CSS3
 
-#### 第十八课 跨文档操作
+## css3选择器
+---
+
+![css3新特性预览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/6.png)
+
+![css3属性快速一览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/7.png)
+
+- `CSS3`发展史简介
+  
+    - `HTML`的诞生 20世纪90年代初
+    - `1996`年底，	`CSS`第一版诞生
+    - `1998`年`5`月 	`CSS2`正式发布
+    - `2004`年 	`CSS2.1`发布
+    - `CSS3`的发布	`2002 ` `2003`  `2004` `2005`  `2007` `2009` `2010`
+
+
+- **模块化开发**
+
+    - `CSS1` 中定义了网页的基本属性：
+        - 字体、颜色、基本选择器等
+    - `CSS2`中在`CSS1`的基础上添加了高级功能
+         - 浮动和定位、高级选择器等(子选择器、相邻选择器、通用选择器)
+    - `CSS3`遵循的是模块化开发。发布时间并不是一个时间点，而是一个时间段
+
+- **`CSS`选择器复习**
+
+    - 通用选择器：`* ` 选择到所有的元素
+    - 选择子元素：`>` 选择到元素的直接后代
+    - 相邻兄弟选择器：`+ `选择到紧随目标元素后的第一个元素
+    - 普通兄弟选择器：`~ `选择到紧随其后的所有兄弟元素
+    - 伪元素选择器：
+    	- `::first-line` 匹配文本块的首行
+    	- `::first-letter` 选择文本块的首字母
+    - 伪类选择器：
+    	- `:before`,`:after`在元素内容前面、后面添加内容(相当于行内元素)
+
+
+- **CSS3结构选择器**
+
+![CSS3结构选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/8.png)
+
+
+- **`Css3` 属性选择器**
+
+
+![Css3属性选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/9.png)
+
+
+- **`CSS3`伪类选择器**
+
+  - **UI伪类选择器：**
+    - `:enabled `选择启用状态元素
+    - `:disabled` 选择禁用状态元素
+    - `:checked `选择被选中的`input`元素（单选按钮或复选框）
+    - `:default` 选择默认元素
+    - `:valid`、`invalid` 根据输入验证选择有效或无效的`input`元素
+    - `:in-range`、`out-of-range`选择指定范围之内或者之外受限的元素
+    - `:required`、`optional `根据是否允许:`required`属性选择`input`元素
+
+  - **动态伪类选择器：**
+    - `:link `选择链接元素
+    - `:visited` 选择用户以访问的元素
+    - `:hover` 鼠标悬停其上的元素
+    - `:active `鼠标点击时触发的事件
+    - `:focus` 当前获取焦点的元素
+
+  - **其他伪类选择器**：
+    - `:not(<选择器>) `对括号内选择器的选择取反
+    - `:lang(<目标语言>)` 基于`lang`全局属性的元素
+    - `:target` `url`片段标识符指向的元素
+      - `:empty`选择内容为空的元素
+    - `:selection `鼠标光标选择元素内容
+
+## CSS3新增文本属性
+---
+
+- **CSS文本属性复习**
+    - `white-space`：对象内空格的处理方式
+      - `nowrap` 控制文本不换行
+		
+      - `pre` 空白会被浏览器保留
+
+      - `pre-line` 合并空白  保留换行符
+
+      - `pre-wrap` 保留空白  正常换行
+
+    - `direction`：文本流的方向
+      - `ltr` 文本从左向右
+      - `rtl`  文本从右往左
+
+    - `unicode-bidi`：用于同一个页面里存在从不同方向读进的文本显示。与`direction`属性一起使用
+
+- **CSS3新增文本属性**
+
+    - `color:rgba()`;
+    - `text-overflow`:是否使用一个省略标记（...）标示对象内文本的溢出
+    - `text-align`:文本的对齐方式
+    - `text-transform`:文字的大小写
+    - `text-decoration`:文本的装饰线，复合属性
+    - `text-shadow`:文本阴影
+    - `text-fill-color`:文字填充颜色
+    - `text-stroke`:复合属性。设置文字的描边
+    - `tab-size`:制表符的长度
+    - `word-wrap`:当前行超过指定容器的边界时是否断开转行
+    - `word-break`:规定自动换行的处理方法
+
+
+- **`text-overflow:`是否使用一个省略标记（`...`）标示对象内文本的溢出**
+    - `clip`： 默认值 无省略号
+    - `ellipsis`：当对象内文本溢出时显示省略标记（`...`）。
+    - **注意**：该属性需配合`over-flow:hidden`属性(超出处理)还有 `white-space:nowrap`(禁止换行)配合使用，否则无法看到效果
+
+- **`text-align`:文本的对齐方式**
+    - `css1`
+    - `left`:默认值 左对齐
+    - `right`:右对齐
+    - `center`:居中
+    - `justify`： 内容两端对齐。
+    - `css3`
+    - `start`:开始边界对齐
+    - `end`:结束边界对齐
+
+- **`text-transform`**:文字的大小写
+    - **`css1`**
+        - `none`：	默认值 无转换 
+        - `capitalize`： 	将每个单词的第一个字母转换成大写 
+        - `uppercase`：	转换成大写 
+        - `lowercase`：	转换成小写
+    - **`css3`**
+        - `full-width`：	将左右字符设为全角形式。不支持
+        - `full-size-kana`：将所有小假名字符转换为普通假名。不支持
+			- 例如：土耳其语
+
+- **`text-decoration`:文本的装饰线，复合属性(只火狐支持)**
+    - `text-decoration-line `：
+         - 指定文本装饰的种类。相当于`CSS1`时的`text-decoration`属性
+    - `text-decoration-style` ：
+        - `指定文本装饰的样式。
+    - `text-decoration-color`：
+         - `指定文本装饰的颜色。
+    - `blink`： 指定文字的装饰是闪烁。  `opera`和`firefox`
+    - `text-decoration` : `#F00 double overline`   `CSS3`实例
+
+- **`text-shadow`:文本阴影**
+    - 取值：`x ` `y`   `blur` `color`,......
+        - `x  `  	横向偏移
+        - `y `   	纵向偏移
+        - `blur `     模糊距离(灰度)
+        - `color`    阴影颜色
+
+- `text-fill-color`:文字填充颜色
+- `text-stroke`:复合属性。设置文字的描边
+  - `text-stroke-width`:文字的描边厚度 
+  - `text-stroke-color`:文字的描边颜色 
+- `tab-size`:制表符的长度   
+    - 默认值为`8`(一个`tab`键的空格字节长度)，在	`pre`标签之内才会有显示
+- `word-wrap`:当前行超过指定容器的边界时是否断开转行
+	- `normal`： 默认值
+	- 允许内容顶开或溢出指定的容器边界。 
+- `break-word`：
+    - 内容将在边界内换行。如果需要，单词内部允许断行
+
+
+## CSS3盒模型
+---
+
+- CSS盒模型复习
+
+![标准盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/w3c.jpg)
+
+![IE盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/ie.jpg)
+
+- **CSS3弹性盒模型**
+
+   - **以下6个属性设置在容器上**
+     - `flex-direction`
+     - `flex-wrap`
+     - `flex-flow`
+     - `justify-content`
+     - `align-items`
+     - `align-content`
+   -  **属性详解**
+      - `flex-direction: row` | `row-reverse` | `column` | `column-reverse`;
+      - `flex-wrap: nowrap` | `wrap` | `wrap-reverse`;
+      - `flex-flow`属性是`flex-direction`属性和`flex-wrap`属性的简写形式，默认值为`row nowrap`
+         -  `flex-flow: <flex-direction> || <flex-wrap>`;
+      - `justify-content`属性定义了项目在主轴上的对齐方式。
+         - `justify-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around`;
+      - `align-items`属性定义项目在交叉轴上如何对齐。
+         - `align-items: flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
+      - `align-content`属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+         - `align-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around` | `stretch`;
+
+   - **以下6个属性设置在项目上**
+     - `order`
+     - `flex-grow`
+     - `flex-shrink`
+     - `flex-basis`
+     - `flex`
+     - `align-self`
+
+- **属性详解**
+     - `order`属性定义项目的排列顺序。数值越小，排列越靠前，默认为`0`
+     - `flex-grow`属性定义项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大。
+     - `flex-shrink`属性定义了项目的缩小比例，默认为`1`，即如果空间不足，该项目将缩小。
+     - `flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为`auto`，即项目的本来大小。
+     - `flex`属性是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写，默认值为`0 1 auto`。后两个属性可选。
+     - `align-self`属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
+        - `align-self: auto` | `flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
+
+
+![flex布局语法篇小结](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/10.png)
+
+- 拓展阅读
+    - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+    - [flex布局实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
+
+## css3新增背景属性
+---
+
+- **CSS背景属性复习**
+  - `background`:
+	  - `background-color`:背景颜色
+	  - `background-image`:背景图片
+	  - `background-repeat`:背景重复
+	  - `background-position`:背景定位
+	  - `background-attachment`:背景固定(`scroll/fixed)`
+
+- **CSS3新增背景属性**
+
+- `background-size`  背景尺寸
+	- `background-size:x y` 水平 垂直方向的尺寸，像素/百分比/auto/…
+	- `background-size:100% 100%`
+	- `background-size:cover` 比例放大
+    - `background-size:contain` 包含（图片不溢出）
+
+- 多背景
+  - `background-image:url(1.jpg),url(2.jpg)`;
+
+- `background-origin ` 背景区域定位
+  - `border-box`： 从`borde`r区域开始显示背景。 
+  - `padding-box`： 从`padding`区域开始显示背景。 
+  - `content-box`： 从`content`内容区域开始显示背
+- `background-clip`   背景绘制区域
+  - `border-box`： 从`border`区域向外裁剪背景。 
+  - `padding-box`： 从`padding`区域向外裁剪背景。 
+  - `content-box`： 从`content`区域向外裁剪背景。 
+- `text`:背景填充文本
+  - `no-clip`： 从`border`区域向外裁剪背景
+  
+- **颜色渐变**
+  - **线性渐变**：`linear-gradient`(起点/角度，颜色 位置，...,)
+      - 起点：`left/top/right/bottom/left top...... `默认`top`
+      - 角度：逆时针方向 `0-360`度
+      - 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
+
+    - `repeating-linear-gradient`  线性渐变重复平铺
+       - `IE`低版本渐变(滤镜)：
+	   - `filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');`
+
+  - **径向渐变**：`radial-gradient`(起点(圆心位置), 形状/半径/大小，颜色1，颜色2)
+      - 起点：`left/top/right/bottom`或具体值/百分比
+      - 形状：`ellipse`(椭圆)、`circle`(正圆)
+      - 大小：具体数值或百分比，也可以是关键字（`closest-side`(最近端), `closest-corner`最近角), `farthest-side`(最远端), f`arthest-corner`(最远角), `contain`(包含) ,`cover`(覆盖)）;
+
+
+
+## css3新增颜色属性
+---
+
+- **CSS颜色属性复习**
+
+    - `color name `    颜色英文名称命名
+    - `HEX`方式         十六进制方式
+    - `rgb`方式           三原色配色方式
+
+- **CSS3新增颜色属性**
+
+    - **`rgba()`**
+
+|名称|颜色|颜色|取值|
+|---|---|---|---|
+|r    |     red      |	  红色   |  0-255|
+|g     |   green   |  绿色  |  0-255|
+|b     |   blue    |   蓝色   |  0-255|
+|a      |  alpha    | 透明  |   0-1|
+
+
+- **`HSL`模式  `HSLA`模式**
+
+    - `H`： `Hue`(色调)。
+        - 0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：`0 - 360` 
+    - `S`：` Saturation`(饱和度)。取值为：0.0% - 100.0% 
+    - `L`： `Lightness`(亮度)。取值为：0.0% - 100.0%
+    - `A`:    `alpha  `   透明度   0~1之间
+    
+    - 语法:`HSLA(H,S,L,A)`
+
+- HSL色轮
+
+
+![HSL色轮](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/11.png)
+
+
+- 透明颜色：`transparent`
+    - 实例：`border`实现三角箭头、风车等
+
+- 透明度：
+	- `opacity`
+	- 取值：`0-1`之间
+	- 注：低版本的`IE`浏览器不兼容,需用IE浏览器的滤镜实现相同效果，`filter:alpha(opacity=50)`
+	- 对于低版本的火狐浏览器需添加内核前缀，`-moz-opacity`
+
+
+## CSS3边框系列
+---
+
+### 圆角-阴影
+---
+
+- 边框圆角
+    - 在` CSS2 `中添加圆角矩形需要技巧。我们必须为每个圆角使用不同的图片
+    - 在 `CSS3 `中，创建圆角是非常容易的
+    - 在` CSS3 `中，`border-radius `属性用于创建圆角
+    
+- **`border-radius`边框圆角写法**
+  - `border-radius: 2em 1em 4em / 0.5em 3em;`
+  - 等价于
+```css
+border-top-left-radius: 2em 0.5em;
+border-top-right-radius: 1em 3em;
+border-bottom-right-radius: 4em 0.5em;
+border-bottom-left-radius: 1em 3em;
+```
+
+- **`box-shadow`方框添加阴影**
+    - 语法：`box-shadow:x-shadow y-shadow blur spread color inset;`
+    
+    - **box-shadow的API**
+        - `x-shadow	` 必需。水平阴影的位置。允许负值。	
+        - `y-shadow` 	必需。垂直阴影的位置。允许负值。	
+        - `blur	` 	可选。模糊距离。	
+        - `spread` 	可选。阴影的尺寸。	
+        - `color` 	可选。阴影的颜色。请参阅 `CSS `颜色值	
+        - `inset` 	可选。将外部阴影 (`outset`) 改为内部阴影
+    - 实例：`box-shadow:10px 10px 5px 5px #888888;`
+    
+### 边框系列-图片
+---
+
+- **`border-image`语法**
+
+|属性|	版本|	简介|
+|---|---|---|
+|border-image|	CSS3|	设置或检索对象的边框使用图像来填充|
+|border-image-source| CSS3|设置或检索对象的边框是否用图像定义样式或图像来源路径|
+|border-image-slice|	CSS3|	设置或检索对象的边框背景图的分割方式|
+|border-image-width|	CSS3|	设置或检索对象的边框厚度|
+|border-image-outset|	CSS3|	设置或检索对象的边框背景图的扩展|
+|border-image-repeat|	CSS3|	设置或检索对象的边框图像的平铺方式|
+
+- **`border-image-slice`**
+  - 设置或检索对象的边框背景图的分割方式
+  
+
+![Paste_Image.png](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/12.png)
+
+- **`border-image-repeat`**
+  - 用于指定边框背景图的重复方式
+  - 取值：
+    - `stretch`： 指定用拉伸方式来填充边框背景图。 *默认的
+    - `repeat`： 指定用平铺方式来填充边框背景图。当图片碰到边界时，如果超过则被截断。 
+    - `round`： 指定用平铺方式来填充边框背景图。图片会根据边框的尺寸动态调整图片的大小	直至正好可以铺满整个边框。写本文档时仅Firefox能看到该效果 
+
+    
+## CSS3运动体系
+---
+
+### 过渡
+---
+
+- 过渡：给改变添加过程
+    - 什么是过渡
+    - 过渡效果由哪几部分组成
+    - 过渡可以干些什么
+    
+- `transition` 过渡属性
+
+- `transition: property duration timing-function delay`;
+	- `transition-property:`过渡属性的名称
+    	- `none `  没有过渡属性
+    	- `all  `      所有属性都过渡(默认值)
+    	- `property `   具体属性名称(`property1`,`property2`...)
+	- `transition-duration:`过渡属性花费的时间
+	    - `time `  秒或毫秒
+	- `transition-timing-function:`过渡效果速度曲线
+	    - `time `  秒或毫秒
+	- `transition-delay:`过渡效果延迟时间
+  
+- **`transition-timing-function`:过渡效果速度曲线**
+	- `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
+	- `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
+	- `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
+	- `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
+	- `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
+	- `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
+
+- 过渡完成事件   
+![过渡完成事件](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/13.png)
+
+- `Webkit`内核： 
+```javascript
+obj.addEventListener('webkitTransitionEnd',function(){})
+```
+
+- 标准: 
+
+```javascript
+obj.addEventListener('transitionend',function(){})
+```
+
+### 动画
+---
+
+- 什么是`CSS3` 动画？
+  - 通过 `CSS3`，我们能够创建动画，这可以在许多网页中取代动画图片、`Flash` 动画以及 `JavaScript`
+
+- **动画接口**
+
+
+|属性  | 描述 |
+|---|---|
+| @keyframes|	规定动画。|
+| animation	|所有动画属性的简写属性，除了 animation-play-state 属性。|
+| animation-name	|规定 @keyframes 动画的名称。|
+| animation-duration	|规定动画完成一个周期所花费的秒或毫秒。|
+| animation-timing-function|	规定动画的速度曲线。|
+| animation-delay	|规定动画何时开始。|
+| animation-iteration-count	|规定动画被播放的次数。|
+| animation-direction	|规定动画是否在下一周期逆向地播放。|
+| animation-play-state|	规定动画是否正在运行或暂停。|
+| animation-fill-mode	|规定对象动画时间之外的状态。|
+
+- **animation-timing-function速度曲线**
+
+
+|值 |	描述 
+|---|---|
+|linear 	|动画从头到尾的速度是相同的。| 
+|ease |	默认。动画以低速开始，然后加快，在结束前变慢。| 
+|ease-in |	动画以低速开始。 |
+|ease-out |	动画以低速结束。 |
+|ease-in-out |	动画以低速开始和结束。 |
+|cubic-bezier(n,n,n,n) |	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。 |
+
+- 在谷歌浏览器里面需要加上`-webkit-`
+`IE6,7,8,9`不支持`css3`运动
+
+- 拓展阅读
+  - [CSS3动画简介](http://note.youdao.com/noteshare?id=c4f5a977a7b3aa256a3c28aa64d6f989)
+
+
+- **CSS3盒模型阴影**
+
+    - `box-shadow:inset x y blur spread color`
+    - `inset`：投影方式
+    - `inset`：内投影
+    - `outset`：外投影 默认(不能设置)
+    - `x`、`y`：阴影偏移
+    - `blur`：模糊半径（灰度）
+    - `spread`：扩展阴影半径
+    -  先扩展原有形状，再开始画阴影
+    - `color`
+
+- **`CSS3`盒模型倒影**
+
+- `box-reflect` 倒影
+	- 方向 ` above|below|left|right;`
+	- 距离
+    - 渐变（可选）
+
+- **CSS3其他盒模型**
+  
+    - `box-sizing` 盒模型解析模式
+    - `content-box`  标准盒模型(和`css2`一样的计算)
+    - `width/height=border+padding+content`
+    - `border-box` 怪异盒模型` width/height`与设置的值一样 ，`content`减小
+    
+- 扩展阅读
+  - [学会使用css3的box-sizing布局](http://www.jianshu.com/p/e2eb0d8c9de6)
+
+
+## transform 2D转换
+---
+
+- **`Css3`平面转换方法**
+  - `translate() `		移动
+  - `rotate()`		旋转
+  - `scale()`		缩放
+  - `skew()`		翻转
+  - `matrix()	`	矩阵
+
+
+- **transform**:
+	- `rotate()`  旋转函数 (deg)
+        - `deg`  度数
+	- `skew(X,Y)` 倾斜函数 (deg) 
+        - `skewX()`
+        - `skewY()`
+	- `scale(X,Y)` 缩放函数 (正数、负数和小数)
+        - `scaleX()`
+        - `scaleY()`
+	- `translate(X,Y)` 位移函数(px)
+        - `translateX()`
+        - `translateY()`
+
+
+- **`rotate()` 旋转方法**
+  - 用于旋转元素角度
+  - 例：`rotate(30deg) `
+    - 把元素顺时针旋转 30 度
+
+- **`translate()`位置方法**
+  - 用于移动元素位置
+    - 例：`translate(50px,100px)`
+      - 把元素从左侧移动 50 像素，从顶端移动 100 像素。
+  - 其实有些类似于我们的相对定位
+
+- **`scale()`尺寸方法**
+  - 方法用于改变元素尺寸
+    - 例：`scale(2,4)` 
+      - 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍
+
+- **`skew()` 翻转方法**
+  - 通过 `skew() `方法，元素翻转给定的角度
+   - 例：`transform: skew(30deg,20deg);`
+     - 把元素围绕 `X `轴把元素翻转` 30` 度，围绕 `Y` 轴翻转 `20 `度
+     - 
+## transform 3D转换
+---
+
+- **`Css3`立体转换**
+    - `transform-style（preserve-3d）` 建立`3D`空间（指定元素的子元素展示的场景是在3D场景还是平面(投影)场景）
+    - `Perspective` 视角（指定观察者与z=0平面的距离，从而让元素及子元素看起来有3D透视位置效果
+	值：集体的带单位数值）
+    - `Perspective- origin` 视角基点
+       - 值：取值类似于变换基准
+    - `transform-origin`：坐标轴基点（变换基准）
+      - 值：具体的坐标值/百分比/(`left`/`right`/`center`/`top`/`bottom`)
+	默认 `center center`
+
+- **transform 新增函数**
+    - `rotateX()`
+    - `rotateY()`
+    - `rotateZ()`
+    - `translateZ()`
+    - `scaleZ()`
+
+# 跨文档操作
 ---
 
 - **跨文档请求**
@@ -1646,7 +1649,7 @@ function inserAfter(newItem,targerItem){
 - 拓展阅读
   - [HTML5 API 大盘点](http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&mid=2651130595&idx=2&sn=3d0f546f1867992729b3ace5d03766fc&chksm=f257ca59c520434f08e215b3bdcec3764712f73301b738c18163359e5aa5e949ff019616ffca&mpshare=1&scene=23&srcid=11289XUSBAQzrCp3Io55aoS1#rd)
 
-###### 附录一　css3响应式布局
+### 附录一　css3响应式布局
 ---
 
 - 媒体类型
@@ -1708,7 +1711,7 @@ href="indexB.css" media="screen and (min-width: 600px) and (max-width: 800px)">
 href="indexC.css"    media="screen and (max-width: 600px)">
 ```
 
-###### 附录二　HTML5速查表
+### 附录二　HTML5速查表
 ---
 
 - [可以查阅支持H5+CSS3的属性](http://caniuse.com/#search=canvas)

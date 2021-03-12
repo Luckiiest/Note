@@ -13928,7 +13928,7 @@ function throwBall(obj) {
             disY,
             lastX = obj.offsetLeft,
             lastY = obj.offsetTop,
-            iSpeedX = 0, // 鼠标向X、轴施的力
+            iSpeedX = 0, // 鼠标向X、y轴施的力
             iSpeedY = 0,
             that = this; // 代表this一直为obj
         disX = e.clientX - this.offsetLeft; // 现在的鼠标X，Y轴位置
@@ -13952,14 +13952,19 @@ function throwBall(obj) {
         }
     }
     }
+function startMoveTwo(obj,iSpeedX,iSpeedY) {
+    	// 每次开始前就清空以前的计时器
         clearInterval(obj.timer);
+    	// g为初始力
         var g = 6;
         obj.timer = setInterval(function () {
             iSpeedY += g;
             newLeft = obj.offsetLeft + iSpeedX;
             newTop = obj.offsetTop + iSpeedY;
             if (newTop >= document.documentElement.clientHeight - obj.offsetHeight) {
+                // 当弹到左右两边的时候 *-1 反转弹回来
                 iSpeedY *= -1;
+                // 每次 *0.8 是摩擦力，让它可以停下来
                 iSpeedX *= 0.8;
                 iSpeedY *= 0.8;
                 newTop = document.documentElement.clientHeight - obj.offsetHeight;
@@ -13982,6 +13987,7 @@ function throwBall(obj) {
                 iSpeedY *= 0.8;
                 newLeft = 0;
             }
+            // 结束条件
             if (Math.abs(iSpeedX) <= 1 && Math.abs(iSpeedY) <= 1 && newTop == document.documentElement
                 .clientHeight - obj.clientHeight) {
                 iSpeedX = 0;
