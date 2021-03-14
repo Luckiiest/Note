@@ -8,20 +8,20 @@
     - 新的结构标签			
 
 
-![一些总结--from-dunitian](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/1.png)
+![一些总结--from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/1.png)
 
 ### 常用的一些新的结构标签
 ---
 
-![结构标签](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/2.png)
+![结构标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/2.png)
 
-![多媒体交互标签](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/3.png)
-
-
-![特殊样式标签](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/4.png)
+![多媒体交互标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/3.png)
 
 
-![兼容性不是很好的标签](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/5.png)
+![特殊样式标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/4.png)
+
+
+![兼容性不是很好的标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/5.png)
 
 - 补充说明
   - `small` 这个元素表示边栏评论，如附属细则
@@ -62,11 +62,11 @@
 
 - 崭新新的页面布局
 
-![传统的布局](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/body.jpg)
+![传统的布局](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/body.jpg)
 
-![实例-from-dunitian](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/jia.png)
+![实例-from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/jia.png)
 
-![草图--from-dunitian](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/kuang.png)
+![草图--from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/kuang.png)
 
 ## HTML5智能表单
 ---
@@ -673,7 +673,7 @@ btn.onclick = function(){
 ---
 
 
-![H5在JavaScript中新增的方法一览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/14.png)
+![H5在JavaScript中新增的方法一览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/14.png)
 
 
 - **新增选择器**
@@ -1058,9 +1058,9 @@ function inserAfter(newItem,targerItem){
 ## css3选择器
 ---
 
-![css3新特性预览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/6.png)
+![css3新特性预览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/6.png)
 
-![css3属性快速一览](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/7.png)
+![css3属性快速一览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/7.png)
 
 - `CSS3`发展史简介
   
@@ -1094,13 +1094,13 @@ function inserAfter(newItem,targerItem){
 
 - **CSS3结构选择器**
 
-![CSS3结构选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/8.png)
+![CSS3结构选择器](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/8.png)
 
 
 - **`Css3` 属性选择器**
 
 
-![Css3属性选择器](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/9.png)
+![Css3属性选择器](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/9.png)
 
 
 - **`CSS3`伪类选择器**
@@ -1223,9 +1223,9 @@ function inserAfter(newItem,targerItem){
 
 - CSS盒模型复习
 
-![标准盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/w3c.jpg)
+![标准盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/w3c.jpg)
 
-![IE盒子模型](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/ie.jpg)
+![IE盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ie.jpg)
 
 - **CSS3弹性盒模型**
 
@@ -1266,7 +1266,7 @@ function inserAfter(newItem,targerItem){
         - `align-self: auto` | `flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
 
 
-![flex布局语法篇小结](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/10.png)
+![flex布局语法篇小结](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/10.png)
 
 - 拓展阅读
     - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
@@ -1357,7 +1357,7 @@ function inserAfter(newItem,targerItem){
 - HSL色轮
 
 
-![HSL色轮](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/11.png)
+![HSL色轮](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/11.png)
 
 
 - 透明颜色：`transparent`
@@ -1421,7 +1421,7 @@ border-bottom-left-radius: 1em 3em;
   - 设置或检索对象的边框背景图的分割方式
   
 
-![Paste_Image.png](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/12.png)
+![Paste_Image.png](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/12.png)
 
 - **`border-image-repeat`**
   - 用于指定边框背景图的重复方式
@@ -1464,7 +1464,7 @@ border-bottom-left-radius: 1em 3em;
 	- `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
 
 - 过渡完成事件   
-![过渡完成事件](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/13.png)
+![过渡完成事件](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/13.png)
 
 - `Webkit`内核： 
 ```javascript
@@ -1716,6 +1716,6 @@ href="indexC.css"    media="screen and (max-width: 600px)">
 
 - [可以查阅支持H5+CSS3的属性](http://caniuse.com/#search=canvas)
 - [HTML5 标签含义之元素周期表](http://www.html5star.com/manual/html5label-meaning/)
-- [HTML5标签速查表](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/H5C3/15.png)
+- [HTML5标签速查表](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/15.png)
 - [展示 flexbox 属性的作用--推荐](chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fjonibologna.com%2Fcontent%2Fimages%2Fflexboxsheet.pdf)
 - [Flexbox 视觉指南--更好更容易地理解 Flexbox 某个属性的作用](https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/)

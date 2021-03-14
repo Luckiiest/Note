@@ -5,12 +5,11 @@
 ---
 
 - **`JQuery`概念**
-
-    - `javascript`概念
+- `javascript`概念
         - 基于`Js`语言的`API`和语法组织逻辑，通过内置`window`和`document`对象，来操作内存中的`DOM`元素
     - `JQuery`概念
         - 基于`javascript`的，同上，提高了代码的效率
-
+    
 - **`jQuery`是什么:**
     - 是一个`javascript`代码仓库，我们称之为`javascript`框架。
     - 是一个快速的简洁的`javascript`框架，可以简化查询`DOM`对象、处理事件、制作动画、处理`Ajax`交互过程。
@@ -179,9 +178,9 @@ alert($nav.get(0) == nav);//true
 - **代理模式以及代理内存结构**
 
 
-![代理内存结构1](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/jQ/daicun.png)
+![代理内存结构1](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/daicun.png)
 
-![代理内存结构2](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/jQ/daicun0.png)
+![代理内存结构2](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/daicun0.png)
 
 
 ### 第二节 选择器
@@ -759,7 +758,7 @@ alert($nav.get(0) == nav);//true
         - `linear`代表匀速（直线）运动
         - `swing`代表慢快慢的运动
         - `jQuery`当中就提供了这两种速率，如果想要更多效果，可以引入`jQuery`插件:`jquery.sasing.js`
-        - ![easing插件的效果](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/jQ/easing.jpg)
+        - ![easing插件的效果](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/easing.jpg)
     - **停止元素的动画**
       - 很多时候需要停止匹配正在进行的动画，需要使用stop()
       - `stop()`语法结构：`stop([clearQueue],[gotoEnd]);`
@@ -1111,7 +1110,7 @@ xhr.onreadystatechange = function(){
 - `responseText` ：请求服务器返回的数据存在该属性里面
 - `status` : `http`状态码
 
-![HTTP状态码](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/jQ/HTTP.jpg)
+![HTTP状态码](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/HTTP.jpg)
 
 - 案例：`ajax`封装案例
 

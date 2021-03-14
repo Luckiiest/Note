@@ -504,11 +504,11 @@
 ---
 - [HTML5标签集合](http://www.html5star.com/manual/html5label-meaning/)
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/1.jpg)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/1.jpg)
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/2.png)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/2.png)
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/3.jpeg)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/3.jpeg)
 
 ---
 
@@ -843,13 +843,13 @@
 
  - 盒子模型是`css`中一个重要的概念，理解了盒子模型才能更好的排版。其实盒子模型有两种，分别是 `ie `盒子模型和标准 `w3c` 盒子模型。他们对盒子模型的解释各不相同，先来看看我们熟知的标准盒子模型
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/w3c.jpg)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/w3c.jpg)
 
 - 从上图可以看到标准 `w3c` 盒子模型的范围包括 `margin`、`border`、`padding`、`content`，并且 `content `部分不包含其他部分
 
 - ** IE盒子模型**
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/ie.jpg)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/ie.jpg)
 
 - 从上图可以看到 `ie `盒子模型的范围也包括 `margin`、`border`、`padding`、`content`
 - 和标准 `w3c` 盒子模型不同的是：`ie` 盒子模型的 `content` 部分包含了 `border `和 `padding`
@@ -1097,8 +1097,8 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 
 ---
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/danci.png)
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/position.png)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/danci.png)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/position.png)
 
 ---
 
@@ -1183,19 +1183,19 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 ---
 
 ---
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/overflow.png)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/overflow.png)
 
 ---
 - [原文件下载地址](https://yunpan.cn/cM9va2bHD4wwu)   访问密码 342a
 
 ---
 
-![](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/csstixi.png)
+![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/csstixi.png)
 
 ---
 - `css`常见简写
 
-![css简写速查](https://raw.fastgit.org/ZELONGabcd/Note/main/Web/H4C2/sucha.png)
+![css简写速查](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/sucha.png)
 
 
 ---

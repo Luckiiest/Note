@@ -115,7 +115,7 @@ server.listen(3000, "127.0.0.1");
 res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
 ```
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/1.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/1.png)
 
 
 - 我们现在来看一下 `req` 里面能够使用的东西
@@ -133,18 +133,18 @@ res.writeHead(200,{"Content-Type":"text/html;charset=UTF8"});
 **1. url.parse()**
 
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/2.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/2.png)
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/3.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/3.png)
 
 
 **2. url.format()**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/4.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/4.png)
 
 **3. url.resolve()**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/5.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/5.png)
 
 ## 2.3 Nodejs 自启动工具 supervisor
 
@@ -158,7 +158,7 @@ npm install -g supervisor
 
 **使用 supervisor 代替 node 命令启动应用**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/6.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/6.png)
 # 三、CommonJs 和 Nodejs 模块
 
 ## 3.1 什么是 CommonJs
@@ -188,7 +188,7 @@ npm install -g supervisor
 1. 我们可以把公共的功能抽离成为一个单独的 `js` 文件作为一个模块，默认情况下面这 个模块里面的方法或者属性，外面是没法访问的。如果要让外部可以访问模块里面的方法或 者属性，就必须在模块里面通过 `exports` 或者 `module.exports` 暴露属性或者方法
 2. 在需要使用这些模块的文件中，通过 `require` 的方式引入这个模块。这个时候就可以 使用模块里面暴露的属性和方法
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/7.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/7.png)
 
 ### 3.2.3 定义使用模块
 
@@ -223,7 +223,7 @@ tools.sa yHello(); //使用模块
 
 > `Nodejs` 中除了它自己提供的核心模块外，我们可以自定义模块，也可以使用 第三方的模块。`Nodejs` 中第三方模块由包组成，可以通过包来对一组具有相互依 赖关系的模块进行统一管理
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/8.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/8.png)
 
 **完全符合 CommonJs 规范的包目录一般包含如下这些文件**
 
@@ -495,7 +495,7 @@ console.log("程序执 行完毕");
 
 > 管道提供了一个输出流到输入流的机制。通常我们用于从一个流中获取数据并将数据传递到另外一个流中。
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/9.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/9.png)
 
 > 如上面的图片所示，我们把文件比作装水的桶，而水就是文件里的内容 ，我们用一根管子(pipe )连接两个桶使得水从一个桶流入另一个桶，这样就慢慢的实现了大文件的复制过程。
 
@@ -614,7 +614,7 @@ setTimeout(function (){
 
 > 路由指的就是针对不同请求的 URL，处理不同的业务逻辑。
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/10.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/10.png)
 
 ## 8.2 初识 EJS 模块引擎
 
@@ -736,11 +736,11 @@ function() {
 - 非结构型数据库。没有行、列的概念。用 JSON 来存储数据。
 - 集合就相当于“表 ”，文档就相当于“行”。
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/11.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/11.png)
 
 ## 9.5 NoSql 种类
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/12.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/12.png)
 
 
 ## 9.6 MongoDb 介绍
@@ -754,13 +754,13 @@ function() {
 
 **1. 双击 MongoDB 软件下一步下一步安装**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/13.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/13.png)
 
 **2. 安装完成配置环境变量 C:\Program Files\MongoDB\Server\3.0\bin 加入到系统的path 环境变量中**
 
 **3. 打开 cmd 输入 :mongo命令看看是否成功。如果出来下图说明 mongodb配置成功。**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/14.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/14.png)
 
 
 ## 9.8 使用 MongoDb
@@ -772,7 +772,7 @@ function() {
 
 **开启 MongoDb 服务命令:**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/15.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/15.png)
 
 - `--dbpath` 就是选择数据库文档所在的文件夹
 - 也就是说，`mongoDB` 中，真的有物理文件，对应一个个数据库。U 盘可以拷走。
@@ -782,12 +782,12 @@ function() {
 
 > 客户端:`mongo` 使用数据库
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/16.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/16.png)
 
 
 > 客户端:`mongo` 使用数据库 `ip` 地址:端口号
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/17.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/17.png)
 
 
 # 十、MongoDB 数据库创建删除、表（集合）创建删除、数据增删改查
@@ -796,12 +796,12 @@ function() {
 
 >  开启 `mongodb` 服务:要管理数据库，必须先开启服务，开启服务使用 `mongod --dbpath c:\mongodb`
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/18.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/18.png)
 
 
 > 管理 `mongodb` 数据库:`mongo` (一定要在新的 `cmd` 中输入)
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/19.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/19.png)
 
 
 > 查看所有数据库列 表
@@ -812,7 +812,7 @@ show dbs
 
 ## 10.2 创建数据库
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/20.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/20.png)
 
 **使用数据库、创建 数据库**
 
@@ -1185,7 +1185,7 @@ db.user.ensureIndex( {"useri d":1,"age":1},{"unique":true})
 
 ## 11.3 索引的一些参数
 
-![image.png](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/21.png)
+![image.png](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/21.png)
 
 
 > 如果在为已有数据的文档创建索引时，可以执行下面的命令，以使 MongoDB 在后台创 建索引，这样的创建时就不会阻塞其他操作。但是相比而言，以阻 塞方式创建索引，会使整 个创建过程效率更高，但是在创建时 MongoDB 将无法接收其他的操作
@@ -1198,7 +1198,7 @@ db.user.ensureIndex( {"username":1},{"backgroun d":true})
 
 > explain 是非常有用的工具，会帮助你获得查询方面诸多有用的信息。只要对游标调用 该方法，就可以得到查询细节。explain 会返回一个文档，而不是游标本身。如
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/22.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/22.png)
 
 > `explain` 会返回查询使用的索引情况，耗时和扫描文档数的统计信息
 
@@ -1757,27 +1757,27 @@ http://localhost:3000/static/hello.html
 
 1. 应用级中间件
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/23.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/23.png)
 
 
 2. 路由中间件
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/24.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/24.png)
 
 
 3. 错误处理中间件
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/25.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/25.png)
 
 
 4. 内置中间件
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/26.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/26.png)
 
 5. 第三方中间件
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/27.png)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/28.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/27.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/28.png)
 
 ## 14.7 获取 Get Post 请求的参数
 
@@ -1814,7 +1814,7 @@ app.use(function(req, res) {
 
 ## 15.1 Cookie 简介
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/29.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/29.png)
 
 ## 15.2 Cookie 特点
 
@@ -1827,8 +1827,8 @@ app.use(function(req, res) {
 
 ## 15.3 Cookie 的使用
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/30.png)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/31.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/30.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/31.png)
 ![](node/32.png)
 
 
@@ -1943,8 +1943,8 @@ app.use(session({
 
 **行加密的字符串.这个**
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/33.png)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/node/34.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/33.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/node/34.png)
 
 ## 16.5 express-session 的常用方法
 

@@ -2,16 +2,16 @@
 
 > TS基础篇
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-1.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-2.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-3.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-4.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-5.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-6.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-7.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-8.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-9.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/1-10.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-1.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-2.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-3.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-4.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-5.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-6.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-7.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-8.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-9.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/1-10.jpg)
 
 ## 一、基本类型
 
@@ -1353,7 +1353,7 @@ enum Status {
 
 比如，在 `TS` 中使用 `react `, 你会得到这样的一个类型检查错误：
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.2.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.2.jpg)
 
 - 因为 react 的库中并没有类型声明
 - 现在比较通用的做法是，实现和类型实现独立成两个库，也就是你需要再安装类型声明的库: `@types/react`
@@ -1425,11 +1425,11 @@ declare module 'progressbar.js' {
 - `TypeScript` 自带了一些基本的类型定义，包括 ECMAScript 和 DOM 的类型定义，所有你需要的类型都可以从这里找到。如果你想做一些「纯 TypeScript 开发」的话，有这些就够了
 - 比如下面这张截图，就是对 `<div>` 标签的类型定义。我们可以看到，它继承了更加通用的 `HTMLElement` 类型，并且扩展了一个即将被废弃的 `align` 属性，以及两组 `addEventListener` 和 `removeEventListener`，注意这里使用了重载。
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.6-1.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.6-1.png)
 
 > 这里的命名也不是随便起的，都是在 MDN 上可以查到的。还是以 `<div>` 为例，我们已经知道它继承自 `HTMLElement`，其实再往上，`HTMLElement` 继承自 `Element`，`Element` 又继承自 `Node`，顺着这条路，你可以挖掘出所有 `HTML` 标签的类型
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.6-2.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.6-2.png)
 
 > 对于一些 DOM 相关的属性，比如 `onclick`、`onchange` 等，你都可以如法炮制，找到它们的定义。
 
@@ -1439,29 +1439,29 @@ declare module 'progressbar.js' {
 - 其实方法都一样，只不过相关的类型定义不在 `TypeScript` 中，而是在 `@types/react` 中。
 - `React` 的类型定义的名称其实也很直观，比如我们常见的 `React.Component`，在定义 `Class` 组件时，我们需要对 `Props` 和 `State` 预先进行类型定义，为什么呢？答案就在它的类型定义中
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-1.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-1.png)
 
 - 再比如，当我们在写一些组件时，我们可能会需要向下传递 `this.props.children`，但 `children` 并没有被设为默认值，需要我们自己定义到 `props` 上，那么它的类型应该是什么呢
 - 到类型定义中搜一下关键字 `children`，很快我们就找到了下面的定义
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-2.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-2.png)
 
 > 所有 `React` 中 `JSX` 所代表的内容，无论是 `render()` 的返回，还是 `children`，我们都可以定义为一个 `ReactNode`。那这个 `ReactNode` 长什么样呢？我们通过右键继续寻找
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-3.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-3.png)
 
 > 看到这里，我们不光找到了我们想要的类型，还顺带明白了为什么 `render()` 可以返回 `boolean`、`null`、`undefined` 表示不渲染任何内容。
 那么事件呢？当我们给组件定义事件处理函数的时候，也经常会被要求指定类型。还是老办法，找不到咱就搜，比如 `onClick` 不清楚，那我们就以它为关键字去搜
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-4.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-4.png)
 
 > 据此我们找到一个叫 `MouseEventHandler` 的定义，这名字，够直白吧。好了，我们找到想要的了。不过既然来了，不如继续看一下，看看还能发现什么。我们右键 `MouseEventHandler` 急需往下看：
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-5.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-5.png)
 
 > 看到了吗，所有的事件处理函数都有对应的定义，每个都需要一个泛型参数，传递了事件的类型，名称也挺直白的
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/16.7-6.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/16.7-6.png)
 
 > 事件的类型也被我们挖出来了，以后如果需要单独定义一个事件相关的类型，就可以直接用了。以此类推，不管是什么东西的类型，都可以去它们对应的 `@types/xxx `里，按关键字搜
 
@@ -1531,14 +1531,14 @@ let s = e!.name; // 断言e是非空并访问name属性
 
 # 第二章 工程篇
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-1.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-2.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-3.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-4.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-5.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-1.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-2.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-3.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-4.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-5.jpg)
 ![](TS/2-6.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-7.jpg)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/2-8.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-7.jpg)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/2-8.jpg)
 
 ## 一、使用命名空间
 
@@ -2045,8 +2045,8 @@ export = jQuery;
 
 ## 一、思维导图
 
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/sw1.png)
-![](https://raw.sevencdn.com/ZELONGabcd/Note/master/Web/TS/sw2.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/sw1.png)
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/TS/sw2.png)
 
 
 ## 二、React项目实践
