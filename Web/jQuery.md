@@ -1246,6 +1246,11 @@ $("#testTest").load("test.html",function(responseText,textStatus,XMLHttpRequest)
 |`url`|`String`|(默认为当前页地址)发送请求的地址|
 |`type`|`String`|请求方式（`POST`或`GET`）默认为`GET`|
 |`timeout`|`Number`|设置请求超时时间（毫秒）|
+| `data` | `string` | 传输数据 |
+|`context`||回调函数的作用域|
+|`async`|`boolean`|是否异步，默认true|
+|`cache`|`boolean`|是否缓存，默认`true`|
+|`crossDomain`|`boolean`|同域请求为false，跨域请求为true|
 |`dataType`|`String`|预期服务器返回的类型。可用的类型如下<br /><br /> **xml**:返回`XML`文档，可用`jquery`处理<br />**html**:返回纯文本的`HTML`信息，包含的`script`标签也会在插入`DOM`时执行<br />**script**：返回纯文本的`javascript`代码。不会自动缓存结果，除非设置`cache`参数。注意：在远程请求时，所有的`POST`请求都将转为`GET`请求<br />**json**:返回`JSON`数据<br />**jsonp**:`JSONP`格式，使用`jsonp`形式调用函数时，例如：`myurl?call back=?,jquery`将自动替换后一个`？`为正确的函数名，以执行回调函数<br />**text**:返回纯文本字符串|
 |`beforeSend`|`Function`|发送请求前可以修改`XMLHttpRequest`对象的函数，例如添加自定义`HTTP`头。在`beforeSend`中如果返回`false`可以取消本次`Ajax`请求。`XMLHttpRequest`对象是唯一的参数<br /> function(XMLHttpRequest){<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`this`;//调用本次`Ajax`请求时传递的`options`参数<br>}|
 |`complete`|`Function`|请求完成后的回调函数（请求成功或失败时都调用）<br /> 参数：`XMLHttpRequest`对象和一个描述成功请求类型的字符串<br />function(XMLHttpRequest,textStatus){<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`this`;//调用本次Ajax请求时传递的`options`参数<br>}|
