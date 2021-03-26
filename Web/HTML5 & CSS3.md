@@ -1055,57 +1055,71 @@ function inserAfter(newItem,targerItem){
 
 # CSS3
 
-## css3选择器
----
-
-![css3新特性预览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/6.png)
-
-![css3属性快速一览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/7.png)
-
 - `CSS3`发展史简介
-  
-    - `HTML`的诞生 20世纪90年代初
-    - `1996`年底，	`CSS`第一版诞生
-    - `1998`年`5`月 	`CSS2`正式发布
-    - `2004`年 	`CSS2.1`发布
-    - `CSS3`的发布	`2002 ` `2003`  `2004` `2005`  `2007` `2009` `2010`
+  - `HTML`的诞生 20世纪90年代初
+  - `1996`年底，	`CSS`第一版诞生
+  - `1998`年`5`月 	`CSS2`正式发布
+  - `2004`年 	`CSS2.1`发布
+  - `CSS3`的发布	`2002 ` `2003`  `2004` `2005`  `2007` `2009` `2010`
 
 
 - **模块化开发**
 
-    - `CSS1` 中定义了网页的基本属性：
-        - 字体、颜色、基本选择器等
-    - `CSS2`中在`CSS1`的基础上添加了高级功能
-         - 浮动和定位、高级选择器等(子选择器、相邻选择器、通用选择器)
-    - `CSS3`遵循的是模块化开发。发布时间并不是一个时间点，而是一个时间段
+  - `CSS1` 中定义了网页的基本属性：
+    - 字体、颜色、基本选择器等
+  - `CSS2`中在`CSS1`的基础上添加了高级功能
+    - 浮动和定位、高级选择器等(子选择器、相邻选择器、通用选择器)
+  - `CSS3`遵循的是模块化开发。发布时间并不是一个时间点，而是一个时间段
 
-- **`CSS`选择器复习**
+## 选择器
 
-    - 通用选择器：`* ` 选择到所有的元素
+- **`CSS`选择器预习**
+- 通用选择器：`* ` 选择到所有的元素
     - 选择子元素：`>` 选择到元素的直接后代
     - 相邻兄弟选择器：`+ `选择到紧随目标元素后的第一个元素
     - 普通兄弟选择器：`~ `选择到紧随其后的所有兄弟元素
     - 伪元素选择器：
     	- `::first-line` 匹配文本块的首行
     	- `::first-letter` 选择文本块的首字母
+    	- `::selection `鼠标光标选择元素内容
+    	  - `user-selection:none`不让用户选中
     - 伪类选择器：
     	- `:before`,`:after`在元素内容前面、后面添加内容(相当于行内元素)
 
 
 - **CSS3结构选择器**
 
-![CSS3结构选择器](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/8.png)
+  - `nth-child(n)`
+    - 父元素下的第n个子元素
+    - `nth-child(odd)`：奇数子元素同`nth-child(2n-1)`
+    - `nth-child(even)`：偶数子元素同`nth-child(2n)`
+    - `nth-child(an+b)`：公式
+  - `nth-last-child(n)`：倒数第n个子元素
+  - `first-of-type`：父元素下指定类型的第一个元素
+  - `last-of-type`：父元素下指定类型的最后一个元素
+  - `nth-of-type(n)`：父元素下的指定类型的元素的第n个元素
+  - `nth-last-of-type`：父元素下的倒数第几个指定类型的子元素
+  - `first-child`：父元素下的第一个子元素、
+  - `last-child`：父元素下的最后一个子元素
+  - `only-child`：父元素下的唯一的子元素
+  - `only-of-type`：选择父元素下指定类型的唯一子元素
+  - `E > F` E的第一代子元素中是F的
+  - `E + F`E后面紧挨着的F兄弟节点
+  - `E ~ F`E后面所有的兄弟节点
 
 
 - **`Css3` 属性选择器**
-
-
-![Css3属性选择器](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/9.png)
+- `E[attr]`：属性名，不确定具体值
+  - `E[attr='value']`：指定属性名，并指定对应属性值
+  - `E[attr~="value"]`：指定属性名，其具有多个属性值空格隔开，并包含`value`值，意思就是在`class`属性中任意一个位置有`value`就可以，不必要第一个
+  - `E[attr^="value"]`：指定属性名，属性值以`value`值开头
+  - `E[attr$="value"]`：指定属性名，属性值以`value`值结束
+  - `E[attr*="value"]`：指定了属性名，属性值中包含了`value`
+  - `E[attr|="value"]`：指定属性名，属性值以`value`开头
 
 
 - **`CSS3`伪类选择器**
-
-  - **UI伪类选择器：**
+- **UI状态伪类选择器：**
     - `:enabled `选择启用状态元素
     - `:disabled` 选择禁用状态元素
     - `:checked `选择被选中的`input`元素（单选按钮或复选框）
@@ -1113,22 +1127,22 @@ function inserAfter(newItem,targerItem){
     - `:valid`、`invalid` 根据输入验证选择有效或无效的`input`元素
     - `:in-range`、`out-of-range`选择指定范围之内或者之外受限的元素
     - `:required`、`optional `根据是否允许:`required`属性选择`input`元素
-
+  - `:read-only`选择只读的元素
+  - `read-write`选择非只读的元素
   - **动态伪类选择器：**
     - `:link `选择链接元素
     - `:visited` 选择用户以访问的元素
     - `:hover` 鼠标悬停其上的元素
     - `:active `鼠标点击时触发的事件
     - `:focus` 当前获取焦点的元素
-
-  - **其他伪类选择器**：
+- **其他伪类选择器**：
+    - `root`：选择文档的根目录、返回`html`
     - `:not(<选择器>) `对括号内选择器的选择取反
     - `:lang(<目标语言>)` 基于`lang`全局属性的元素
     - `:target` `url`片段标识符指向的元素
-      - `:empty`选择内容为空的元素
-    - `:selection `鼠标光标选择元素内容
+    - `:empty`选择内容为空的元素
 
-## CSS3新增文本属性
+## 文本
 ---
 
 - **CSS文本属性复习**
@@ -1206,19 +1220,32 @@ function inserAfter(newItem,targerItem){
         - `color`    阴影颜色
 
 - `text-fill-color`:文字填充颜色
+
 - `text-stroke`:复合属性。设置文字的描边
+  
   - `text-stroke-width`:文字的描边厚度 
   - `text-stroke-color`:文字的描边颜色 
+  
 - `tab-size`:制表符的长度   
+  
     - 默认值为`8`(一个`tab`键的空格字节长度)，在	`pre`标签之内才会有显示
+    
 - `word-wrap`:当前行超过指定容器的边界时是否断开转行
-	- `normal`： 默认值
-	- 允许内容顶开或溢出指定的容器边界。 
+
+  - `normal`： 默认值
+  - `break-word`：在长单词或 URL 地址内部进行换行。
+  - 允许内容顶开或溢出指定的容器边界。 
+
 - `break-word`：
+  
+  
+    - `normal`： 使用浏览器默认的换行规则
+    - `break-all`：允许在单词内换行
+    - `keep-all`：只能在半角空格或连字符处换行
     - 内容将在边界内换行。如果需要，单词内部允许断行
 
 
-## CSS3盒模型
+## 盒模型
 ---
 
 - CSS盒模型复习
@@ -1273,7 +1300,7 @@ function inserAfter(newItem,targerItem){
     - [flex布局实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
 
 
-## css3新增背景属性
+## 背景
 ---
 
 - **CSS背景属性复习**
@@ -1296,7 +1323,7 @@ function inserAfter(newItem,targerItem){
   - `background-image:url(1.jpg),url(2.jpg)`;
 
 - `background-origin ` 背景区域定位
-  - `border-box`： 从`borde`r区域开始显示背景。 
+  - `border-box`： 从`border`区域开始显示背景。 
   - `padding-box`： 从`padding`区域开始显示背景。 
   - `content-box`： 从`content`内容区域开始显示背
 - `background-clip`   背景绘制区域
@@ -1307,23 +1334,23 @@ function inserAfter(newItem,targerItem){
   - `no-clip`： 从`border`区域向外裁剪背景
   
 - **颜色渐变**
-  - **线性渐变**：`linear-gradient`(起点/角度，颜色 位置，...,)
+  - **线性渐变**：`linear-gradient`(起点/角度 半径，颜色 位置，...,)
       - 起点：`left/top/right/bottom/left top...... `默认`top`
-      - 角度：逆时针方向 `0-360`度
-      - 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
-
+      - 角度：逆时针方向 `0-360deg`（度），起点和角度一样
+      - 半径：可以控制渐变圆的大小
+- 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
     - `repeating-linear-gradient`  线性渐变重复平铺
        - `IE`低版本渐变(滤镜)：
 	   - `filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');`
 
-  - **径向渐变**：`radial-gradient`(起点(圆心位置), 形状/半径/大小，颜色1，颜色2)
+  - **径向渐变**：`radial-gradient`(起点(圆心位置) at 形状/半径/大小,  颜色1,  颜色2)
       - 起点：`left/top/right/bottom`或具体值/百分比
       - 形状：`ellipse`(椭圆)、`circle`(正圆)
-      - 大小：具体数值或百分比，也可以是关键字（`closest-side`(最近端), `closest-corner`最近角), `farthest-side`(最远端), f`arthest-corner`(最远角), `contain`(包含) ,`cover`(覆盖)）;
+      - 形状\半径\大小：具体数值或百分比，也可以是关键字（`closest-side`(最近端), `closest-corner`最近角), `farthest-side`(最远端), f`arthest-corner`(最远角), `contain`(包含) ,`cover`(覆盖)）;
 
 
 
-## css3新增颜色属性
+## 颜色
 ---
 
 - **CSS颜色属性复习**
@@ -1333,8 +1360,7 @@ function inserAfter(newItem,targerItem){
     - `rgb`方式           三原色配色方式
 
 - **CSS3新增颜色属性**
-
-    - **`rgba()`**
+- **`rgba()`**
 
 |名称|颜色|颜色|取值|
 |---|---|---|---|
@@ -1345,15 +1371,14 @@ function inserAfter(newItem,targerItem){
 
 
 - **`HSL`模式  `HSLA`模式**
-
-    - `H`： `Hue`(色调)。
+- `H`： `Hue`(色调)。
         - 0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：`0 - 360` 
     - `S`：` Saturation`(饱和度)。取值为：0.0% - 100.0% 
     - `L`： `Lightness`(亮度)。取值为：0.0% - 100.0%
     - `A`:    `alpha  `   透明度   0~1之间
     
     - 语法:`HSLA(H,S,L,A)`
-
+    
 - HSL色轮
 
 
@@ -1410,12 +1435,12 @@ border-bottom-left-radius: 1em 3em;
 
 |属性|	版本|	简介|
 |---|---|---|
-|border-image|	CSS3|	设置或检索对象的边框使用图像来填充|
-|border-image-source| CSS3|设置或检索对象的边框是否用图像定义样式或图像来源路径|
-|border-image-slice|	CSS3|	设置或检索对象的边框背景图的分割方式|
-|border-image-width|	CSS3|	设置或检索对象的边框厚度|
-|border-image-outset|	CSS3|	设置或检索对象的边框背景图的扩展|
-|border-image-repeat|	CSS3|	设置或检索对象的边框图像的平铺方式|
+|`border-image`|	CSS3|	设置或检索对象的边框使用图像来填充|
+|`border-image-source`| CSS3|设置或检索对象的边框是否用图像定义样式或图像来源路径|
+|`border-image-slice`|	CSS3|	设置或检索对象的边框背景图的分割方式|
+|`border-image-width`|	CSS3|	设置或检索对象的边框厚度|
+|`border-image-outset`|	CSS3|	设置或检索对象的边框背景图的扩展|
+|`border-image-repeat`|	CSS3|	设置或检索对象的边框图像的平铺方式|
 
 - **`border-image-slice`**
   - 设置或检索对象的边框背景图的分割方式
@@ -1431,7 +1456,7 @@ border-bottom-left-radius: 1em 3em;
     - `round`： 指定用平铺方式来填充边框背景图。图片会根据边框的尺寸动态调整图片的大小	直至正好可以铺满整个边框。写本文档时仅Firefox能看到该效果 
 
     
-## CSS3运动体系
+## 运动体系
 ---
 
 ### 过渡

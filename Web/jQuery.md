@@ -414,11 +414,11 @@ alert($nav.get(0) == nav);//true
 |`prependTo()`|颠倒`prepend()`的操作,子元素在父元素的前面,返回的是子元素|
 |`after()`|剪切到元素的后面,父元素在子元素前面,返回的是父级元素|
 |`insertAfter()`|颠倒`after()`的操作,子元素在父元素的前面,返回的是子元素|
-|`before()`|剪切到元素的前面,和原生js中的insertBefore像,父元素在子元素前面,返回的是父元素|
+|`before()`|剪切到元素的前面,和原生`js`中的`insertBefore`像,父元素在子元素前面,返回的是父元素|
 |`insertBefore()`|颠倒`before()`的操作,子元素在父元素后面,返回的是子元素|
 
 - **删除节点**
-  - jQuery提供了三种删除节点的方法 `remove()` `detach()` `empty()`
+  - `jQuery`提供了三种删除节点的方法 `remove()` `detach()` `empty()`
 - **`remove()方法`**
     - 当某个节点用`remove()`方法删除后，该节点所包含的所有后代节点将同时被删除，将会只剩下一个DOM元素，不再有事件功能了，但还是可以继续使用删除后的引用
  - **`detach()`**
@@ -467,12 +467,12 @@ alert($nav.get(0) == nav);//true
  - **`siblings()`** 方法
     - 用于匹配元素前后所有的同级元素
  - **`prevUntil()`** 方法
-    - $("selector").prevvUntil("stop")
-    - prevUntil()方法返回`selector`与`stop`之间，selector之前，stop之后的所有同级元素
+    - `$("selector").prevUntil("stop")`
+    - `prevUntil()`方法返回`selector`与`stop`之间，selector之前，stop之后的所有同级元素
     - 返回在类名为 "selector" 和 "stop"的两个`<li>`元素之间的所有同级元素：
  - **`nextUntil()`** 方法
-    - $("selector").nextUntil("stop")
-    - nextUntil()方法返回`selector`与`stop`之间，selector之后，stop之前的所有同级元素
+    - `$("selector").nextUntil("stop")`
+    - `nextUntil()`方法返回`selector`与`stop`之间，selector之后，stop之前的所有同级元素
     - 返回在类名为 "selector" 和 "stop"的两个`<li>`元素之间的所有同级元素：
  - **`parent()`** 方法
     - 获得当前元素的直接父级元素,可以传参,判断自己的直接父元素是不是这个
@@ -484,7 +484,7 @@ alert($nav.get(0) == nav);//true
     - 传入参数,从元素本身开始，逐级向上级元素匹配，并返回最先匹配的祖先元素
   - **`each()`** 方法
     - 遍历数组元素
-    - each(function(index,ele){}) index：代表索引值，ele：代表元素本身
+    - `each(function(index,ele){}) index`：代表索引值，ele：代表元素本身
 
 #### 定位操作
 
@@ -519,10 +519,11 @@ alert($nav.get(0) == nav);//true
   - `wrap(function(index,ele){})` 可以用函数判断包裹
 
 - **`wrapInner()`** 方法
-  - 把传入的dom元素包裹住选中元素的内容
+  
+  - 把传入的`dom`元素包裹住选中元素的内容
   - 如：`$('li').wrapInner($('<div>'))`，用`div`把`li`里面的内容包裹起来
-  - `wrapInner(function(index,ele){})` 可以用函数判断包裹
-
+- `wrapInner(function(index,ele){})` 可以用函数判断包裹
+  
 - **`wrapAll()`** 方法
   - 将所有选中的元素用单个元素包裹起来
   - 容易破坏页面结构
@@ -543,7 +544,7 @@ alert($nav.get(0) == nav);//true
 
 - **`unwrap()`** 方法
   
-- unwrap() 方法删除被选元素的父元素，也可以传入dom参数
+- unwrap() 方法删除被选元素的父元素，也可以传入`dom`参数
   
 - **`end()`** 方法
   - 回到最近的一个"破坏性"操作之前。即，将匹配的元素列表变为前一次的状态。
@@ -802,13 +803,14 @@ alert($nav.get(0) == nav);//true
 - 定义在`jQuery`函数上面的方法就叫做工具方法，如：`jQuery.type()`，`$.type()`
 
 - **type()**
+  
   - 判断数据类型
   - 原生`js`里面的判断数据类型
     - `typeof arr`;
     - `arr instanceof Array`
     - `arr.constructor == 'Array'`
-    - `Object.prototype.toString.call(arr)`;
-
+  - `Object.prototype.toString.call(arr)`;
+  
 - **trim()**
   
 - 消除两边的空格（字符串中间的空格消除不掉）
@@ -846,15 +848,16 @@ alert($nav.get(0) == nav);//true
       // 不用再次传参,直接传需要的，不用传好几个参数了
     ```
 - **noConflict()**
+  
   - 防止冲突，如`var jq = $.noConflict(removeAll)`
-  - 让出变量`$`的`jQuery`控制权
-
+- 让出变量`$`的`jQuery`控制权
+  
   - 为了防止引用两个类库内的全局变量都是$
-  - 也是为了可以引用好几个不同版本的jQuery文件
-
+- 也是为了可以引用好几个不同版本的jQuery文件
+  
   - 该方法释放 `jQuery`对`$`变量的控制。
-  - 该方法也可用于为`jQuery`变量规定新的自定义名称
-
+- 该方法也可用于为`jQuery`变量规定新的自定义名称
+  
 - **parseJSON()**
   - 解析一个`JSON`字符串，如`var obj = $.parseJSON('{"name":"John"}')`
   - 用于将符合标准格式的的`JSON`字符串转为与之对应的`JavaScript`对象
@@ -864,6 +867,7 @@ alert($nav.get(0) == nav);//true
 - 把类数组转换成数组
 
 - **extend()**
+  
   - 定义在了`jQuery`函数上面
   - 在`jQuery`源码当中，有很多的工具方法都是基于`extend`方法来实现的
   - 扩展提供了新的`jQuery`工具方法，用来拓展一个新的工具或实例方法
@@ -888,20 +892,18 @@ alert($nav.get(0) == nav);//true
     // 作用是消除左侧空格
 
     用来拓展一个新的实例方法，就是在`jQuery`方法的`prototype`上创建一个方法,
-        
+       
+    $.fn.extend({
+            init: function(selector) {
+                var dom = document.getElementById(selector);
+                this.length = 1;
+                this.[0] = dom;
+                this.__proto__ = jQuery.prototype;
+                return this;
+            }
+    })
     ```
 
-$.fn.extend({
-        init: function(selector) {
-            var dom = document.getElementById(selector);
-            this.length = 1;
-            this.[0] = dom;
-            this.__proto__ = jQuery.prototype;
-            return this;
-        }
-})
-    ```
-    
     ```js
     还可以合并对象，`fn.extend`同时适用
     
