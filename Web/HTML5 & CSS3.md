@@ -1053,19 +1053,85 @@ function inserAfter(newItem,targerItem){
 
 [在线演示](http://codepen.io/poetries/pen/XpbEOW)
 
+## 跨文档操作
+
+---
+
+- **跨文档请求**
+
+- 同域跨文档
+  - `iframe`内页：
+    - 父页面操作子页面：`contentWindow`
+    - 子页面操作父页面：`window.top`(找到最顶级的父页面)/`parent`(第一父页面)
+    - 新窗口页：
+      - 父页面操作子页面：`window.open`
+      - 子页面操作父页面：`window.opener`
+
+- **不同域跨文档**
+  - `postMessage（“发送的数据”,”接收的域”）`
+    - `message`事件监听
+    - `ev.origin `发送数据来源的域
+    - `ev.data ` 发送的数据
+  - 通过判断发送的数据来执行相应的需求
+
+- **ajax跨域**
+
+  - `XMLHttpRequest` 新增功能
+    - 跨域请求：修改服务端头信息
+      - I`E`兼容：`XDomaiRequest`
+
+  - 进度事件：
+    - `upload.onprogress(ev) ` 上传进度(实现文件上传进度条)
+      - `ev.total`  发送文件的总量
+      - `ev.loaded` 已发送的量
+    - `FormData`  构建提交二进制数据
+
+- 拓展阅读
+  
+  - [HTML5 API 大盘点](http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&mid=2651130595&idx=2&sn=3d0f546f1867992729b3ace5d03766fc&chksm=f257ca59c520434f08e215b3bdcec3764712f73301b738c18163359e5aa5e949ff019616ffca&mpshare=1&scene=23&srcid=11289XUSBAQzrCp3Io55aoS1#rd)
+  
+## 附录二　HTML5速查表
+
+---
+
+  - [可以查阅支持H5+CSS3的属性](http://caniuse.com/#search=canvas)
+  - [HTML5 标签含义之元素周期表](http://www.html5star.com/manual/html5label-meaning/)
+  - [HTML5标签速查表](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/15.png)
+  - [展示 flexbox 属性的作用--推荐](chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fjonibologna.com%2Fcontent%2Fimages%2Fflexboxsheet.pdf)
+  - [Flexbox 视觉指南--更好更容易地理解 Flexbox 某个属性的作用](https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/)
+
 # CSS3
 
+## 简介
+
 - `CSS3`发展史简介
+  
   - `HTML`的诞生 20世纪90年代初
   - `1996`年底，	`CSS`第一版诞生
   - `1998`年`5`月 	`CSS2`正式发布
   - `2004`年 	`CSS2.1`发布
   - `CSS3`的发布	`2002 ` `2003`  `2004` `2005`  `2007` `2009` `2010`
+  
+- **what is CSS3？**
+
+  - CSS3是CSS2的升级版本，3只是版本号，它在CSS2.1的基础上增加了很多强大的新功能。目前主流浏览器chrome、safari、firefox、opera、甚至360、QQ浏览器都已经支持了CSS3的大部分功能了，IE10以后也开始全面支持CSS3了。
+  - 标准写法：
+
+  | 前缀     | 浏览器          |
+  | -------- | --------------- |
+  | -webkit- | chrome / safari |
+  | -moz-    | firefox         |
+  | -ms-     | IE              |
+  | -o-      | opera-          |
 
 
+- **CSS的功能**
+- 提供了更加强大且精准的选择器，提供多种背景填充方案，可以实现渐变颜色，可以改变元素的形状、角度等，可以加阴影效果，报纸布局，弹性盒子，ie6混杂模式的盒模型，新的计量单位，动画效果等等……
+  - 但是css3的兼容性的问题同样也显得格外重要，并不是所有的css3属性都通过了w3c标准，所以……我们需要全面性的查阅兼容性手册
+    - http://www.runoob.com/cssref/css3-browsersupport.html
+    - https://caniuse.com/
 - **模块化开发**
-
-  - `CSS1` 中定义了网页的基本属性：
+- `CSS1` 中定义了网页的基本属性：
     - 字体、颜色、基本选择器等
   - `CSS2`中在`CSS1`的基础上添加了高级功能
     - 浮动和定位、高级选择器等(子选择器、相邻选择器、通用选择器)
@@ -1073,43 +1139,36 @@ function inserAfter(newItem,targerItem){
 
 ## 选择器
 
-- **`CSS`选择器预习**
-- 通用选择器：`* ` 选择到所有的元素
-    - 选择子元素：`>` 选择到元素的直接后代
-    - 相邻兄弟选择器：`+ `选择到紧随目标元素后的第一个元素
-    - 普通兄弟选择器：`~ `选择到紧随其后的所有兄弟元素
-    - 伪元素选择器：
-    	- `::first-line` 匹配文本块的首行
-    	- `::first-letter` 选择文本块的首字母
-    	- `::selection `鼠标光标选择元素内容
-    	  - `user-selection:none`不让用户选中
-    - 伪类选择器：
-    	- `:before`,`:after`在元素内容前面、后面添加内容(相当于行内元素)
+- **伪元素选择器：**
+	- `::first-line` ：匹配文本块的首行
+	- `::first-letter` ：选择文本块的首字母
+	- `::selection `：鼠标光标选择元素内容
+	- `::user-selection:none`：不让用户选中
 
 
 - **CSS3结构选择器**
 
-  - `nth-child(n)`
-    - 父元素下的第n个子元素
+    - `nth-child(n)`：父元素下的第n个子元素
     - `nth-child(odd)`：奇数子元素同`nth-child(2n-1)`
     - `nth-child(even)`：偶数子元素同`nth-child(2n)`
     - `nth-child(an+b)`：公式
-  - `nth-last-child(n)`：倒数第n个子元素
-  - `first-of-type`：父元素下指定类型的第一个元素
-  - `last-of-type`：父元素下指定类型的最后一个元素
-  - `nth-of-type(n)`：父元素下的指定类型的元素的第n个元素
-  - `nth-last-of-type`：父元素下的倒数第几个指定类型的子元素
-  - `first-child`：父元素下的第一个子元素、
-  - `last-child`：父元素下的最后一个子元素
-  - `only-child`：父元素下的唯一的子元素
-  - `only-of-type`：选择父元素下指定类型的唯一子元素
-  - `E > F` E的第一代子元素中是F的
-  - `E + F`E后面紧挨着的F兄弟节点
-  - `E ~ F`E后面所有的兄弟节点
+    - `nth-last-child(n)`：倒数第n个子元素
+    - `first-of-type`：父元素下指定类型的第一个元素
+    - `last-of-type`：父元素下指定类型的最后一个元素
+    - `nth-of-type(n)`：父元素下的指定类型的元素的第n个元素
+    - `nth-last-of-type`：父元素下的倒数第几个指定类型的子元素
+    - `first-child`：父元素下的第一个子元素、
+    - `last-child`：父元素下的最后一个子元素
+    - `only-child`：父元素下的唯一的子元素
+    - `only-of-type`：选择父元素下指定类型的唯一子元素
+    - `E > F` E的第一代子元素中是F的
+    - `E + F`E后面紧挨着的F兄弟节点
+    - `E ~ F`E后面所有的兄弟节点
 
 
 - **`Css3` 属性选择器**
-- `E[attr]`：属性名，不确定具体值
+
+  - `E[attr]`：属性名，不确定具体值
   - `E[attr='value']`：指定属性名，并指定对应属性值
   - `E[attr~="value"]`：指定属性名，其具有多个属性值空格隔开，并包含`value`值，意思就是在`class`属性中任意一个位置有`value`就可以，不必要第一个
   - `E[attr^="value"]`：指定属性名，属性值以`value`值开头
@@ -1119,34 +1178,37 @@ function inserAfter(newItem,targerItem){
 
 
 - **`CSS3`伪类选择器**
-- **UI状态伪类选择器：**
-    - `:enabled `选择启用状态元素
-    - `:disabled` 选择禁用状态元素
-    - `:checked `选择被选中的`input`元素（单选按钮或复选框）
-    - `:default` 选择默认元素
-    - `:valid`、`invalid` 根据输入验证选择有效或无效的`input`元素
-    - `:in-range`、`out-of-range`选择指定范围之内或者之外受限的元素
-    - `:required`、`optional `根据是否允许:`required`属性选择`input`元素
-  - `:read-only`选择只读的元素
-  - `read-write`选择非只读的元素
-  - **动态伪类选择器：**
+- `:before`,`:after`在元素内容前面、后面添加内容(相当于行内元素)
+    - **UI状态伪类选择器：**
+    
+  - `:enabled `选择启用状态元素
+      - `:disabled` 选择禁用状态元素
+      - `:checked `选择被选中的`input`元素（单选按钮或复选框）
+      - `:default` 选择默认元素
+      - `:valid`、`invalid` 根据输入验证选择有效或无效的`input`元素
+      - `:in-range`、`out-of-range`选择指定范围之内或者之外受限的元素
+      - `:required`、`optional `根据是否允许:`required`属性选择`input`元素
+      - `:read-only`选择只读的元素
+      - `read-write`选择非只读的元素
+      - **动态伪类选择器：**
+      
     - `:link `选择链接元素
-    - `:visited` 选择用户以访问的元素
-    - `:hover` 鼠标悬停其上的元素
-    - `:active `鼠标点击时触发的事件
-    - `:focus` 当前获取焦点的元素
-- **其他伪类选择器**：
-    - `root`：选择文档的根目录、返回`html`
-    - `:not(<选择器>) `对括号内选择器的选择取反
-    - `:lang(<目标语言>)` 基于`lang`全局属性的元素
-    - `:target` `url`片段标识符指向的元素
-    - `:empty`选择内容为空的元素
+        - `:visited` 选择用户以访问的元素
+        - `:hover` 鼠标悬停其上的元素
+        - `:active `鼠标点击时触发的事件
+        - `:focus` 当前获取焦点的元素
+    - **其他伪类选择器**：
+        - `root`：选择文档的根目录、返回`html`
+        - `:not(<选择器>) `对括号内选择器的选择取反
+        - `:lang(<目标语言>)` 基于`lang`全局属性的元素
+        - `:target` `url`片段标识符指向的元素
+        - `:empty`选择内容为空的元素
 
 ## 文本
 ---
 
 - **CSS文本属性复习**
-    - `white-space`：对象内空格的处理方式
+    - **white-space**：对象内空格的处理方式
       - `nowrap` 控制文本不换行
 		
       - `pre` 空白会被浏览器保留
@@ -1155,14 +1217,13 @@ function inserAfter(newItem,targerItem){
 
       - `pre-wrap` 保留空白  正常换行
 
-    - `direction`：文本流的方向
+    - **direction**：文本流的方向
       - `ltr` 文本从左向右
       - `rtl`  文本从右往左
 
-    - `unicode-bidi`：用于同一个页面里存在从不同方向读进的文本显示。与`direction`属性一起使用
+    - **unicode-bidi**：用于同一个页面里存在从不同方向读进的文本显示。与`direction`属性一起使用
 
 - **CSS3新增文本属性**
-
     - `color:rgba()`;
     - `text-overflow`:是否使用一个省略标记（...）标示对象内文本的溢出
     - `text-align`:文本的对齐方式
@@ -1174,24 +1235,26 @@ function inserAfter(newItem,targerItem){
     - `tab-size`:制表符的长度
     - `word-wrap`:当前行超过指定容器的边界时是否断开转行
     - `word-break`:规定自动换行的处理方法
+    - `font-face`
 
 
-- **`text-overflow:`是否使用一个省略标记（`...`）标示对象内文本的溢出**
+- **text-overflow**：是否使用一个省略标记（`...`）标示对象内文本的溢出
+  
     - `clip`： 默认值 无省略号
     - `ellipsis`：当对象内文本溢出时显示省略标记（`...`）。
-    - **注意**：该属性需配合`over-flow:hidden`属性(超出处理)还有 `white-space:nowrap`(禁止换行)配合使用，否则无法看到效果
+- **注意**：该属性需配合`over-flow:hidden`属性(超出处理)还有 `white-space:nowrap`(禁止换行)配合使用，否则无法看到效果
+  
+- **text-align**：文本的对齐方式
 
-- **`text-align`:文本的对齐方式**
-    - `css1`
     - `left`:默认值 左对齐
     - `right`:右对齐
     - `center`:居中
     - `justify`： 内容两端对齐。
-    - `css3`
     - `start`:开始边界对齐
     - `end`:结束边界对齐
 
-- **`text-transform`**:文字的大小写
+- **text-transform**：文字的大小写
+  
     - **`css1`**
         - `none`：	默认值 无转换 
         - `capitalize`： 	将每个单词的第一个字母转换成大写 
@@ -1199,10 +1262,11 @@ function inserAfter(newItem,targerItem){
         - `lowercase`：	转换成小写
     - **`css3`**
         - `full-width`：	将左右字符设为全角形式。不支持
-        - `full-size-kana`：将所有小假名字符转换为普通假名。不支持
-			- 例如：土耳其语
-
-- **`text-decoration`:文本的装饰线，复合属性(只火狐支持)**
+	    - `full-size-kana`：将所有小假名字符转换为普通假名。不支持
+		- 例如：土耳其语
+    
+- **text-decoration**：文本的装饰线，复合属性(只火狐支持)
+  
     - `text-decoration-line `：
          - 指定文本装饰的种类。相当于`CSS1`时的`text-decoration`属性
     - `text-decoration-style` ：
@@ -1210,143 +1274,143 @@ function inserAfter(newItem,targerItem){
     - `text-decoration-color`：
          - `指定文本装饰的颜色。
     - `blink`： 指定文字的装饰是闪烁。  `opera`和`firefox`
-    - `text-decoration` : `#F00 double overline`   `CSS3`实例
-
-- **`text-shadow`:文本阴影**
+- `text-decoration` : `#F00 double overline`   `CSS3`实例
+  
+- **text-shadow**：文本阴影
+  
     - 取值：`x ` `y`   `blur` `color`,......
         - `x  `  	横向偏移
         - `y `   	纵向偏移
         - `blur `     模糊距离(灰度)
-        - `color`    阴影颜色
+    - `color`    阴影颜色
+    
+- **text-fill-color**：文字填充颜色
 
-- `text-fill-color`:文字填充颜色
-
-- `text-stroke`:复合属性。设置文字的描边
+- **text-stroke**：复合属性。设置文字的描边
   
   - `text-stroke-width`:文字的描边厚度 
   - `text-stroke-color`:文字的描边颜色 
   
-- `tab-size`:制表符的长度   
+- **tab-size**：制表符的长度   
   
     - 默认值为`8`(一个`tab`键的空格字节长度)，在	`pre`标签之内才会有显示
     
-- `word-wrap`:当前行超过指定容器的边界时是否断开转行
+- **word-wrap**：当前行超过指定容器的边界时是否断开转行
 
   - `normal`： 默认值
   - `break-word`：在长单词或 URL 地址内部进行换行。
   - 允许内容顶开或溢出指定的容器边界。 
 
-- `break-word`：
+- **break-word**：内容将在边界内换行。如果需要，单词内部允许断行
   
   
     - `normal`： 使用浏览器默认的换行规则
     - `break-all`：允许在单词内换行
     - `keep-all`：只能在半角空格或连字符处换行
-    - 内容将在边界内换行。如果需要，单词内部允许断行
+    
+- **font-face**
 
 
-## 盒模型
----
-
-- CSS盒模型复习
-
-![标准盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/w3c.jpg)
-
-![IE盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ie.jpg)
-
-- **CSS3弹性盒模型**
-
-   - **以下6个属性设置在容器上**
-     - `flex-direction`
-     - `flex-wrap`
-     - `flex-flow`
-     - `justify-content`
-     - `align-items`
-     - `align-content`
-   -  **属性详解**
-      - `flex-direction: row` | `row-reverse` | `column` | `column-reverse`;
-      - `flex-wrap: nowrap` | `wrap` | `wrap-reverse`;
-      - `flex-flow`属性是`flex-direction`属性和`flex-wrap`属性的简写形式，默认值为`row nowrap`
-         -  `flex-flow: <flex-direction> || <flex-wrap>`;
-      - `justify-content`属性定义了项目在主轴上的对齐方式。
-         - `justify-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around`;
-      - `align-items`属性定义项目在交叉轴上如何对齐。
-         - `align-items: flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
-      - `align-content`属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
-         - `align-content: flex-start` | `flex-end` | `center` | `space-between` | `space-around` | `stretch`;
-
-   - **以下6个属性设置在项目上**
-     - `order`
-     - `flex-grow`
-     - `flex-shrink`
-     - `flex-basis`
-     - `flex`
-     - `align-self`
-
-- **属性详解**
-     - `order`属性定义项目的排列顺序。数值越小，排列越靠前，默认为`0`
-     - `flex-grow`属性定义项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大。
-     - `flex-shrink`属性定义了项目的缩小比例，默认为`1`，即如果空间不足，该项目将缩小。
-     - `flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为`auto`，即项目的本来大小。
-     - `flex`属性是`flex-grow`, `flex-shrink` 和 `flex-basis`的简写，默认值为`0 1 auto`。后两个属性可选。
-     - `align-self`属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性。默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`。
-        - `align-self: auto` | `flex-start` | `flex-end` | `center` | `baseline` | `stretch`;
-
-
-![flex布局语法篇小结](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/10.png)
-
-- 拓展阅读
-    - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
-    - [flex布局实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+    - 自定义字体
+    
+    - ```css
+        @font-face {
+            font-family:'myFirstFamily'; // 字体名字
+            src: url('./Christmas Day Personal Use.ttf'); // 字体路径
+        }
+        
+        兼容
+        @font-face {
+        	font-family: 'diyfont';
+        	src: url('diyfont.eot'); /* IE9+ */
+        	src: url('diyfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        		 url('diyfont.woff') format('woff'), /* chrome、firefox */
+        		 url('diyfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+        		 url('diyfont.svg#fontname') format('svg'); /* iOS 4.1- */
+        }
+        
+        http://www.w3cplus.com/content/css3-font-face
+        ```
+    
+    - `format`: 此值指的是你自定义的字体的格式，主要用来帮助浏览器识别浏览器对`@font-face`的兼容问题，这里涉及到一个字体`format`的问题，因为不同的浏览器对字体格式支持是不一致的，浏览器自身也无法通过路径后缀来判断字体
 
 
 ## 背景
 ---
 
 - **CSS背景属性复习**
-  - `background`:
+  
+	- `background`:
 	  - `background-color`:背景颜色
 	  - `background-image`:背景图片
 	  - `background-repeat`:背景重复
 	  - `background-position`:背景定位
-	  - `background-attachment`:背景固定(`scroll/fixed)`
-
+  - `background-attachment`:背景固定(`scroll/fixed)`
+  
 - **CSS3新增背景属性**
 
-- `background-size`  背景尺寸
-	- `background-size:x y` 水平 垂直方向的尺寸，像素/百分比/auto/…
-	- `background-size:100% 100%`
-	- `background-size:cover` 比例放大
-    - `background-size:contain` 包含（图片不溢出）
-
+- **bakground-size**：背景尺寸
+	
+	- 设置背景图片的大小，以长度值或百分值或百分比显示，还可以通过`cover`和`contain`来对图片进行伸缩
+	- 语法：
+    - **background-size**:` auto `| `<长度值>` | `<百分比> `| `cover` | `contain`
+- 属性：
+	  - `auto`：默认值，不改变背景图片的原始高度和宽度
+	  - `<长度值>`: 成对出现如`200px` `50px`，将背景图片宽高一次设置为前面两个值，当设置一个值时，将其作为图片宽度值来等比缩放
+	  - `<百分比>`: `0%~100%`之间的任何值，将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值，当设置一个值时同上；
+	  - `cover`: 用一张图片铺满整个背景，如果比例不符，则截断图片
+	  - `contain`: 尽量让背景内，存在一整张图片
+	
 - 多背景
-  - `background-image:url(1.jpg),url(2.jpg)`;
-
-- `background-origin ` 背景区域定位
+  
+- `background-image:url(1.jpg),url(2.jpg)`;
+  
+- **background-origin** ：背景区域定位
+  
+  - 背景图片的起始位置
+  - 原来的背景图片是从`padding`区域开始引入的，可以使用这个属性来更改引入区域
   - `border-box`： 从`border`区域开始显示背景。 
   - `padding-box`： 从`padding`区域开始显示背景。 
-  - `content-box`： 从`content`内容区域开始显示背
-- `background-clip`   背景绘制区域
-  - `border-box`： 从`border`区域向外裁剪背景。 
-  - `padding-box`： 从`padding`区域向外裁剪背景。 
-  - `content-box`： 从`content`区域向外裁剪背景。 
-- `text`:背景填充文本
-  - `no-clip`： 从`border`区域向外裁剪背景
+  - `content-box`： 从`content`内容区域开始显示背景。
   
+- **background-clip** ：背景绘制区域
+
+  - 裁剪背景
+
+    - `border-box`： 从`border`区域向外裁剪背景。 
+    - `padding-box`： 从`padding`区域向外裁剪背景。 
+    - `content-box`： 从`content`区域向外裁剪背景。 
+    - 分别表示从边框、内边距和内容区域往外裁剪背景，`no-clip`表示不裁切和参数`border-box`显示同样的效果。`background-clip`默认值为`border-box`
+
+  - `text`:背景填充文本
+
+    - `background-clip: text`;
+
+    - 从前景内容的形状作为裁剪区域向外裁剪，如此即可实现使用背景作为填充色之类的遮罩效果
+
+    - 注意它是-webkit-独有的属性，且必须配合`-text-fill-color-`属性
+
+    - ```css
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: -webkit-background-clip;
+        ```
+
 - **颜色渐变**
   - **线性渐变**：`linear-gradient`(起点/角度 半径，颜色 位置，...,)
       - 起点：`left/top/right/bottom/left top...... `默认`top`
       - 角度：逆时针方向 `0-360deg`（度），起点和角度一样
       - 半径：可以控制渐变圆的大小
-- 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
-    - `repeating-linear-gradient`  线性渐变重复平铺
-       - `IE`低版本渐变(滤镜)：
-	   - `filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');`
-
+      - 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
+      - `repeating-linear-gradient`  线性渐变重复平铺
+      - `IE`低版本渐变(滤镜)：
+      - `filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ff0000',GradientType='1');`
+      
   - **径向渐变**：`radial-gradient`(起点(圆心位置) at 形状/半径/大小,  颜色1,  颜色2)
       - 起点：`left/top/right/bottom`或具体值/百分比
       - 形状：`ellipse`(椭圆)、`circle`(正圆)
       - 形状\半径\大小：具体数值或百分比，也可以是关键字（`closest-side`(最近端), `closest-corner`最近角), `farthest-side`(最远端), f`arthest-corner`(最远角), `contain`(包含) ,`cover`(覆盖)）;
+      - 颜色 位置：`red 50%`, `blue 100%`(红色从50%渐变到100%为蓝色)
 
 
 
@@ -1354,51 +1418,54 @@ function inserAfter(newItem,targerItem){
 ---
 
 - **CSS颜色属性复习**
-
     - `color name `    颜色英文名称命名
     - `HEX`方式         十六进制方式
     - `rgb`方式           三原色配色方式
 
-- **CSS3新增颜色属性**
-- **`rgba()`**
+### rgba()颜色
 
-|名称|颜色|颜色|取值|
-|---|---|---|---|
-|r    |     red      |	  红色   |  0-255|
-|g     |   green   |  绿色  |  0-255|
-|b     |   blue    |   蓝色   |  0-255|
-|a      |  alpha    | 透明  |   0-1|
+- `RGB`是一种色彩标准，是由红`(R)`、绿`(G)`、蓝`(B)`的变化以及相互叠加来得到各式各样的颜色。`RGBA`是在`RGB`的基础上增加了控制`alpha`透明度的参数。
 
+- 语法：`color: rgba(R, G, B, A)`
 
-- **`HSL`模式  `HSLA`模式**
+    - 以上`R`、`G`、`B`三个参数，正整数值的取值范围为：0 - 255。百分数值的取值范围为：0.0% - 100.0%。超出范围的数值将被截至其最接近的取值极限。并非所有浏览器都支持使用百分数值。`A`为透明度参数，取值在0~1之间，不可为负值。
+
+- |名称|颜色|颜色|取值|
+  |---|---|---|---|
+  |r    |     red      |	  红色   |  0-255|
+  |g     |   green   |  绿色  |  0-255|
+  |b     |   blue    |   蓝色   |  0-255|
+  |a      |  alpha    | 透明  |   0-1|
+
+### HSL模式  HSLA 模式
+
 - `H`： `Hue`(色调)。
-        - 0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：`0 - 360` 
-    - `S`：` Saturation`(饱和度)。取值为：0.0% - 100.0% 
-    - `L`： `Lightness`(亮度)。取值为：0.0% - 100.0%
-    - `A`:    `alpha  `   透明度   0~1之间
-    
-    - 语法:`HSLA(H,S,L,A)`
-    
+    - 0(或360)表示红色，120表示绿色，240表示蓝色，也可取其他数值来指定颜色。取值为：`0 - 360` 
+- `S`：` Saturation`(饱和度)。取值为：0.0% - 100.0% 
+- `L`： `Lightness`(亮度)。取值为：0.0% - 100.0%
+- `A`:    `alpha  `   透明度   0~1之间
+
+- 语法:`HSLA(H,S,L,A)`
+
 - HSL色轮
 
+    - ![HSL色轮](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/11.png)
 
-![HSL色轮](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/11.png)
 
-
-- 透明颜色：`transparent`
+- **透明颜色：`transparent`**
     - 实例：`border`实现三角箭头、风车等
 
-- 透明度：
+- **透明度：**
 	- `opacity`
 	- 取值：`0-1`之间
 	- 注：低版本的`IE`浏览器不兼容,需用IE浏览器的滤镜实现相同效果，`filter:alpha(opacity=50)`
 	- 对于低版本的火狐浏览器需添加内核前缀，`-moz-opacity`
 
 
-## CSS3边框系列
+## 边框
 ---
 
-### 圆角-阴影
+### 圆角
 ---
 
 - 边框圆角
@@ -1406,32 +1473,21 @@ function inserAfter(newItem,targerItem){
     - 在 `CSS3 `中，创建圆角是非常容易的
     - 在` CSS3 `中，`border-radius `属性用于创建圆角
     
-- **`border-radius`边框圆角写法**
+- **border-radius**：边框圆角写法
+  
   - `border-radius: 2em 1em 4em / 0.5em 3em;`
   - 等价于
-```css
-border-top-left-radius: 2em 0.5em;
-border-top-right-radius: 1em 3em;
-border-bottom-right-radius: 4em 0.5em;
-border-bottom-left-radius: 1em 3em;
-```
-
-- **`box-shadow`方框添加阴影**
-    - 语法：`box-shadow:x-shadow y-shadow blur spread color inset;`
-    
-    - **box-shadow的API**
-        - `x-shadow	` 必需。水平阴影的位置。允许负值。	
-        - `y-shadow` 	必需。垂直阴影的位置。允许负值。	
-        - `blur	` 	可选。模糊距离。	
-        - `spread` 	可选。阴影的尺寸。	
-        - `color` 	可选。阴影的颜色。请参阅 `CSS `颜色值	
-        - `inset` 	可选。将外部阴影 (`outset`) 改为内部阴影
-    - 实例：`box-shadow:10px 10px 5px 5px #888888;`
-    
+    ```css
+    border-top-left-radius: 2em 0.5em;
+    border-top-right-radius: 1em 3em;
+    border-bottom-right-radius: 4em 0.5em;
+    border-bottom-left-radius: 1em 3em;
+    ```
+  
 ### 边框系列-图片
 ---
 
-- **`border-image`语法**
+- **border-image**：语法
 
 |属性|	版本|	简介|
 |---|---|---|
@@ -1456,7 +1512,183 @@ border-bottom-left-radius: 1em 3em;
     - `round`： 指定用平铺方式来填充边框背景图。图片会根据边框的尺寸动态调整图片的大小	直至正好可以铺满整个边框。写本文档时仅Firefox能看到该效果 
 
     
+## 布局/盒模型
+
+---
+
+### columns
+
+- 多列布局
+
+- 为了能在`Web`页面中方便实现类似报纸、杂志那种多列排列的布局，`W3C`特意给`CSS3`增加了一个多列布局模块（`CSS Multi Column Layout Module`）。它主要应用在文本的多列布局方面，这种布局在报纸和杂志上都使用了几十年了，但要在Web页面上实现这样的效果还有有相当大的难度，庆幸的是，CSS3的多列布局可以轻松实现
+
+- 语法
+
+  - **columns:**
+
+    - `columns` ：宽度 列数; 混合属性
+
+      - 例如：`columns:200px 3`
+
+    - `column-width`： 指的是每一列的宽度，根据容器宽度自适应
+
+    - `column-count` ：指定规定的列数，唯一精准的是列数
+
+      - *column-width和column-count两个不要一起使用，会混乱*
+
+    - **column-gap**：列宽
+
+      - 设置列与列之间的宽度，直接用数值表示即可
+      - 用来设置列与列的间距，如果没有显示设置column-gap值时，其值大小会根据浏览器默认的font-size来决定
+      - `column-width `= `(width - (n - 1) * font - size) / n`
+        - `n`是几列
+
+    - **column-rule**：列的边框 
+
+      - `column-rule`: 宽度  线的类型  颜色
+        - 例：`column-rule:1px solid #ccc`
+
+      - 不占用任何空间位置，在列与列之间改变其宽度不会改变任何列的位置。
+      - `column-rule-width `
+        - 用来定义列边框的宽度，其默认值为`medium`
+        - 接收浮点数，但是不接受负值
+        - 属性值：`medium`、`thick`、`thin`
+      - `column-rule-style`
+        - 样式
+        - 定义列边框样式，其默认值为“none”
+        - `column-rule-style`：属性值与`border-style`属性值相同
+        - 属性值：`none`、`hidden`、`dotted`、`dashed`、`solid`、`double`、`groove`、`ridge`、`inset`、`outset`
+      - `column-rule-color` 颜色
+
+    - **column-span**：`1` / `all`
+
+      - 只可以跨`1`列或者所有列
+      - 设置多列布局元素内的子元素，可以跨列，类似标题效果。即一个新闻标题要横跨所有内容列。
+      - 注：此属性要在子元素上设置
+
+### 盒模型
+
+- 在`CSS`中盒模型分为两种，第一种是W3C的标准盒模型，另一种是IE6混杂模式的传统模型。他们都是对元素计算尺寸的模型。但他们的不同是计算的方式不同。
+- **W3C标准盒模型**
+  - `element`空间高度（盒子）= `width `+ `padding` + `border`
+  - `width`为内容高度。即`width`不包括`padding`和`border`
+
+  - ![标准盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/w3c.jpg)
+- **IE6混杂模式盒模型**
+  - 内容高度（盒子） = `width` - `padding` - `border`
+  - `width`的数值就是`element`盒子的空间高度，`width`包括了`padding`和`border`
+  - ![IE盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ie.jpg)
+
+- **box-shadow**:`inset` `x` `y` `blur` `spread` `color`
+  - `inset`：投影方式
+  - `inset`：内投影
+  - `outset`：外投影 默认(不能设置)
+  - `x`、`y`：阴影偏移
+  - `blur`：模糊半径（灰度）
+  - `spread`：扩展阴影半径
+  - 先扩展原有形状，再开始画阴影
+  - `color`
+- **box-reflect**：倒影
+  - 方向 ` above | below | left | right;`
+  - 距离
+    - 渐变（可选）
+
+### 弹性盒子
+
+- 有主轴`（x）`侧轴 / 交叉轴`（y）`
+- 给父级设置的`diaplay:flex`叫`flex`盒子，它里面的盒子叫做`flex`项目
+- `display: flex`：给父级设置盒子属性
+- `flex` 是一个复合属性，且必须配合父元素`display: flex`使用
+- **以下六个属性是设置在项目（子元素）上的：**
+  - **flex-grow** ：放大比例
+    - 进行比例的分配，定义项目的放大比例，默认为0，即如果存在剩余空间，也放大
+    - 根据所设置的比例分配盒子剩余的空间
+  - **flex-shrink**：缩小比例
+    - 定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+    - 设置元素的收缩比例——多出盒子的部分，按照比例的大小砍掉相应的大小，即比例越大，被砍得越大，默认值`1`
+    - 缩减的宽度 = `(flex-shrink1 * width1) / (flex-shrink2 * width1 + flex-shrink2 * width2) * moveWidth`
+  - **flex-basis**：伸缩基准值
+    - 伸缩基准值，项目占据主轴空间
+    - 定义了在分配多余空间之前，项目占据的主轴空间（`main size`），浏览器根据这个属性，计算主轴是否有多余空间，他的默认值为`auto`，即项目本来大小
+    - 该属性设置元素的宽度或高度，当然`width`也可以用来设置元素宽度，如果元素上同时出现了`width`和`flex-basis`那么`flex-basis`会覆盖width的值
+    - 子元素宽度尽可能按照`basis`来如果基准值相加大于容器宽度那么下面由下面公式分配宽度给子元素
+    - `（flex-basis / (flex - basis 相加） * 容器的宽度)`
+  - **flex**：是`flex-frow`，`flex-shrink`，`flex-basis`的简写
+    - 默认值为：`flex:0 1 auto`
+    - 常用简化写法
+      - `flex:1`;  ——  `flex:1 1 0%`;
+      - `flex:3`;  ——  `flex:3 1 0%`;
+      - `flex:auto`; —— `flex: 1 1 auto`;
+      - `flex:none`; —— `flex: 0 0 auto`;
+    - `flexbox`布局和原来的布局是两个概念，部分`css`属性在`flexbox`盒子里面不起作用，`float`，`clear`，`column`，`vertical-align`等等
+    - 建议使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值
+    - 真实情况
+      - `son1` = (`flex-shrink`) * `flex-basis`
+      - `son2` = (`flex-shrink`) * `flex-basis`
+      - `sonN` = (`flex-shrink`) * `flex-basis`
+      - 加权值 = `son1` + `son2` + …… + `sonN`
+      - 压缩的宽度 `w` = (子元素`flex` - `basis`值  * （`flex-shrink`) / 加权值) * 溢出值
+      - 缩减值1：(`flex-basis1 * 1` / 加权值) * 溢出值
+      - 缩减值2：(`flex-basis2 * 2` / 加权值) * 溢出值
+      - 缩减值3：(`flex-basis3 * 3` / 加权值) * 溢出值
+      - 最后`son1`、`son2`、`son3`的实际宽度为：
+        - `flex-basis` - 缩减值 `n` = `son n` 真实宽度
+  - **order**：排列顺序
+    - `number`定义项目的排列顺序。数值越小，排列越靠前，默认为`0`
+  - **align-self** ：单个项目对齐方式
+    - `align-self`属性允许单个项目有与其他项目不一样的对齐方式，可覆盖`align-items`属性，默认值为`auto`，表示继承父元素的`align-items`属性，如果没有父元素，则等同于`stretch`
+    - `auto`：自动排序
+    - `flex-start`：最开始的位置排序
+    - `flex-end`：最后的位置排序
+    - `center`：中间排序
+    - `baseline`：以第一行文字的基准线对齐
+    - `stretch`：如果项目未设置高度或设置为`auto`，将占满整个父级容器的高度
+- **以下六个属性设置在容器上**
+  - **flex-direction**：决定主轴方向
+    - 决定主轴的方向，即项目的排列方向
+    - `row`：（默认值）主轴为水平方向，起点在左端
+    - `row-reverse`：主轴为水平方向，起点在右端
+    - `column`：主轴为垂直方向，起点在上沿
+    - `column-reverse`：主轴为垂直方向，起点在下沿
+  - **flex-wrap** 是否换行
+    - 默认情况下，项目都排在一条线（又称“轴线”）上。`flex-wrap`属性定义，如果一条轴线排不下，如何换行。
+    - `nowrap`：（默认）：不换行
+    - `wrap`：换行，第一行在上方
+    - `wrap-reverse`：换行，第一行在下方
+  - **flex-flow**  
+    - `flex-flow`属性是`flex-direction`属性和`flex-wrap`属性的简写形式，默认值为`row` `nowrap`
+  - **justify-content**
+    - 定义了项目在主轴上的对齐方式
+    - `flex-start`：左对齐
+    - `flex-end`：右对齐
+    - `center`：居中
+    - `space-between`：两端对齐，项目之间的间隔都相等
+    - `space-around`：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍
+  - **align-items**
+    - 定义项目在侧轴上的对齐方式
+    - `flex-start`：交叉轴的起点对齐
+    - `flex-end`：交叉轴的中点对齐
+    - `center`：交叉轴的中点对齐
+    - `baseline`：项目的第一行文字的基线对齐
+    - `stretch`：（默认值）：如果项目未设置高度或设置为`auto`，将占满整个容器的高度
+  - **align-content**
+    - 定义了多根轴线的对齐方式，如果项目只有一根轴线，该属性不起作用
+    - `flex-start`：与交叉轴的起点对齐
+    - `flex-end`：与交叉轴的终点对齐
+    - `center`：与交叉轴的中点对齐
+    - `space-between`：与交叉轴两端对齐，轴线之间的间隔平均分布
+    - `space-around`：每根轴线两侧的间隔都相等。所以轴线之间的间隔比轴线与边框的间隔大一倍
+    - `stretch`：（默认值）：轴线沾满整个交叉轴
+
+
+![flex布局语法篇小结](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/10.png)
+
+- 拓展阅读
+  - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
+  - [flex布局实例篇](http://www.ruanyifeng.com/blog/2015/07/flex-examples.html)
+
 ## 运动体系
+
 ---
 
 ### 过渡
@@ -1467,47 +1699,51 @@ border-bottom-left-radius: 1em 3em;
     - 过渡效果由哪几部分组成
     - 过渡可以干些什么
     
-- `transition` 过渡属性
-
-- `transition: property duration timing-function delay`;
-	- `transition-property:`过渡属性的名称
-    	- `none `  没有过渡属性
-    	- `all  `      所有属性都过渡(默认值)
-    	- `property `   具体属性名称(`property1`,`property2`...)
-	- `transition-duration:`过渡属性花费的时间
-	    - `time `  秒或毫秒
-	- `transition-timing-function:`过渡效果速度曲线
-	    - `time `  秒或毫秒
-	- `transition-delay:`过渡效果延迟时间
-  
-- **`transition-timing-function`:过渡效果速度曲线**
-	- `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
-	- `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
-	- `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
-	- `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
-	- `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
-	- `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
-
-- 过渡完成事件   
-![过渡完成事件](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/13.png)
-
-- `Webkit`内核： 
-```javascript
-obj.addEventListener('webkitTransitionEnd',function(){})
-```
-
-- 标准: 
-
-```javascript
-obj.addEventListener('transitionend',function(){})
-```
+- **transition**： 过渡属性
+    - `transition: property duration timing-function delay`;
+    - **transition-property**：过渡属性的名称
+      
+      	- `none `  没有过渡属性
+      	- `all  `      所有属性都过渡(默认值)
+      	- `property `   具体属性名称(`property1`,`property2`...)
+      
+    - **transition-duration**：过渡属性花费的时间
+    
+        - `time `  秒或毫秒
+    
+    - **transition-delay**：过渡效果延迟时间
+    
+    - **transition-timing-function**：过渡效果速度曲线
+    
+        - `time `  秒或毫秒
+        - `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
+        - `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
+    - `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
+	    - `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
+	    - `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
+	    - `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
+    -  过渡完成事件   
+	
+- ![过渡完成事件](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/13.png)
+	
+		- `Webkit`内核： 
+			```javascript
+				obj.addEventListener('webkitTransitionEnd',function(){})
+			```
+		
+		- 标准: 
+		
+			```javascript
+				obj.addEventListener('transitionend',function(){})
+			```
 
 ### 动画
 ---
 
 - 什么是`CSS3` 动画？
   - 通过 `CSS3`，我们能够创建动画，这可以在许多网页中取代动画图片、`Flash` 动画以及 `JavaScript`
-
+- `animation` 动画会按照`keyframes`关键帧里面指定的帧状态而过渡执行。0% —— 100% 代表动画的时间过渡
+  
 - **动画接口**
 
 
@@ -1517,164 +1753,355 @@ obj.addEventListener('transitionend',function(){})
 | animation	|所有动画属性的简写属性，除了 animation-play-state 属性。|
 | animation-name	|规定 @keyframes 动画的名称。|
 | animation-duration	|规定动画完成一个周期所花费的秒或毫秒。|
-| animation-timing-function|	规定动画的速度曲线。|
-| animation-delay	|规定动画何时开始。|
-| animation-iteration-count	|规定动画被播放的次数。|
-| animation-direction	|规定动画是否在下一周期逆向地播放。|
-| animation-play-state|	规定动画是否正在运行或暂停。|
+| animation-timing-function| 规定动画的速度曲线（速率）。 |
+| animation-delay	|规定动画延迟时间|
+| animation-iteration-count	|规定动画被播放的次数。 infinite（无限次）number（有限次）|
+| animation-direction	|规定动画的方向。|
+| animation-play-state| 规定动画是否正在运行或暂停。running（播放）paused（暂停） |
 | animation-fill-mode	|规定对象动画时间之外的状态。|
+
+- **animation-direction**:  方向
+  - `normal`：0%-100%）
+  - `reverse`：（100%-0%）
+  - `alternate`：（奇数次正向，偶数次反向）
+  - `alternate-reverse`：（奇数次反向，偶数次正向） 
 
 - **animation-timing-function速度曲线**
 
+  - |值 | 描述 |
+  |---|---|
+  |linear 	|动画从头到尾的速度是相同的。|
+  |ease |	默认。动画以低速开始，然后加快，在结束前变慢。|
+  |ease-in |	动画以低速开始。 |
+  |ease-out |	动画以低速结束。 |
+  |ease-in-out |	动画以低速开始和结束。 |
+  |cubic-bezier(n,n,n,n) |	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。 |
 
-|值 |	描述 
-|---|---|
-|linear 	|动画从头到尾的速度是相同的。| 
-|ease |	默认。动画以低速开始，然后加快，在结束前变慢。| 
-|ease-in |	动画以低速开始。 |
-|ease-out |	动画以低速结束。 |
-|ease-in-out |	动画以低速开始和结束。 |
-|cubic-bezier(n,n,n,n) |	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。 |
-
+- **animation-fill-mide**:  定义在动画开始之前和结束之后发生的操作
+  - `forwards`：动画在结束后停留在最后的关键帧的位置
+  - `backwards`：会在向元素应用动画样式时迅速应用动画的初始帧，意思是是否立即使用关键帧（结合延迟1s来看）
+  - `both`：元素动画同时拥有`forwards`和`backwards`效果
+  - `none`：默认值，表示动画按照预期进行，完成最后一帧时，反转到初始处
 - 在谷歌浏览器里面需要加上`-webkit-`
 `IE6,7,8,9`不支持`css3`运动
 
-- 拓展阅读
-  - [CSS3动画简介](http://note.youdao.com/noteshare?id=c4f5a977a7b3aa256a3c28aa64d6f989)
 
-
-- **CSS3盒模型阴影**
-
-    - `box-shadow:inset x y blur spread color`
-    - `inset`：投影方式
-    - `inset`：内投影
-    - `outset`：外投影 默认(不能设置)
-    - `x`、`y`：阴影偏移
-    - `blur`：模糊半径（灰度）
-    - `spread`：扩展阴影半径
-    -  先扩展原有形状，再开始画阴影
-    - `color`
-
-- **`CSS3`盒模型倒影**
-
-- `box-reflect` 倒影
-	- 方向 ` above|below|left|right;`
-	- 距离
-    - 渐变（可选）
-
-- **CSS3其他盒模型**
-  
-    - `box-sizing` 盒模型解析模式
-    - `content-box`  标准盒模型(和`css2`一样的计算)
-    - `width/height=border+padding+content`
-    - `border-box` 怪异盒模型` width/height`与设置的值一样 ，`content`减小
-    
-- 扩展阅读
-  - [学会使用css3的box-sizing布局](http://www.jianshu.com/p/e2eb0d8c9de6)
-
-
-## transform 2D转换
+### transform 2D转换
 ---
 
 - **`Css3`平面转换方法**
-  - `translate() `		移动
-  - `rotate()`		旋转
-  - `scale()`		缩放
-  - `skew()`		翻转
-  - `matrix()	`	矩阵
+  - `translate() `：移动
+  - `rotate`：旋转
+  - `scale()`：缩放
+  - `skew()`：翻转
+  - `matrix()	`：矩阵
 
 
-- **transform**:
-	- `rotate()`  旋转函数 (deg)
-        - `deg`  度数
-	- `skew(X,Y)` 倾斜函数 (deg) 
-        - `skewX()`
-        - `skewY()`
-	- `scale(X,Y)` 缩放函数 (正数、负数和小数)
-        - `scaleX()`
-        - `scaleY()`
-	- `translate(X,Y)` 位移函数(px)
-        - `translateX()`
-        - `translateY()`
-
-
-- **`rotate()` 旋转方法**
-  - 用于旋转元素角度
-  - 例：`rotate(30deg) `
-    - 把元素顺时针旋转 30 度
-
-- **`translate()`位置方法**
-  - 用于移动元素位置
-    - 例：`translate(50px,100px)`
-      - 把元素从左侧移动 50 像素，从顶端移动 100 像素。
-  - 其实有些类似于我们的相对定位
-
-- **`scale()`尺寸方法**
-  - 方法用于改变元素尺寸
+- **transform:**
+	- **rotate()**  旋转函数/方法 (deg)
+    - 以x/y/z轴进行旋转，默认为z轴
+	     - `deg`  度数
+    - 用于旋转元素角度
+    - 例：`rotate(30deg) ` 把元素顺时针旋转 30 度
+	  - `rotatex()`，`rotatey()`，`rotatez()` ，`rotate3d(x, y, z, angle)`
+    - `angle`是旋转角度
+  - **skew(X,Y)** 倾斜函数 / 翻转方法 (deg) 
+	     - `skewX()`
+    - `skewY()`
+    - 通过 `skew() `方法，元素翻转给定的角度
+     - 例：`transform: skew(30deg,20deg);`
+          - 把元素围绕 `X `轴把元素翻转` 30` 度，围绕 `Y` 轴翻转 `20 `度
+  - **scale(X,Y)**：缩放函数 / 尺寸方法 (正数、负数和小数)
+       - `scaleX()`
+    - `scaleY()`
+    - 方法用于改变元素尺寸
     - 例：`scale(2,4)` 
-      - 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍
+         - 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍
+    - `scalex()`, `scaley()`, `scalez()`值是数字表示倍数，不加任何单位
+    - `scale3d()` --> `scale3d(x, y, z)`
+  - **translate(X,Y)** 位移函数 / 位置方法(px)
+       - `translateX()`
+    - `translateY()`
+    - 用于移动元素位置
+      - 例：`translate(50px,100px)`
+    - 把元素从左侧移动 50 像素，从顶端移动 100 像素。
+    - 其实有些类似于我们的相对定位
+    - `translatex()`,` translatey()`, `translatez()`, `translate3d(x, y, z)`
+  - **transform-origin**
+    - 变换原点
+    - 任何一个元素都有一个中心点，默认情况下，其中心点是居于元素x轴和y轴的50%处
+    - 取值
+      - 也可以使用像素值
+      - `top` = `top` `center` = `center top` = `50% 0`
+      - `right` = `right center` = `center right` = `100% | 100% 50%`
+      - `bottom` = `bottom center` = `center bottom = 50% 100%`
+      - `left` = `left center` = `center left = 0 | 0 50%`
+      - `center` = `center center` = `50% | 50% 50%`
+      - `top left` = `left top` = `0 0`
+      - `right top` = `top right` = `100% 0`
+      - `bottom right` = `right bottom` = `100% 100%`
+      - `bottom left` = `left bottom` = `0 100%`
 
-- **`skew()` 翻转方法**
-  - 通过 `skew() `方法，元素翻转给定的角度
-   - 例：`transform: skew(30deg,20deg);`
-     - 把元素围绕 `X `轴把元素翻转` 30` 度，围绕 `Y` 轴翻转 `20 `度
-     - 
-## transform 3D转换
+### transform 3D转换
+
 ---
 
 - **`Css3`立体转换**
-    - `transform-style（preserve-3d）` 建立`3D`空间（指定元素的子元素展示的场景是在3D场景还是平面(投影)场景）
-    - `Perspective` 视角（指定观察者与z=0平面的距离，从而让元素及子元素看起来有3D透视位置效果
-	值：集体的带单位数值）
-    - `Perspective- origin` 视角基点
-       - 值：取值类似于变换基准
-    - `transform-origin`：坐标轴基点（变换基准）
-      - 值：具体的坐标值/百分比/(`left`/`right`/`center`/`top`/`bottom`)
-	默认 `center center`
+- **transform-style：**
+    - *transform-style属性需要设置在父元素中，高于任何嵌套的变形元素，设置了transform-style的元素，就不能防止子元素溢出设置overflow:hidden，否则会导致preserve-3d失效*
+    - **flat**：默认，子元素将不保留其`3D`位置
+    - **preserve-3d**：子元素保留其`3D`位置
+       - 建立`3D`空间（指定元素的子元素展示的场景是在`3D`场景还是平面(投影)场景）
+       - `perspective` 视角（指定观察者与z=0平面的距离，从而让元素及子元素看起来有3D透视位置效果
+         值：集体的带单位数值）
+       - `Perspective- origin` 视角基点 / 视觉中心点
+          - 值：取值类似于变换基准
+          - 默认值为50% 50%
+- **backface-visibility：**
+    - 在元素运动的过程中，能否展示元素的背面
+    - `visible`：可见
+    - `hidden`：隐藏
 
-- **transform 新增函数**
-    - `rotateX()`
-    - `rotateY()`
-    - `rotateZ()`
-    - `translateZ()`
-    - `scaleZ()`
+## 媒体查询
 
-# 跨文档操作
----
+- **模拟移动端meta**
 
-- **跨文档请求**
+  - *<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,use-scalable=no">*
+  - `name='viewport'`：视口大小
+  - `content="width=device-width"` ：`width`视口宽度等于设备的宽度
+  - `initial-scale=1.0`：占的比例大小，1.0就是不放不缩
+  - `minimum-scale = 1.0`：代表最小能缩到1.0
+  - `maximum-scale = 1.0`：代表最大能缩到1.0
+  - `use-scalable=no`：不允许用户进行缩放
 
-- 同域跨文档
-	- `iframe`内页：
-		- 父页面操作子页面：`contentWindow`
-		- 子页面操作父页面：`window.top`(找到最顶级的父页面)/`parent`(第一父页面)
-		- 新窗口页：
-			- 父页面操作子页面：`window.open`
-			- 子页面操作父页面：`window.opener`
-	
-- **不同域跨文档**
-	- `postMessage（“发送的数据”,”接收的域”）`
-		- `message`事件监听
-		- `ev.origin `发送数据来源的域
-		- `ev.data ` 发送的数据
-	- 通过判断发送的数据来执行相应的需求
+- **为什么有媒体查询**
 
-- **ajax跨域**
+  - 移动端的快速普及完全颠覆了`Web`涉及领域
+  - 用户不再仅在传统桌面系统上查看`Web`内容，他们越来越多地使用具有各种尺寸的智能电话、平板电脑和其他设备
+  - `Web`设计人员的挑战是确保他们的网站不仅是在大屏幕上看起来不错，在小型的电话以及介于它们之间的各种设备上看起来不错
 
-    - `XMLHttpRequest` 新增功能
-	 	- 跨域请求：修改服务端头信息
-		- I`E`兼容：`XDomaiRequest`
-		
-    - 进度事件：
-		- `upload.onprogress(ev) ` 上传进度(实现文件上传进度条)
-			- `ev.total`  发送文件的总量
-			- `ev.loaded` 已发送的量
-		- `FormData`  构建提交二进制数据
+- **什么是媒体查询**
 
-- 拓展阅读
-  - [HTML5 API 大盘点](http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&mid=2651130595&idx=2&sn=3d0f546f1867992729b3ace5d03766fc&chksm=f257ca59c520434f08e215b3bdcec3764712f73301b738c18163359e5aa5e949ff019616ffca&mpshare=1&scene=23&srcid=11289XUSBAQzrCp3Io55aoS1#rd)
+  - 媒体查询是向不同设备提供不同样式的一种方式，它为每种类型的用户提供了最佳的体验
+  - `CSS2`：`media type`
+    - `media type`（媒体类型）是`css2`中一个非常有用的属性，通过`media type`我们可以对不同的设备指定特定的样式，从而实现更丰富的界面
+  - `CSS3`：`media query`
+    - `media query`是`CSS3`对`media type`的增强，事实上我们可以将media query看成是`media type+css`属性（媒体特征`Media features`）判断
 
-### 附录一　css3响应式布局
+- **如何使用媒体查询**
+
+  - 媒体查询的引用方法
+
+    - **link**标签
+
+      - ```css
+        <link rel='stylesheet' media='screen and (max-width:800px)' href='index.css'> 
+        
+        媒体类型（Media Type）：all（全部）、screen（屏幕）、print（页面打印或打印预览模式）
+        
+        媒体特性（Media features）：width（渲染区宽度）、device-width（设备宽度）
+        ```
+
+      - `Media Query`是`CSS3`对`Media Type`的增强版，其实可以将`Media Query`堪称`Media Type`（判断条件）+ `CSS`（符合条件的样式规则）
+
+    - **@import**
+
+      - **@media**
+
+        - `@media screen and (max-width:800px) and (min-width:600px) {}`
+
+- **媒体类型（Media Type）**
+
+  | 类型       | 解释                                   |
+  | ---------- | -------------------------------------- |
+  | all        | 所有设备                               |
+  | braille    | 盲文                                   |
+  | embossed   | 盲文打印                               |
+  | handheld   | 手持设备                               |
+  | print      | 文档打印或打印预览模式                 |
+  | projection | 项目演示，比如幻灯                     |
+  | screen     | 彩色电脑屏幕                           |
+  | speech     | 演讲                                   |
+  | tty        | 固定字母间距的网络媒体，比如电传打字机 |
+  | tv         | 电视                                   |
+
+  
+
+- **媒体特性（Media features）**
+
+  | 属性                | 值                     | Min/Max | 描述                     |
+  | ------------------- | ---------------------- | ------- | ------------------------ |
+  | color               | 整数                   | yes     | 每种色彩的字节数         |
+  | color-index         | 整数                   | yes     | 色彩表中的色彩数         |
+  | device-aspect-ratio | 整数/整数              | yes     | 宽高比例                 |
+  | device-height       | length                 | yes     | 设备屏幕的输出高度       |
+  | device-width        | length                 | yes     | 设备屏幕的输出宽度       |
+  | grid                | 整数                   | no      | 是否基于格栅的设备       |
+  | height              | length                 | yes     | 渲染界面的高度           |
+  | monochrome          | 整数                   | yes     | 单色帧缓冲器中每像素字节 |
+  | resolution          | 分辨率（dpi/dpcm）     | yes     | 分辨率                   |
+  | scan                | Progresslve interlaced | no      | tv媒体类型的扫描方式     |
+  | width               | length                 | yes     | 渲染界面的宽度           |
+  | orientation         | Portrait/landscape     | no      | 横屏或竖屏               |
+
+- ​    **逻辑操作符**
+
+  - 合并多个媒体属性 `and`
+  - `@media screen and (min-width:600px) and (max-width:1000px)`
+  - 合并多个媒体属性或合并媒体属性与媒体类型，一个基本的媒体查询，即一个媒体属性与默认指定的screen媒体类型
+
+- **指定备用功能**
+
+  - 逗号 ,
+  - `@media screen and (min-width:769px), print and (min-width:6in)`
+  - 没有`or`关键字可用于指定备用的媒体功能。相反，可以将备用功能以逗号分隔列表的形式列出这才会将样式应用到宽度超过769像素的屏幕或使用至少6英寸宽的纸张的打印设备
+
+- **指定否定条件**
+
+  - `not`
+  - `@media not screen and (monochrome)`
+  - 要指定否定条件，可以在媒体声明中添加关键字not，不能再单个条件前使用not。该关键字必须位于声明的开头，而且它会否定整个声明。所以，上面的示例会应用于除单色屏幕外的所有设备
+
+- **向早期浏览器隐藏媒体查询**
+
+  - `only`
+  - `media='only screen and (min-width:401px) and (max-width:600px)'`
+  - 媒体查询规范还提供了关键字`only`，它用于向早期浏览器隐藏媒体查询。类似于`not`，该关键字必须位于声明的开头
+  - 早期浏览器应该将以下语句`media=‘screen and (min-width:40px) and (max-width:600px)’ `解释为` media='screen'; `换句话说，他应该将样式规则应用于所有屏幕设备，即使他不知道媒体查询的含义
+  - 无法识别媒体查询的浏览器要求获得逗号分隔的媒体类型列表，规范要求，它们应该在第一个不是连字符的非数字字母字符之前截断每个值。所以，早期浏览器应该将上面的实例解释为：`media='only'`
+  - 因为没有`only`这样的媒体类型，所以样式表被忽略
+
+- **易混淆的宽度**
+
+  - `device-width`/`heighta`	`width`/`height`
+  - `device-width`/`height`是设备的宽度（比如电脑手机的宽度，不是浏览器的宽度）
+  - `width/height是documentElement.clinetWidth`/`Height`即`viewport`的值
+
+## 附录一 像素单位
+
+- **物理像素和设备独立像素**
+
+  - 一个物理像素是显示器（手机屏幕）上最小的物理显示单元，在操作系统的调度下，每一个设备像素都有自己的颜色值和亮度值
+
+  - 设备独立像素（也叫目睹无关像素），可以认为是计算机坐标系统的一个点，这个点代表一个可以由程序使用的虚拟像素（`css`像素），然后由相关系统转换为物理像素
+
+  - 设备像素比（`device pixel ratio`）设备像素比（简称`dpr`）定义了物理像素和设备独立像素的对应关系，它的值可以按如下的公式得到 *设备像素值 = 物理像素 / 设备独立像素* `js`中可以通过`window.devicePixelRatio`
+
+  - `dpr`在一些屏幕上是2：1的比例，所以像素值在不同屏幕上的占比是不同的
+
+  - ```
+    1.设备宽高为375*667，可以理解为设备独立像素（或css像素）
+    2.dpr为2，根据上面的计算公式，其物理像素就应该 2 ，为750*1334.
+    
+    1css像素在PC端显示器需要用（1*1）个栅格点表示 在iPhone6中则需要4（2*2）个
+    
+    也就是在不同的屏幕上（普通屏幕 vs retina屏幕），css像素所呈现的大小（物理尺寸）是一致的，不同的是一个css像素所对象的物理像素个数是不一致
+    
+    在普通的屏幕下，1个css像素对应的1个物理像素 为1:1 。在retina屏幕下，1个css像素对应4个物理像素 1:4
+    ```
+
+    
+
+  - **位图像素**
+
+  - 1个位图像素是栅格图像（如：`png`，`jpg`，`gif`等）最小的数据单元，每一个位图像素都包括着一些资深的现实信息（如：显示位置，颜色值，透明度等）
+
+  - 在普通屏幕下是没有问题的，但是在`retina`屏幕下就会出现位图像素点不够，从而导致图片模糊的情况
+
+  - ```
+    对于dpr=2的，1个位图像素对应4个物理像素，由于单个位图像素不以再进一步分割，所以只能就近取色，从而导致图片模糊
+    
+    解决办法，使用分辨率大两倍的图片，如200*300 img 标签，就需要提供400*600的图片.由此一来位图像素点的个数是原来的4倍，在retina屏幕下，位图像素点个数就可以物理像素点个数形成1:1 的比例，图片自然就清晰了。
+    
+    如果普通屏幕下，也用了两倍的图片，会怎么样，很明显，在普通屏幕下，200*300(css pixel)img标签，所对应的物理像素个数就是200*300个，而两倍图片的位图像素个数则是200*300*4，所以就出现了一个像物理像素点对应4个为图像素点，所以它的取色也只能通过——定的算法（显示结果就是一张只有原图像素总数四分之一，我们称这个过程叫做downsampling），肉眼看上去这个图片不会模糊，但是会觉得图片缺少一些锐利度，或者是有点色差（还是可以接受的）
+    
+    ```
+
+
+
+## 附录二 浏览器渲染原理
+
+1. 处理`HTML` 生成`DOM`树
+2. 处理`CSS `生成`CSSDOM`树
+3. 将两个数合并成`render`树
+4. 对`render`树进行布局计算
+5. 将`render`树中的每一个节点绘制在屏幕上
+
+```
+细化分析：
+1.浏览器把获取到的html代码解析成1个Dom树，html中的每个tag都是Dom树中的1个节点，根节点就是我们常用的document对象(<html> tag)，当然这里包含用js动态创建的dom节点
+
+2浏览器把所有样式(主要包括css和浏览器的默认样式设置)解析成样式结构体，在解析的过程中会去掉浏览器不能识别的样式，生成CSSDOM树
+
+3.DOM tree和CSSDOM tree 合并成 render tree，render tree中每个node都有自己的style，而且render tree不包含隐藏的节点(比如display:none的节点，还有无样式head节点)，因为这些节点不会用于呈现，而且不会影响呈现的，注意 visibility:hidden隐藏的元素还是会包含到render tree中的，因为visibility:hidden 会影响布局(layout)，会占有空间。
+
+4.render tree构建完毕之后根据样式计算布局，布局阶段的输出结果称为 “盒模型”（box model）。盒模型精确表达了窗口中每个元素的位置和大小，而且所有的相对的度量单位都被转化成了屏幕上的绝对像素位置 (根据css2的标准，render tree中的每个节点都称为box(Box dimensions----盒子模型)，box所有属性：width,height,margin,padding,left,top,border等。)
+
+5.将这些信息渲染为屏幕上每个真实的像素点了。这个阶段称为“绘制”，或者“栅格化”（rasterizing）。
+```
+
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/Tree.png)
+
+- 重绘、重排
+
+  - 重排，我们在计算它们在当前设备中准确的位置和尺寸。这正是布局阶段要做的工作，该阶段在英语中也成为“回流”（`reflow`），当`render tree`中的一部分（或全部）因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。也会回流（其实我觉得叫重新布局更简单明了一些）。每个页面至少需要一次回流，就是在页面第一次加载的时候
+
+  - 重绘（`repaints`）当`render tree`中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如`background-color`,则就叫重绘
+
+  - 重绘，重排会影响性能
+
+    - 在`chrome`中有一个`Performance`面板，它可以计算从开始到绘制完成花费了多少时间
+    - 蓝色：网络通信和`HTML`解析
+    - 黄色：`JavaScript`执行
+    - 紫色：样式计算和布局，即重排
+    - 绿色：重绘
+
+  - 触发重排的方法：
+
+    - 以下这些属性和方法需要返回最新的布局信息，重新计算渲染树，就会造成回流，触发重排以返回正确的值，建议将她们合并到一起操作，可以减少回流次数，这些属性包括：
+
+    - `offsetTop`/`Left`、`offsetWidth`/`Height`、`scrollTop`/`Left`/`Width`/`Height`、`clientTop`/`Left`/`Width`/`Height`、`getComputedStyle()`、`currentStyle`
+
+    - 提高网页性能，就是要降低“重排”和重绘的频率和成本，尽量少触发重新渲染。DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染
+
+    - ```js
+      div.style.color='red'
+      div.style.background="yellow"
+      div.style.left='10px'
+      div.style.width='20px'
+      
+      浏览器最低触发一次重排和重绘
+      
+      一般来说，样式的写操作之后，如果有上面那些属性的读操作，都会引发浏览器立即重排，这种重排，不会形成之前队列优化
+      
+      div.style.color = ‘red’;
+      var height = div.offseHeight;
+      div.style.height = height + ‘px’;
+      
+      Bad：
+      div.style.left = div.offsetLeft + ‘px’;
+      div.style.top = div.offsetTop + ‘px’;
+      重排重绘两次
+      Good:
+      Var left = div.offsetLeft + ‘px’;
+      Var top = div.offsetTop + ‘px’;
+      
+      div.style.left = left;
+      div.style.top = top;
+      放到队列，一起执行重排重绘一次
+      
+      我们来测试一下js动态添加10000个li 不同颜色而且设置宽度 所耗费render painting 的时间吧
+      ```
+
+    - 理论上的结局优化方法
+
+      - 说到的`DOM`的多个读写操作，应该放在一起，不要两个读操作之间，加入一个写操作
+      - 离线操作`DOM`如使用隐藏元素 `document.createDocumentFragment()`/ `cloneNode() `
+      - 修改样式的时候添加类名，或一次性添加到`dom.style.cssText`上等
+      - 以上都是理论上的加速方法
+
+## 附录三 css3响应式布局
+
 ---
 
 - 媒体类型
@@ -1735,12 +2162,3 @@ href="indexB.css" media="screen and (min-width: 600px) and (max-width: 800px)">
 <link rel="stylesheet" type="text/css" 
 href="indexC.css"    media="screen and (max-width: 600px)">
 ```
-
-### 附录二　HTML5速查表
----
-
-- [可以查阅支持H5+CSS3的属性](http://caniuse.com/#search=canvas)
-- [HTML5 标签含义之元素周期表](http://www.html5star.com/manual/html5label-meaning/)
-- [HTML5标签速查表](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/15.png)
-- [展示 flexbox 属性的作用--推荐](chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fjonibologna.com%2Fcontent%2Fimages%2Fflexboxsheet.pdf)
-- [Flexbox 视觉指南--更好更容易地理解 Flexbox 某个属性的作用](https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/)
