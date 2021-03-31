@@ -1363,7 +1363,7 @@ function inserAfter(newItem,targerItem){
 	
 - 多背景
   
-- `background-image:url(1.jpg),url(2.jpg)`;
+  - `background-image:url(1.jpg),url(2.jpg)`;
   
 - **background-origin** ：背景区域定位
   
