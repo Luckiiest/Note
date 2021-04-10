@@ -1048,7 +1048,7 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 
        - 块级：`display:block`;
        - 行内：`display:inline`;
-    - 替换元素有如下：（和`img`一样的设置方法）
+        - 替换元素有如下：（和`img`一样的设置方法）
      - `<img>`、`<input>`、`<textarea>`、`<select>`
      - `<object>`都是替换元素，这些元素都没有实际的内容
   - 可以通过修改`display`属性来切换块级元素和行内元素
@@ -1193,7 +1193,7 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 
 ---
 
-#### 附录一 CSS书写规范
+#### CSS书写规范
 
 >为了欺骗W3C的验证工具,可将代码分为两个文件，一个是针对所有浏览器,一个只针对IE。即将所有符合W3C的代码写到一个文件中,而一些IE中必须而又不能通过W3C验证的代码（如:cursor:hand;）放到另一个文件中，再用下面的方法导入
 
@@ -1343,7 +1343,7 @@ float:left;//如这些定位或浮动属性
 
 ---
 
-#### 附录二 DIV命名规范
+#### DIV命名规范
 
 ---
 
@@ -1518,6 +1518,22 @@ float:left;//如这些定位或浮动属性
 
 ---
 
+#### 什么是BFC？
+
+- 独立渲染区域
+
+- 创建BFC都有哪些方式
+  - `float`属性不为`none`
+  - `position`为`absolute`或者`fixed`
+  - `display`为`inline-block`，`table-cell`，`flex`
+  - `overflow`为`hidden`，`auto`，`scroll`
+
+- BFC能解决什么问题
+  - 边距重叠问题
+  - 盒子塌陷问题
+  - 清除浮动
+  - 浮动环绕文字
+
 #### 附录三 CSS精灵
 
 ---
@@ -1569,7 +1585,7 @@ float:left;//如这些定位或浮动属性
     - `CSS` 雪碧调用的图片不能被打印
     - 错误得使用 `Sprites` 影响可访问性
 
-#### 附录四 一些tips解决方案
+#### 一些tips解决方案
 ---
 
 ##### 页面优化实践
@@ -1895,7 +1911,7 @@ overflow:hidden;
  - [Csscss（检查重复声明等）](http://zmoazeni.github.io/csscss/)
 
 
-#### 附录五 部分工具资源
+#### 部分工具资源
 ---
 
 - [学会使用Emmet插件快速编码](http://blog.poetries.top/2016/03/14/Emmet%EF%BC%9AHTML-CSS%E4%BB%A3%E7%A0%81%E5%BF%AB%E9%80%9F%E7%BC%96%E5%86%99%E7%A5%9E%E5%99%A8/)
@@ -1905,7 +1921,7 @@ overflow:hidden;
 - [Front-End -Develop -Tools](https://github.com/poetries/mywiki/blob/master/bookmark/Front-End%20-Develop%20-Tools.md)
 - [ToolsBox-自己整理的一份工具列表](https://github.com/poetries/mywiki/blob/master/bookmark/Tools.md)
 
-#### 附录六 编码规范
+#### 编码规范
 ---
 
 - [编码规范](https://github.com/poetries/mywiki/blob/master/bookmark/%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
@@ -1914,13 +1930,13 @@ overflow:hidden;
 - [Web 前端开发规范文档](http://codecloud.net/5622.html)
 - [前端开发规范手册](http://zhibimo.com/read/Ashu/front-end-style-guide/index.html)
 
-#### 附录七 进阶学习
+#### 进阶学习
 ---
 
 - [DOM编程之API学习](http://www.jianshu.com/p/1e638b7da640)
 - [JavaScript基础学习](http://www.jianshu.com/p/1f2314552e23)
 
-#### 附录八 其他资源
+#### 其他资源
 ---
 
 - [Github上前端学习资源汇总](https://github.com/poetries/mywiki)
@@ -1929,7 +1945,7 @@ overflow:hidden;
 - [148个资源让你成为CSS专家](https://segmentfault.com/a/1190000006689923)
 - [学习CSS布局-经典必看](http://zh.learnlayout.com/)
 
-#### 附录九 常见问题
+#### 常见问题
 ---
 
 - 前端指路
