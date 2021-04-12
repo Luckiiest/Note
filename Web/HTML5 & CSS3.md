@@ -1864,22 +1864,21 @@ function inserAfter(newItem,targerItem){
 
 ## 媒体查询
 
-- **模拟移动端meta**
+### 简介
 
-  - *<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,use-scalable=no">*
+- **模拟移动端meta**
+- *<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,use-scalable=no">*
   - `name='viewport'`：视口大小
   - `content="width=device-width"` ：`width`视口宽度等于设备的宽度
   - `initial-scale=1.0`：占的比例大小，1.0就是不放不缩
   - `minimum-scale = 1.0`：代表最小能缩到1.0
   - `maximum-scale = 1.0`：代表最大能缩到1.0
   - `use-scalable=no`：不允许用户进行缩放
-
 - **为什么有媒体查询**
 
   - 移动端的快速普及完全颠覆了`Web`涉及领域
   - 用户不再仅在传统桌面系统上查看`Web`内容，他们越来越多地使用具有各种尺寸的智能电话、平板电脑和其他设备
   - `Web`设计人员的挑战是确保他们的网站不仅是在大屏幕上看起来不错，在小型的电话以及介于它们之间的各种设备上看起来不错
-
 - **什么是媒体查询**
 
   - 媒体查询是向不同设备提供不同样式的一种方式，它为每种类型的用户提供了最佳的体验
@@ -1888,63 +1887,65 @@ function inserAfter(newItem,targerItem){
   - `CSS3`：`media query`
     - `media query`是`CSS3`对`media type`的增强，事实上我们可以将media query看成是`media type+css`属性（媒体特征`Media features`）判断
 
-- **如何使用媒体查询**
+### **如何使用媒体查询**
 
-  - 媒体查询的引用方法
+- 媒体查询的引用方法
 
-    - **link**标签
+  - **link**标签
 
-      - ```css
-        <link rel='stylesheet' media='screen and (max-width:800px)' href='index.css'> 
-        
-        媒体类型（Media Type）：all（全部）、screen（屏幕）、print（页面打印或打印预览模式）
-        
-        媒体特性（Media features）：width（渲染区宽度）、device-width（设备宽度）
-        ```
+    - ```css
+      <link rel='stylesheet' media='screen and (max-width:800px)' href='index.css'> 
+      
+      媒体类型（Media Type）：all（全部）、screen（屏幕）、print（页面打印或打印预览模式）
+      
+      媒体特性（Media features）：width（渲染区宽度）、device-width（设备宽度）
+      ```
 
-      - `Media Query`是`CSS3`对`Media Type`的增强版，其实可以将`Media Query`堪称`Media Type`（判断条件）+ `CSS`（符合条件的样式规则）
+    - `Media Query`是`CSS3`对`Media Type`的增强版，其实可以将`Media Query`堪称`Media Type`（判断条件）+ `CSS`（符合条件的样式规则）
 
-    - **@import**
+  - **@import**
 
-      - **@media**
+    - **@media**
 
-        - `@media screen and (max-width:800px) and (min-width:600px) {}`
+      - `@media screen and (max-width:800px) and (min-width:600px) {}`
 
-- **媒体类型（Media Type）**
+### **媒体类型（Media Type）**
 
-  | 类型       | 解释                                   |
-  | ---------- | -------------------------------------- |
-  | all        | 所有设备                               |
-  | braille    | 盲文                                   |
-  | embossed   | 盲文打印                               |
-  | handheld   | 手持设备                               |
-  | print      | 文档打印或打印预览模式                 |
-  | projection | 项目演示，比如幻灯                     |
-  | screen     | 彩色电脑屏幕                           |
-  | speech     | 演讲                                   |
-  | tty        | 固定字母间距的网络媒体，比如电传打字机 |
-  | tv         | 电视                                   |
+| 类型       | 解释                                   |
+| ---------- | -------------------------------------- |
+| all        | 所有设备                               |
+| braille    | 盲文                                   |
+| embossed   | 盲文打印                               |
+| handheld   | 手持设备                               |
+| print      | 文档打印或打印预览模式                 |
+| projection | 项目演示，比如幻灯                     |
+| screen     | 彩色电脑屏幕                           |
+| speech     | 演讲                                   |
+| tty        | 固定字母间距的网络媒体，比如电传打字机 |
+| tv         | 电视                                   |
 
-  
 
-- **媒体特性（Media features）**
 
-  | 属性                | 值                     | Min/Max | 描述                     |
-  | ------------------- | ---------------------- | ------- | ------------------------ |
-  | color               | 整数                   | yes     | 每种色彩的字节数         |
-  | color-index         | 整数                   | yes     | 色彩表中的色彩数         |
-  | device-aspect-ratio | 整数/整数              | yes     | 宽高比例                 |
-  | device-height       | length                 | yes     | 设备屏幕的输出高度       |
-  | device-width        | length                 | yes     | 设备屏幕的输出宽度       |
-  | grid                | 整数                   | no      | 是否基于格栅的设备       |
-  | height              | length                 | yes     | 渲染界面的高度           |
-  | monochrome          | 整数                   | yes     | 单色帧缓冲器中每像素字节 |
-  | resolution          | 分辨率（dpi/dpcm）     | yes     | 分辨率                   |
-  | scan                | Progresslve interlaced | no      | tv媒体类型的扫描方式     |
-  | width               | length                 | yes     | 渲染界面的宽度           |
-  | orientation         | Portrait/landscape     | no      | 横屏或竖屏               |
+### **媒体特性（Media features）**
 
-- ​    **逻辑操作符**
+| 属性                | 值                     | Min/Max | 描述                     |
+| ------------------- | ---------------------- | ------- | ------------------------ |
+| color               | 整数                   | yes     | 每种色彩的字节数         |
+| color-index         | 整数                   | yes     | 色彩表中的色彩数         |
+| device-aspect-ratio | 整数/整数              | yes     | 宽高比例                 |
+| device-height       | length                 | yes     | 设备屏幕的输出高度       |
+| device-width        | length                 | yes     | 设备屏幕的输出宽度       |
+| grid                | 整数                   | no      | 是否基于格栅的设备       |
+| height              | length                 | yes     | 渲染界面的高度           |
+| monochrome          | 整数                   | yes     | 单色帧缓冲器中每像素字节 |
+| resolution          | 分辨率（dpi/dpcm）     | yes     | 分辨率                   |
+| scan                | Progresslve interlaced | no      | tv媒体类型的扫描方式     |
+| width               | length                 | yes     | 渲染界面的宽度           |
+| orientation         | Portrait/landscape     | no      | 横屏或竖屏               |
+
+### 其他   
+
+- **逻辑操作符**
 
   - 合并多个媒体属性 `and`
   - `@media screen and (min-width:600px) and (max-width:1000px)`
@@ -1976,6 +1977,64 @@ function inserAfter(newItem,targerItem){
   - `device-width`/`heighta`	`width`/`height`
   - `device-width`/`height`是设备的宽度（比如电脑手机的宽度，不是浏览器的宽度）
   - `width/height是documentElement.clinetWidth`/`Height`即`viewport`的值
+  
+- **尺寸单位**
+
+  - **px**
+
+    - 相对长度单位，相对于显示器屏幕分辨率而言的
+    - 特点
+      - IE无法调整那些使用px作为单位的字体大小
+      - 国外的大部分网站能够调整的原因在于其使用了`em`或`rem`作为字体单位
+      - firefox能够调整`px`和`em`，`rem`
+
+  - **em**
+
+    - `em`的值并不是固定的
+
+    - `em`会继承父级元素的字体大小
+
+    - ```javascript
+      注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。
+      
+      所以我们在写CSS的时候，需要注意两点：
+      
+      1. body选择器中声明Font-size=62.5%；
+      2. 将你的原来的px数值除以10，然后换上em作为单位；
+      3. 重新计算那些被放大的字体的em数值。避免字体大小的重复声明。
+      
+      也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。      
+      ```
+      
+    - `1em` = `1 * font-size` = `1 * 16px`
+
+    - `font-size`默认的是`16`像素
+
+  - **rem**
+
+    - 相对单位，相对的只是`HTML`根元素的字体大小
+
+    - `font size of the root element `（根元素的字体大小)
+
+    - `rem`是一种相对长度单位。相对于根元素(即`html`元素)`font-size`计算值的倍数。
+
+    - 和`em`不同的是`rem`总是相对于根元素(如:`root`{})，而不像em一样使用级联的方式来计算尺寸。这种相对单位使用起来更简单。
+
+    - `rem`支持`IE9`及以上，意思是相对于根元素`html`（网页），不会像`em`那样，依赖于父元素的字体大小，而造成混乱。使用起来安全了很多。
+
+    - **注意：** *选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。*
+
+    - ```javascript
+      html {
+      	font-size: 10px;
+      }
+      
+      .wrap {
+      	font-size: 1.5rem;
+      	// 这个时候，.wrap这个元素里面的字体大小就是1.5 * 10px，也就是1.5rem了
+      }
+      ```
+
 
 ## 附录一 像素单位
 
