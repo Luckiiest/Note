@@ -1,26 +1,58 @@
-#### 一、 `bootstrap`简介
+### 一、 `bootstrap`简介
 ---
 
  - `Bootstrap`，来自 `Twitter`（全国最大的微博），是目前最受欢迎的前端框架。
+
  - `bootstrap`下载及演示 http://v3.bootcss.com
-- 什么是`bootstrap`？
-    - `Bootstrap `是基于 `HTML`、`CSS`、`JAVASCRIPT` 的开源框架，它简洁、直观、强悍、灵活，使得 `Web `开发更加快捷，
+
+- 什么是**bootstrap**？
+  
+   - `Bootstrap`，来自`Twitter`，是目前最受欢迎的前端框架。`Bootstrap`是基于`HTML`、`CSS`、`JavaScript`的，他简介灵活，使得`Web`开发更加快捷。它由`Twitter`的设计师`Mark Otto`和`Jacob Thornton`合作开发，是一个`CSS/HTML`框架。`Bootstrap`提供了优雅的`HTML`和`CSS`规范，它既是由动态`CSS`语言`Less`写成。`Bootstrap`一经推出后颇受欢迎，一直是`GitHub`上的热门开源项目，包括`NASA`的`MASNBC`（微软全国广播公司）的`BreakingNews`都使用了该项目。国内一些移动开发者较为熟悉的框架，如`WeX5`前端开源框架等，也是基于`Bootstrap`源码进行性能优化而来
+   - `Bootstrap `是基于 `HTML`、`CSS`、`JAVASCRIPT` 的开源框架，它简洁、直观、强悍、灵活，使得 `Web `开发更加快捷，
    - 用于开发响应式布局、移动设备优先的 `WEB `项目。
-- 为什么使用 `Bootstrap`？
+   
+- **Bootstrap**特色
+
+    - 适应各种技术水平`Bootstrap`适应不同技术水平的从业者，无论是设计师，还是程序设计人员，不管是骨灰级别的大牛，还是刚入门槛的菜鸟。使用`Bootstrap`既能开发简单的小东西，也能构造更为复杂的应用
+    - 跨设备、跨浏览器，最初设想的`Bootstrap`支持现代浏览器，不过新版本已经能支持所有主流浏览器，甚至包括`IE7`.从`Bootstrap2`开始，提供对平板和手机的支持
+    - 支持响应式设计从`Bootstrap2`开始，提供完整的响应式特性。所有的组件都能根据分辨率和设备灵活缩放，从而提供一致性的用户体验
+    - 选用`Less`构建动态样式当传统的枯燥`CSS`写法止步不前时，`Less`技术横空出世。`Less`使用变量、嵌套、操作、混合编码，帮助用户花费很小的时间成本，编写更快，更灵活的`CSS`。当然还有很多优势。
+
+- 为什么使用 **Bootstrap**？
     - 跨设备
     - 跨浏览器（`chrome`，`IE9`以上，`Firefox`，`Safari`，`Opera`...）
     - 响应式布局
     - 具有实用性强的组件
     - 内置`jquery`插件
-- `bootstrap`的结构
+    
+- **bootstrap**的结构
+  
     - 主要分为三大核心模块：`css`、`js`、`font`
+    
+- 尝试使用**Bootstrap**
 
-#### 二、`bootstrap`排版样式
+    - 前端工程建设的第一项任务就是根据项目特征进行技术选型。
+      - 基本上现在没有人完全从0开始做网站，哪怕是政府项目用个`jquery`都很正常吧，`React/Angularjs`等框架横空出世，解放了不少生产力，合理的技术选型可以为项目节省许多工程量这点毋庸置疑。
+    - 简单构建
+      - 优化选型之后基本上就可以开始敲码了，不过光解决开发效率还不够，必须要兼顾运行性能。前端工程进行到第二阶段会选型一种前端自动化构建工具，对代码进行压缩，校验，之后再以页面为单位进行简单的资源合并。
+    - **JS/CSS**模块化
+      - 开发分而治之是软件工程中的重要思想，是复杂系统开发和维护的基石，这点放在前端开发中同样适用。在解决了基本开发效率运行效率问题之后，前端团队开始思考维护效率，模块化是目前前端最流行的分治手段。
+    - 组件化开发
+      - 分治的确是非常重要的工程优化手段。在我看来，前端作为一种`GUI`软件，光有`JS/CSS`模块化还不够，对于`UI`组件的分治也有同样迫切的需求
+      - 页面上么一个独立的、可视/可交互区域都是一个组件
+      - 每个组件都对应一个目录，组件所需的各种资源（`img`字体等`js css html`）都在这个目录下
+      - 组件具有独立性，互不影响可以自由组合
+      - 页面只不过是组件的容器而已，负责组合组件形成功能完整的界面
+      - 我们可以想象成，我们要组装一辆车，所以零件（组件）都准备完毕，只需要我们利用这些零件进行拼装就好，某一个零件（组件）的损耗不会影响其他零件（组件）
+      - 经过这样的工程理念，我们很容易将系统以独立的组件为单元进行分工划分：
+        - 由于系统功能被分治到独立的模块或组件中，粒度比较精细，组织形式松散，开发者之间不会产生开发时序的依赖，大幅提升并行的开发效率，理论上允许随时加入新成员认领组件开发或维护工作，也更容易支持多个团队共同维护一个大型站点的开发
+
+### 二、排版
 ---
 
+#### 标题
 
-- **标题**
-  - 从 `h1` 到 `h6`
+- 从 `h1` 到 `h6`
 
 ```html
 	<h1>Bootstrap 排版</h1> //36px
@@ -33,8 +65,9 @@
 	<p class="lead">hello world</p>
 ```
 
-- 内联文本元素
-  - 添加标记，`<mark>`元素或`.mark` 类
+#### 内联文本元素
+
+- 添加标记，`<mark>`元素或`.mark` 类
 
 ```html
    <p>Bootstrap<mark>排版</mark></p>
@@ -54,24 +87,26 @@
    <p class="text-right">向右对齐文本</p>
    <p class="text-justify">对齐文本。该段落会根据屏幕的大小对超出屏幕的文字进行换行</p>
    <p class="text-nowrap">该段落不会根据屏幕的大小对超出屏幕的文字进行换行。</p>
-   <p class="text-lowercase">BOOTSTROP</p>
-   <p class="text-uppercase">bootstrap</p>
+   <p class="text-lowercase">bootstrap</p> // 英文字母小写
+   <p class="text-uppercase">BOOTSTROP</p> // 英文字母大写
    <p class="text-capitalize">bootstrap</p> //单词首字母大写
- ```
- 
-- **缩略语**
-   - `HTML `元素提供了用于缩写的标记，比如 `WWW` 或 `HTTP`。`Bootstrap` 定义 `<abbr>` 元素的样式为显示在文本底部的一条虚线边框
-   - 当鼠标悬停在上面时会显示完整的文本（只要您为 ``<abbr>`` title 属性添加了文本）。为了得到一个更小字体的文本，
-   - 请添加 `.initialism` 到 `<abbr>`
-   
+```
+
+#### 缩略语
+
+- `HTML `元素提供了用于缩写的标记，比如 `WWW` 或 `HTTP`。`Bootstrap` 定义 `<abbr>` 元素的样式为显示在文本底部的一条虚线边框
+- 当鼠标悬停在上面时会显示完整的文本（只要您为 ``<abbr>`` title 属性添加了文本）。为了得到一个更小字体的文本，
+- 请添加 `.initialism` 到 `<abbr>`
+
  ```html
    <abbr title="World Wide Web">WWW</abbr><br>
    <abbr title="Real Simple Syndication" class="initialism">RSS</abbr>
  ```
- 
-- **地址**
-  - `address`默认为 `display:block`;，需要使用标签来为封闭的地址文本添加换行
-  
+
+#### 地址
+
+- `address`默认为 `display:block`;，需要使用标签来为封闭的地址文本添加换行
+
 ```html
    <address>
      <strong>Twitter, Inc.</strong><br>
@@ -85,113 +120,216 @@
    </address>
 ```
 
-- **引用**
-   - 默认样式引用，增加了左边线，设定了字体大小和内外边距
-   `<blockquote> Bootstrap 框架 </blockquote>`
-   - 反向
-   `<blockquote class="blockquote-reverse "> Bootstrap 框架 </blockquote>`
-   - 多种引用样式
-   
+#### 引用
+
+- 默认样式引用，增加了左边线，设定了字体大小和内外边距
+`<blockquote> Bootstrap 框架 </blockquote>`
+- 反向
+`<blockquote class="blockquote-reverse "> Bootstrap 框架 </blockquote>`
+- 多种引用样式
+
 ```html
    <blockquote>
        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
        <footer class="text-right">Someone famous in <cite title="Source Title">Source Title</cite></footer>
    </blockquote>
- ```
- 
-- **列表**
-   - 有序列表、无序列表、自定义列表
-     - `.list-unstyled`
-     - `.list-inline`
-     - `.dl-horizontal `  应用于`<dl> `元素和` <dt>`元素中
-   
-- **代码**
-   - `.pre-scrollable`  使 `<pre>` 元素可滚动 `scrollable`
-   - 内联代码   `<code><section></code>`
-   - 用户输入   `press <kbd>ctrl + ,</kbd>`
-   - 标记变量   `<var>y</var> = <var>m</var><var>x</var> + <var>b</var>`
-   - 程序输出   `<samp>This text is meant to be treated as sample output from a computer program.</samp>`
-   - 代码块     `<pre><article>Please input...</article></pre>`
+```
+
+#### 列表
+
+- 有序列表、无序列表、自定义列表
+  - `.list-unstyled`  去除小圆点
+  - `.list-inline`     将`li`变为行级块元素
+  - `.dl-horizontal `  应用于`<dl> `元素和` <dt>`元素中
+
+#### 代码
+
+- `.pre-scrollable`  使 `<pre>` 元素可滚动 `scrollable`
+- 内联代码   `<code><section></code>`
+- 用户输入   `press <kbd>ctrl + ,</kbd>`
+- 标记变量   `<var>y</var> = <var>m</var><var>x</var> + <var>b</var>`
+- 程序输出   `<samp>This text is meant to be treated as sample output from a computer program.</samp>`
+- 代码块     `<pre><article>Please input...</article></pre>`
 
 
-#### 三、表格、按钮、图片
+### 三、表格、按钮、图片
 ---
 
-- **表格**
-   - 基本表格 `<table class="table">`
-   - 条纹表格 `<table class="table table-striped">`
-   - 边框表格  `<table class="table table-bordered">`
-   - 悬停表格`<table class="table table-hover">`
-   - 精简表格`<table class="table table-condensed">`
-   - 状态表格`active`、`success`、`info`、`warning`、`danger`
-   - 隐藏某一行`<tr class="sr-only">`
-   - 响应式表格
-      - 表格父元素设置响应式，小于 `768px` 出现边框
-      `<div class="table-responsive">`
+#### 表格
 
-- **按钮**
-    - 按钮标签
-       - 转化成普通按钮
-       - `<a href="###" class="btn btn-default">Link</a>`
-       - `<button class="btn btn-default">Button</button>`
-       - `<input type="button" class="btn btn-default" value="input">`
-       - 注意：为了跨浏览器展现，尽量使用`button`
-    - 按钮大小
-       - `.btn-lg`	这会让按钮看起来比较大。
-       - `.btn-sm`	这会让按钮看起来比较小。
-       - `.btn-xs`	这会让按钮看起来特别小。
-    - 预定义样式
-       - `.btn-default`	默认/标准按钮
-       - `.btn-primary`	首选项样式
-       - `.btn-success`	成功样式
-       - `.btn-info	`一般信息样式
-       - `.btn-warning`	警告样式
-       - `.btn-danger`	危险样式
-       - `.btn-link`	链接样式
-    - 块级按钮
-       - `.btn-block`	块级按钮(拉伸至父元素100%的宽度)
-    - 激活状态
-       - `<button class="btn active">Button</button>`
-    - 禁用状态
-       - `<button class="btn active disabled">Button</button>`
+- 基本表格 `<table class="table">`
+- 条纹表格 `<table class="table table-striped">`
+- 边框表格  `<table class="table table-bordered">`
+- 悬停表格`<table class="table table-hover">`
+-  精简表格`<table class="table table-condensed">`
+- 状态表格`active`、`success`、`info`、`warning`、`danger`
+- 隐藏某一行`<tr class="sr-only">`
+- 响应式表格
+   - 表格父元素设置响应式，小于 `768px` 出现边框
+   `<div class="table-responsive">`
 
-- **图片**
-    - `.img-rounded `   圆角 (`IE8` 不支持)
-    - `.img-circle` 圆形 (`IE8` 不支持)
-    - `.img-thumbnail`  缩略图功能
-    - `.img-responsive`	图片响应式 (将很好地扩展到父元素)
+#### 按钮
 
-#### 四、栅格系统、表单
+- 按钮标签
+   - 转化成普通按钮
+   - `<a href="###" class="btn btn-default">Link</a>`
+   - `<button class="btn btn-default">Button</button>`
+   - `<input type="button" class="btn btn-default" value="input">`
+   - 注意：为了跨浏览器展现，尽量使用`button`
+- 按钮大小
+   - `.btn-lg`	这会让按钮看起来比较大。
+   - `.btn-sm`	这会让按钮看起来比较小。
+   - `.btn-xs`	这会让按钮看起来特别小。
+- 预定义样式
+   - `.btn-default`	默认/标准按钮
+   - `.btn-primary`	首选项样式
+   - `.btn-success`	成功样式
+   - `.btn-info	`一般信息样式
+   - `.btn-warning`	警告样式
+   - `.btn-danger`	危险样式
+   - `.btn-link`	链接样式
+- 块级按钮
+   - `.btn-block`	块级按钮(拉伸至父元素100%的宽度)
+- 激活状态
+   - `<button class="btn active">Button</button>`
+- 禁用状态
+   - `<button class="btn active disabled">Button</button>`
+
+#### 图片
+
+- `.img-rounded `   圆角 (`IE8` 不支持)
+- `.img-circle` 圆形 (`IE8` 不支持)
+- `.img-thumbnail`  缩略图功能
+- `.img-responsive`	图片响应式 (将很好地扩展到父元素)
+
+### 四、辅助类、响应式工具、菜单、图标
 ---
 
-- **栅格系统**
-  - 响应式网格系统随着屏幕或视口（`viewport`）尺寸的增加，系统会自动分为最多`12`列。
-  - 工作原理
-      - 行必须放置在`.container`(固定宽度)或者`.container-fluid(100%宽度)`  `class`内，获得适当的对齐`(alignment)`和内边距`(padding)`
-      - 内容放置在列中，唯有列可以是行的直接子元素
-      - 预定义的网格类，比如 `.row` 和 `.col-lg-4`，可用于快速创建网格布局
-      - 列通过内边距`（padding）`来创建列内容之间的间隙
-  - 媒体查询
-     - 超小设备（手机，小于 `768px`） 
-     - 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 `Bootstrap` 是移动设备优先的吗？）
-     - 小型设备（平板电脑，大于等于`768px`）`@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }`
-     - 中型设备（台式电脑，大于等于`992px`）`@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }`
-     - 大型设备（大台式电脑，大于等于`1200px`）`@media (min-width: @screen-lg-min) { ... }`
-  - 栅格参数
-     - 超小屏幕 手机 (`<768px`)	
-	 - 小屏幕 平板 (`≥768px`)	
-	 - 中等屏幕 桌面显示器 (`≥992px`)	
-	 - 大屏幕 大桌面显示器 (`≥1200px`)
-     - 栅格系统行为	 
-	   - 总是水平排列	
-	   - 开始是堆叠在一起的，当大于这些阈值时将变为水平排列C
-     - `.container ` 最大宽度	`None `（自动）`750px`  `970px`  `1170px`
-     - 类前缀 `.col-xs-	 `  `.col-sm-`	 `.col-md-`	  `.col-lg-`
-     - 列（`column`）数	`12`
-     - 最大列（`column`）宽	自动 `~62px` `~81px`	`~97px`
-     - 间隙宽度	 `30px` （每列左右均有 `15px`）
+#### 文本
 
-  - 四种屏幕分类全部激活
+```html
+      <p class="text-muted">本行内容是减弱的</p>
+      <p class="text-primary">本行内容带有一个 primary class</p>
+      <p class="text-success">本行内容带有一个 success class</p>
+      <p class="text-info">本行内容带有一个 info class</p>
+      <p class="text-warning">本行内容带有一个 warning class</p>
+      <p class="text-danger">本行内容带有一个 danger class</p>
+```
+
+#### 背景
+
+```html
+<p class="bg-primary">bootstrap课程</p>
+<p class="bg-success">bootstrap课程</p>
+<p class="bg-info">bootstrap课程</p>
+<p class="bg-warning">bootstrap课程</p>
+<p class="bg-danger">bootstrap课程</p>
+```
+
+#### 辅助类
+
+- 关闭按钮   `close`
+
+```html
+<button class="close">×</button>
+```
+
+- 下拉式菜单  `caret`
+
+```html
+<span class="caret"></span>
+```
+
+- 浮动 `pull-left`   `pull-right`
+
+```html
+<div class="pull-left">向左快速浮动</div>
+<div class="pull-right">向右快速浮动</div>
+```
+
+- 清除浮动   `clearfix`
+
+```html
+<div class="clearfix"  style="background: #D8D8D8;border: 1px solid #000;padding: 10px;">
+	 <div class="pull-left" style="background:#58D3F7;">向左快速浮动</div>
+	 <div class="pull-right" style="background: #DA81F5;">向右快速浮动</div>
+</div>
+```
+
+- 块级内容居中 `center-block`
+
+```html
+<div class="row">
+ <div class="center-block" style="width:200px;background-color:#ccc;">
+	这是 center-block
+ </div>
+</div>
+```
+
+- 显示、隐藏  `show` `hide`
+
+```html
+<div class="row" style="padding: 91px 100px 19px 50px;">
+ <div class="show" style="width:300px;background-color:#ccc;">
+	这是 show class
+ </div>
+ <div class="hidden" style="width:200px;background-color:#ccc;">
+	这是 hide class
+ </div>
+</div>
+```
+
+- 屏幕阅读器和键盘导航  `.sr-only` 来把元素对所有设备隐藏，除了屏幕阅读器    `.sr-only-focusable`
+
+```html
+<div class="row" style="padding: 91px 100px 19px 50px;">
+ <form class="form-inline" role="form">
+	 <div class="form-group">
+		<label class="sr-only" for="email">Email 地址</label>
+		<input type="email" class="form-control" placeholder="Enter email">
+	 </div>
+	 <div class="form-group">
+		<label class="sr-only" for="pass">密码</label>
+		<input type="password" class="form-control" placeholder="Password">
+	 </div>
+ </form>
+</div>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+```
+
+### 五、栅格系统、表单
+---
+
+#### 栅格系统
+
+- 响应式网格系统随着屏幕或视口（`viewport`）尺寸的增加，系统会自动分为最多`12`列。
+- 工作原理
+    - 行必须放置在`.container`(固定宽度)或者`.container-fluid(100%宽度)`  `class`内，获得适当的对齐`(alignment)`和内边距`(padding)`
+    - 内容放置在列中，唯有列可以是行的直接子元素
+    - 预定义的网格类，比如 `.row` 和 `.col-lg-4`，可用于快速创建网格布局
+    - 列通过内边距`（padding）`来创建列内容之间的间隙
+- 媒体查询
+   - 超小设备（手机，小于 `768px`） 
+   - 没有任何媒体查询相关的代码，因为这在 Bootstrap 中是默认的（还记得 `Bootstrap` 是移动设备优先的吗？）
+   - 小型设备（平板电脑，大于等于`768px`）`@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }`
+   - 中型设备（台式电脑，大于等于`992px`）`@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }`
+   - 大型设备（大台式电脑，大于等于`1200px`）`@media (min-width: @screen-lg-min) { ... }`
+- 栅格参数
+   - 超小屏幕 手机 (`<768px`)	
+ - 小屏幕 平板 (`≥768px`)	
+ - 中等屏幕 桌面显示器 (`≥992px`)	
+ - 大屏幕 大桌面显示器 (`≥1200px`)
+   - 栅格系统行为	 
+   - 总是水平排列	
+   - 开始是堆叠在一起的，当大于这些阈值时将变为水平排列C
+   - `.container ` 最大宽度	`None `（自动）`750px`  `970px`  `1170px`
+   - 类前缀 `.col-xs-	 `  `.col-sm-`	 `.col-md-`	  `.col-lg-`
+   - 列（`column`）数	`12`
+   - 最大列（`column`）宽	自动 `~62px` `~81px`	`~97px`
+   - 间隙宽度	 `30px` （每列左右均有 `15px`）
+
+- 四种屏幕分类全部激活
+
  ```html
    <div class="container">
         <div class="row">
@@ -235,15 +373,17 @@
    </div>
 ```
 
-- **表单**
-  - 垂直或基本表单
-  - 内联表单
-    - 让表单左对齐浮动，并表现为 `inline-block `内联块结构`<form class="form-inline">`
-      注：当小于 `768px`，会恢复独占样式
-  - 水平表单
-    - 让表单内的元素保持水平排列
-  - 表单组合
-    - 前后增加片段
+#### 表单
+
+- 垂直或基本表单
+- 内联表单
+  - 让表单左对齐浮动，并表现为 `inline-block `内联块结构`<form class="form-inline">`
+    注：当小于 `768px`，会恢复独占样式
+- 水平表单
+  - 让表单内的元素保持水平排列
+- 表单组合
+  - 前后增加片段
+
 ```html
 <div class="input-group">
 	 <div class="input-group-addon">￥</div>
@@ -341,103 +481,7 @@
 </div>
 ```
 
-#### 五、辅助类、响应式工具、菜单、图标
----
-
-#### 辅助类
----
-
-- **文本**
-
-```html
-      <p class="text-muted">本行内容是减弱的</p>
-      <p class="text-primary">本行内容带有一个 primary class</p>
-      <p class="text-success">本行内容带有一个 success class</p>
-      <p class="text-info">本行内容带有一个 info class</p>
-      <p class="text-warning">本行内容带有一个 warning class</p>
-      <p class="text-danger">本行内容带有一个 danger class</p>
-```
-
-- **背景**
-
-```html
-<p class="bg-primary">bootstrap课程</p>
-<p class="bg-success">bootstrap课程</p>
-<p class="bg-info">bootstrap课程</p>
-<p class="bg-warning">bootstrap课程</p>
-<p class="bg-danger">bootstrap课程</p>
-```
-
-- 关闭按钮   `close`
-
-```html
-<button class="close">×</button>
-```
-
-- 下拉式菜单  `caret`
-
-```html
-<span class="caret"></span>
-```
-
-- 浮动 `pull-left`   `pull-right`
-
-```html
-<div class="pull-left">向左快速浮动</div>
-<div class="pull-right">向右快速浮动</div>
-```
-
-- 清除浮动   `clearfix`
-
-```html
-<div class="clearfix"  style="background: #D8D8D8;border: 1px solid #000;padding: 10px;">
-	 <div class="pull-left" style="background:#58D3F7;">向左快速浮动</div>
-	 <div class="pull-right" style="background: #DA81F5;">向右快速浮动</div>
-</div>
-```
-
-- 块级内容居中 `center-block`
-
-```html
-<div class="row">
- <div class="center-block" style="width:200px;background-color:#ccc;">
-	这是 center-block
- </div>
-</div>
-```
-
-- 显示、隐藏  `show` `hide`
-
-```html
-<div class="row" style="padding: 91px 100px 19px 50px;">
- <div class="show" style="width:300px;background-color:#ccc;">
-	这是 show class
- </div>
- <div class="hidden" style="width:200px;background-color:#ccc;">
-	这是 hide class
- </div>
-</div>
-```
-
-- 屏幕阅读器和键盘导航  `.sr-only` 来把元素对所有设备隐藏，除了屏幕阅读器    `.sr-only-focusable`
-
-```html
-<div class="row" style="padding: 91px 100px 19px 50px;">
- <form class="form-inline" role="form">
-	 <div class="form-group">
-		<label class="sr-only" for="email">Email 地址</label>
-		<input type="email" class="form-control" placeholder="Enter email">
-	 </div>
-	 <div class="form-group">
-		<label class="sr-only" for="pass">密码</label>
-		<input type="password" class="form-control" placeholder="Password">
-	 </div>
- </form>
-</div>
-<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-```
-
-**响应式工具**
+#### 响应式工具
 
 - `visible-xs` `visible-sm`  `visible-md`  `visible-lg`
 - `hidden-xs`   `hidden-sm`   `hidden-md`   `hidden-lg`
@@ -468,11 +512,13 @@
    </div>
 ```
 
-- **字体图标**
-   - 用法：`<span class="glyphicon glyphicon-search"></span>`
+#### 字体图标
 
-- 下拉菜单
-  - 基本的下拉菜单
+- 用法：`<span class="glyphicon glyphicon-search"></span>`
+
+#### 下拉菜单
+
+- 基本的下拉菜单
 
 ```html
   <div class="dropdown">
@@ -520,11 +566,10 @@
 - 让菜单默认显示 `<div class="dropdown open">`
 
 
-#### 六、按钮、输入框组件
+### 六、按钮、输入框组件
 ---
 
 #### 按钮组件
----
 
 - **基本的按钮组**
 
@@ -536,7 +581,7 @@
   </div>
 ```
 
-- **按钮工具栏**
+- 按钮工具栏
 
 ```html
   <div class="btn-toolbar">
@@ -639,7 +684,6 @@
 
 
 - **按钮式下拉菜单**
-
 - 单按钮下拉菜单   `btn-default`  `btn-success`  `btn-primary`   `btn-info`   `btn-danger`   `btn-warning`
 
 ```html
@@ -653,7 +697,7 @@
  </div>
 ```
 
-- **分裂式按钮下拉菜单**
+- 分裂式按钮下拉菜单
 
 ```html
  <div class="btn-group">
@@ -693,9 +737,9 @@
  </div>
 ```
 
-- **输入框**
+#### 输入框
 
-- 基本的输入框组
+- **基本的输入框组**
 
 ```html
 <form action="">
@@ -715,7 +759,7 @@
 </form>
 ```
 
-- 输入框组的大小    `input-group-lg`  `input-group-xs`  `input-group-sm`
+- **输入框组的大小**    `input-group-lg`  `input-group-xs`  `input-group-sm`
 
 ```html
   <form action="">
@@ -807,7 +851,7 @@
 </form>
 ```
 
-#### 七、导航、导航条、面包屑导航组件
+### 七、导航、导航条、面包屑导航组件
 ---
 
 **导航（标签） `nav`**
@@ -1009,10 +1053,10 @@
 </ul>
 ```
 
-#### 八、分页、标签、徽章、巨幕、页头、缩略图、警告框组件
+### 八、分页、标签、徽章、巨幕、页头、缩略图、警告框组件
 ---
 
-**分页**
+#### 分页
 
 
 - 默认的分页
@@ -1068,8 +1112,7 @@
   </ul>
 ```
 
-
-**标签**
+#### 标签
 
 
 ```html
@@ -1081,15 +1124,14 @@
 <span class="label label-danger">Danger</span>
 ```
 
-
-- 徽章`badge`
+#### 徽章`badge`
 
 ```html
    <a href="">Messages <span class="badge">20</span></a>
    <button class="btn btn-default">Messages <span class="badge">20</span></button>
 ```
 
-- 巨幕 `jumbotron`
+#### 巨幕 `jumbotron`
 
 ```html
    <div class="jumbotron">
@@ -1102,7 +1144,7 @@
    </div>
 ```
 
-- 页头 `page-header`
+#### 页头 `page-header`
 
 ```html
    <div class="page-header">
@@ -1112,7 +1154,7 @@
    </div>
 ```
 
-**缩略图**
+#### 缩略图
 
 
 - 默认样式
@@ -1143,7 +1185,7 @@
 </div>
 ```
 
-**警告框**
+#### 警告框
 
 
 - 基本默认样式
@@ -1165,10 +1207,10 @@
   </div>
 ```
 
-#### 九、进度条、媒体对象、列表组、面板、响应式插入组件
+### 九、进度条、媒体对象、列表组、面板、响应式插入组件
 ---
 
-**进度条**
+#### 进度条
 
 
 - 默认的进度条
@@ -1221,7 +1263,7 @@
   </div>
 ```
 
-**媒体对象**
+#### 媒体对象
 
 ```html
 <div class="media">
@@ -1237,7 +1279,7 @@
 </div>
 ```
 
-**列表组**
+#### 列表组
 
 
 - 向列表组添加国徽
@@ -1272,7 +1314,7 @@
   </ul>
 ```
 
-**面板**
+#### 面板
 
 
 - 面板标题
@@ -1329,7 +1371,7 @@
   </div>
 ```
 
-**响应式嵌入组件**
+#### 响应式嵌入组件
 
 
 - 根据被嵌入内容的外部容器的宽度，自动创建一个固定的比例，从而让浏览器自动确定 内容的尺寸，能够在各种设备上缩放
@@ -1373,10 +1415,10 @@
 ```
 
 
-#### 十、弹出框、警告框、标签页和工具提示插件插件
+### 十、弹出框、警告框、标签页和工具提示插件插件
 ---
 
-**弹出框**
+#### 弹出框
 
 - 弹出框点击一个元素，弹出一个包含标题和内容的容器
 
@@ -1439,7 +1481,7 @@
    });
 ```
 
-**警告框**
+#### 警告框
 
 
 - 警告框即为点击小时的信息框
@@ -1475,7 +1517,7 @@
    });
 ```
 
-**标签页**
+#### 标签页
 
 
 - 标签页也就是通常所说的选项卡功能
@@ -1528,7 +1570,7 @@
    });
 ```
 
-**工具提示**
+#### 工具提示
 
 - 工具提示就是通过鼠标移动选定在特定的元素上时，显示相关的提示语
 
@@ -1621,10 +1663,10 @@ $('#selector a').tooltip({
    });
 ```
 
-#### 十一、下拉菜单、滚动监听、按钮和折叠插件
+### 十一、下拉菜单、滚动监听、按钮和折叠插件
 ---
 
-**下拉菜单插件**
+#### 下拉菜单插件
 
 
 ```html
@@ -1661,7 +1703,7 @@ $('#selector a').tooltip({
    });
 ```
 
-**滚动监听插件**
+#### 滚动监听插件
 
 
 - `data-offset`  默认值为 `10`，固定弄内容距滚动容器 `10` 像素以内， 就高亮显示所对应的菜单
@@ -1696,7 +1738,7 @@ $('#selector a').tooltip({
    }
 ```
 
-**按钮插件**
+#### 按钮插件
 
 
 - 单个切换
@@ -1765,7 +1807,7 @@ $('#selector a').tooltip({
    });
 ```
 
-**折叠插件**
+#### 折叠插件
 
 
 - 基本实例
@@ -1794,11 +1836,10 @@ $('#selector a').tooltip({
   - `hidden.bs.collapse`   该事件在折叠区域完全隐藏之后触发
   
 
-#### 十二、模态框、轮播插件
-  ---
-  
-  **模态框插件**
+### 十二、模态框、轮播插件
+---
 
+#### 模态框插件
 
 - 模态框的弹窗组件需要三层 `div` 容器元素，分别为 `modal`(模态声明层)、 `dialog`(窗口声明层)、`content`(内容层)
 - 在内容层里面，还有三层，分别为 `header`(头部)、`body`(主体)、`footer`(注脚)
@@ -1876,7 +1917,7 @@ $('#myModal').on('loaded.bs.modal', function () {
 });
 ```
 
-**轮播图插件**
+#### 轮播图插件
 
 
 - `data` 属性解释：
@@ -1926,7 +1967,7 @@ $('#myCarousel').on('slid.bs.carousel', function () {
 ![bootstrap笔记总结](http://upload-images.jianshu.io/upload_images/1480597-0b43991d33718f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
-#### 拓展阅读
+### 拓展阅读
 ---
 
 - [bootstrap中文教程](http://v3.bootcss.com/)
