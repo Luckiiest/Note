@@ -140,6 +140,8 @@
   
 - 六、初始化数据
 
+  - https://github.com/HAODEabcd/Note/blob/master/SQL/bjpowernode.sql 文件地址
+
   - **source D:././././bjpowernode.sql**
 
   - 注意：数据初始化完成之后，有三张表
@@ -175,40 +177,15 @@
   +-----------------------+
   ```
 
-- **desc**：查看表结构
 
-- ```
-  部门表
-  +--------+-------------+------+-----+---------+-------+
-  | Field  | Type        | Null | Key | Default | Extra |
-  +--------+-------------+------+-----+---------+-------+
-  | DEPTNO | int(2)      | NO   | PRI | NULL    |       |
-  | DNAME  | varchar(14) | YES  |     | NULL    |       |
-  | LOC    | varchar(13) | YES  |     | NULL    |       |
-  +--------+-------------+------+-----+---------+-------+
-  
-  员工表
-  +----------+-------------+------+-----+---------+-------+
-  | Field    | Type        | Null | Key | Default | Extra |
-  +----------+-------------+------+-----+---------+-------+
-  | EMPNO    | int(4)      | NO   | PRI | NULL    |       |
-  | ENAME    | varchar(10) | YES  |     | NULL    |       |
-  | JOB      | varchar(9)  | YES  |     | NULL    |       |
-  | MGR      | int(4)      | YES  |     | NULL    |       |
-  | HIREDATE | date        | YES  |     | NULL    |       |
-  | SAL      | double(7,2) | YES  |     | NULL    |       |
-  | COMM     | double(7,2) | YES  |     | NULL    |       |
-  | DEPTNO   | int(2)      | YES  |     | NULL    |       |
-  +----------+-------------+------+-----+---------+-------+
-  
-  工资表
-  +-------+---------+------+-----+---------+-------+
-  | Field | Type    | Null | Key | Default | Extra |
-  +-------+---------+------+-----+---------+-------+
-  | GRADE | int(11) | YES  |     | NULL    |       |
-  | LOSAL | int(11) | YES  |     | NULL    |       |
-  | HISAL | int(11) | YES  |     | NULL    |       |
-  +-------+---------+------+-----+---------+-------+
-  ```
+- 查看表结构
+  - **desc 数据库中表的名称;**
+  - `desc` `dept / emp / salgrade`;
+- 查看表中的数据
+  - **select * from 数据库中表的名称;**
+  - `select * from emp;`
 
-- 
+## 常用命令
+
+### 查看mysql版本
+
