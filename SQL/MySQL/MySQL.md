@@ -1,8 +1,8 @@
-# SQl
+### SQl
 
-## 数据库概述及数据准备
+#### 数据库概述及数据准备
 
-### 数据库介绍
+##### 数据库介绍
 
 - 数据库定义
 
@@ -19,7 +19,7 @@
   - 并发控制
   - 数据恢复
 
-### 常见的数据库管理系统
+##### 常见的数据库管理系统
 
 - **Oracle** 甲骨文
   - `Oracle`他是世界上第一个商品化的关系型数据库管理系统 
@@ -40,7 +40,7 @@
 - **MS SqlServer**：支持标准`sql`的数据库管理系统
   - 微软推出的一款关系型数据库管理系统，运行在`Windows NT`平台上支持客户端/服务器模式的数据库，采用标准的`SQL`语言。
 
-### sql、DB、DBMS分别是什么
+##### sql、DB、DBMS分别是什么
 
 - **DB**：`DataBase`（数据库，数据库实际上在硬盘上以文件的形式存在）
 
@@ -52,15 +52,15 @@
   >
   > DBMS - （执行）-> SQL - （操作） -> DB
 
-### SQL概述
+##### SQL概述
 
 - `SQL`，一般发音为`sequel`，`SQL`的全称`Structured Query Language`，`SQL`用来和数据库打交道，完成和数据库的通信，`SQL`是一套标准。但是每一个数据都有自己的特性别的数据库没有，当使用这个数据库特性相关的功能，这时`SQL`语句可能就不是标准了，（90%以上的`SQL`都是通用的）
 
-### 什么是数据库
+##### 什么是数据库
 
 - 数据库，通常是一个或工组文件，保存了一些符合特定规格的数据数据库对应的英语单词是`DataBase`, 简称:DB,数据库软件称为数据库管理系统(DBMS)， 全称为`DataBase Management System`,如: `Oracle`、`SQL Server`、`MySq|`、`Sybase`、`informix`、 `DB2`、`interbase`、`PostgreSql`。
 
-### MySQl概述
+##### MySQl概述
 
 - `MySQL`最初是由`MySQL AB`公司开发的-套关系型数据库管理系统( `RDBMS Relational`
   `Database Mangerment System`)。。
@@ -69,7 +69,7 @@
 - `MySQL` AB是由两个瑞典人和一个芬兰人: `David Axmark`、`Allan Larsson` 和`Michael "Monty`"`Widenius`在瑞典创办的。。
   在2008年初，`Sun Microsystems`收购了`MySQL AB`公司。在2009年，`Oracle` 收购了`Sun`公司，使`MySQL`并入`Oracle`的数据库产品线。
 
-### 表
+##### 表
 
 - 什么是表？
 
@@ -91,7 +91,7 @@
       - 每一个字段都应该包括哪些属性？
         - 字段名、数据类型、相关的类型
 
-### SQL语句的分类
+##### SQL语句的分类
 
 - `SQL`语句包括增删改查，那么究竟怎么分类？
 - **DQL（数据查询语言）**：查询语句，凡是`select`语句都是`DQL`
@@ -100,7 +100,7 @@
 - **TCL（事务控制语言）**：`commit`提交事务，`rollback`回滚事务（`TCL`中的`T`是`Transaction`）
 - **DCL（数据控制语言）**：`qrant`授权、`revoke`撤销权限等
 
-### 导入演示数据
+##### 导入演示数据
 
 - 一、登录`mysql`数据库管理系统
 
@@ -165,7 +165,7 @@
 
 - 六、删除数据库：**drop database 数据库名称;**
 
-### 查看表结构
+##### 查看表结构
 
 - ```
   +-----------------------+
@@ -185,7 +185,63 @@
   - **select * from 数据库中表的名称;**
   - `select * from emp;`
 
-## 常用命令
+#### 常用命令
 
-### 查看mysql版本
+- 查看**mysql**版本
+	- `mysql -Version`
+	- `select version()`
+
+- 创建数据库
+
+	- `create database 数据库名称`
+
+- 查询当前使用的数据库
+
+	- `select database()`
+	- 查询数据库版本 `select version()`
+
+- 终止一条语句
+
+	- `\c` 可以终止一条语句
+
+- 退出**MySQL**
+
+	- `exit` 退出`mysql`
+
+#### 查看演示数据的表结构
+
+- 查看数据库
+  - `show databases;`
+- 使用数据库
+  - `use 数据库名称;`
+
+- 查看当前使用的数据库
+  - `select database();`
+- 查看数据库中的表
+  - `show tables;`
+- 查看其他数据库中的表
+  - `show tables from 数据库名称;`
+
+- 查看表结构
+  - `desc 表名称;`
+- 查看表的创建语句
+  - `show create table 表名称;`
+
+#### 简单的查询（DQL）
+
+- **select 字段名1，字段名2，字段名3，......from 表名;**
+- `select ename,sal from emp;`
+- 提示：
+  - 任何一条`sql`语句都以";"（分号）结尾
+  - `sql`语句不区分大小写
+  - 字段可以参与数学运算
+    - `select ename,sal * 12 from emp`
+  - 查完之后列可以重命名
+    - `select 字段1，字段2 as 更改后的列名 from emp;`
+    - `select ename,sal * 12 as yearsal from emp;`
+    - `as`关键字可以省略
+  - 标准`sql`语句中，要求用字符串使用单引号括起来- 
+- 查询所有数据
+  - `select * from emp;` 
+  - 实际开发中不建议使用，效率较低
 
