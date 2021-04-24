@@ -1,8 +1,8 @@
-### SQl
+# SQl
 
-#### 数据库概述及数据准备
+## 数据库概述及数据准备
 
-##### 数据库介绍
+### 数据库介绍
 
 - 数据库定义
 
@@ -19,7 +19,7 @@
   - 并发控制
   - 数据恢复
 
-##### 常见的数据库管理系统
+### 常见的数据库管理系统
 
 - **Oracle** 甲骨文
   - `Oracle`他是世界上第一个商品化的关系型数据库管理系统 
@@ -40,7 +40,7 @@
 - **MS SqlServer**：支持标准`sql`的数据库管理系统
   - 微软推出的一款关系型数据库管理系统，运行在`Windows NT`平台上支持客户端/服务器模式的数据库，采用标准的`SQL`语言。
 
-##### sql、DB、DBMS分别是什么
+### sql、DB、DBMS分别是什么
 
 - **DB**：`DataBase`（数据库，数据库实际上在硬盘上以文件的形式存在）
 
@@ -52,15 +52,15 @@
   >
   > DBMS - （执行）-> SQL - （操作） -> DB
 
-##### SQL概述
+### SQL概述
 
 - `SQL`，一般发音为`sequel`，`SQL`的全称`Structured Query Language`，`SQL`用来和数据库打交道，完成和数据库的通信，`SQL`是一套标准。但是每一个数据都有自己的特性别的数据库没有，当使用这个数据库特性相关的功能，这时`SQL`语句可能就不是标准了，（90%以上的`SQL`都是通用的）
 
-##### 什么是数据库
+### 什么是数据库
 
 - 数据库，通常是一个或工组文件，保存了一些符合特定规格的数据数据库对应的英语单词是`DataBase`, 简称:DB,数据库软件称为数据库管理系统(DBMS)， 全称为`DataBase Management System`,如: `Oracle`、`SQL Server`、`MySq|`、`Sybase`、`informix`、 `DB2`、`interbase`、`PostgreSql`。
 
-##### MySQl概述
+### MySQl概述
 
 - `MySQL`最初是由`MySQL AB`公司开发的-套关系型数据库管理系统( `RDBMS Relational`
   `Database Mangerment System`)。。
@@ -69,7 +69,7 @@
 - `MySQL` AB是由两个瑞典人和一个芬兰人: `David Axmark`、`Allan Larsson` 和`Michael "Monty`"`Widenius`在瑞典创办的。。
   在2008年初，`Sun Microsystems`收购了`MySQL AB`公司。在2009年，`Oracle` 收购了`Sun`公司，使`MySQL`并入`Oracle`的数据库产品线。
 
-##### 表
+### 表
 
 - 什么是表？
 
@@ -91,7 +91,7 @@
       - 每一个字段都应该包括哪些属性？
         - 字段名、数据类型、相关的类型
 
-##### SQL语句的分类
+### SQL语句的分类
 
 - `SQL`语句包括增删改查，那么究竟怎么分类？
 - **DQL（数据查询语言）**：查询语句，凡是`select`语句都是`DQL`
@@ -100,7 +100,7 @@
 - **TCL（事务控制语言）**：`commit`提交事务，`rollback`回滚事务（`TCL`中的`T`是`Transaction`）
 - **DCL（数据控制语言）**：`qrant`授权、`revoke`撤销权限等
 
-##### 导入演示数据
+### 导入演示数据
 
 - 一、登录`mysql`数据库管理系统
 
@@ -166,7 +166,7 @@
 
 - 六、删除数据库：**drop database 数据库名称;**
 
-##### 查看表结构
+### 查看表结构
 
 - ```
   +-----------------------+
@@ -186,7 +186,7 @@
   - **select * from 数据库中表的名称;**
   - `select * from emp;`
 
-#### 常用命令
+## 常用命令
 
 - 查看**mysql**版本
 	- `mysql -Version`
@@ -209,7 +209,7 @@
 
 	- `exit` 退出`mysql`
 
-#### 查看演示数据的表结构
+## 查看演示数据的表结构
 
 - 查看数据库
   - `show databases;`
@@ -228,7 +228,9 @@
 - 查看表的创建语句
   - `show create table 表名称;`
 
-#### 简单的查询（DQL）
+## 查询（DQL）
+
+### 简单的查询
 
 - **select 字段名1，字段名2，字段名3，......from 表名;**
 - `select ename,sal from emp;`
@@ -246,7 +248,7 @@
   - `select * from emp;` 
   - 实际开发中不建议使用，效率较低
 
-#### 条件查询
+### 条件查询
 
 **语法格式**
 
@@ -284,7 +286,7 @@ where
 >
 > 模糊查询中，要掌握两个特殊符号，一个是`%`一个是`_`
 
-#### 排序
+### 排序
 
 - `order by`
 
@@ -324,9 +326,9 @@ where
     	字段				4
     ```
 
-#### （分组/聚合/多行、单行处理）函数
+### （分组/聚合/多行、单行处理）函数
 
-##### **分组函数/多行函数**
+#### **分组函数/多行函数**
 
 - 多行处理函数就是多行最后得出一个结果
 
@@ -370,7 +372,7 @@ where
 >
 > 分组函数不可直接使用在where子句当中，因为group by是在where之后才会执行
 
-##### 单行处理函数
+#### 单行处理函数
 
 - 单行处理函数的特点是输入一行，输出一行
 - `ifnull()` 可能为`NULL`的数据，都被当作什么处理
@@ -388,11 +390,12 @@ where
 - `rand()`：生成随机数
   - 生成的`0-1`的随机数
 
-#### 分组查询
+### 分组查询
 
-- `group by` ：按照某个字段或者某个字段进行分组
+- `group by` ：按照某个字段或者多个字段进行分组
   - `select 字段 from 表名 group by 字段`
-  - `group by 字段名称`
+  - 一个字段分组：`group by 字段`
+  - 多个字段分组：`group by 字段，字段`
 - `having`：是对分组之后的数据进行再次过滤
   - `heaving`是在`group by`之后完成过滤
   - `where`实在`group by`之前完成过滤
@@ -401,3 +404,264 @@ where
 > 分组函数一般都会和group by联合使用，这也是它被称为分组函数的原因，并且任何一个分组函数都是在group by语句执行结束之后才会执行
 >
 > 当一条sql语句中没有group by的话，整张表的数据会自成一组
+>
+> 当一条sql语句有group by时，select后面只可以有参加分组的字段和分组函数字段
+
+### 完整的DQL语句
+
+- ```mysql
+  语句			执行顺序
+  
+  select			5
+  	...
+  from			1
+  	...
+  where			2
+  	...
+  group by		3
+  	...
+  having			4
+  	...
+  order by		6
+  	...
+  
+  书写顺序不可以颠倒，它可以缺少某个，但是不可以颠倒顺序
+  ```
+
+
+
+### 关于查询结果的去重
+
+- **distinct**
+  - 例：`select distinct 字段 from 表 where ... `
+  - `distinct`只可以出现在所有字段的最前面
+  - `distinct`出现在最前面是为了后面所有字段联合起来去重
+
+### 连接查询
+
+#### 概述
+
+- 什么是连接查询
+  - 在实际开发中，大部分都不是从单表中查询数据，一般都是多张表联合查询，取出结果，在实际开发中，一般一个业务都会对应多张表，比如，学生和班级，起码两张表，如果存在一张表，数据会存在大量的冗余。
+
+#### 分类
+
+- 分局语法出现的年代来划分，包括
+  - **SQL92**（一些老的`DBA`可能还在使用这种语法，`DBA`：`DataBase Administerator`，数据库管理员）
+  - **SQL99**（比较新的语法）
+
+- 根据表的连接方式来划分，包括
+  - 内连接：
+    - 等值连接
+    - 非等值连接
+    - 自连接
+  - 外连接
+    - 左外连接（左连接）
+    - 右外连接（右连接）
+  - 全连接
+
+#### 笛卡尔积现象/别名
+
+- 笛卡尔乘积现象
+  - 若两张表迚行连接查询的时候没有仸何条件限制，最终的查询结果总数是两张表记录 的乘积，该现在称为笛卡尔积现象。
+  - 避免笛卡尔积现象
+    - 避免笛卡尔积现象，不会减少记录的匹配次数，只是显示的是有效记录，并不会提高执行效率
+    - 例如：`select e.ename,d.dname from emp e,dept d where e.deptno = d.deptno;`
+      - `SQL92`语法
+
+- 别名
+  - `select  表别名.字段，表别名.字段 from 表名 表别名(生成的)，表名 表别名(生成的)`
+  - 例如：`select e.ename,d.dname from emp e,dept d;`
+  - 可读性好
+  - 执行效率高
+
+#### 内连接
+
+##### 等值连接
+
+>  内连接之等值连接：最大的特点是：连接条件是等量关系
+
+- 示例：查询员工的名称和员工所对应的部门名称
+
+- ```mysql 
+  emp是员工表，dept是部门表，e.name和d.name是emphe dept两个表的
+  
+  SQL92:
+  	select
+  		e.name,d.dname
+  	from 
+  		emp e,dept d
+  	where
+  		e.deptno = d.deptno
+  
+  SQL99:
+  	select
+  		e.ename,d.dname
+  	from 
+  		emp e
+  	join
+  		dept d 
+  	on
+  		e.deptno = d.deptno; 
+  	
+  	
+  	select e.ename,d.dname from emp e inner join dept d on e.deptno = d.deptno; 
+  
+  注：inner可忽略
+  ```
+
+- ```mysql
+  join on的语法
+  
+  ...
+  	A
+  inner join
+  	B
+  on
+  	连接条件
+  where
+  	...
+  
+  99的语法结构更加清晰，表与表的连接条件和where的条件分离了，inner可以省略，带着inner可以看出来是内连接
+  ```
+
+##### 非等值连接
+
+> 内连接之非等值连接：最大的特点是：连接条件中的关系是非等量关系
+
+- 找出每个员工的工资等级，要求显示员工名，工资、工资等级
+
+- ```mysql
+  select
+  	e.ename,e.sal,s.grade
+  from
+  	emp e
+  join
+  	salgrade s
+  on
+  	e.sal
+  between
+  	s.losal
+  and
+  	s.hisal
+  
+  e.ename是名字，e.sal是工资,s.grade是等级
+  emp 是员工表
+  salgrade 是薪资等级表
+  ```
+
+##### 自连接
+
+> 自连接：最大的特点是：一张表看做两张表，自己连接自己
+
+- 找出每个员工的上级领导，要求显示员工名和对应的领导名
+
+- ```mysql
+  select
+  	a.ename as '员工表',b.ename as '领导表'
+  from
+  	emp a
+  inner join
+  	emp b
+  on
+  	a.mgr = b.empno;
+  ```
+
+#### 外连接
+
+- 什么是外连接，和内连接有什么区别？
+  - 内连接
+    - 假设`A`和B表进行连接，使用内连接的话，凡是`A`表和`B`表能够匹配上的记录查询出来，这就是内连接，`AB`两张表没有主副之分
+  - 外连接
+    - 假设`A`和`B`表进行连接，使用外连接的话，`AB`两张表中有一张是主表，一张表是副表，主要查询主表中的数据，捎带着查询副表，当副表中的数据没有和主表中的数据匹配上，副表自动模拟出`NULL`与之匹配
+    - 朱标的数据无条件的全部查询出来
+  
+- 左外连接：表示左边的这张表是主表
+
+- 右外连接：表示右边的这张表是主表
+
+- 左连接有右连接的写法，右连接也会有对应的左连接的写法
+
+- 语法
+
+  - ```mysql
+    join on的语法
+    
+    ...
+    	A
+    left/right outer join
+    	B
+    on
+    	连接条件
+    where
+    	...
+    	
+    outer可以省略，区分内外连接主要不是inner和outer这两个单词，带着两个单词可读性强，外连接使用较多
+    ```
+
+- 例：找出所有员工的上级领导
+
+  - ```mysql
+    左外连接
+    select
+    	a.ename as '员工',b.ename as '领导'
+    from
+    	emp a
+    left join
+    	emp b
+    on 
+    	a.mgr = b.empno;
+    	
+    
+    右外连接
+    select
+  	a.ename as '员工',b.ename as '领导'
+    from
+    	emp b
+    right join
+    	emp a
+    on
+    	a.mgr = b.empno;
+    
+    a是主表，b是副表，left代表左外连接，right代表右外连接
+    ```
+
+ - 找到那个部门没有员工
+  
+  - ```mysql
+    select
+    	d.*
+  from
+    	emp e
+    right join
+    	dept d
+    on
+    	e.deptno = d.deptno
+    where
+    	e.empno is null;
+    ```
+
+- 三个表连接
+
+  - 找出每一个员工的部门名称、工资等级、以及上级领导
+
+  - ```mysql
+    select
+    	e.ename as '员工',d.dname,s.grade,el.ename '领导'
+    from
+    	emp e
+    join
+    	dept d
+    on
+    	e.deptno = d.deptno
+    join
+    	salgrade s
+    on
+    	e.sal between s.losal and s.hisal
+    left join
+    	emp e1
+    on
+    	e.mgr = e1.empno;
+    ```
+
+  - 
