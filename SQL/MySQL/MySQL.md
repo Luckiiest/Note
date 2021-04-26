@@ -71,7 +71,7 @@
 
 ### 表
 
-- 什么是表？
+>  表（table）：是数据库最基本的组成单元，数据库是用来存储数据的，数据库中有很多表，每一个表都是一个独立的单元，表也是一个结构化的文件，由行和列组成，行称为数据戒记录，列称为字段， 字段又包含：字段名称、字段类型、长度、约束。
 
 - 表：`table`
 
@@ -228,7 +228,7 @@
 - 查看表的创建语句
   - `show create table 表名称;`
 
-## 查询（DQL）
+## DQL（数据查询语言）
 
 ### 简单的查询
 
@@ -631,7 +631,7 @@ where
   - ```mysql
     select
     	d.*
-  from
+    from
     	emp e
     right join
     	dept d
@@ -664,4 +664,425 @@ where
     	e.mgr = e1.empno;
     ```
 
-  - 
+
+
+
+### 子查询
+
+- 什么是子查询？子查询都可以出现在哪里？
+
+  - `select`语句当中嵌套`select`语句，被嵌套的`select`语句是子查询
+
+  - 子查询可以出现在哪里？
+
+    - ```mysql
+      select
+      	..(select).
+      from
+      	..(select).
+      where
+      	..(select).
+      ```
+
+#### where后面子查询
+
+- 案例：在`emp`表中找出高于平均工资的员工信息
+
+- ```mysql
+  select * from emp where sal > avg(sal); // 错误，where后面不能有分组函数
+  
+  第一步:找出平均薪资，结果就是平均薪资
+  select avg(sal) from emp;
+  第二步：where过滤
+  where sal > 第一步的结果
+  合并：
+  select * from emp where sal > (select avg(sal) from emp);
+  ```
+
+#### from后面子查询
+
+- 案例：找出每个部门平均薪水的薪资等级
+
+- ```mysql
+  第一步：找出每个部门平均薪水（按照部门编号分组，求sal的平均值）
+  select deptno,avg(sal) as avgsal from emp group by deptno;
+  第二步：将以上的查询结果当作临时表t，让t表和薪资等级表连接
+  select
+  	t.*,s.grade
+  from
+  	(select deptno,avg(sal) as avgsal from emp group by deptno) t
+  join
+  	salgrade s
+  on
+  	t.avgsal between s.losal and s.hisal;
+  ```
+
+- 案例：找出每个部门平均的薪水等级
+
+- ```mysql
+  先找薪水等级，把薪水等级平均
+  
+  第一步：找出每个员工的薪水等级
+  select
+  	e.ename,e.sal,e.deptno,s.grade
+  from
+  	emp e
+  join
+  	salgrade s
+  on
+  	e.sal between s.losal and s.hisal;
+  第二部：基于以上结果，继续按照deptno分组，求grade平均值
+  select
+  	e.deptno,avg(s.grade)
+  from
+  	emp e
+  join
+  	salgrade s
+  on
+  	e.sal between s.losal and s.hisal
+  group by
+  	e.deptno;
+  ```
+
+#### select后面嵌套子查询
+
+- 找出每个员工所在的部门名称，要求显示员工名和部门名
+
+- ```mysql
+  select
+  	e.ename,e.deptno,
+  	(select d.dname from dept d where e.deptno = d.deptno) as dname 
+  from
+  	emp e;
+  ```
+
+## limit、union
+
+### union
+
+- 可以将查询结果相加，两张不相干的表中的数据拼接在一起显示
+
+- `union`上下拼接的时候显示的列数要一样
+
+- 案例：找出工作岗位是SALESMAN和MANAGER的员工？
+  - ```mysql
+    第一种：
+    select ename,job from emp where job = 'SALESMAN' or job = 'MANAGER';
+    
+    第二种：使用in
+    select ename,job from emp where job in('SALESMAN','MANAGER');
+    
+    第三种：union
+    select ename,job from emp where job = 'SALESMAN'
+    union
+    select ename,job from emp where job = 'MANAGER';
+    ```
+
+### limit
+
+- `limit`是`mysql`特有的，其他数据库没有，不通用（`oracle`中有一个相同的机制，叫`rownum`）
+
+- `limit`取结果集中的部分数据，这是它的作用
+
+- 语法机制：
+
+  - ```mysq
+    limit startIndex,length
+    	startIndex 表示起始位置，默认从0开始，不写就是从0开始
+    	length 表示取几个
+    ```
+
+- 案例：取出工资前五名的员工
+
+  - ```mysql
+    select e.ename,e.sal from emp e order by sal desc limit 0,5;
+    ```
+
+- 案例：找出工资排名在第4到第9的员工
+
+  - ```mysql
+    select e.ename,e.sal from emp e order by sal desc limit 3,6;
+    3表示，起始位置，6代表取6个
+    ```
+
+- `limit`是`SQL`语句最后执行的一个环节
+
+  - ```mysql
+    select
+    	...
+    from
+    	...
+    where
+    	...
+    group by
+    	...
+    having
+    	...
+    order by
+    	...
+    limit
+    	...
+    ```
+
+- 分页显示采用`limit`
+  - 每页显示三条记录：
+
+    - ```mysql
+      第一页：0，3
+      第二页：3，3
+      第二页：6，3
+      第二页：9，3
+      第二页：12，3
+      ```
+
+  - 每页显示`pageSize`条记录
+
+    - 第`pageNo`页：`（pageNo - 1) * pageSize`，`pageSize`
+
+## 数据类型
+
+| 数据类型  | 占用字节数             | 描述                                                         |
+| --------- | ---------------------- | ------------------------------------------------------------ |
+| `char`    | `char(n)`              | 定长字符串，存储空间大小固定使用`char(2)`来表示类型或状态    |
+| `varchar` | `varchar(n)`           | 变长字符串，存储空间等于实际数据空间，只包含英文字符的字符串 |
+| `int`     | 4个字节                | 整型                                                         |
+| `bigint`  | 8个字节                | 长整型                                                       |
+| `float`   | `float(有效位数)`      | 数值型                                                       |
+| `double`  | `double(有效数字位数)` | 数值型                                                       |
+| `date`    | 8字节                  | 日期和时间                                                   |
+| `BLOB`    |                        | `Binary Large Object`（二进制大对象）                        |
+| `CLOB`    |                        | `Character Large Object`（字符大对象）                       |
+| 其他...   |                        |                                                              |
+
+- **varchar** ：可变长度字符串
+  - `varchar(3)`表示存储的数据长度不能超过3个字符长度
+
+- **char**：定长字符串
+  - `char(3)`表示存储的数据长度ch不能超过3个的字符长度
+- **int**：整数型
+  - `int(3)`表示最大可以存储999
+- **bigint**：长整型
+  - 对应`long`类型
+- **float**：浮点型单精度
+  - `float(7,2)`表示7个有效数字，2个有效小数位
+- **double**：浮点双精度
+  - `double(7,2)`表示7个有效数字，2个有效小数位
+
+- **date**：日期类型
+  - 实际开发中，常用字符串代替日期类型
+- **BLOB**：二进制大对象（`Binary Large Object`）
+  - 专门存储图片、视频、声音等数据
+  - 数据库存储图片很常见，但存储大视频很少见，一般都是存储视频地址
+
+- **CLOB**：字符串大对象（`Character Large Object`）
+  - 存储超大文本，可存储`4G+`的字符串
+
+- **varchar与char对比**
+  - 都是字符串
+  - `varchar`比较智能，可以根据实际数据长度分配空间，比较节省空间；但在分配的时候需要相关判断，效率低
+  - `char`不需要动态分配空间，所以执行效率高，但是可能会导致空间浪费
+  - 若字段中的数据不具备伸缩性，建议采用`char`类型存储
+  - 若字段中的数据具有很强的伸缩性，建议采用`varchar`类型存储
+
+## DDL（数据定义语言）
+
+### 创建表
+
+- 语法：
+
+  - ```mysql
+    create table 表名(
+        字段名1 数据类型 约束,
+    	字段名2 数据类型 约束,
+        字段名3 数据类型 约束,
+       	......
+    );
+    ```
+
+
+- 表名在数据库中一般建议以：`t_`或`tbl_`开始
+
+- 案例：创建学生表
+
+  - 学生信息包括：
+
+    - 学号、姓名、性别、班级编号、生日
+    - 学号：`bigint`
+    - 姓名：`varchar`
+    - 性别：`char`
+    - 班级编号：`int`
+    - 生日：`char`
+
+  - ```mysql
+    create table t_student(
+    	no bigint,
+        name varchar(255),
+        sex char(1),
+        classno varchar(255),
+        birth char(10)
+    );
+    ```
+
+### 删除表
+
+- 语法：
+
+- ```mysql
+  drop table if exists 表名;	// 当这个表存在的话删除
+  ```
+
+### 修改表结构
+
+```mysql
+删除列
+alter table 【表名字】 drop 【列名称】
+
+增加列
+alter table 【表名字】 add 【列名称】 数据类型 not NULL comment '注释说明'
+
+修改列的类型信息
+alter table 【表名字】 change 【列名称】【新列名称（这里可以用和原来列同名即可）】 数据类型 not NULL  comment '注释说明'
+
+重命名列
+alter table 【表名字】 change 【列名称】【新列名称】 数据类型 not NULL  COMMENT '注释说明'
+
+重命名表
+alter table 【表名字】 rename 【表新名字】
+
+删除表中主键
+alter table 【表名字】 drop primary key
+
+添加主键
+加主关键字的索引
+alter table tablename add primary key(id);
+alter table sj_resource_charges add constraint PK_SJ_RESOURCE_CHARGES primary key (resid,resfromid)
+
+添加索引
+alter table tablename add index 索引名 (字段名1[，字段名2 …]);
+alter table tablename add index emp_name (name);
+alter table sj_resource_charges add index index_name (name);
+
+添加唯一限制条件索引
+alter table sj_resource_charges add unique emp_name2(cardnumber);
+
+删除索引
+alter table tablename drop index emp_name;
+
+查看某个数据表的索引
+show index from 表名;
+
+MySQL创建、删除、重建和查看索引命令总结如下：
+
+创建索引（primary key，index，unique）
+alter table tbl_name add index index_name (column list);
+alter table tbl_name add unique index_name (column list);
+alter table tbl_name add primary key index_name (column list);
+
+删除索引（primary key，index，unique）
+alter table tbl_name drop index index_name (column list);
+alter table tbl_name drop unique index_name (column list);
+alter table tbl_name drop primary key index_name (column list);
+
+重建索引
+rename table tbl_name quick;
+
+查看某个数据表的索引
+show index from tbl_name;
+```
+
+## DML（数据操作语言）
+
+### insert 语句插入数据
+
+- 语法格式
+
+  - **插入单行数据**
+
+    - ```mysq
+      insert into 表名
+      	(字段名1,字段名2,字段名3,....)
+      values
+      	(值1,值2,值3,......);
+      
+      insert into values(值1,值2,值3,......); 	//这样就只能对应列的数量写
+      ```
+
+  - **插入多行数据**
+
+    - ```mysql
+      insert into 表名
+      	(字段名1,字段名2,字段名3,....)
+      values
+      	(值1,值2,值3,......),
+      	(值1,值2,值3,......),
+      	(值1,值2,值3,......);
+      ```
+
+  - 要求：字段的数量和值的数量相同，并且数据类型要对应相同
+  - 可以只插入指定字段，其他字段如果没有数据，则为`NULL`
+  - `into`可以省略的
+
+- 案例：
+
+  - ```mysql
+    插入单行数据
+    insert into t_student
+    	(no,name,sex,classno,birth)
+    values
+    	(1,'zhangsan','m','gaosanyiban','1999-01-22');
+    
+    插入多行数据
+    insert into t_student
+    	(no,name,sex,classno,birth)
+    values
+    	(2,'lsi','m','gaosanyiban','1999-01-22'),
+    	(3,'wangwu','m','gaosanyiban','1999-01-22'),
+    	(4,'zhaoliu','m','gaosanyiban','1999-01-22'),
+    	(5,'shenqi','m','gaosanyiban','1999-01-22');
+    ```
+
+- 注意：
+  - 当一条`insert`语句执行成功之后，表格当中必然会多一行记录。
+  - 即使多的这一行记录当中某些字段是`NULL`，后期也没有办法在执行
+  - `insert`插入数据了，只能使用`update`进行更新了
+
+### 表的复制及批量插入
+
+- 表的复制
+  - ```mysql
+    create table 表名 as select语句;   // 将查询结果当作表创建出
+    ```
+
+- 批量插入
+
+  - ```mysql
+    insert into 表名 select语句
+    ```
+
+  - 注意：这里有表结构的影响，不同的表结构不可以随便插入
+
+### update修改表的数据
+
+- ```mysql
+  update 表名 set 字段名1=值1，字段名2=值2... where 条件;
+  ```
+
+- 注意：没有条件整张表将全部更新
+
+### delete删除数据
+
+- ```mysql
+  detele from 表名 where 条件;
+  ```
+
+- 注意：没有条件全部删除
+
+- 怎么删除大表（数据量特别大的表）
+
+  - ```mysql
+    truncate table 表名
+    ```
+
+  - 表被截断，不可回滚，永久丢失
+
+  - 删之前，慎重！
