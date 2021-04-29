@@ -1077,7 +1077,7 @@ show index from tbl_name;
 
 - 注意：没有条件全部删除
 
-- 怎么删除大表（数据量特别大的表）
+- 怎么删除大表中的数据（数据量特别大的表）
 
   - ```mysql
     truncate table 表名
@@ -1086,3 +1086,838 @@ show index from tbl_name;
   - 表被截断，不可回滚，永久丢失
 
   - 删之前，慎重！
+
+## 约束（Constraint）
+
+- 什么是约束？常见的约束有哪些？
+  - 在创建表的时候，可以给表的字段添加响应的约束，添加约束的目的是为了保证表的数据的合法性、有效性、完整性
+  - 常见的约束
+    - 非空约束（**not null**）：约束的字段不能为`NULL`
+    - 唯一约束（**unique**）：约束的字段不能重复
+    - 主键约束（**primary key**）：约束的字段不能为`NULL`，也不能重复（简称`PK`）
+    - 外键约束（**foreign key**）：（简称`FK`）
+    - 检查约束（**check**）
+      - 注意：`Oracle`数据空有`check`约束，但`mysql`没有
+
+### 非空约束
+
+- **not null**
+
+- ```mysql
+  create table t_user(
+  	id int,
+      username varchar(255) not null, -- 这样username这列就必须填写值，不可以为空（NULL）
+      password varchar(255)
+  );
+  ```
+
+### 唯一约束
+
+- **unique**
+
+  - 唯一约束修饰的字段具有唯一性，不能重复，但可以为`NULL`
+
+- ```mysql
+  给一个字段加唯一约束
+  create table t_user(
+  	id int unique, -- id这列就是唯一了，不可以填写重复的值，可以为NULL
+      username varchar(255),
+  );
+  
+  表级约束：给多个字段加唯一约束
+  create table t_user(
+  	id int,
+      username varchar(255),
+      usercode varchar(255),
+      unique(username,usercode)
+  );
+  
+  列级约束：给多个字段加唯一约束（2）
+  create table t_user(
+  	id int,
+      username varchar(255) unique,
+      usercode varchar(255) unique
+  )
+  
+  表级约束中的unique(字段1，字段...)表示的是多个字段联合建立一个约束，只要多个字段连接起来重复才是重复，单独一个字段重复，是不重复
+  列级约束在字段后面加unique是给单独这一个字段加唯一约束，这个字段有重复的就不可以
+  ```
+
+### 主键约束
+
+- **primary key**
+
+  - 主键特点：不能为`NULL`，也不能重复
+  - 一张表的主键约束只能有**1**个（重点）
+
+- ```mysql
+  列级主键约束
+  create table t_user(
+  	id int primary key,
+      username varchar(255),
+      email varchar(255)
+  )
+  insert into t_user(id,username,email) values(1,'zs','zs@123.com')
+  
+  表级主键约束
+  create table t_user(
+  	id int,
+      username varchar(255),
+      email varchar(255),
+      primary key(id) -- 和标记unique约束一样
+  )
+  insert into t_user(id,username,email) values(1,'zs','zs@123.com')
+  
+  复合主键约束
+  create table t_user(
+      id int,
+      username varchar(255),
+      password varchar(255),
+      primary key(id,username)
+  )
+  ```
+
+- 相关术语：
+  - 主键约束（`primary key`）
+  - 主键字段（`id`字段添加`primary key`之后，`id`叫做主键字段）
+  - 主键值（`id`字段中的每一个值都是主键值）
+  
+- 主键有什么作用呢？
+  - 表的设计三范式有要求，第一范式中就要求任何一张表都应该有主键
+  - 主键的作用：主键值是这行记录在这张表当中的唯一标识。（就像身份证号一样）
+
+- 主键分类
+  - 根据主键字段的字段数量来划分
+    - 单一主键（常用，推荐）
+    - 复合主键（多个字段联合起来添加一个主键约束）（不建议用，违反三范式）
+  - 根据主键性质来划分
+    - 自然主键
+    - 业务主键（主键值和系统的业务挂钩）（银行卡的卡号、身份证号作为主键）（不推荐用）
+      - 最好不要拿着和业务挂钩的字段作为主键，因为以后的业务一旦发生改变的时候，主键值也需要随着发生变化，但有的时候没有办法变化，因为变化会导致主键值重复
+  
+- 主键值自增
+
+  - **auto_increment**
+
+  - ```mysql
+    create table t_user(
+    	id int primary key auto_increment, -- 在primary key后面加上auto_increment就是自增了
+        username varchar(255),
+    )
+    ```
+
+  - `Oracle`当中也提供了一个自增机制，叫做：序列（`sequence`）对象
+
+### 外键约束
+
+- 相关术语：
+  - 外键约束（`foreign key`）
+  - 外键字段：添加有外键约束的字段
+  - 外键值：外键字段中的每一个值
+
+- 业务背景（请设计数据库表，用来维护学生和班级的信息？）
+
+  - 第一种方案：一张表存储所有数据（冗余）
+
+    - ```mysql
+      no(pk)		name	 classno	  classname
+      ---------------------------------------------------
+      1			zs1		   101		  亦庄二中高三1班
+      2			zs2		   101		  亦庄二中高三1班
+      3			zs3		   102		  亦庄二中高三2班
+      4			zs4		   102		  亦庄二中高三2班
+      5			zs5		   102		  亦庄二中高三2班
+      ```
+
+    
+
+  - 第二种方案：两张表（班级表，学生表）
+
+    - ```mysql
+      -- t_class 班级表表
+      classno		classname
+      --------------------------------
+      101			亦庄二中高三1班
+      102			亦庄二中高三2班
+      
+      -- t_student 学生表
+      sno			sname		 classno(该字段添加外键约束fk)
+      --------------------------------------------------------
+      1			zs1			 101
+      2			zs2			 101
+      3			zs3			 102
+      4			zs4			 102
+      5			zs5			 102
+      ```
+
+  - 将以上表建表语句写出来：
+
+    - `t_student`中的`classno`字段引用`t_class`表中的`classno`字段，此时，`t_student`叫做子表，`t_class`叫做副表
+
+    - 顺序要求
+
+      - 删除数据的时候，先删除子表，在删除父表
+      - 添加数据的时候，先添加父表，在添加子表
+      - 创建表的时候，先创建父表，在创建子表
+      - 删除表的时候，先删除子表，在删除父表
+
+    - ```mysql
+      create table t_class(
+      	classno int,
+          classname varchar(255),
+          primary key(classno)
+      )
+      
+      create table t_student(
+      	sno int,
+          sname varchar(255),
+          cno int,
+          primary key(sno),
+          foreign key(cno) references t_class(classno)
+      )
+      ```
+
+- 语法
+
+  - ```mysql
+    foreign key(需要外键字段) references 父表名(要引用的字段)
+    ```
+
+  - 子表中的外键值需要引用父表的外键值，不可以和父表的外键值不一样
+
+  - 外键值可以为`NULL`
+
+  - 外键字段引用其他表的某个字段的时候，被引用的字段必须是主键吗？
+
+    - 被引用的字段不一定是主键，但是至少要有`unique`唯一性
+
+## 存储引擎
+
+- 存储引擎是：`MySQL`特有的，其它数据库没有，存储引擎这个名字旨在`mysql`中存在（`Oracle`中有对应的机制，但是不叫存储引擎，叫存储方式)
+
+### 存储引擎的本质
+
+- `mysql`支持很多的存储引擎，每一个存储引擎都对应了一种不同的存储方式
+- 每一个存储引擎都有自己的优缺点，需要在合适的时机选择合适的存储引擎
+- 通过采用不同的技术将数据存储在文件或内存中；
+- 每一种技术都有不同的存储机制，不同的存储机制提供不同的功能和能力
+- 通过选择不同的技术，可以获得额外的速度或功能，改善我们的应用；
+
+### 查看存储引擎
+
+- **show engines\G**
+- 在创建表时，可使用< ENGINES> 选项为CREATE TABLE诧句显示指定存储引擎
+  - 例如：`create table table_name(no int)engine = myisam;`
+- 如果创建表时没有指定存储引擎，则使用当前默认的存储引擎； 
+- 默认的存储引擎可在 `my.ini` 配置文件中使用 `default-storage-engin` 选项指定；
+- 修改表的存储引擎使用：`alter table 表名 engine= 存储引擎名称;` 
+- 查看表使用的存储引擎，命令如下： 
+  - `show create table 表名\G;`
+  - `show table status like '表名'\G;`
+
+### 常见的存储引擎
+
+#### MyISAM存储引擎
+
+```mysql
+Engine: MyISAM
+     Support: YES
+     Comment: MyISAM storage engine
+Transactions: NO 						-- 事务（TCL）
+          XA: NO
+  Savepoints: NO
+```
+
+- `MyISAM`不支持事务
+- `MyISAM`是`MyISAM`最常用的，但不是默认的引擎
+- 他管理的表具有以下特性
+  - 每个表使用三个文件来存储所有的东西
+    - 格式文件——存储表的结构（`mytable.frm`）
+    - 数据文件——存储表的数据（`mytable.MYD`）
+    - 索引文件——储存表的索引（`mytable.MYI`）
+  - 灵活的`auto_increment`字段处理
+  - 可被转换为压缩、制度来节省空间
+
+#### InnoDB引擎
+
+- `InnoDB`存储引擎是`MySQL`的缺省引擎
+- 它管理的表主要具有以下特征
+  - 每个`InnoDB`表在数据库目录中以`.frm`格式文件表示
+  - `InnoDB`表空间`tablespace`被用于存储表的内容
+  - 提供一组用来记录事务性活动的日志文件
+  - 用`commit`（提交）、`savepoint`及`rollback`（回滚）支持事务处理
+  - 提供全`ACID`兼容
+  - 在`MySQL`服务器崩溃后提供自动回复
+  - 多版本（`MVCC`）和行级锁定
+  - 支持外键及引用的完整性，包括级联删除和更新
+  - 很安全，支持事务
+
+#### MEMORY存储引擎
+
+- 使用`MEMORY`存储引擎的表，因为数据存储在内存中，且行的长度固定，所以使得`MEMORY`存储引擎 非常快；
+- `MEMORY`存储引擎管理的表具有下列特征： 
+  - 在数据库目录内，每个表均以`.frm`格式文件表示
+  - 表数据及索引被存储在内存中
+  - 表级锁机制
+  - 字段属性性能包含`TEXT`或`BLOB`字段
+- `MEMORY`存储引擎以前被称为`HEAP`引擎
+
+#### 选择合适的存储引擎
+
+- `MyISAM`表最适合于大量的数据读而少量数据更新的混合操作。`MyISAM`表的另一种适用情形是使用压缩的只读表。
+- 如果查询中包含较多的数据更新操作，应使用`InnoDB`。其行级锁机制和多版本的支持为数据读取和更新的混合提供了良好的并发机制。
+- 使用`MEMORY`存储引擎存储非永丽需要的数据，或者是能够从基于磁盘的表中重新生成的数据。
+
+## 事务（Transaction）
+
+### 什么是事务
+
+- 一个事务是一个完整的业务逻辑单元，不可再分
+- 通常一个事务对应一个完整的业务；（如：银行转账业务）
+- 而一个完整的业务需要批量的`DML`（`insert`、`update`、`delete`）语句共同完成；
+- 事务只和`DML`语句有关系，或者说只有`DML`语句才有事务；
+- 以上所描述的批量`DML`语句共有多少`DML`语句，这个和业务逻辑有关系，业务逻辑不同`DML`语句个数不同 ；
+- 假设所有的业务都能使用`1`条`DML`语句搞定，还需要事务机制吗？不需要事务，但实际情况不是这样的，通常一个事务需要多条`DML`语句共同联合完成
+
+### 事务的一些概念\SQL语句
+
+- **SQL**语句
+
+  - **commit**：提交事务
+  - **rollback**：回滚事务
+
+- 概念
+  - 开启事务（`start transaction`）
+  - 结束事务（`end transaction`）
+  - 提交事务（`commit transaction`）
+  - 回滚事务（`rollback transaction`）
+
+- 开始和结束的标志
+
+  - ```mysql
+    假设一个事儿，需要先执行一条insert，在执行一条update，最后执行一条detele，这个事才算完成
+    
+    开启事务机制（开始）
+    
+    执行insert语句-->insert....（这个执行成功之后，把这个执行记录到数据库的操作历史当中，并不会向文件中保存一条数据，不会真正修改硬盘上的数据）
+    执行一条update语句 --> update...（这个执行也是记录一下历史操作，不会真正的修改硬盘上的数据）
+    执行delete语句 --> delete...（这个执行也是记录以下历史操作【记录到缓存】，不会真正的修改硬盘上的数据）
+    
+    提交事务或者回滚事务（结束）
+    ```
+
+  - 开始的标志：任何一条`DML`语句执行，标志着事务的开始
+
+  - 结束的标志：
+
+    - 提交（`commit`）、回滚（`rollback`）
+      - 提交：成功的结束，将所有的`DML`语句操作记录和底层硬盘文件中数据进行一次同步
+      - 回滚：失败的结束，将所有的`DML`语句操作记录全部清空
+
+- **重点**
+
+  - 在事务进行过程中，未结束之前，`DML`语句是不会修改底层数据库文件中的数据
+  - 只是将历史操作记录以下，在内存中完成记录
+  - 只有在事务结束的，而且是成功结束的时候才会修改底层硬盘文件中的数据
+
+### 事务四个特性（ACID）
+
+- 事务可以保证多个操作原子性，要么全成功，要么全失败。对于数据库来说，事务保证批量的`DML`要么全成功，要么全失败。
+
+- **A**：原子性（`Atomicity`）：最小单元，不可再分
+- **C**：一致性（`Consistency`）：事务要求所有的`DML`语句操作的时候，必须保证同时成功或失败
+- **I**：隔离性（`lsolation`）：一个事务不会影响其他事务的运行，事务**A**与事务**B**之间具有隔离
+- **D**：持久性（`Durability`）：在事务完成之后，该事务对数据库所作的更改将持续地保存在数据库中，并不会被回滚，事务才算成功的结束
+
+### 事务的隔离性
+
+- 事务特性`ACID`之一：隔离性（`isolation`）
+
+  #### 隔离级别
+
+  - 第一级别：读未提交（`read uncommitted`）
+    - 对方事务还没有提交，我们当前事务可以读取到对方未提交的数据
+    - 读未提交存在脏读（`Dirty Read`）现象：表示读到了脏的数据。
+  - 第二级别：读已提交（`read committed`）
+    - 对方事务提交之后的数据我方可以读取到
+    - 读已提交存在的问题是：不可重复读
+    - 这种隔离级别，解决了脏读现象，但是出现了不可重复读
+  - 第三级别：可重复读（`repeatable read`）
+    - 对方提交之后的数据都读取不到
+    - 这种隔离级别，解决了不可重复读问题
+    - 这种隔离级别可以避免“脏读和丌可重复读”，达到“重复读取”
+    - 这种隔离级别存在的问题是：读取到的数据是幻象
+  - 第四级别：串行化
+    -  事务`A`和事务`B`，事务A在操作数据库表中数据的时候，事务`B`叧能排队等待
+    - 解决了所有问题
+    - 存在的问题：效率低，需要事务排队
+
+- `Oracle`数据库默认的级别是第二级别（读已提交）
+
+- `MySQL`数据库默认的级别是第三级别（可重复读）
+
+#### 查看隔离级别
+
+- 查看当前会话的隔离级别
+  - `select @@tx_isolation;`
+  - `select @@session.tx_isolation;`
+- 查看当前全局隔离级别
+  - `select @@global.tx_isolation;`
+
+#### 设置服务器缺省隔离级别
+
+- 第一种：修改该`my.ini`配置文件
+
+  - 在`my.ini`文件中的`[mysqlid]`下面添加
+
+  - ```mysql
+    -------------------------my.ini------------------------------
+    [mysqld]
+    transaction-isolation = isolation-level
+    --------------------------my.ini-------------------------------
+    ```
+
+  - `isolation-level`可选项为：
+
+    - `read-uncommitted`
+    - `read-committed`
+    - `repeatable-read`
+    - `serializable`
+
+- 第二种：通过命令方式设置事务隔离级别
+
+  - `set transaction isolaction level isolation-level;`
+  - `isolation-level`可选值
+    - `read uncommitted`
+    - `read committed`
+    - `repeatable read`
+    - `serializable`
+
+- 设置隔离级别作用的范围
+
+  - 事务隔离级别的作用范围分为两种：会话级、全局级
+    - 会话级（`session`）：叧对当前会话有效
+    - 全局级（`global`）：对所有会话有效
+  - 使用方法如下
+    - 会话级： 
+      - `set transaction isolation level <isolation-level>;`
+      - `set session transaction isolation level <isolation-level>;`
+    - 全局级:
+      - `set global transaction isolation level <isolation-level>;`
+
+- 隔离级别不一致性问题的关系
+
+  | 隔离级别 | 脏读   | 不可重复读 | 幻象读 |
+  | -------- | ------ | ---------- | ------ |
+  | 读未提交 | 可能   | 可能       | 可能   |
+  | 读已提交 | 不可能 | 可能       | 可能   |
+  | 可重复读 | 不可能 | 不可能     | 可能   |
+  | 串行化   | 不可能 | 不可能     | 不可能 |
+
+### 演示事务
+
+- `mysql`事务默认情况下是自动提交的
+  - 什么是自动提交？只要执行任意一条`DML`语句则提交一次
+- 怎么关闭自动提交
+  - `start transaction`
+
+- 演示：自动提交
+
+  - ```mysql
+    drop table if exists t_user;
+    create table t_user(
+    	id int primary key auto_increment,
+        username varchar(255)
+    );
+    
+    insert into t_user(username) values('zs');
+    mysql> select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    +----+----------+
+    1 row in set (0.00 sec)
+    
+    mysql> rollback; -- 回滚
+    Query OK, 0 rows affected (0.00 sec)
+    
+    mysql> select * from t_usre;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    +----+----------+
+    1 row in set (0.00 sec)
+    
+    -- 回滚没有管用，说明commit（提交）是自动的
+    ```
+
+- 演示：关闭自动提交
+
+  - ```mysql
+    select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    +----+----------+
+    1 row in set (0.00 sec)
+    
+    mysql> start transaction; -- 开启事务
+    Query OK, 0 rows affected (0.00 sec)
+    
+    mysql> insert into t_user(username) values('ls');
+    Query OK, 1 row affected (0.04 sec)
+    
+    mysql> select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    |  2 | ls       |
+    +----+----------+
+    2 rows in set (0.00 sec)
+    
+    mysql> rollback; -- 回滚，清空历史记录，结束事务
+    Query OK, 0 rows affected (0.04 sec)
+    
+    mysql> select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    +----+----------+
+    1 row in set (0.00 sec)
+    
+    -- 回滚成功，说明自动提交关闭了
+    ```
+
+- 演示：提交事务
+
+  - ```mysql
+    mysql> start transaction; -- 开始事务
+    Query OK, 0 rows affected (0.00 sec)
+    
+    mysql> insert into t_user(username) values('wangwu');
+    Query OK, 1 row affected (0.05 sec)
+    
+    mysql> insert into t_user(username) values('rose');
+    Query OK, 1 row affected (0.00 sec)
+    
+    mysql> select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    |  3 | wangwu   |
+    |  4 | rose     |
+    +----+----------+
+    3 rows in set (0.00 sec)
+    
+    mysql> commit; -- 提交，结束事务
+    Query OK, 0 rows affected (0.04 sec)
+    
+    mysql> select * from t_user;
+    +----+----------+
+    | id | username |
+    +----+----------+
+    |  1 | zs       |
+    |  3 | wangwu   |
+    |  4 | rose     |
+    +----+----------+
+    3 rows in set (0.00 sec)
+    
+    -- 提交成功，没有错误
+    ```
+
+
+
+- 演示四个级别
+
+## 索引
+
+- 什么是索引，有什么用？
+
+  - 相当于一本书的目录，通过目录可以快速的找到对应的资源。
+  - 在数据方面，查询一张表的时候有两种检索方式
+    - 第一种方式：全表扫描
+    - 第二种方式：根据索引检索？（效率很高）
+  - 索引为什么可以提高检索效率？
+    - 其实最根本的原理是缩小了扫描的范围
+    - 索引虽然可以提高检索效率，但是不可以随意添加索引，因为索引也是数据库当中的对象，也需要数据库不断的维护。是有维护成本的。比如，表中的数据经常被修改，这样就不适合添加索引，因为数据一旦被修改，索引需要重新排序，进行维护。
+  - 添加索引是给某一个字段，或者说某些字段添加索引
+    - `select ename,sal from emp where ename='SMITH';`
+    - 当`ename`字段上没有添加索引的时候，以上`sql`语句会进行全表扫描，扫描`ename`字段中所有的值。
+    - 当`ename`字段中添加索引的时候，以上`sql`语句会根据索引扫描，快速定位
+
+- 怎么创建索引对象？怎么删除索引对象？
+
+  - 创建索引对象：`create index 索引名称 on 表名(字段);`
+  - 删除索引对象：`drop index 索引名称 on 表名;`
+
+- 什么时候考虑给字段添加索引？（满足什么条件）
+
+  - 数据量庞大（根据客户的需求，根据线上的环境）
+  - 该字段很少的`DML`字段（因为字段进行修改操作，索引也需要维护）
+  - 该字段经常出现在`where`子句中（经常根据那个字段查询）
+  - **注意**：主键和具有`unique`约束的字段自动会添加索引
+    - 根据主键查询效率较高，尽量根据主键检索
+
+- 查看`sql`语句的执行计划
+
+  - `explain select语句`
+
+- 索引底层采用的数据结构是`B + True`
+
+- 索引的实现原理
+
+  - 通过`B True`缩小扫描范围，底层索引进行了排序，分区，索引会携带数据在表中的“物理地址”，最终通过索引检索到数据之后，获取到关联的物理地址，通过物理地址定位表中的数据，效率是最高的
+
+  - ```mysql
+    select ename from emp where ename = 'smith';
+    通过索引转换为
+    select ename from emp where 物理地址 = 'xxx';
+    ```
+
+- 索引的分类？
+  - 单一索引：给单个字段添加索引
+  - 复合索引：给多个字段联合起来添加1个索引
+  - 主键索引：主键上会自动添加索引
+  - 唯一索引：有`unique`约束的字段上会自动添加索引
+  - .....
+- 索引什么时候会失效？
+  - 模糊查询的时候，第一个字符使用的是`%`，这个时候索引是失效的
+
+## 视图（view）
+
+- 什么是视图？
+
+  - 站在不同的角度去看到数据（同一张表的数据，通过不同的角度去看待）
+
+- 创建、删除视图
+
+  - 创建视图
+    - `create view 视图名称 as select 字段,字段... from 表名;`
+  - 删除视图
+    - `drop view 视图名称;`
+  - 注意：只有`DQL`语句才能以视图的方式创建出来，可以对视图进行`CRUD`操作
+
+- 对视图进行增删改查，会影响到原表数据。（通过视图影响原表数据，不是直接操作的原表）
+
+- 视图的操作
+
+  - ```mysql
+    create table emp_bak as select * from emp;
+    ccreate view myview as select ename,empno,sal from emp_bak; // 建立视图
+    update myview set ename='hehe',sal=1 where empno='7369'; // 通过视图修改原表数据
+    delete from myview where empno = 7369; // 通过视图删除原表数据
+    ```
+
+- 视图的作用？
+
+  - 视图可以隐藏表的实现细节，保密级别较高的系统，数据库只对提供相关的视图，只对视图进行`CRUD`
+
+## DBA命令
+
+### 新建用户
+
+- `create user 用户名 identified by '密码';`
+
+- 实例：
+
+  - ```mysql
+    create user username identified by '123';
+    可以登录但是只可以看见一个库information_schema
+    ```
+
+### 授权
+
+#### 命令详解
+
+```mysql
+示例：grant all privileges on dbname.tbname to 'username'@'login ip' identified by 'password' with grant option;
+
+1) dbname=* 表示所有数据库
+2) tbname=* 表示所有表
+3) login ip=% 表示任何ip
+4) password 为空，表示不需要密码即可登录
+5) with grant option; 表示该用户还可以授权给其他用户
+```
+
+- 细粒度授权
+  - 首先以root用户进入`mysql`
+  - 然后键入命令：`grant select,insert,update,delete on *.* to p361 @localhost Identified by "123";`
+  - 如果希望该用户能够在任何机器上登陆`mysql`，则将`localhost`改为 `"%"` 
+- 粗粒度授权
+  - 我们测试用户一般使用该命令授权： 
+    - `GRANT ALL PRIVILEGES ON *.* TO 'p361'@'%' Identified by "123";`
+  - 注意：用以上命令授权的用户丌能给其它用户授权,如果想让该用户可以授权,用以下命令:
+    -  `GRANT ALL privileges ON *.* TO 'p361'@'%' Identified by "123" WITH GRANT OPTION;`
+- 用户权限`privileges`包括：
+  - `alter`：修改数据库的表
+  - `create`：创建新的数据库戒表
+  - `delete`：删除表数据
+  - `drop`：删除数据库/表
+  - `index`：创建/删除索引
+  - `insert`：添加表数据
+  - `select`：查询表数据
+  - `update`：更新表数据
+  - `all`：允许任何操作 
+  - `usage`：叧允许登录
+
+### 回收授权
+
+- 命令详解 
+
+- ```mysql
+  回收授权
+  revoke privileges on dbname[.tbname] from username;
+  revoke all privileges on *.* from p361;
+  
+  use mysql
+  select * from user
+  迚入 mysql库中
+  修改密码;
+  update user set password = password('qwe') where user = 'p646';
+  刷新权限; 
+  flush privileges
+  ```
+
+### 导入导出
+
+- 将数据库当中所有的数据导出
+
+  - `mysqldump 数据库名称>要导出的sql文件的路径 -uroot -p密码`
+  - `mysqldump bjpowernode>D:\bjpowernode.sql -uroot -p333`
+
+- 导出数据库中某个表的数据
+
+  - `mysqldump 数据库名称 表名>要导出的sql文件的路径 -uroot -p密码`
+  - `mysqldump bjpowernode emp>D:\bjpowernode.sql -uroot -p333`
+
+- 导入数据
+
+  - ```mysql
+    create databases 数据库名称;
+    use 数据库名称;
+    source sql文件所在的路径地址
+    ```
+
+## 数据库设计三范式
+
+- 什么是设计范式？
+  - 设计表的依据，按照三范式设计的表不会出现数据冗余
+
+- 三范式都是那些？
+  - 第一范式：任何一张表都应该有主键，并且每一个字段原子性不可再分
+
+  - 第二范式：建立在第一范式的基础之上，所有非主键字段完全依赖主键，不能产生部份依赖
+
+    - ```mysql
+      多对多？ 三张表 关系表，两个外键
+      
+      t_student 学生表
+      sno(pk)		sname
+      ---------------------
+      1			张三
+      2			李四
+      3			王五
+      
+      t_teacher 讲师表
+      tno(pk)		tname
+      ---------------------
+      1			王老师
+      2			张老师
+      3			李老师
+      
+      t_student_teacher_relation 学生关系讲师表
+      id(pk)		sno(fk)		tno(fk)
+      ---------------------------------
+      1			1			3		
+      2			1			1		
+      3			2			2		
+      4			2			3		
+      5			3			1		
+      6			3			3		
+      ```
+
+  - 第三范式：建立在第二范式之上，所有非主键字段直接依赖主键，不能产生传递依赖
+
+    - ```mysql
+      一对多？ 两张表 多的表加外键
+      
+      班级t_class
+      cno(pk)		cname
+      ------------------
+      1			班级1
+      2			班级2
+      
+      学生t_student
+      sno(pk)		sname		classno(fk)
+      ------------------------------------
+      101			张1			1
+      102			张2			1
+      103			张3			2
+      104			张4			2
+      105			张5			2
+      ```
+
+  - 提醒：在实际的开发中，以满足客户的需求为主，有的时候会拿冗余换执行速度
+
+- 一对一怎么设计？
+
+  - ```mysql
+    第一种方案：主键共享
+    t_user_login  用户登录表
+    id(pk)		username	  password
+    ------------------------------------
+    1			zs			  123
+    2			ls			  456
+    
+    t_user_detail  用户详细信息表
+    id(pk+fk)	realname	tel		...
+    ------------------------------------
+    2			李四		 12345
+    1			张三		 87998
+    ```
+
+  - ```mysql
+    第二种方案：外键唯一
+    t_user_login  用户登录表
+    id(pk)		username	  password
+    ------------------------------------
+    1			zs			  123
+    2			ls			  456
+    
+    t_user_detail  用户详细信息表
+    id(pk)	realname	  tel		userid(fk+unique)	...
+    --------------------------------------------------------
+    2			李四		 12345	   2
+    1			张三		 87998	   1
+    ```
+
+## 34道作业题
+
+- 本作业题全部按照上面给的`bjpowernode.sql`文件练习
+- https://github.com/HAODEabcd/Note/blob/master/SQL/bjpowernode.sql
+
+1. ```mysql
+   第一步：找出每个部门最高薪资
+   select deptno,max(sal) as maxsal from emp group by deptno;
+   
+   第二部：将以上结果作为临时表t，t表和e表进行连接，条件是t.deptno = e.deptno and t.maxsal = e.sal;
+   select 
+   	e.ename,t.*
+   from
+   	(select deptno,max(sal) as maxsal from emp group by deptno) t
+   join
+   	emp e
+   on
+   	t.deptno = e.deptno and t.maxsal = e.sal;
+   ```
+
+2. ```mysql
+   ```
+
+3. 
