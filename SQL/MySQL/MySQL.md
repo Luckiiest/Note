@@ -1897,27 +1897,3 @@ Transactions: NO 						-- 事务（TCL）
     1			张三		 87998	   1
     ```
 
-## 34道作业题
-
-- 本作业题全部按照上面给的`bjpowernode.sql`文件练习
-- https://github.com/HAODEabcd/Note/blob/master/SQL/bjpowernode.sql
-
-1. ```mysql
-   第一步：找出每个部门最高薪资
-   select deptno,max(sal) as maxsal from emp group by deptno;
-   
-   第二部：将以上结果作为临时表t，t表和e表进行连接，条件是t.deptno = e.deptno and t.maxsal = e.sal;
-   select 
-   	e.ename,t.*
-   from
-   	(select deptno,max(sal) as maxsal from emp group by deptno) t
-   join
-   	emp e
-   on
-   	t.deptno = e.deptno and t.maxsal = e.sal;
-   ```
-
-2. ```mysql
-   ```
-
-3. 
