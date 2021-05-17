@@ -207,126 +207,406 @@
 |canPlayType()|	videoHeight|	error|
 
 ## canvas
----
 
 - 标签 `<canvas>`
   - 不支持`canvas` 的浏览器可以看到的内容
-  - 默认宽度`300px`，默认高度` 150px`
   - 注意：`canvas`宽高需要设置在标签中 否则绘制的东西可能出错
-- `<canvas>` 绘制环境
-  - `getContext("2d")`;目前支持`2d`的场景
+
+- `canvas`的应用场景
+  - 游戏
+  - 图表
+  - 动画
+  - `codepen.io`(`HTML5`动效)
+- `canvas`发展历史
+  - 最早在`apple`的`safari1.3`中引入
+  - ie9之前的浏览器不支持`canvas`
+  - http://caniuse.com/
+
+### 使用canvas
+
+- `canvas`标签（画布）
   
-```html
-<canvas width="" height="" id="">
-	您的浏览器不支持canvas，请更换浏览器！
-</canvas>
-```
+  - `<canvas width='' height=''></canvas>`
+  
+- 获取`canvas`元素
+  - `var canvas = document.getElementsById('mycanvas')`
 
-- **绘制矩形**
-  - `rect(L,T,W,H)`:创建一个矩形
-  - `fillRect(L,T,W,H)`:绘制填充的矩形
-  - `clearRect(x,y,w,h) ` 清除矩形选区
-  - `strokeRect(L,T,W,H)`绘制空心矩形(无填充)
-    - 默认一像素黑色边框
-	
-- **设置绘图样式**
-  - `fillStyle`:填充颜色(绘制`canvas`是有顺序的)
-  - `lineWidth`:触笔宽度(线宽)
-  - `strokeStyle`:触笔颜色
-- **绘制路径**
-  - `beginPath()` :开始路径
-  - `closePath():`结束路径
-  - `moveTo(x,y)`:将触笔移动到x,y点
-  - `lineTo(x,y)`:绘制到x,y点
-  - `stroke():` 触笔方法 画线  默认为黑色
-  - `fill()`:填充方法 
-  - `rect(x,y,w,h)`:矩形路径
-  - `save()`:保存路径
-  - `restore()`:恢复路径
-- **绘制曲线** 
-  - `arcTo(x1,y1,x2,y2,r)`
-     - `x1`,`y1` 坐标一  `x2`,`y2`坐标二   r圆弧半斤
-  - `quadraticCurveTo(dx,dy,x1,y1)`
-     - 贝塞尔曲线:`dx`,`dy`控制点  `x1`,`y1`结束坐标
-  - `bezierCurveTo(dx1,dy1,dx2,dy2,x1,y1)`
-     - 贝塞尔曲线:`dx1,dy1` 控制点一 `dx2,dy2`控制点二 
-     - `x1,y1`结束坐标
+- 获得`canvas`上下文对象（画笔）
+  - `var ctx = canvas.getContext('2d');`
+  - 因为`canvas`是画`2d`图形的
+  - `WebGL`绘图是画`3d`图形的
+  
+- 注意：
+  - 元素对象（`canvas`元素）和上下文对象（通过`getContext('2d')`⽅方法获取到的`CanvasRenderingContext2D`对象）
+  - 元素对象相当于我们的画布，上下文对象相当于画笔，我们接下来的所有操作是基于上下文对象的
 
-- **绘制圆形**
-  - `arc(x,y,半径,起始弧度,结束弧度,旋转方向)`
-    - `x`，`y`起始位置
-    - 弧度与角度：`弧度=角度值*Math.PI/180`
-    - 旋转方向：顺时针（默认：`false`），逆时针（`true`）
-- **绘制文本**
-  - `strokeText(文本,x,y)`;  绘制空心文本
-  - `fillText(文本,x,y)`; 绘制实心文本
-  - `font = "font-size  font-family" `注:尺寸 字体缺一不可
-	- `textAlign = "";`文本左右对齐方式  `start center end  left right`
-	- `textBaseline`文本上下对齐方式 
-         - `alphabetic`默认。文本基线是普通的字母基线。
-         - `top`	文本基线是 `em` 方框的顶端。。
-         - `hanging`	文本基线是悬挂基线。
-         - `middle`	文本基线是`em` 方框的正中。
-         - `ideographic`	文本基线是表意基线。
-         - `bottom`	文本基线是 `em` 方框的底端。
-         - `measureText(文本).width;` 文本实际宽度(只有宽度值)
+- `ctx`是画笔，就是`canvas`的上下文对象
 
+- ```javascript
+  <!-- 画布 -->
+  <canvas id='myCanvas' width='' height=''></canvas>
+  
+  <script>
+      var myCanvas = document.getElementById('myCanvas'); //获取canvas对象
+  	var ctx = myCanvas.getContext('2d'); //获取mycanvas的上下文对象
+  </script>
+  ```
 
-- **图形边界样式**
-  - `lineJoin`: 边界连接点样式
-       - `miter`(默认值),`round`(圆角),`bevel`(斜角)
-  - `lineCap`: 端点样式
-       - `butt`(默认值),`round`(圆角),`square`(高度多出线宽一半)
+### 线段
 
-- **绘制图片**
-  - 图片预加载，获取图片文件
-    - `onload`中调用
-    - `drawImage(img,x,y,w,h);`绘制图片(图片,坐标`x`,坐标`y`,宽度,高度)
+- `moveTo(x,y)`：起始坐标点`x，y`（将触笔移动到`x,y`点）
+- `lineTo(x,y)`：从起始点绘制到`x,y`点
+- `stroke()`：触笔方法 画线  默认为黑色
+- `closePath()`：闭合当前路径，和回到起始点的区别
+- `fill()`：填充方法
+- `fillStyle = color`：更改填充颜色
+- `strokeStyle = color`：更改线段颜色
+- `lineWidth = size`：设置线段宽度
+- `beginPath()`：结束路径，开启一段新的路径
+- `save()`：保存当前画布
+- `restore()`：释放`save()`保存的画布
+- 重点
+  - `fill`和`stroke`方法都是作用在当前的所有子路径
+  - 完成一条路径后要重新开始另一条路径时必须使用`beginPath()`方法, `betinPath`开始子路径的一个新的集合
 
-  - 设置背景
-    - `createPattern(img,平铺方式)`
-    - 平铺方式:`repeat`,`repeat-x`,`repeat-y`,`no-repeat`
+### 矩形
 
-- **canvas变换**
-     - `translate(x,y)`
-	- 坐标基准点偏移 : 从起始点为基准，移动到当前位置
-     - `rotate(弧度)`: 旋转  `弧度公式 = 角度*PI/180`
-     - `scale(wb,hb)`缩放比例(缩放`canvas`绘制的图片)
+- `rect(x,y,w,h)`：创建一个矩形
+  - `x,y`代表起始点，`w,h`代表宽高
+- `fillRect(x,y,w,h)`：绘制填充的矩形
+- `strokeRect(x,y,w,h)`：绘制空心矩形（无填充）
+- `clearRect(x,y,w,h)`：擦除当前矩形区域
+  - `x,y`代表起始点，`w,h`代表宽高
+- 注意：
+  - `fillRect`和`strokeRect`都会自动结束路径
 
-- **颜色渐变**
-   - 线性渐变:`createLinearGradient(x1,y1,x2,y2)`
-      - `x1`,`y1`起始坐标点
-      - `x2`,`y2`结束坐标点
-   - 径向渐变:`createRadialGradient(x1,y1,r1,x2,y2,r2)`
-      - `x1`,`y1`,`r1`内圆坐标及半径
-      - `x2`,`y2`,`r2`外圆坐标及半径
-      - `addColorStop`(位置,颜色)  位置:渐变点  `0-1`之间 可多个
-	
-- **阴影**
-  - `shadowOffsetX`,`shadowOffsetY`    `x`轴、`y`轴偏移
-  - `shadowBlur`    阴影模糊度
-  - `shadowColor`  阴影颜色 默认颜色:`rgba(0,0,0,0)`
+### 曲线
 
-- **像素**
-  - `createImageData(sx,sy)` 创建新的、空白的 `ImageData` 对象
-  - `getImageData(x1,y1,sx,sy)`
-	- 返回` ImageData `对象，该对象为画布上指定的矩形复制像素数据`	putImageData(img,x2,y2)`
-	- 把图像数据（从指定的 `ImageData` 对象）放回画布上
+#### 弧度
 
-- **合成**
-   - `globalAlpha`  设置或返回绘图的当前` alpha `或透明值
-   - `globalCompositeOperation` 设置或返回新图像如何绘制到已有的图像上
-   - `source-over`默认。在目标图像上显示源图像。
-   - `source-atop`在目标图像顶部显示源图像。源图像位于目标图像之外的部分是不可见的。
-   - `source-in`	在目标图像中显示源图像。只有目标图像内的源图像部分会显示，目标图像是透明的。
-   - `source-out	`在目标图像之外显示源图像。只会显示目标图像之外源图像部分，目标图像是透明的。
-   - `destination-over`在源图像上方显示目标图像。
-   - `destination-atop`在源图像顶部显示目标图像。源图像之外的目标图像部分不会被显示。
-   - `destination-in`在源图像中显示目标图像。只有源图像内的目标图像部分会被显示，源图像是透明的。
-   - `destination-out`在源图像外显示目标图像。只有源图像外的目标图像部分会被显示，源图像是透明的。
-   - `lighter`显示源图像 + 目标图像。
-   - `copy`显示源图像。忽略目标图像。
-   - `xor`使用异或操作对源图像与目标图像进行组合。
+- `arc(起始x位置,起始y位置,半径,起始弧度,结束弧度,弧形的方向)`：弧度
+  - `ctx.arc(250,250,100,0,Math.PI()/2,0)`
+  - 弧度的方向，`0`顺时针`1`逆时针
+- `arcTo(x1,y1,x2,y2,r)`：画布上创建介于两个切线之间的弧/曲线
+  - `x1`,`y1` 坐标一  
+  - `x2`,`y2`坐标二   
+  - `r`：圆弧半斤
+  - 绘制的弧线与当前点和`x1,y1`连线，`x1,y1`和`x2,y2`连线都相切
+
+#### 贝塞尔曲线
+
+- `quadraticCurveTo(x1,y1,ex,ey)`：二次贝塞尔曲线
+  - `x1,y1`：控制点
+  - `ex,ey`：结束点
+- `bezierCurveTo(x1,y1,x2,y2,ex,ey)`：三次贝塞尔曲线
+  - `x1,y1,x2,y2`：控制点
+  - `ex,ey`：结束点
+
+### 坐标轴转换
+
+- `translate(x,y)`：重新映射画布上的(0,0)位置
+  - 移动整张画布的位置
+- `scale(sx,sy)`：缩放当前`canvas`绘图
+- `rotate(Math.PI)`：旋转当前的绘图，`弧度公式=角度*PI/180`
+- `setTransform(a,b,c,d,e,f)`：先重置画布再转换
+  - 参数：`setTransform(水平旋转,水平倾斜,垂直倾斜,垂直缩放,水平移动,垂直移动)`
+- `transform(a,b,c,d,e,f)`：不重置画布转换，和`setTransfrom`差不多
+
+### 填充图案
+
+- `createPattern(image,'repeat|repeat-x|repeat-y|no-repeat')`
+
+- 不止可以添加`img`元素，还可以添加`canvas`元素
+
+- ```javascript
+  img元素(image对象),canvas元素，video元素（有图型的）
+  
+  <canvas id="canvas1" width="500" height="500"></canvas>
+  
+  var oCanvas1 = document.getElementById('canvas1');
+  var ctx = oCanvas1.getContext('2d');
+  var w = oCanvas1.width; //画布的宽
+  var h = oCanvas1.height; //画布的高
+  
+  var oImg = new Image();
+  oImg.src = '图片的路径';
+  
+  oImg.onload = function() {
+      var fill = ctx.createPattern(oImg,'repeat');//oImg元素和是否重复
+      ctx.fillStyle = fill;
+      ctx.fillRect(0,0,w,h); //坐标点和宽高
+  }
+  ```
+
+### 渐变
+
+- `createLinearGradient(x1,y1,x2,y2)`：线性渐变
+
+  - `x1`,`y1`起始坐标点
+  - `x2`,`y2`结束坐标点
+  - 线性渐变，必须在填充渐变的区域里定义渐变，否则没有效果
+
+- `createRedialGradient(x1,y1,r1,x2,y2,r2)`：径向渐变
+
+  - `x1`,`y1`,`r1`内圆坐标及半径
+
+  - `x2`,`y2`,`r2`外圆坐标及半径
+
+  - `addColorStop`(位置,颜色)  位置:渐变点  `0-1`之间 可多个
+
+  - `bg.addColorStop(p,color)` ：添加颜色
+
+  - ```javascript
+    //线性渐变
+    <canvas id="canvas1" width="500" height="500"></canvas>
+    
+    var oCanvas1 = document.getElementById('canvas1');
+    var ctx = oCanvas1.getContext('2d');
+    var w = oCanvas1.width; //画布的宽
+    var h = oCanvas1.height; //画布的高
+    var bg = ctx.createLinearGradient(0,0,0,h); //背景渐变
+    
+    bg.addColorStop(0,'red'); 
+    bg.addColorStop(1,'green');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,w,h);
+    
+    //径向渐变
+    <canvas id="canvas1" width="500" height="500"></canvas>
+    
+    var oCanvas1 = document.getElementById('canvas1');
+    var ctx = oCanvas1.getContext('2d');
+    var w = oCanvas1.width; //画布的宽
+    var h = oCanvas1.height; //画布的高
+    var bg = ctx.createRadialGradient(250,250,50,250,250,100);
+    
+    bg.addColorStop(0,'red');
+    bg.addColorStop(0.5,'green');
+    bg.addColorStop(1,'white');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,500,500);
+    ```
+
+### 阴影
+
+- `ctx.shadowColor = color`：阴影颜色，默认颜色：`rgba(0,0,0,0);`
+- `ctx.shadowOffsetX = x`：阴影`x`轴偏移量
+- `ctx.shadowOffsetY = y`：阴影`y`轴偏移量
+- `ctx.shadowBlur`：阴影模糊程度
+- 这里的阴影偏移量不受坐标系变幻的影响
+
+### 文本
+
+- `ctx.fillText(text,x,y,[,maxWidth])`：文本填充
+  - 参数值：`text`:文本，`x,y`为坐标轴，`[,maxWidth]`:最大文本宽度
+- `ctx.strokeText(text,x,y,[,maxWidth])`：描边字体（空心文本）
+  - 参数值：`text`:文本，`x,y`为坐标轴，`[,maxWidth]`:最大文本宽度
+- `ctx.measureText(text)`：测量文本尺寸
+  - `text`：文字
+- `ctx.font = '字体大小 字体类型'`：尺寸、字体缺一不可
+- 文本对齐方式
+  - `ctx.textBaseline`：垂直方向
+  - `ctx.textAline`：水平方向
+  - 下图中小圆点就是x,y轴的起始位置，可以用`textBaseline`和`textAlign`更改圆点的位置
+  - `x,y`轴从字体的左下角开始
+  - ![对齐属性](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/text.jpg)
+
+### 线段样式
+
+- `lineCap`：端点样式
+  - `butt`(默认值),`round`(圆角),`square`(高度多出线宽一半)
+- `lineJoin`：边界连接点样式
+  - 属性：`miter`(默认值),`round`(圆角),`bevel`(斜角)
+  - ![](./https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/line.jpg)
+- `ctx.miterLimit;`
+  - 当`lineJoin`是`miter`时，用于控制斜接部分的长度
+  - 如果斜接长度超过 `miterLimit` 的值，变成`bevel`
+  - 注:实际运算是大于`limit*lineWidth/2`的值，了解就好
+
+### 裁剪
+
+- `ctx.clip()`：当前路径外的区域不再绘制
+
+- ```javascript
+  var oCanvas1 = document.getElementById('canvas1');
+  var ctx = oCanvas1.getContext('2d');
+  
+  ctx.beginPath()
+  ctx.arc(200,200,50,0,Math.PI*2,0);
+  ctx.closePath();
+  ctx.clip();
+  ctx.fillRect(100,100,300,300);
+  ```
+  
+- 注：可在`clip()` 前用 `save()` 方法保存，后续通过 `restore()` 方法恢复
+
+### 合成
+
+- `ctx.globalAlpha = 0-1`：全局透明度
+- `ctx.globalCompositeOperation = 'source-over'`：新像素和原像素的合并方式
+  - `11`种值，默认`source-over`，`w3c`标准
+
+- ```javascript
+  var oCanvas1 = document.getElementById('canvas1');
+  var ctx = oCanvas1.getContext('2d');
+  
+  ctx.fillStyle = 'red';
+  ctx.fillRect(100,100,100,100);
+  ctx.globalCompositeOperation = 'source-in'; //需要放在新像素和旧像素之间
+  ctx.fillStyle = 'green';
+  ctx.arc(180,180,50,0,Math.PI*2);
+  ctx.fill();
+  
+- | 属性值             | 作用                                                         |
+  | ------------------ | ------------------------------------------------------------ |
+  | `source-over`      | 默认值，将新图形画在旧图形之上                               |
+  | `destination-over` | 将新图形画在旧图形之下                                       |
+  | `source-in`        | 只保留新的，旧图形重叠的新图形区域，其余皆变透明             |
+  | `destination-in`   | 只保留新，旧图形重叠的旧图形区域，其余皆变为透明             |
+  | `source-out`       | 只保留新，旧图形非重叠的新图形区域，其余皆变为透明           |
+  | `destination-out`  | 只保留新，旧图形非重叠的旧图形区域，其余皆变透明             |
+  | `source-atop`      | 新图形只放置在新，旧图形重叠的新图形区域，然后盖在旧图形之上 |
+  | `destination-atop` | 旧图形只保留在新，旧图形重叠的旧图形区域，然后盖在新图形之上 |
+  | `lighter`          | 新旧图形重叠区域的颜色，由新，旧图形的颜色码相加而得         |
+  | `darker`           | 新旧图形重叠区域的颜色，由新，旧图形的颜色代码相减而得       |
+  | `xor`              | 新旧图形重叠区域设置透明                                     |
+  | `copy`             | 移除其他图形，只保留新图形                                   |
+
+### 绘制图片
+
+- `ctx.drawImage();` 
+
+  - 第1个参数是`img(Image/canvas/video)` 注：`onload`调用
+  - 填2、3个参数 `(x, y)`：起始点坐标
+  - 填4、5个参数 `(x, y, dx, dy)` ：起始点坐标及图片所存区域的宽高
+  - 填2-9个参数 `(x1, y1, dx1, dy1, x2, y2, dx2, dy2)` 
+    -  前四个为控制所绘制目标元素的起始点和宽高
+    -  前四个写完之后，可以插入后面四个参数写的区域里面
+    -  后四个为控制`canvas`绘制的起始点和大小
+
+- ```js
+  <img src="./demo/js/slideBox/carousel/img/2.jpg" alt="" id="myImg">
+  
+  <script>
+      var myCanvas = document.getElementById('myCanvas');
+      var ctx = myCanvas.getContext('2d');
+  
+      var myImg = document.getElementById('myImg');
+      myImg.onload = function() {
+          ctx.drawImage(myImg,80,80,80,80,300,300,200,200);
+          //ctx.drawImage(图片，x坐标轴，y坐标轴，宽，高，canvas的x标轴，canvas的y轴，宽，高)
+      }
+  </script>
+  ```
+
+- 设置背景
+  - `createPattern(img,平铺方式)`
+  - 平铺方式:`repeat`,`repeat-x`,`repeat-y`,`no-repeat`
+
+### 将canvas内容导出
+
+- `canvas.toDataURL()`
+
+- 是`canvas`自身的方法不是上下文对象
+
+- 将`canvas`的内容抽取成一张图片， `base64`编码格式
+
+- 注：同源策略的显示
+
+- 将`canvas`的内容放入`img`元素里
+
+- ```js
+  var myCanvas = document.getElementById('myCanvas');
+  var ctx = myCanvas.getContext('2d');
+  
+  var oImg = new Image(); //声明了图片对象
+  
+  ctx.arc(250,250,50,0,Math.PI*2,0);
+  ctx.fillStyle = 'red';
+  ctx.fill();
+  ctx.closePath();
+  ctx.stroke();
+  
+  var data = myCanvas.toDataURL(); //把canvas转换为base64编码格式的图片信息
+  
+  oImg.src = data; //让img图片的src等于data数据
+  document.body.appendChild(oImg);
+  ```
+
+### 获取canvas像素信息
+
+- `ctx.getImageData(x,y,w,h)`：返回`ImageData`对象
+
+  - `getImageData()`方法返回`ImageData`对象，该对象为画布上指定的矩形复制像素数据。
+  - 参数：
+    - `x`：开始左上角`x`坐标
+    - `y`：开始左上角`y`坐标
+    - `w`：返回的矩形区域的宽度
+    - `h`：返回的矩形区域的高度
+  - 对于 `ImageData` 对象中的每个像素，都存在着四方面的信息，即 `RGBA` 值：
+    - **R** - 红色 `(0-255)`
+    - **G** - 绿色 `(0-255)`
+    - **B** - 蓝色 `(0-255)`
+    - **A** - alpha 通道 `(0-255; 0 是透明的，255 是完全可见的)`
+
+- `ctx.createImageData(w,h)`：创建新的空白`ImageData`对象
+
+- `ctx.putImageData(imgData,x,y)`：将图像数据放回画布上
+
+  - 一般将处理完成的`getImageData()`数据放回`canvas`中
+
+- ```js
+  //白色变成灰色
+  var myCanvas = document.getElementById('myCanvas');
+  var ctx = myCanvas.getContext('2d');
+  
+  ctx.fillRect(0,0,500,500);
+  var pixel = ctx.getImageData(0,0,10,10);//获取画布的像素数据
+  var row = pixel.width;
+  var col = pixel.height;
+  var d = pixel.data;
+  
+  for(var i = 0;i < row; i++){
+      var c = i * col * 4;
+      for(var j = 0;j < col; j++){
+          d[c + j * 4 + 3] = 100;
+      }
+  }
+  //将处理过的数据放回canvas
+  ctx.putImageData(pixel,10,10);
+  ```
+
+### 命中检测
+
+- `ctx.isPointInPath(x,y)`：检测是否在区域内，`chrome`与`safari`的区别
+
+- `ctx.isPointInStroke(x,y)`：检测是否在线上
+
+- 还可以通过检测当前点的像素值，如果为透明，则该点不在路径上
+
+- ```javascript
+  var myCanvas = document.getElementById('myCanvas');
+  var ctx = myCanvas.getContext('2d');
+  
+  ctx.moveTo(100,100);
+  ctx.lineTo(200,100);
+  ctx.lineTo(200,200);
+  ctx.closePath();
+  ctx.stroke();
+  
+  console.log(ctx.isPointInPath(180,120));
+  console.log(ctx.isPointInStroke(200,200));
+  ```
+
+### 非零绕数准则
+
+- 判断点`p`是否在多边形内，从点`p`向外做一条射线（可以任意方向），多边形的边从左到右经过射线时环绕数减`1`，多边形的边从右往左经过射线时环绕数加`1`，最后环数不为`0`，即表示在多边形内部。  
+
+![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ten.jpg)
+
+### 如何解决canvas高分屏模糊问题
+
+- 在分辨率比较高的屏幕，例如`ip6/6s/mac`等机器上，因为`canvs`绘制的是位图，所以会导致模糊，解决方法是根据屏幕分辨率修改`canvas`样式代码中的宽和高与`canvas`的`width`和`height`属性的比例
 
 
 - 扩展阅读
@@ -1089,7 +1369,6 @@ function inserAfter(newItem,targerItem){
 - 拓展阅读
   
   - [HTML5 API 大盘点](http://mp.weixin.qq.com/s?__biz=MzI0ODA2ODU2NQ==&mid=2651130595&idx=2&sn=3d0f546f1867992729b3ace5d03766fc&chksm=f257ca59c520434f08e215b3bdcec3764712f73301b738c18163359e5aa5e949ff019616ffca&mpshare=1&scene=23&srcid=11289XUSBAQzrCp3Io55aoS1#rd)
-  
 ## 附录二　HTML5速查表
 
 ---
@@ -1483,7 +1762,6 @@ function inserAfter(newItem,targerItem){
     border-bottom-right-radius: 4em 0.5em;
     border-bottom-left-radius: 1em 3em;
     ```
-  
 ### 边框系列-图片
 ---
 
@@ -1500,7 +1778,6 @@ function inserAfter(newItem,targerItem){
 
 - **`border-image-slice`**
   - 设置或检索对象的边框背景图的分割方式
-  
 
 ![Paste_Image.png](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/12.png)
 
