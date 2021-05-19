@@ -409,7 +409,7 @@
   - `ctx.textAline`：水平方向
   - 下图中小圆点就是x,y轴的起始位置，可以用`textBaseline`和`textAlign`更改圆点的位置
   - `x,y`轴从字体的左下角开始
-  - ![对齐属性](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/text.jpg)
+  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/text.jpg)
 
 ### 线段样式
 
@@ -417,7 +417,9 @@
   - `butt`(默认值),`round`(圆角),`square`(高度多出线宽一半)
 - `lineJoin`：边界连接点样式
   - 属性：`miter`(默认值),`round`(圆角),`bevel`(斜角)
-  - ![](./https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/line.jpg)
+
+- ![样式](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/line.jpg)
+
 - `ctx.miterLimit;`
   - 当`lineJoin`是`miter`时，用于控制斜接部分的长度
   - 如果斜接长度超过 `miterLimit` 的值，变成`bevel`
@@ -602,7 +604,7 @@
 
 - 判断点`p`是否在多边形内，从点`p`向外做一条射线（可以任意方向），多边形的边从左到右经过射线时环绕数减`1`，多边形的边从右往左经过射线时环绕数加`1`，最后环数不为`0`，即表示在多边形内部。  
 
-![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ten.jpg)
+![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/ten.jpg)
 
 ### 如何解决canvas高分屏模糊问题
 
