@@ -5,23 +5,55 @@
 
 - `HTML5` 是新一代的 `HTML`
 - `DTD`声明改变	`<!DOCTYPE html>`
+    
     - 新的结构标签			
-
-
-![一些总结--from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/1.png)
+    
+    - ```html
+      <!--文档申明 文档类型申明，html代表html5的文档类型-->
+      <!DOCTYPE html>：
+      <!--字符编码，charset='utf-8'-->
+      <meta charset='utf-8'>
+      <!--
+      	版本兼容
+      
+      		1.省略引号，当属性值（<、>、=、单引号、双引号、空字符串）时，属性两边的引号可以省略，如<input type=text>
+      
+      		2.省略属性值，具有布尔值的属性，比如disabled，readonly，致谢属性值代表true，如：<input type=checkbox checked>
+      -->
+      		
+      ```
 
 ### 常用的一些新的结构标签
 ---
 
-![结构标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/2.png)
+- 结构标签：（块状标签）有意义的`div`
+  - `header`：标记定义一个页面或一个区域的头部
+  - `footer`：标记定义一个页面或一个区域的底部
+  - `nav`：标记定义导航链接
+  - `article`：标记定义一篇文章
+  - `section`：标记定义一个区域
+  - `aside`：侧边栏导航
+  - `hgroup`：标记定义文件中一个区块的相关信息
+  - `flgure`：标记定义一组媒体内容以及它们的标题（图像）
+  - `figcaption`：标签定义`figure`元素的标题
+- 多媒体交互标签
+  - `video`：标记定义一个视频
+  - `audio`：标记定义音频内容
+  - `source`：标记定义媒体资源
+  - `canvas`：标记定义画布（图片）
+  - `embed`：标记定义外部的可交互的内容或插件，比如`flash`
+- 特殊样式标签
+  - `mark`：突出显示文字
+  - `meter`：刻度百分占比
+  - `progress`：进度条
+  - `wbr`：长单词换行位置
 
-![多媒体交互标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/3.png)
-
-
-![特殊样式标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/4.png)
-
-
-![兼容性不是很好的标签](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/5.png)
+- 兼容性不是很好的标签
+  - `dialog`：定义一个对话框
+  - `bdi`：单独设置文字播放方式（`dir='rti' dir='ltr'`）
+  - `details / summary`：描述部分的详情`summary`为`details`的标题
+  - `wbr`：长单词换行位置
+  - `datalist`
 
 - 补充说明
   - `small` 这个元素表示边栏评论，如附属细则
@@ -615,17 +647,19 @@
 	- [canvas学习之API整理笔记（一）](http://luckykun.com/work/2016-09-01/canvas-study01.html)
 	- [HTML5 API大盘点](http://jartto.wang/2016/07/25/make-an-inventory-of-html5-api/)
 
+## svg
 
-## SVG绘图
----
-
-- **svg是什么**
+- `Scalable Vector Graphics`：可缩放矢量图形
+- 应用场景
+  - 图表
+  - 图标`icon`
+  - 动效
   - 矢量图
-  - 与`canvas`的区别
-  
-- **svg的引入方式**
+
+### 使用svg
 
 - 方式一：
+
 ```html
 <?xml version="1.1" encoding="utf-8"?>
 <!DOCTYPE svg 
@@ -633,62 +667,417 @@ PUBLIC "-//W3C//DTD SVG 1.1//EN"  "http://www.w3.org/
 Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg"></svg> 
 ```
+
 - 方式二：
-	- 图片、背景、框架
+  - 图片、背景、框架
 - 方式三: 
-	- `html`页面中添加`svg`
+  - `html`页面中添加`svg`
 
-- **`circle`:圆形**
-    - 圆心坐标  `cx`,`cy`
-    - 半径  `r`
-    - `fill`   `stroke `  `stroke-width`     `stlye`样式 
-    - `fill = "none/transparent" `
-- **ellipse:椭圆**
-    - `cx`属性定义的椭圆中心的x坐标
-    - `cy`属性定义的椭圆中心的y坐标
-    - `rx`属性定义的水平半径
-    - `ry`属性定义的垂直半径
-- **rect : 矩形**
-    - `width`  `height ` 宽高   
-    - 坐标 ` x`,` y` 
-    - 圆角  `rx`,`ry`
-- **`line `:线条**
-    - `x1`,`y1`,`x2`,`y2`
-    - `stroke-opacity`  透明  `fill-opacity`
+```html
+<svg width='500' height='500'>
+    <line></line>
+    ···
+</svg>
+```
 
-- **polyline:折线**
+### 形状标签
+
+> > 所有的线段和路径都需要使用stroke属性来添加颜色
+
+- **line：线条**
+  - `<line></line>`
+  - `x1`，`y1`：起始`x、y`点
+  - `x2`，`y2`：终点`x、y`点
+  - 例：`<line x1=100 y1=100 x2=200 y2=100></line>`
+
+- **rect：矩形**
+  - `<rect></rect>`
+  - `x，y`：起始点
+  - `width，height`：宽高
+  - `rx，ry`：`x，y`轴上面的圆角
+  - 例：`<rect x=200 y=200 width=100 height=100 rx=10 ry=30></rect>`
+- **circle：圆形**
+  - `<circle></circle>`
+  - `r`:圆的半径
+  - `cx，cy`:`x，y`的坐标点，圆的中心点
+  - 例：`<circle r=50 cx=250 cy=250></circle>`
+- **ellipse：椭圆**
+  - `<ellipse></ellipse>`
+  - `rx，ry`：圆在`x，y`轴的半径
+  - `cx，cy`：`x，y`的坐标点，圆的中心点
+  - 例：`<ellipse rx=50 ry=100 cx=250 cy=250></ellipse>`
+- **polyline：折线**
+  - `<polyline></polyline>`
   - `points`:点坐标（`x1 y1 x2 y2...`）或(`x1,y1,x2,y2....`)	
-- **polygon:多边形**
+  - `x`代表起始点，`y`代表终止点
+  - 点和点连接起来，形成一条折线
+  - 例：`<polyline points="60 50, 75 35, 100 50, 125 35, 150 50,175 35, 190 50"></polyline>`
+- **polygon：多边形**
+  - `<polygon></polygon>`
+  - `points`:点坐标（`x1 y1 x2 y2...`）或(`x1,y1,x2,y2....`)	
+  - `x`代表起始点，`y`代表终止点
   - 折线闭合  `fill-rule:evenodd/nonzero`;
-- **path: 路劲**
-    - `d`属性
-    - `M(起始坐标)`,`L(结束坐标)`,`H(水平线)`,`V(垂直线)`,`A(圆弧)`,`Z(闭合路劲)`
-        - `C`,`S`,`Q`,`T` 贝塞尔曲线
-        - 大写为绝对坐标(具体的坐标位置)
-        - 小写为相对坐标(相对起始坐标点的具体长度)
-    - A命令
-        - `x`半径 `y`半径 角度  弧长(0 小弧 1大弧)  方向(0逆时针 1顺时针)
-        - 终点`(x y)`
+  - 点和点连接起来，形成一条折线，最后一个点和第一个点闭合，形成多边形
+  - 例：`<polygon points="60 50, 75 35, 100 50, 125 35, 150 50,175 35, 190 50"></polygon>`
+- **text：文本**
+  - `<text></text>`
+  - `x，y`：起始点，在`x，y`的那个点进行书写
+  - 例：`<text x=100 y=100></text>`
+- **g：组合对象的容器**
+  - 添加到`g`元素上的变换会应用到其所有的子元素上。添加到`g`元素的属性会被其所有的子元素继承。此外，`g`元素也可以用来定义复杂的对象，之后可以通过`use`元素来引用它们
 
-- **C命令：三次贝塞尔曲线**
-  - `(x1,y1,x2,y2,x,y)`    `x1`,`y1 `控制点一    `x2`,`y2 `控制点二   ` x`,`y `结束点
-- **S命令：平滑贝塞尔曲线(自动对称一个控制点)**
-  - `(x2,y2,x,y) `  `x2`,`y2`控制点    x,y结束点
-- **Q命令：二次贝塞尔曲线**
-  - `(x1,y1,x,y)`   x1,y1控制点  x,y结束点
-- **T命令：一次贝塞尔曲线**
-  - `(x,y)`结束点
+### 样式属性
 
-- **`g`标签:组合元素  设置元素公共属性**
-    - 共用属性
-    - `transform = "translate(0,0)"`
+> > 所有的样式属性要在css进行设置
+> >
+> > > 所有的线段和路径都需要使用stroke属性来添加描边颜色
 
-- **`text`标签**
-    - `x`, `y`, `text-anchor`(对齐start end middle)	`font-size `
+- **fill**：填充颜色
+- **stroke**：描边颜色
+- **stroke-width**：描边宽度
+- **stroke-opacity**：描边透明度
+- **stroke-dasharray**：描边虚线
+  - `<path stroke-dasharray="10,10" d="M 5 40 l 215 0" />`
+- **stroke-dashoffset**：描边向左右缩进
+- **fill-opacity**：填充透明度
+- **stroke-linecap**：线的两端样式
+  - `butt`：默认值
+  - `round`：多出来线宽的一半变成半圆
+  - `square`：两端多出来线宽的一半
+- **stroke-lineJoin**：边界连接点样式
+  - `bevel`：斜角
+  - `round`：圆角
+  - `miter`：默认值
 
-- **`image` 标签**
-    - `x`, `y`, `width`  `height `
-    - `xlink:href`(图片地址)
+### path元素
+
+- **路径的意思**
+
+  > 指令也区分大小写，大写的指令是绝对定位，小写的指令是相对定位，相对于元素进行多少个像素进行移动
+  >
+  > > path元素使用d属性来控制路径，如：<path d=""></path>
+  > >
+  > > > 所有的指令大写的指令为绝对坐标（具体的坐标位置）
+  > > >
+  > > > 小写的指令为相对位置（相对于起始坐标点的具体长度）
+
+#### M和L指令
+
+- `M`指令：`moveTo`的意思，画笔初始的位置
+- `L`指令：`lineTo`的意思，画笔要画到的位置
+  - 每两个值是一个`x，y`坐标，L后面可以一直写`x，y`坐标
+- 例：`<path d="M 100 100 L 200 100 200 200"></path>`
+
+#### H和V指令
+
+- `H`指令：`horizontal lineto`的意思
+  - `x`轴移动到的位置
+  - 绘制水平线
+- `V`指令：`vertical lineto`的意思
+  - `y`轴移动到的位置
+  - 绘制垂直线
+- 例：`<path d='M 100 100 H 200 V 200'>`，把线移动到`x`轴`200`的位置，`y`轴`200`的位置
+
+#### Z指令
+
+- `z`指令：`closePath`的意思，闭合指令
+- 不区分大小写
+- 例：`<path d='M 100 100 H 200 V 200 z'>`
+
+#### A指令
+
+- `A`指令：`elliptical Arc`的意思，圆弧指令
+- 参数
+  - `rx，ry`圆弧的`x`轴半径和`y`轴半径
+  - `x-axis-rotation`：圆弧相对于x轴的旋转角度，默认是顺时针，可以设置负值
+  - `large-arc-flag`：表示圆弧路径是大圆弧还是小圆弧，`1`代表大圆弧，`0`代表小圆弧
+  - `sweep-flag`：表示从起点到终点是顺时针还是逆时针，`1`表示顺时针，`0`表示逆时针
+  - `x，y`：表示终点坐标
+- 例：`<path d='M 100 100 A 70 120 90 1 1 150 200'></path>`
+
+#### 贝塞尔曲线
+
+##### Q和T指令
+
+- **二次贝塞尔曲线**
+
+![二次贝塞尔曲线](D:\Desktop\HTML5\Q2.gif)
+
+- **Q指令**
+  - `x1，y1`：起始控制点
+  - `x，y`：终止点
+  - 例：`<path M 100 200 Q 200 100 300 300></path>`
+- **T指令**
+  - 二次贝塞尔曲线的延申
+  - `x，y`：后面添加的两个终止点
+  - 例：`<path M 100 200 Q 200 100 300 300 T 500 400></path>`
+
+##### C和S指令
+
+- **三次贝塞尔曲线**
+
+![](D:\Desktop\HTML5\S3.gif)
+
+- **C指令**
+  - `x1，y1`：起始控制点
+  - `x2，y2`：过渡控制点
+  - `x，y`：终止点
+  - 例：`<path d="M 0 200 C 100 100 200 100 300 400"></path>`
+
+- **S指令**
+  - 三次贝塞尔曲线的延申
+  - `x2，y2`：过渡控制点
+  - `x，y`：终止点
+  - 例：`<path d="M 0 200 C 100 100 200 100 300 400 S 500 500 500 0"></path>`
+
+#### 获取长度和坐标方法
+
+- **getTotalLength**：获取路径总长度
+- **getPointAtLength(x)**：获取路径上距离起始点距离`x`长度的点的坐标
+- 注：严格来说上面两方法只适用于`path`元素，但各个浏览器实现起来都会有一点区别。例如谷歌浏览器也能获取到`line`元素的路径长度。
+
+### 自动生成路径
+
+- Method Draw：http://editor.method.ac/
+
+### svg渐变
+
+- `defs`标签，定义以后需要重复使用的图形元素
+
+- 线性渐变
+
+  - `linearGradient`：线性渐变标签
+
+    - 属性值
+    - `id`：代表这个渐变的名字，方便其他标签调用
+    - `x1，y1`：起始点
+    - `x2，y2`：终止点，起始点和终止点可以改变渐变方向
+
+  - `stop`：颜色节点，设置几个颜色节点就代表几个颜色
+
+    - 属性值
+    - `offset`：颜色节点的位置，定义渐变色开始和结束
+    - `stop-color`：颜色节点的颜色
+
+  - ```html
+    <defs>
+        <linearGradient id="bg1" x1="0" y1="0" x2="0" y2 ="100%">
+        	<stop offset="0%" style="stop-color:rgb(255,255,0);"></stop>
+            <stop offset="100%" style="stop-color:rgb(255,0,0);"></stop>
+        </linearGradient>
+    </defs>
+    
+    <rect x="0" y="0" width="500" height="500" style="fill:url(#bg1)"></rect>
+    ```
+
+```
+- 径向渐变
+
+  - `radialGradient`：径向渐变标签
+
+    - 属性值
+    - `id`：代表这个渐变的名字，方便其他标签调用
+    - `cx，cy`：圆的中心点，此属性定义径向渐变的结束圆的`x，y`坐标。
+    - `r`：圆的半径
+    - `fx，fy`：圆的扩散范围，此属性定义径向渐变的起始圆的`x，y`坐标。
+
+  - `stop`：颜色节点，设置几个颜色节点就代表几个颜色
+
+    - 属性值
+    - `offset`：颜色节点的位置，定义渐变色开始和结束
+    - `stop-color`：颜色节点的颜色
+
+  - ```html
+    <defs>
+    	<radialGradient id="bg2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+    		<stop offset="0%" style="stop-color:green;"/>
+    		<stop offset="100%" style="stop-color:red;"/>
+    	</radialGradient>
+    </defs>
+    
+    <rect x="0" y="0" width="500" height="500" style="fill:url(#bg2)"/>
+```
+
+### svg滤镜
+
+- 高斯滤镜
+
+  - ```html
+    <defs>
+        <filter id="Gaussian_Blur">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="20"/>
+        </filter>
+    </defs>
+    
+    <rect x="0" y="0" width="500" height="500" fill="yellow" style="filter:url(#Gaussian_Blur)"/>
+    
+    ```
+
+- 其他滤镜
+
+  - http://www.w3school.com.cn/svg/svg_filters_intro.asp
+
+### svg路径动画
+
+- **stroke-dasharray：--px**
+- **stroke-dashoffset：--px;**
+
+- 动画实现原理理，通过修改`stroke-dashoffse`t的值让路路径慢慢地展现出来
+
+```css
+path{
+    stroke: orange;
+    fill: none;
+    stroke-width: 20px;
+    stroke-dasharray:20px;
+    stroke-dashoffset: 15px;
+    animation:move 3s linear infinite;
+}
+@keyframes move {
+    0% {
+    	stroke-dashoffset: 10px;
+    }
+    100% {
+    	stroke-dashoffset: 500px;
+    }
+}
+
+<body>
+	<svg width=500 height=500>
+		<path d="M 0 100 L 500 100"></path>
+	</svg>
+</body>
+```
+
+### ViewBox
+
+- **ViewBox**
+
+  - `viewBox`属性允许指定一个给定的一组图形伸展以适应特定的容器元素。
+
+  - `viewBox`属性的值是一个包含4个参数的列表 `min-x`, `min-y`, `width` and `height`， 以空格或者逗号分隔开，`viewBox`的四个参数分别代表：最小X轴数值，最小y轴数值，宽度，高度。
+
+  - ```html
+    例：
+    <svg width=400 height=300 viewBox="0,0,40,30"></svg>
+    
+    ViewBox后两个参数的意思是，虽然在画布设置的宽有400，高有300，但实际的单位宽只有40个单位宽，高只有30单位高，也就是说设置上ViewBox之后，虽然你设置的宽不管有多大，最后都是要按照ViewBox设置的宽高来决定比例的
+    ```
+
+  - **preserveAspectRatio**对齐、填充方式
+
+    - `xMin`、`xMid`、`xMax`：`x`轴-左中右对齐
+    - `YMin`、`YMid`、`YMax`：`y`轴-上中下对齐
+    - `meet`、`slice`、`none`：撑开、撑满、形变（设置填充方式）
+    - 例：`svg.setAttribute("preserveAspectRatio", "xMinYMin slice")`
+
+### 用JS生成svg元素
+
+- 创建`svg`元素需要制定命名空间
+
+- `svg`元素对象一般通过调用`setAttribute()`方法来设定属性值
+
+- ```javascript
+  var char = 'http://www.w3.org/2000/svg', 
+      //命名空间的名称，固定好的
+      svg = document.createElementNS(char,'svg');
+  
+  svg.setAttribute('width',500);
+  svg.setAttribute('height',500);
+  svg.setAttribute('viewBox','0 0 500 500');
+  
+  var rect = document.createElementNS(char,'rect');
+  
+  rect.setAttribute('x',100);
+  rect.setAttribute('y',100);
+  rect.setAttribute('width',100);
+  rect.setAttribute('height',100);
+  rect.setAttribute('fill','#0fc');
+  svg.appendChild(rect);
+  document.body.appendChild(svg);
+  ```
+
+
+
+### 练习
+
+- ```html
+  输入数字，进度条占用
+  <style>
+      svg {
+          border: 1px solid black;
+      }
+      path{
+          fill: none;
+          stroke-width:10px;
+          stroke-linecap: round;
+      }
+      #path1 {
+          stroke:#ccc;
+      }
+      #path2{
+          stroke:orange;
+          stroke-dasharray:1000px;
+          stroke-dashoffset:1000px;
+      }
+      .active {
+          transition:  all 1s linear;
+      }
+  </style>
+  </head>
+  <body>
+  
+      <input id="btn" type="text">
+      <svg width=500 height=500>
+          <path id="path1" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+          <path id="path2" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+      </svg>
+  
+      <script>
+          //获取path长度
+          var len = path2.getTotalLength();
+  
+          btn.onblur = function() {
+              var value = this.value;
+              var total = len * value / 100; //变成百分比
+              path2.classList.add('active'); //单独设置动画class类名
+              path2.style.strokeDashoffset = 1000 - total + 'px';
+          }
+          btn.onfocus = function() {
+              path2.classRemove('active');//失去焦点之后删除class，立即消失
+              path2.style.strokeDashOffset='1000px';
+          }
+      </script>
+  </body>
+  ```
+
+- ```html
+  loading效果
+  <style>
+      	svg {
+      		border: 1px solid black;
+      	}
+      	circle,path {
+      		fill:transparent;
+      		stroke:#ff6700;
+      		stroke-width:10px;
+      		stroke-linecap: round;
+      	}
+      	circle {
+      		stroke: rgba(255,150,0,.5);
+      	}
+      </style>
+  </head>
+  <body>
+  	<svg width=100 height=100>
+  		<circle r=40 cx=50 cy=50></circle>
+  		<path d="M 10 50 A 40 40 0 0 1 50 10">
+  			<animateTransform attributeName="transform" type="rotate" from='0 50 50' to='360 50 50' dur='0.5s' repeatCount='indefinite'>/</animateTransform>
+  		</path>
+  	</svg>
+  </body>
+  ```
+
 
 
 ## 地理信息与本地存储
