@@ -5,7 +5,7 @@
 
 - `HTML5` 是新一代的 `HTML`
 - `DTD`声明改变	`<!DOCTYPE html>`
-    
+  
     - 新的结构标签			
     
     - ```html
@@ -806,7 +806,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
 - **Q指令**
   - `x1，y1`：起始控制点
   - `x，y`：终止点
-  - 例：`<path M 100 200 Q 200 100 300 300></path>`
+  - 例：`<path d="M 100 200 Q 200 100 300 300"></path>`
 - **T指令**
   - 二次贝塞尔曲线的延申
   - `x，y`：后面添加的两个终止点
@@ -868,9 +868,8 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
     </defs>
     
     <rect x="0" y="0" width="500" height="500" style="fill:url(#bg1)"></rect>
-    ```
 
-```
+
 - 径向渐变
 
   - `radialGradient`：径向渐变标签
@@ -911,7 +910,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
     
     <rect x="0" y="0" width="500" height="500" fill="yellow" style="filter:url(#Gaussian_Blur)"/>
     
-    ```
+```
 
 - 其他滤镜
 
@@ -1078,12 +1077,123 @@ path{
   </body>
   ```
 
+- ```html
+  叮当猫
+  <head>
+      <style>
+      	svg {
+      		border: 1px solid black;
+      	}
+      	.face {
+      		fill: white;
+      	}
+  
+      	.eye{
+      		fill: white;
+      	}
+  
+  		.line-black {
+  			stroke: black;
+  		}
+  		.fill-blue {
+  			fill:#2E87FD;
+  		}
+  		.mouth {
+  			fill: none;
+  		}
+  		.nose {
+  			fill: #FD0100;
+  		}
+  		.nose-light {
+  			fill: white;
+  		}
+  		.sling {
+  			stroke-width: 20px;
+  			stroke: red;
+  			stroke-linecap: round;
+  		}
+  		.bell {
+  			fill: #cece1b;
+  			fill-opacity: .7;;
+  		}
+  		.body {
+  			stroke: black;
+  		}
+  		.fist {
+  			fill: white;
+  		}
+  		.pocket {
+  			fill: white;
+  		}
+  		.pocket-line {
+  			fill: none;
+  		}
+  		.foot {
+  			stroke: black;
+  			fill: white;
+  		}
+  		.foot-y {
+  			fill: white;
+  		}
+      </style>
+  </head>
+  <body>
+  	<svg width='510' height=510>
+  		<!-- 头部蓝色背景 -->
+  		<path class='line-black fill-blue head-back' d="M 150 300 A 160 160 0 1 1 350 300"></path>
+  		<!-- 脸部白色背景 -->
+  		<ellipse rx=130 ry=110 cx=250 cy=220 class="face line-black "></ellipse>
+  		<!-- 眼睛-右 -->
+  		<ellipse rx=35 ry=45 cx=215 cy=110 class="eye line-black "></ellipse>
+  		<!-- 眼睛-左 -->
+  		<ellipse rx=35 ry=45 cx=285 cy=110 class="eye line-black "></ellipse>
+  		<!-- 眼珠-右 -->
+  		<ellipse rx=8 ry=10 cx=225 cy=120></ellipse>
+  		<!-- 眼珠-左 -->
+  		<ellipse rx=8 ry=10 cx=275 cy=120></ellipse>
+  		<!-- 胡须-右 -->
+  		<path d="M 150 180 L 210 190" class="line-black "></path>
+  		<path d="M 145 205 L 210 205" class="line-black "></path>
+  		<path d="M 150 230 L 210 220" class="line-black "></path>
+  		<!-- 胡须-左 -->
+  		<path d="M 280 190 L 350 180" class="line-black "></path>
+  		<path d="M 280 205 L 345 205" class="line-black "></path>
+  		<path d="M 280 220 L 350 230" class="line-black "></path>
+  		<!-- 嘴巴 -->
+  		<line class="mouth line-black " x1=250 y1=165 x2=250 y2=270></line>
+  		<path class="mouth line-black " d="M 180 240 A 80 50 0 0 0 325 240"></path>
+  		<!-- 鼻子 -->
+  		<ellipse class="nose line-black " rx=15 ry=15 cx=250 cy=160></ellipse>
+  		<ellipse class="nose-light line-black " rx=5 ry=7 cx=257 cy=155></ellipse>
+  		<!-- 身体背景 -->
+  		<rect class="body fill-blue" x=150 y=300 width=200 height=170></rect>
+  		<!-- 左胳膊 -->
+  		<path class="arm fill-blue" d="M 90 290 L 180 330 170 365 90 330 90 290"></path>
+  		<ellipse class="line-black fist" rx=22 ry=22 cx=97 cy=312></ellipse>
+  		<!-- 右胳膊 -->
+  		<path class="arm fill-blue" d="M 320 330 L 410 305 410 340 320 365 320 360"></path>
+  		<ellipse class="line-black fist" rx=22 ry=22 cx=410 cy=320></ellipse>
+  		<!-- 口袋 -->
+  		<path class="pocket" d="M 180 310 A 80 85 0 1 0 320 310"></path>
+  		<path class="line-black pocket-line" d="M 200 370 A 40 40 0 1 0 300 370 z"></path>
+  		<!-- 挂绳 -->
+  		<path class="sling" d="M 150 300 L 350 300"></path>
+  		<!-- 铃铛 -->
+  		<ellipse class="bell line-black " rx=20 ry=20 cx=250 cy=315></ellipse>
+  		<ellipse rx=7 ry=7 cx=250 cy=325></ellipse>
+  		<path class="line-black" d="M 250 325 L 250 335"></path>
+  		<!-- 脚 -->
+  		<ellipse class="foot-y" rx=15 ry=20 cx=255 cy=480></ellipse>
+  		<!-- 左脚 -->
+  		<ellipse class="foot" rx=60 ry=20 cx=190 cy=480></ellipse>
+  		<!-- 右脚 -->
+  		<ellipse class="foot" rx=60 ry=20 cx=320 cy=480></ellipse>
+      </svg>
+  </body>
+  ```
 
+## 地理位置
 
-## 地理信息与本地存储
----
-
-### 地理位置
 ---
 
 - 经度  :   南北极的连接线
@@ -1304,41 +1414,526 @@ btn.onclick = function(){
 
 [在线演示](http://codepen.io/poetries/pen/xgGwaZ)
 
-### 本地存储
----
+## 客户端存储
 
-- **`Storage`**
-    - `sessionStorage`
-        - `session`临时回话，从页面打开到页面关闭的时间段
-        - 窗口的临时存储，页面关闭，本地存储消失
-    - `localStorage`
-        - 永久存储（可以手动删除数据）
+### storage
+
+- **localstorage**：永久存储（可以手动删除数据）
+
+- **seesionstorage**：`session`临时回话，从页面打开到页面关闭的时间段窗口的临时存储，页面关闭，本地存储消失
+
+- 存储数据
+
+  - ```javascript
+    localStorage.name = 'aimee';
+    localStorage.info = `JSON.stringify({
+    	name:'aimee',
+    	company:'diyi'
+    })`
+    ```
+
+- 取出数据
+
+  - ```javascript
+    localStorage.name
+    localStorage.info
+    ```
+
+- 作用域
+
+  - `localStorage`：文档源限制、同源策略限制
+  - `sessionStorage`：文档源限制、同源策略限制、窗口
+
+- 特点：
+
+  - 存储量限制 ( `5M` )
+  - 客户端完成，不会请求服务器处理
+  - `sessionStorage`数据是不共享、 `localStorage`共享
+
+- **API**
+
+  - `setItem(name,val)`：设置数据，(`key`,`value`)类型，类型都是字符串，可以用获取属性的形式操作
+  - `getItem(name)`：获取数据，通过`key`来获取到相应的`value`
+  - `removeItem(name)`：删除数据，通过key来删除相应的`value`
+  - `clear()`：删除全部存储的值
+
+- 存储事件
+
+  - 当数据有修改或者删除的情况下就会触发`storage`事件
+  - 在对数据进行改变的窗口对象上是不会触发的
+  - `Key`：修改或删除的`key`值，如果调用`clear(),key()为null`
+  - `newValue`  :  新设置的值，如果调用`removeStorage()`,`key`为`null`
+  - `oldValue` :  调用改变前的`value`值
+  - `storageArea` : 当前的`storage`对象
+  - `url` :  触发该脚本变化的文档的`url`
+  - 注：`session`同窗口才可以,例子：`iframe`操作
+
+### cookie
+
+- 存储信息到用户的设备上，数据量较小，`4k`左右
+
+- `navigator.cookieEnabled`：检测是否启用了`cookie`
+
+- 设置**cookie**值
+
+  - `document.cookie = "name=aimee"`
+  - 每次只能设置一个值，因为浏览器会认为后面的键值对是这个`cookie`的属性
+
+- 获得**cookie**值
+
+  - `document.cookie`
+  - 不建议出现分号，逗号，空格的奇怪符号
+
+- 设置**cookie**存储期限
+
+  - `document.cookie = 'name=scott;max-age=1000'`
+
+- **expires**：当前时间加上保存时间
+
+  - ```js
+    var timestamp = (new Date()).getTime() + 10000;
+    var expires = new Date(timestamp).toGMTString();
+    document.cookie = “name=scott;expires=“+expires;
+    ```
+
+- 删除**cookie**
+
+  - 需要带上键值对，`max-age=0`
+  - `document.cookie = 'name=scott;max-age=0'`
+
+- **domain**：跨域，设置相同的域
+
+- **path**：路径
+
+- ![](./cookie.png)
+
+- `encodeURIComponent()`：函数可把字符串作为 `URI` 组件进行编码。
+
+- `decodeURIComponent()`：函数可对 `encodeURIComponent()` 函数编码的 `URI` 进行解码。
+
+## requestAnimationFrame
+
+> 实现动画的API，让浏览器更加流畅的实现动画
+
+- 由于`JavaScript`是单线程的，所以定时器的实现是在当前任务队列完成后再执行定时器的回调的，假如当前队列任务执行时间大于定时器设置的延迟时间，那么定时器就不是那么可靠了
+
+- 动画是由浏览器按照一定的频率一帧一帧的绘制的，由`css`实现的动画的优势就是浏览器知道动画的开始及每一帧的循环间隔，能够在恰当的时间刷新`UI`，给用户一种流畅的体验，而`setInterval`或`setTimeout`实现的`JavaScript`动画就没有这么可靠了，因为浏览器压根就无法保证每一帧渲染的时间间隔，一般情况下，每秒平均刷新次数能够达到60帧，就能够给人流畅的体验，即每过 `1000/60` 毫秒渲染新一帧即可，这一点单靠定时器是无法保证的。 为此，`requestAnimationFrame`应运而生，其作用就是让浏览器流畅的执行动画效果。可以将其理解为专门用来实现动画效果的`api`，通过这个`api`,可以告诉浏览器某个`JavaScript`代码要执行动画，浏览器收到通知后，则会运行这些代码的时候进行优化，实现流畅的效果，而不再需要开发人员烦心刷新频率的问题了。
+
+- 大多数电脑显示器的刷新频率是`60Hz`，大概相当于每秒钟重绘`60`次。大多数浏览器都会对重绘操作加以限制，不超过显示器的重绘频率，因为即使超过那个频率用户体验也不会有提升。因此，最平滑动画的最佳循环间隔是`1000ms/60`，约等于`16.7ms`，所以屏幕一般`16.7ms`才会刷新一次
+
+- 特点
+
+  - `requestAnimationFrame`会把每一帧中的所有`DOM`操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，在隐藏或不可见的元素中，`requestAnimationFrame`将不会进行重绘或回流，这当然就意味着更少的`CPU`、`GPU`和内存使用量
+  - `requestAnimationFrame`是由浏览器专门为动画提供的`API`，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了`CPU`开销
+  - `requestAnimationFrame`会在浏览器每次刷新前执行，因为屏幕刷新率一般是`16.7ms`，所以一般`16.7ms`执行一次
+  - `requestAnimationFrame`的用法与`setTimeout`很相似，只是不需要设置时间间隔而已。`requestAnimationFrame`使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。它返回一个整数，表示定时器的编号，这个值可以传递给`cancelAnimationFrame`用于取消这个函数的执行。
+  - 兼容性存在问题，因为是`HTML5`新提供的`API`，只可以在`IE10`以上的浏览器
+
+- `requestAnimationFrame`：设置动画
+
+- `canvelAnimationFrame`：取消动画
+
+- ```js
+  //简单兼容
+  //设置AnimationFrame
+  window.requestAnimFrame = (function(){ 
+  	return window.requestAnimationFrame || 
+          window.webkitRequestAnimationFrame || 
+          window.mozRequestAnimationFrame || 
+          function(callback) {
+              window.setTimeout(callback,1000/60);
+          };
+  })();
+  
+  //取消AnimationFrame
+  window.cancelAnimFrame = (function() {
+      return window.cancelAnimationFrame ||
+          window.webkitCancelAnimationFrame ||
+          window.mozCancelAnimationFrame ||
+          function(id) {
+              window.clearTimeout(id);
+          }
+  })();
+  ```
+
+- ```js
+  // 完美兼容
+  (function() {
+      var lastTime = 0;
+          var vendors = ['webkit', 'moz'];
+          for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+              window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+              window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
+                                            window[vendors[x] + 'CancelRequestAnimationFrame'];
+          }
+      if (!window.requestAnimationFrame) {
+          window.requestAnimationFrame = function(callback, element) {
+              var currTime = new Date().getTime();
+              var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+              var id = window.setTimeout(function() {
+                  callback(currTime + timeToCall);
+              }, timeToCall);
+              lastTime = currTime + timeToCall;
+              return id;
+          };
+      }
+      if (!window.cancelAnimationFrame) {
+          window.cancelAnimationFrame = function(id) {
+              clearTimeout(id);
+          };
+      }
+  }());
+  ```
+
+- ```js
+  例：
+  
+  <div id="btn"></div>
+  
+  //requestAnimationFrame兼容函数
+  window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame || 
+          window.webkitRequestAnimationFrame || 
+          window.mozRequestionAnimationFrame || 
+          function(callback) {
+              window.setTimeout(callback,1000/60);
+          }
+  })();
+  //cancelAnimationFrame兼容函数
+  window.cancelAnimationFrame = (function() {
+      return window.cancelAnimationFrame ||
+          window.webkitCancelAnimationFrame || 
+          window.mozCancelAnimationFrame || 
+          function(id) {
+              window.clearTimeout(id);
+          }
+  })();
+  
+  var req; //标识
+  
+  function move() {
+      btn.style.left = btn.offsetLeft + 10 + 'px';
+      if(btn.offsetLeft >= 300) {
+          // clearTimeout(timer);
+          cancelAnimationFrame(req);
+          btn.style.left = '300px';
+      } else {
+          // req = setTimeout(function() {
+          // 	move();
+          // },10)
+          req = requestAnimationFrame(move);
+      }
+  }
+  move();
+  ```
+
+## history
+
+- 属性
+  - `history.length()`：返回浏览器当前标签页历史列表中的 `URL` 数量
+  - `history.back()`：加载浏览器当前标签页`history` 列表中的前一个 `URL`
+  - `history.forward()`：加载浏览器当前标签页`history` 列表中的下一个 `URL`
+  - `history.go()`：加载 history 列表中的某个具体页面,例如 `history.go(-2)`
+- 为什么要管理历史记录
+  - 为了给用户更方便的操作，更方便回退
+- `history api`的作用，为了我们更方便管理历史记录，不用非要用户点击操作
+- **SPA**：单页面应用
+- 修改事件实现历史记录管理
+  - `pushState`
+    - `history.pushState(state,title,url);` 添加一条历史记录
+  - `repalceState`
+    - `history.replaceState(state,title,url)`：替换当前的历史记录
+  - 参数：
+    - `state`：一个与指定网址相关的状态对象，`popstate`事件触发时，该对象会传入回调函数中，如果不需要这个对象，可以填`null`
+    - `title`：新页面的标题，但是所有浏览器目前都忽略这个值，因此这里可以填`null`
+    - `url`：新的网址，必须与当前页面处在同一个域，浏览器的地址栏将显示在这个网址
+
+- 事件
+  - `popstate`：历史记录发生改变时触发
+    - 调用`history.pushState()或者history.replaceState()不会触发popstate事件`
+  - `hashchange`：当页面的`hash`值改变的时候触发，常用于构建单页面应用
+
+## worker(线程管理)
+
+- 简介
+  - `Web Worker` (工作线程) 是 `HTML5` 中提出的概念，分为两种类型，专用线程（`Dedicated Web Worker`） 和共享线程（`Shared Web Worker`）。专用线程仅能被创建它的脚本所使用（一个专用线程对应一个主线程），而共享线程能够在不同的脚本中使用（一个共享线程对应多个主线程）。
+  - 专用线程可以看做是默认情况的 `Web Worker`，其加上修饰词的目的是为了与共享线程进行区分。本文会较为严格地区分两者，可能较为累赘，但个人认为这是必要的。如果单纯以 `Web Worker` 字样出现的地方指的是两者都会有的情况。
+  
+- 用途
+  - `Web Worker` 的意义在于可以将一些耗时的数据处理操作从主线程中剥离，使主线程更加专注于页面渲染和交互。
+  - 懒加载
+  - 文本分析
+  - 流媒体数据处理
+  - `canvas` 图形绘制
+  - 图像处理
+  - ...
+  
+- 需要注意的点
+  - 有同源限制
+  - 无法访问 `DOM` 节点
+  - 运行在另一个上下文中，无法使用`Window`对象
+  - `Web Worker` 的运行不会影响主线程，但与主线程交互时仍受到主线程单线程的瓶颈制约。换言之，如果 Worker 线程频繁与主线程进行交互，主线程由于需要处理交互，仍有可能使页面发生阻塞
+  - 共享线程可以被多个浏览上下文（`Browsing context`）调用，但所有这些浏览上下文必须同源（相同的协议，主机和端口号）
+  
+- 浏览器支持度
+  - 根据 `CanI Use` 网站的统计，目前约有 `93.05%` 的浏览器支持专用线程。
+
+- 线程创建
+
+  - 值得注意的是，因为 `Web Worker` 有同源策略限制，所以在本地调试的时候也需要通过启动本地服务器的方式访问，使用 `file://` 协议直接打开的话将会抛出异常。
+
+  - 专用线程
+
+  - ```js
+    //专用线程由 Worker()方法创建，可以接收两个参数，第一个参数是必填的脚本的位置，第二个参数是可选的配置对象，可以指定 type、credentials、name 三个属性。
     
-- **`Storage`的特点**
-    - 存储量限制 ( 5M )
-    - 客户端完成，不会请求服务器处理
-    - `sessionStorage`数据是不共享、 `localStorage`共享
+    专用线程
+    var worker = new Worker('worker.js')//worker.js是自己的js文件
+    // var worker = new Worker('worker.js', { name: 'dedicatedWorker'})
+    ```
+
+  - 共享线程
+
+  - ```js
+    //共享线程使用 Shared Worker() 方法创建，同样支持两个参数，用法与 Worker() 一致。
+    var sharedWorker = new SharedWorker('shared-worker.js')//shared-worker.js是自己的js文件
+    ```
+
+- 数据传递
+
+  - **postMessage**()：发送消息事件
+
+  - **onmessage**：接收消息事件
+
+  - `Worker` 线程和主线程都通过 `postMessage()` 方法发送消息，通过 `onmessage` 事件接收消息。在这个过程中数据并不是被共享的，而是被复制的。值得注意的是 `Error` 和 `Function` 对象不能被结构化克隆算法复制，如果尝试这么做的话会导致抛出 `DATA_CLONE_ERR` 的异常。另外，`postMessage()` 一次只能发送一个对象， 如果需要发送多个参数可以将参数包装为数组或对象再进行传递。
+
+  - ```js
+    // 主线程
+    //创建一个worker
+    var worker = new Worker('worker.js')
+    //worker postMessage
+    worker.postMessage(10)
+    //给worker绑定message事件
+    worker.onmessage = function(e) {
+        console.log(e.data)
+    }
     
-- **`Storage API`**
-    - `setItem()`:
-        - 设置数据，(`key`,`value`)类型，类型都是字符串
-        - 可以用获取属性的形式操作
-    - `getItem():`
-        - 获取数据，通过`key`来获取到相应的`value`
-    - `removeItem()`:
-        - 删除数据，通过key来删除相应的`value`
-    - `clear()`:
-        - 删除全部存储的值
+    // Worker.js 线程
+    //绑定onmessage事件
+    onmessage = function(e) {
+        console.log(e.data);
+        //向主线程发送数据
+        postMessage(deal(e.data));
+    }
     
-- **存储事件:**
-    - 当数据有修改或删除的情况下，就会触发`storage`事件
-    - 在对数据进行改变的窗口对象上是不会触发的`
-    - `Key` : 修改或删除的`key`值，如果调用`clear()`,`key`为`null`
-    - `newValue`  :  新设置的值，如果调用`removeStorage()`,`key`为`null`
-    - `oldValue` :  调用改变前的`value`值
-    - `storageArea` : 当前的`storage`对象
-    - `url` :  触发该脚本变化的文档的url
-    - 注：`session`同窗口才可以,例子：`iframe`操作
+    function deal(data) {
+        return data * data;
+    }
+    ```
+    
+  - 在 `Worker` 线程中，`self` 和 `this` 都代表子线程的全局对象。对于监听 message 事件，以下的四种写法是等同的。
+
+  - ```js
+    // 写法 1
+    self.addEventListener('message', function (e) {
+        // ...
+    })
+    
+    // 写法 2
+    this.addEventListener('message', function (e) {
+        // ...
+    })
+    
+    // 写法 3
+    addEventListener('message', function (e) {
+        // ...
+    })
+    
+    // 写法 4
+    onmessage = function (e) {
+        // ...
+    }
+    ```
+
+  - 主线程通过 `MessagePort` 访问专用线程和共享线程。专用线程的 `port` 会在线程创建时自动设置，并且不会暴露出来。与专用线程不同的是，共享线程在传递消息之前，端口必须处于打开状态。`MDN` 上的 `MessagePort` 关于 `start()` 方法的描述是：
+
+    - > Starts the sending of messages queued on the port (only needed when using EventTarget.addEventListener; it is implied when using MessagePort.onmessage.)
+      >
+      > 开始发送在端口上排队的消息（仅在使用EventTarget.addEventListener时需要）；当使用MessagePort.onmessage时，它是隐含的。）
+
+    - 这句话经过试验，可以理解为 `start()` 方法是与 `addEventListener` 配套使用的。如果我们选择 `onmessage` 进行事件监听，那么将隐含调用 `start()` 方法。
+
+    - ```js
+      // 主线程
+      var sharedWorker = new SharedWorker('shared-worker.js')
+      sharedWorker.port.onmessage = function(e) {
+          // 业务逻辑
+      }
+      
+      var sharedWorker = new SharedWorker('shared-worker.js')
+      sharedWorker.port.addEventListener('message', function(e) {
+          // 业务逻辑
+      }, false)
+      sharedWorker.port.start() // 需要显式打开
+      ```
+
+    - 在传递消息时，`postMessage()` 方法和 `onmessage` 事件必须通过端口对象调用。另外，在 `Worker` 线程中，需要使用 `onconnect` 事件监听端口的变化，并使用端口的消息处理函数进行响应。
+
+    - ```js
+      // 主线程
+      sharedWorker.port.postMessage([10, 24])
+      sharedWorker.port.onmessage = function (e) {
+          console.log(e.data)
+      }
+      
+      // Worker 线程
+      onconnect = function (e) {
+          let port = e.ports[0]
+      
+          port.onmessage = function (e) {
+              if (e.data.length > 1) {
+                  port.postMessage(e.data[1] - e.data[0])
+              }
+          }
+      }
+      ```
+
+- 关闭 **Worker**
+  
+  - **close()**：在`worker`作用域中调用，自己关闭
+    
+  - **terminate()**：在`worker`对象上调用(主进程的`worker`对象上`worker.terminate`)，上级关闭`worker`
+    
+  - 可以在主线程中使用 `terminate()` 方法或在 `Worker` 线程中使用 `close()` 方法关闭 `worker`。这两种方法是等效的，但比较推荐的用法是使用 `close()`，防止意外关闭正在运行的 `Worker` 线程。`Worker` 线程一旦关闭 `Worker` 后 `Worker` 将不再响应。
+  
+  - ```js
+    // 主线程
+    worker.terminate()
+    
+    // Dedicated Worker 线程中
+    self.close()
+    
+    // Shared Worker 线程中
+    self.port.close()
+    ```
+  
+- 错误处理
+
+  - 可以通过在主线程或 `Worker` 线程中设置 `onerror` 和 `onmessageerror` 的回调函数对错误进行处理。其中，`onerror` 在 `Worker` 的 `error` 事件触发并冒泡时执行，`onmessageerror` 在 `Worker` 收到的消息不能进行反序列化时触发(本人经过尝试没有办法触发 `onmessageerror` 事件，如果在 `worker` 线程使用 `postMessage` 方法传递一个 Error 或 Function 对象会因为无法序列化优先被 `onerror` 方法捕获，而根本不会进入反序列化的过程)
+
+  - ```js
+    // 主线程
+    worker.onerror = function () {
+        // ...
+    }
+    
+    // 主线程使用专用线程
+    worker.onmessageerror = function () {
+        // ...
+    }
+    
+    // 主线程使用共享线程
+    worker.port.onmessageerror = function () {
+        // ...
+    }
+    
+    // worker 线程
+    onerror = function () {
+    
+    }
+    ```
+
+- 加载外部脚本
+
+  -  `importScripts()` ：能够将外部脚本文件加载到 `Worker` 中
+
+  - `worker`只是`window`的子集，只能实现部分功能，不能获取到`window`，`documennt`，所以这里不要引入`jquery`，可以引入一些计算的库
+
+    ```js
+    importScripts('script1.js')
+    importScripts('script2.js')
+    
+    // 以上写法等价于
+    importScripts('script1.js', 'script2.js')
+    ```
+
+- 子线程
+
+  - `Worker` 可以生成子 `Worker`，但有两点需要注意。
+  - 子 `Worker` 必须与父网页同源
+  - 子 `Worker` 中的 `URI` 相对于父 `Worker` 所在的位置进行解析
+
+- 嵌入式 **Worker**
+
+  - 目前没有一类标签可以使 `Worker` 的代码像 `<script>` 元素一样嵌入网页中，但我们可以通过 `Blob()` 将页面中的 `Worker` 代码进行解析。
+
+  - ```js
+    <script id="worker" type="javascript/worker">
+    // 这段代码不会被 JS 引擎直接解析，因为类型是 'javascript/worker'
+    
+    // 在这里写 Worker 线程的逻辑
+    </script>
+    <script>
+        var workerScript = document.querySelector('#worker').textContent
+        var blob = new Blob(workerScript, {type: "text/javascript"})
+        var worker = new Worker(window.URL.createObjectURL(blob))
+    </script>
+    ```
+
+- 关于 **postMessage**
+
+  - `Web Worker` 中，`Worker` 线程和主线程之间使用结构化克隆算法（`The structured clone algorithm`）进行数据通信。结构化克隆算法是一种通过递归输入对象构建克隆的算法，算法通过保存之前访问过的引用的映射，避免无限遍历循环。这一过程可以理解为，在发送方使用类似 `JSON.stringfy()` 的方法将参数序列化，在接收方采用类似 `JSON.parse()` 的方法反序列化。
+
+  - 但是，一次数据传输就需要同时经过序列化和反序列化，如果数据量大的话，这个过程本身也可能造成性能问题。因此， `Worker` 中提出了 `Transferable Objects` 的概念，当数据量较大时，我们可以选择在将主线程中的数据直接移交给 `Worker` 线程。值得注意的是，这种转移是彻底的，一旦数据成功转移，主线程将不能访问该数据。这个移交的过程仍然通过 `postMessage` 进行传递。
+
+  - ```js
+    postMessage(message, transferList)
+    ```
+
+  - 例如，传递一个 `ArrayBuffer` 对象
+
+  - ```js
+    var aBuffer = new ArrayBuffer(1)
+    worker.postMessage({ data: aBuffer }, [aBuffer])
+    ```
+
+- 上下文，作用域
+
+  - `Worker` 工作在一个 `WorkerGlobalDataScope` 的上下文中。每一个 `WorkerGlobalDataScope` 对象都有不同的 `event loop`。这个 `event loop` 没有关联浏览器上下文（`browsing context`），它的任务队列也只有事件（`events`）、回调（`callbacks`）和联网的活动（`networking activity`）。
+  - 每一个 `WorkerGlobalDataScope` 都有一个 closing 标志，当这个标志设为 true 时，任务队列将丢弃之后试图加入任务队列的任务，队列中已经存在的任务不受影响（除非另有指定）。同时，定时器将停止工作，所有挂起（`pending`）的后台任务将会被删除。
+
+- **Worker** 中可以使用的函数和类
+
+  - 由于 `Worker` 工作的上下文不同于普通的浏览器上下文，因此不能访问 window 以及 window 相关的 `API`，也不能直接操作 `DOM`。`Worker` 中提供了 `WorkerNavigator` 和 `WorkerLocation` 接口，它们分别是 `window` 中 `Navigator` 和 `Location` 的子集。除此之外，`Worker` 还提供了涉及时间、存储、网络、绘图等多个种类的接口，以下列举了其中的一部分，更多的接口可以参考 `MDN` 文档。
+
+- 时间相关
+
+  - `clearInterval()`
+  - `clearTimeout()`
+  - `setInterval()`
+  - `setTimeout()`
+
+- **Worker** 相关
+
+  - `importScripts()`
+  - `close()`
+  - `postMessage()`
+
+- 存储相关
+
+  - `Cache`
+  - `IndexedDB`
+
+- 网络相关
+
+  - `Fetch`
+  - `WebSocket`
+  - `XMLHttpRequest`：可以发送`ajax`对象
+  
+- 作用域**globalWorkerScope**
+
+  - `navigator`：可以使用`navigator`中的一些对象
+  - 可以在`worker`文件中继续生成`worker`对象（`chrome`暂时不支持，浏览器支持情况不好）
 
 ## HTML5新增JS方法
 ---
@@ -1415,11 +2010,7 @@ loadScript("js/async.js",function(){
     - [去下载json2.js](http://www.json.org/)
 
 - **历史管理**
-  - `onhashchange` ：改变hash值来管理
-  - `history`  ：
-    - 服务器下运行
-      - `pushState` :  三个参数 ：数据  标题(都没实现)  地址(可选)
-      - `onpopstate`事件 :  读取数据   `event.state`
+  - `onhashchange` ：改变`hash`值来管理
 
 
 
