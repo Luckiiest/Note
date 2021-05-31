@@ -1505,7 +1505,7 @@ btn.onclick = function(){
 
 - **path**：路径
 
-- ![](./cookie.png)
+- ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/cookie.png)
 
 - `encodeURIComponent()`：函数可把字符串作为 `URI` 组件进行编码。
 
