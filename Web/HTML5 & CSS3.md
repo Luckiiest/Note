@@ -1192,22 +1192,68 @@ path{
   </body>
   ```
 
-## 地理位置
+## 地位位置信息、重力感应、方向感应
+
+### geolocation（地理位置信息）
 
 ---
 
+> **geolocation**：获取地理位置信息
+
 - 经度  :   南北极的连接线
 - 纬度  :   东西连接的线
-
 - 位置信息从何而来
     - `IP`地址
     - `GPS`全球定位系统
     - `Wi-Fi`无线网络
     - 基站
 
-- `avigator.geolocation`
-  - 单次定位请求  ：`getCurrentPosition`(请求成功,请求失败,数据收集方式)
-  - **请求成功函数**
+- https://dev.w3.org/geo/api/spec-source.html#position_error_interface
+- `window.navigator.geolocation`：`navigator`对象下面的属性
+  - ![](D:\Desktop\HTML5\geolocation.png)
+
+#### getCurrentPosition
+
+> getCurrentPosition(success,error,options)
+>
+> 获取当前的位置信息
+
+- `success`：获取成功的回调函数（必须）
+
+- `error`：失败的回调函数
+
+- `options`：一些参数，来辅助
+
+  - `enableHighAccuracy`：是否需要高精度位置，默认`false`,`true/false`
+  - `timeout`：请求超时的时间，单位`ms`，默认`infinity`
+  - `maximumAge`：单位`ms`，`watchPosition`方法不停的取用户的地理位置信息，不停的更新用户的地理位置信息，位置信息过期时间设置为`0`就是无条件获取新的地理位置信息，默认为`0`
+
+- 需要翻墙才可以使用
+
+- ```js
+  例：
+  //pos就是地理位置信息
+  //成功的回调函数
+  function suc(pos) {
+      console.log(pos);
+  }
+  //失败的回调函数
+  function err(err) {
+      console.log(err);
+  }
+  //options参数
+  var options = {
+      enableHighAccuracy: true,
+      timeout: 2000,
+      maximumAge: 300000 //五分钟
+  }
+  window.navigator.geolocation.getCurrentPosition(suc,err)
+  ```
+
+- 成功和失败返回回来的值
+
+  - 成功之后返回回来的地理位置信息(`GeolocationPosition`)
+    - ![](D:\Desktop\HTML5\Geoposition.png)
     - 经度 :  `coords.longitude`
     - 纬度 :  `coords.latitude`
     - 准确度 :  `coords.accuracy`
@@ -1216,31 +1262,38 @@ path{
     - 行进方向 :  `coords.heading`
     - 地面速度 :  `coords.speed`
     - 请求的时间: `new Date(position.timestamp)`
+  - 失败之后返回回来的值(`PositionError`)
+    - 用户拒绝：`code=1`
+    - 获取不到：`code=2`
+    - 连接超时：`code=3`，一般测试不出来，可以设置`timeout`
+    - ![用户拒绝](D:\Desktop\HTML5\PositionError-1.png)
+    - ![获取不到](D:\Desktop\HTML5\PositionError-2.png)
+    - ![](D:\Desktop\HTML5\PositionError-3.png)
 
-  - **请求失败函数**
-    - 失败编号  ：`code`
-      - 0  :  不包括其他错误编号中的错误
-      - 1  :  用户拒绝浏览器获取位置信息
-      - 2  :  尝试获取用户信息，但失败了
-      - 3  :   设置了`timeout`值，获取位置超时了
-  - **数据收集 :  json的形式**
-      - `enableHighAcuracy`  :  更精确的查找，默认`false`
-      - `timeout ` :  获取位置允许最长时间，默认`infinity`
-      - `maximumAge` :  位置可以缓存的最大时间，默认`0`
+#### watchPosition/clearWatch
 
-  - **多次定位请求***  : ` watchPosition`
-      - 移动设备有用，位置改变才会触发
-      - 配置参数：`frequency` 更新的频率
-      - 关闭更新请求  :  `clearWatch`
+>watchPosition(fn)
+>
+>用于注册监听器，在设备的地理位置发生改变的时候自动被调用
+>
+>> 参数与getCurrentPosition相同
+
+- **watchPosition**
+  - `success`：获取成功的回调函数（必须）
+  - `error`：失败的回调函数
+  - `options`：一些参数，来辅助
+    - `enableHighAccuracy`：是否需要高精度位置，默认`false`,`true/false`
+    - `timeout`：请求超时的时间，单位`ms`，默认`infinity`
+    - `maximumAge`：单位`ms`，`watchPosition`方法不停的取用户的地理位置信息，不停的更新用户的地理位置信息，位置信息过期时间设置为`0`就是无条件获取新的地理位置信息，默认为`0`
+- **clearWatch(id)**：清除`watchPosition`监听
 
 
-- **examp01 getCurrentPosition**
+- **examp01**
 
-```html
+```javascript
 <button id="btn">请求位置信息</button>
 <div id="box"></div>
-```
-```javascript
+
 var btn = document.getElementById("btn");
 var box = document.getElementById("box");
 		
@@ -1294,24 +1347,23 @@ btn.onclick = function(){
 
 - **example03 高德地图应用**
 
-```css
+```html
 #container {
     width:600px; 
     height: 300px;
     margin:40px auto;
     border:1px solid red;
 } 
-```
-```html
+
 <div id="container"></div>  
 <script type="text/javascript" 
 src="http://webapi.amap.com/maps?v=1.3&key=278b7b8b4728ba302b7e566fc2a97b36">
 </script>
-```
-```javascript
-var map = new AMap.Map('container');
-```
 
+<script>
+    var map = new AMap.Map('container');
+</script>
+```
 [在线演示](http://codepen.io/poetries/pen/qRdOKZ)
 
 - **examp04  搜索城市**
@@ -1349,8 +1401,8 @@ input{
 #btn{
 	width:80px;
 }
-```
-```html
+
+
 <div id="container"></div> 
 <div id="box">
 	<input type="text" id="city" placeholder="请输入城市...">
@@ -1359,60 +1411,215 @@ input{
 <script type="text/javascript" 
 src="http://webapi.amap.com/maps?v=1.3&key=278b7b8b4728ba302b7e566fc2a97b36">
 </script>
+
+<script>
+    var btn = document.getElementById("btn");
+    var city = document.getElementById("city");
+    var map = new AMap.Map('container');
+    var toolBar,mouseTool,contextMenu;
+    //在地图中添加操作toolBar插件、mouseTool插件
+    map.plugin(["AMap.ToolBar","AMap.MouseTool"],function(){
+        toolBar = new AMap.ToolBar();
+        map.addControl(toolBar);
+        mouseTool = new AMap.MouseTool(map);
+    });
+    var menuContext = document.createElement("div");
+    menuContext.innerHTML = "<div class=menu><ul><li onclick='zoomMenu(0)'>缩小</li>
+    <li onclick='zoomMenu(1)'>放大</li>
+    <li onclick='distanceMeasureMenu()'>距离量测</li>
+    <li onclick = 'addMarkerMenu()'>添加标记</li></ul></div>";
+    //创建一个自定义的右键菜单
+    contextMenu = new AMap.ContextMenu({isCustom:true,content:menuContext});
+    //给地图绑鼠标右键功能弹出右键菜单
+    AMap.event.addListener(map,"rightclick",function(e){
+        contextMenu.open(map,e.lnglat);//e.lnglat鼠标点击的经纬度
+        contextMenuPosition = e.lnglat;
+    })
+    //右键菜单缩放地图
+    function zoomMenu(n){
+        if(n === 0){map.zoomOut();}
+        if(n === 1){map.zoomIn();}
+        contextMenu.close();
+    }
+    contextMenu.close();
+    //测量距离功能
+    function distanceMeasureMenu(){
+        mouseTool.rule();
+        contextMenu.close();
+    }
+    //添加标注功能
+    function addMarkerMenu(){
+        mouseTool.close();
+        var marker = new AMap.Marker({
+            map: map,
+            position: contextMenuPosition, //基点位置
+            offset: {x:-5,y:-10} //相对于基点位置
+        });
+        contextMenu.close();
+    }
+    //搜索城市
+    btn.onclick = function(){
+        var val = city.value;
+        map.setCity(val);
+    }
+</script>
 ```
-```javascript
-var btn = document.getElementById("btn");
-var city = document.getElementById("city");
-var map = new AMap.Map('container');
-var toolBar,mouseTool,contextMenu;
-//在地图中添加操作toolBar插件、mouseTool插件
-map.plugin(["AMap.ToolBar","AMap.MouseTool"],function(){
-	toolBar = new AMap.ToolBar();
-	map.addControl(toolBar);
-	mouseTool = new AMap.MouseTool(map);
+[在线演示](http://codepen.io/poetries/pen/xgGwaZ)
+
+### devicemotion（监听加速度变化）
+
+> **devicemotion**：监听加速度变化，当你的设备疯狂摇摆时，可以监听到是加速还是在减速，需要陀螺仪支持
+
+```js
+window.addEventListener('devicemotion', function(e){
+       console.log(e);
 });
-var menuContext = document.createElement("div");
-menuContext.innerHTML = "<div class=menu><ul><li onclick='zoomMenu(0)'>缩小</li>
-<li onclick='zoomMenu(1)'>放大</li>
-<li onclick='distanceMeasureMenu()'>距离量测</li>
-<li onclick = 'addMarkerMenu()'>添加标记</li></ul></div>";
-//创建一个自定义的右键菜单
-contextMenu = new AMap.ContextMenu({isCustom:true,content:menuContext});
-//给地图绑鼠标右键功能弹出右键菜单
-AMap.event.addListener(map,"rightclick",function(e){
-	contextMenu.open(map,e.lnglat);//e.lnglat鼠标点击的经纬度
-	contextMenuPosition = e.lnglat;
-})
-//右键菜单缩放地图
-function zoomMenu(n){
-	if(n === 0){map.zoomOut();}
-	if(n === 1){map.zoomIn();}
-	contextMenu.close();
-}
-contextMenu.close();
-//测量距离功能
-function distanceMeasureMenu(){
-	mouseTool.rule();
-	contextMenu.close();
-}
-//添加标注功能
-function addMarkerMenu(){
-	mouseTool.close();
-	var marker = new AMap.Marker({
-		map: map,
-		position: contextMenuPosition, //基点位置
-		offset: {x:-5,y:-10} //相对于基点位置
-	});
-	contextMenu.close();
-}
-//搜索城市
-btn.onclick = function(){
-	var val = city.value;
-	map.setCity(val);
-}
 ```
 
-[在线演示](http://codepen.io/poetries/pen/xgGwaZ)
+- 包含的属性
+
+  - `accelerationIncludingGravity`：包括重心引力，`z`轴方向加了`9.8`，再`x,y`方向上的值两者相同，重力加速度
+  - `acceleration`：重力加速度（需要陀螺仪支持）
+  - `rotationRate(alpha,beta,gamma)`：旋转速率
+  - `interval`：获取的时间间隔
+  - 注意：都是只读属性
+
+- ```js
+  //重力感应
+  window.addEventListener('devicemotion',function(e) {
+      		item.innerHTML = e.accelerationIncludingGravity.x + '-' +e.accelerationIncludingGravity.y + '-' + e.accelerationIncludingGravity.z;
+      	})
+  ```
+
+- ```js
+  微信摇一摇
+  var SHAKE_THRESHOLD = 800; //基准值800
+          var last_update = 0; //上一次更新的时间为0
+  		//当前x,y,z和上一次的x,y,z
+          var x, y, z, last_x=0, last_y=0, last_z=0;
+          function deviceMotionHeadler(eventData) {
+          	// 加速度
+              var acceleration = eventData.accelerationIncludingGravity;
+              //时间戳
+              var curTime = new Date().getTime();
+              //300毫秒判断一次，300毫秒执行一次
+              if((curTime - last_update) > 300) {
+                  var diffTime = curTime - last_update;
+                  last_update = curTime;
+                  x = acceleration.x;
+                  y = acceleration.y;
+                  z = acceleration.z;
+                  
+                  var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+                  if(speed > SHAKE_THRESHOLD) {
+                      alert('shaked~!');
+                      var div = document.createElement('div');
+                      div.innerText = '11';
+                      document.body.appendChild(div);
+                  }
+                  last_x = x;
+                  last_y = y;
+                  last_z = z;
+              }
+          }
+          //监听加速度的变化，当加速度变化时，执行deviceMotionHeadler函数
+          window.addEventListener('devicemotion', deviceMotionHeadler, false);
+  ```
+
+### deviceorientation（监听方向变化）
+
+> deviceorientation：监听设备在方向上的变化
+
+```js
+window.addEventListener(deviceorientation,function(event) {
+    console.log(event);
+})
+```
+
+- 包含的属性
+
+  - `alpha`：表示设备沿z轴上的旋转角度，范围为`0~360`
+  - `beta`表示设备再X轴上的旋转角度，范围为`-180~180`。它描述的是设备由前向后旋转的情况
+  - `gamma`表示设备在`y`轴上的旋转角度，范围为`-90~90`。它描述的是设备由左向右旋转的情况
+  - ![](D:\Desktop\HTML5\direction.png)
+
+- ```html
+  <p>旋转：<span id="alpha">0</span></p>
+  <p>前后：<span id="beta">0</span></p>
+  <p>扭转：<span id="gamma">0</span></p>
+  
+  
+  <script>
+      function DeviceOrientationHandler(event){
+          var alpha = event.alpha,
+              beta = event.beta,
+              gamma = event.gamma,
+              webkitCompassHeading = event.webkitCompassHeading;
+  
+          if(alpha != null || beta != null || gamma != null){
+              //判断屏幕方向
+              var html = "";
+              if( gamma > 0 ){
+                  html = "向右倾斜" + gamma;
+              }else{
+                  html = "向左倾斜" + gamma;
+              }
+              document.getElementById("gamma").innerHTML = html;
+  
+              var str = '';
+              if( beta > 0 ){
+                  str = "向前倾斜" + beta;
+              }else{
+                  str = "向后倾斜" + beta;
+              }
+  
+              var head = '';
+              var headNum = Math.round(Math.round(webkitCompassHeading/45) + 7)%8;
+              switch (headNum) {
+                  case 0:
+                      head = '东北';
+                      break;
+                  case 1:
+                      head = '东';
+                      break;
+                  case 2:
+                      head = '东南';
+                      break;
+                  case 3:
+                      head = '南';
+                      break;
+                  case 4:
+                      head = '西南';
+                      break;
+                  case 5:
+                      head = '西';
+                      break;
+                  case 6:
+                      head = '西北';
+                      break;
+                  case 7:
+                      head = '北';
+              }
+  
+              document.getElementById("beta").innerHTML = str;
+              document.getElementById("alpha").innerHTML = alpha;
+              document.getElementById('heading').innerHTML = head + '   ' + webkitCompassHeading;
+          }else{
+              document.body.innerHTML = "当前浏览器不支持DeviceOrientation";
+          }
+      }
+      //判断有没有这个事件，如果有的话才监听
+      if(window.DeviceOrientationEvent){
+          window.addEventListener('deviceorientation',DeviceOrientationHandler, false);
+      }else{
+          alert("您的浏览器不支持DeviceOrientation");
+      }
+  </script>
+  ```
+
+- `webkitCompassHeading`：与正北方向的角度差值。正北为`0`度，正东为`90`度，正南为`180`度，正西为`270`度。因为`0`度是正北，所以叫指北针。
+
+- `webkitCompassAccuracy`：指北针的精确度，表示偏差为正负多少度。一般是`10`。
 
 ## 客户端存储
 
