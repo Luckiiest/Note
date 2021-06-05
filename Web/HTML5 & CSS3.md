@@ -1210,7 +1210,7 @@ path{
 
 - https://dev.w3.org/geo/api/spec-source.html#position_error_interface
 - `window.navigator.geolocation`：`navigator`对象下面的属性
-  - ![](D:\Desktop\HTML5\geolocation.png)
+  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/geolocation.png)
 
 #### getCurrentPosition
 
@@ -1253,7 +1253,7 @@ path{
 - 成功和失败返回回来的值
 
   - 成功之后返回回来的地理位置信息(`GeolocationPosition`)
-    - ![](D:\Desktop\HTML5\Geoposition.png)
+    - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/Geoposition.png)
     - 经度 :  `coords.longitude`
     - 纬度 :  `coords.latitude`
     - 准确度 :  `coords.accuracy`
@@ -1266,9 +1266,9 @@ path{
     - 用户拒绝：`code=1`
     - 获取不到：`code=2`
     - 连接超时：`code=3`，一般测试不出来，可以设置`timeout`
-    - ![用户拒绝](D:\Desktop\HTML5\PositionError-1.png)
-    - ![获取不到](D:\Desktop\HTML5\PositionError-2.png)
-    - ![](D:\Desktop\HTML5\PositionError-3.png)
+    - ![用户拒绝](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-1.png)
+    - ![获取不到](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-2.png)
+    - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-3.png)
 
 #### watchPosition/clearWatch
 
@@ -1541,7 +1541,7 @@ window.addEventListener(deviceorientation,function(event) {
   - `alpha`：表示设备沿z轴上的旋转角度，范围为`0~360`
   - `beta`表示设备再X轴上的旋转角度，范围为`-180~180`。它描述的是设备由前向后旋转的情况
   - `gamma`表示设备在`y`轴上的旋转角度，范围为`-90~90`。它描述的是设备由左向右旋转的情况
-  - ![](D:\Desktop\HTML5\direction.png)
+  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/direction.png)
 
 - ```html
   <p>旋转：<span id="alpha">0</span></p>
