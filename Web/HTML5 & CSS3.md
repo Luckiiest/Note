@@ -801,7 +801,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
 
 - **二次贝塞尔曲线**
 
-![二次贝塞尔曲线](D:\Desktop\HTML5\Q2.gif)
+![二次贝塞尔曲线](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/Q2.GIF)
 
 - **Q指令**
   - `x1，y1`：起始控制点
@@ -816,7 +816,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
 
 - **三次贝塞尔曲线**
 
-![](D:\Desktop\HTML5\S3.gif)
+![三次贝塞尔曲线](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/S3.GIF)
 
 - **C指令**
   - `x1，y1`：起始控制点
