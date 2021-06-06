@@ -1192,6 +1192,103 @@ path{
   </body>
   ```
 
+## 客户端存储
+
+### storage
+
+- **localstorage**：永久存储（可以手动删除数据）
+
+- **seesionstorage**：`session`临时回话，从页面打开到页面关闭的时间段窗口的临时存储，页面关闭，本地存储消失
+
+- 存储数据
+
+  - ```javascript
+    localStorage.name = 'aimee';
+    localStorage.info = `JSON.stringify({
+    	name:'aimee',
+    	company:'diyi'
+    })`
+    ```
+
+- 取出数据
+
+  - ```javascript
+    localStorage.name
+    localStorage.info
+    ```
+
+- 作用域
+
+  - `localStorage`：文档源限制、同源策略限制
+  - `sessionStorage`：文档源限制、同源策略限制、窗口
+
+- 特点：
+
+  - 存储量限制 ( `5M` )
+  - 客户端完成，不会请求服务器处理
+  - `sessionStorage`数据是不共享、 `localStorage`共享
+
+- **API**
+
+  - `setItem(name,val)`：设置数据，(`key`,`value`)类型，类型都是字符串，可以用获取属性的形式操作
+  - `getItem(name)`：获取数据，通过`key`来获取到相应的`value`
+  - `removeItem(name)`：删除数据，通过key来删除相应的`value`
+  - `clear()`：删除全部存储的值
+
+- 存储事件
+
+  - 当数据有修改或者删除的情况下就会触发`storage`事件
+  - 在对数据进行改变的窗口对象上是不会触发的
+  - `Key`：修改或删除的`key`值，如果调用`clear(),key()为null`
+  - `newValue`  :  新设置的值，如果调用`removeStorage()`,`key`为`null`
+  - `oldValue` :  调用改变前的`value`值
+  - `storageArea` : 当前的`storage`对象
+  - `url` :  触发该脚本变化的文档的`url`
+  - 注：`session`同窗口才可以,例子：`iframe`操作
+
+### cookie
+
+- 存储信息到用户的设备上，数据量较小，`4k`左右
+
+- `navigator.cookieEnabled`：检测是否启用了`cookie`
+
+- 设置**cookie**值
+
+  - `document.cookie = "name=aimee"`
+  - 每次只能设置一个值，因为浏览器会认为后面的键值对是这个`cookie`的属性
+
+- 获得**cookie**值
+
+  - `document.cookie`
+  - 不建议出现分号，逗号，空格的奇怪符号
+
+- 设置**cookie**存储期限
+
+  - `document.cookie = 'name=scott;max-age=1000'`
+
+- **expires**：当前时间加上保存时间
+
+  - ```js
+    var timestamp = (new Date()).getTime() + 10000;
+    var expires = new Date(timestamp).toGMTString();
+    document.cookie = “name=scott;expires=“+expires;
+    ```
+
+- 删除**cookie**
+
+  - 需要带上键值对，`max-age=0`
+  - `document.cookie = 'name=scott;max-age=0'`
+
+- **domain**：跨域，设置相同的域
+
+- **path**：路径
+
+- ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/cookie.png)
+
+- `encodeURIComponent()`：函数可把字符串作为 `URI` 组件进行编码。
+
+- `decodeURIComponent()`：函数可对 `encodeURIComponent()` 函数编码的 `URI` 进行解码。
+
 ## 地位位置信息、重力感应、方向感应
 
 ### geolocation（地理位置信息）
@@ -1621,104 +1718,9 @@ window.addEventListener(deviceorientation,function(event) {
 
 - `webkitCompassAccuracy`：指北针的精确度，表示偏差为正负多少度。一般是`10`。
 
-## 客户端存储
+## 动画函数、历史记录、线程管理
 
-### storage
-
-- **localstorage**：永久存储（可以手动删除数据）
-
-- **seesionstorage**：`session`临时回话，从页面打开到页面关闭的时间段窗口的临时存储，页面关闭，本地存储消失
-
-- 存储数据
-
-  - ```javascript
-    localStorage.name = 'aimee';
-    localStorage.info = `JSON.stringify({
-    	name:'aimee',
-    	company:'diyi'
-    })`
-    ```
-
-- 取出数据
-
-  - ```javascript
-    localStorage.name
-    localStorage.info
-    ```
-
-- 作用域
-
-  - `localStorage`：文档源限制、同源策略限制
-  - `sessionStorage`：文档源限制、同源策略限制、窗口
-
-- 特点：
-
-  - 存储量限制 ( `5M` )
-  - 客户端完成，不会请求服务器处理
-  - `sessionStorage`数据是不共享、 `localStorage`共享
-
-- **API**
-
-  - `setItem(name,val)`：设置数据，(`key`,`value`)类型，类型都是字符串，可以用获取属性的形式操作
-  - `getItem(name)`：获取数据，通过`key`来获取到相应的`value`
-  - `removeItem(name)`：删除数据，通过key来删除相应的`value`
-  - `clear()`：删除全部存储的值
-
-- 存储事件
-
-  - 当数据有修改或者删除的情况下就会触发`storage`事件
-  - 在对数据进行改变的窗口对象上是不会触发的
-  - `Key`：修改或删除的`key`值，如果调用`clear(),key()为null`
-  - `newValue`  :  新设置的值，如果调用`removeStorage()`,`key`为`null`
-  - `oldValue` :  调用改变前的`value`值
-  - `storageArea` : 当前的`storage`对象
-  - `url` :  触发该脚本变化的文档的`url`
-  - 注：`session`同窗口才可以,例子：`iframe`操作
-
-### cookie
-
-- 存储信息到用户的设备上，数据量较小，`4k`左右
-
-- `navigator.cookieEnabled`：检测是否启用了`cookie`
-
-- 设置**cookie**值
-
-  - `document.cookie = "name=aimee"`
-  - 每次只能设置一个值，因为浏览器会认为后面的键值对是这个`cookie`的属性
-
-- 获得**cookie**值
-
-  - `document.cookie`
-  - 不建议出现分号，逗号，空格的奇怪符号
-
-- 设置**cookie**存储期限
-
-  - `document.cookie = 'name=scott;max-age=1000'`
-
-- **expires**：当前时间加上保存时间
-
-  - ```js
-    var timestamp = (new Date()).getTime() + 10000;
-    var expires = new Date(timestamp).toGMTString();
-    document.cookie = “name=scott;expires=“+expires;
-    ```
-
-- 删除**cookie**
-
-  - 需要带上键值对，`max-age=0`
-  - `document.cookie = 'name=scott;max-age=0'`
-
-- **domain**：跨域，设置相同的域
-
-- **path**：路径
-
-- ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/cookie.png)
-
-- `encodeURIComponent()`：函数可把字符串作为 `URI` 组件进行编码。
-
-- `decodeURIComponent()`：函数可对 `encodeURIComponent()` 函数编码的 `URI` 进行解码。
-
-## requestAnimationFrame
+### requestAnimationFrame(动画函数)
 
 > 实现动画的API，让浏览器更加流畅的实现动画
 
@@ -1834,7 +1836,7 @@ window.addEventListener(deviceorientation,function(event) {
   move();
   ```
 
-## history
+### history(历史记录)
 
 - 属性
   - `history.length()`：返回浏览器当前标签页历史列表中的 `URL` 数量
@@ -1860,7 +1862,7 @@ window.addEventListener(deviceorientation,function(event) {
     - 调用`history.pushState()或者history.replaceState()不会触发popstate事件`
   - `hashchange`：当页面的`hash`值改变的时候触发，常用于构建单页面应用
 
-## worker(线程管理)
+### worker(线程管理)
 
 - 简介
   - `Web Worker` (工作线程) 是 `HTML5` 中提出的概念，分为两种类型，专用线程（`Dedicated Web Worker`） 和共享线程（`Shared Web Worker`）。专用线程仅能被创建它的脚本所使用（一个专用线程对应一个主线程），而共享线程能够在不同的脚本中使用（一个共享线程对应多个主线程）。
