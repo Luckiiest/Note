@@ -173,70 +173,157 @@
     - `cusomError`
       - `setCustomValidity()`
 
-## 视频/音频
----
+## audio/video
 
 - 视频音频格式的简单介绍
   - 常见的视频格式
     - 视频的组成部分：画面、音频、编码格式
-    - 视频编码：H.264、Theora、VP8(google开源)
+    - 视频编码：`H.264`、`Theora`、`VP8`(`google`开源)
   - 常见的音频格式
-    - 视频编码：ACC、MP3、Vorbis
-
-- **`HTML5`支持的格式**
----
+    - 视频编码：`ACC`、`MP3`、`Vorbis`
 
 - `HTML5`能在完全脱离插件的情况下播放音视频,但是不是所有格式都支持。
+
 - **支持的视频格式：**
-    - `Ogg=`带有`Theora`视频编码`+Vorbis`音频编码的`Ogg`文件
-    - `MEPG4=`带有H.264视频编码`+AAC`音频编码的`MPEG4`文件
-    - `WebM=`带有`VP8`视频编码`+Vorbis`音频编码的`WebM`格式
+  - `Ogg=`带有`Theora`视频编码`+Vorbis`音频编码的`Ogg`文件
+  - `MEPG4=`带有`H.264`视频编码`+AAC`音频编码的`MPEG4`文件
+  - `WebM=`带有`VP8`视频编码`+Vorbis`音频编码的`WebM`格式
 
-### `Video`的使用
----
+### 基础用法
 
-- **单独用法**
-  - `<video src="文件地址" controls="controls"></video>`
-- **带提示用法**
+- 单独用法
 
-```html
-< video src="文件地址" controls="controls">
-	您的浏览器暂不支持video标签。播放视频
-</ video >
-```
+  - `<audio id="audio" src="./成都.mp3"></audio>`
+  - `<video id="video" src="./成都.mp4"></video>`
+  - 注意：`video`和`audio`的方法属性和事件是共有的
 
-- **兼容用法**
+- 多类型资源，兼容方法
 
-```html
-< video  controls="controls"  width="300">
-	<source src="move.ogg" type="video/ogg" >
-	<source src="move.mp4" type="video/mp4" >
-	您的浏览器暂不支持video标签。播放视频
-</ video >
-```
+  - ```html
+    <audio id='music'>
+        <source src='./成都.mp3' type='audio/mpeg'>
+        <source src='成都.ogg' type='audio/ogg'>
+        您的浏览器暂不支持audio标签。播放音乐
+    </audio>
+    
+    <video controls="controls"  width="300">
+        <source src='./成都.mp4' type='video/mpeg'>
+        <source src='成都.avi' type='video/ogg'>
+        您的浏览器暂不支持video标签。播放视频
+    </video>
+    ```
 
-- **`Video`的常见属性**
+### 标签属性
 
-|属性|	值|	描述|
-|---|---|---|
-|Autoplay|	Autoplay|	视频就绪自动播放|
-|controls|	controls|	向用户显示播放控件|
-|Width|	Pixels(像素)|	设置播放器宽度|
-|Height|	Pixels(像素)|	设置播放器高度|
-|Loop|	Loop|	播放完是否继续播放该视频，循环播放|
-|Preload	|load{auto,meta,none}|	规定是否预加载视频。|
-|Src	|url	|视频url地址|
-|Poster|	Imgurl	|加载等待的画面图片|
-|Autobuffer|	Autobuffer	|设置为浏览器缓冲方式，不设置autoply才有效|
+- 例：`<video id="video" src="./成都.mp4" 属性1 属性2 属性……></video>`
 
-- **`Video`的`API`方法**
+- `autoplay` ：播放
 
-|方法|	属性|	事件|
-|---|---|---|
-|play()|	currentSrc|	play|
-|pause()|	currentTime|	pause|
-|load()|	videoWidth|	progress|
-|canPlayType()|	videoHeight|	error|
+- `controls`：显示控件
+
+- `preload(none/metadata/auto)`：预加载
+
+  - `node`：不需要加载数据
+  - `metadata`：元数据，诸如时长、比特率、帧大小这样的原数据而不是媒体内容需要加载的
+  - `auto`：浏览器应当加载它认为适量的媒体内容
+  - `<video id="video" src="***.mp4" preload='auto'></video>`
+
+- `loop`：是否循环播放视频
+
+- `poster（video独有）`：当视频不可用时，使用一张图片替代，否则是空白
+
+  - `<video src="成都.mp4" poster="***.jpg" controls></video>`
+
+- 脚本化
+
+  - ```js
+    var audio = document.getElementById('audio');
+    var audio = new Audio('./laojie.mp3');
+    var video= document.createElement('video');
+    
+    //audio可以通过new来创建，video不可以通过new来创建
+    ```
+
+  - 设置属性值
+
+    - `controls = true`
+    - `loop = 'loop'`
+    - `preload = 'none/metadata/auto'`
+    - `autoplay = true`
+    - `currentSrc = '媒体数据的url地址'`
+
+### 方法
+
+- `play()`：播放方法，方法运行后播放
+
+- `pause()`：暂停方法，方法运行后暂停
+
+- `load()`：重新加载视频/音频，用于在更改来源或其他设置后对音频/视频元素进行更新
+
+- `addTextTrack()`：向音频/视频添加新的文本轨道
+
+- `canPlayType()`
+
+  - 检测浏览器是否能播放指定的音频/视频类型
+
+  - ```js
+    var a = new Audio();
+    if(a.canPlayType("audio/mp3")){
+        a.src="./成都.mp3";
+        a.play();
+    }
+    ```
+
+### 属性
+
+- **playbackRate**
+  - 播放速率，用于指定媒体播放的速度，该属性值为`1.0`表示正常速度，大于`1`则表示快进，`0~1`之间表示慢放，负值表示回放
+  - 每个浏览器实现的会有差别，具体看浏览器实现
+- **volume**：
+  - 调整音量大小，介于`0`（静音）——`1`（最大音量）之间，默认为`1`，将`muted`属性设置为`true`则会进入静音模式，设置为`false`则会恢复之前指定音量继续播放
+  - 超过范围会报错`[0,1]`
+- **currentTIme / duration**
+
+  - `currentTime`：设置或返回音频/视频播放的时间位置
+  - `duration`：返回当前音频/视频的时长（`window.onload`），单位：秒
+- **played / buffered / seekable**
+
+  - `played`：返回已经播放的时间段
+  - `buffered`：返回当前已经缓冲的时间段
+    - 确定当前缓存内容的百分比
+    - `Math.floor(song.buffered.end(0) / song.duration*100);`
+  - `seekable`：返回用户可以跳转的时间段
+  - *注意：*这三个属性都是`TImeRanges`对象，每个对象都有一个`length`属性以及`start()`和`end()`方法，`length`属性表示当前的一个时间段，`start()`与`end()`分别返回当前时间段的起始时间点和结束时间点（单位是秒，起始参数是`0`）
+- **paused / seeking / ended**
+
+  - `paused`：为`true`表示播放器暂停
+  - `seeking`：为`true`表示播放器正在调到一个新的播放点，它是一个事件
+  - `ended`：如果播放器播放完并且停下来，则属性为`true`
+- **preload**：是否预加载视频/音频
+- [更多属性](https://techbrood.com/tagsref?p=ref-av-dom)
+
+
+### 事件
+
+- 事件是当达到某个条件的时候会触发这个事件
+- `play`：开始播放的时候触发事件
+- `pause`：暂停播放的时候触发事件
+- `loadedmetadata`：浏览器获取完媒体的元数据触发
+- `loadeddata`：浏览器已经加载完当前帧数据，准备播放时触发，注意兼容`IE8`
+- `ended`：当前播放结束后触发
+- `readyState`：音频当前就绪状态
+  - 表示音频元素的当前网络状态
+  - `0 = NETWORK_EMPTY - 音频尚未初始化`
+  - `1 = NETWORK_lDLE - 音频是活动的且选取资源，但并未使用网络`
+  - `2 = NETWORK_LOADING - 浏览器正在下载数据`
+  - `3 = NETWORK_NO_SOURCE - 未找到音频来源`
+- `error`：在音频/视频`(audio/video)`加载发生错误时触发
+  - `MediaError`对象的`code`属性返回一个数字值，它表示音频 / 视频的错误状态
+  - `1 = MEDIA_ERR_ABORTED - 取回过程被用户中止`
+  - `2 = MEDIA_ERR_NETWORK - 当下载时发生错误`
+  - `3 = MEDIA_ERR_DECODE - 当解码时发生错误`
+  - `4 = MEDIA_ERR_SRC_NOT_SUPPORTED - 不支持音频/视频`
+- [更多事件](
 
 ## canvas
 
