@@ -2231,7 +2231,309 @@ window.addEventListener(deviceorientation,function(event) {
   - `navigator`：可以使用`navigator`中的一些对象
   - 可以在`worker`文件中继续生成`worker`对象（`chrome`暂时不支持，浏览器支持情况不好）
 
+## 拖拽/ 读取文件 / WebSocket
+
+### drag & drop（拖拽）
+
+- 常用于各种拖动操作中
+- 创建可拖动元素
+  - `<div> id='drag' draggable='true'></div>`
+
+- 相关事件
+
+  - `dragstart`：被拖拽元素，开始被拖拽时触发
+  - `dragend`：被拖拽元素，拖拽完成时触发
+  - `dragenter`：目标元素，拖拽元素进入目标元素触发
+  - `dragover`：目标元素，拖拽元素在目标元素上移动触发
+  - `drop`：目标元素，被拖拽的元素在目标元素上同时鼠标放开触发
+  - 注意：需要阻止`dragover`的默认行为才会触发`drop`事件
+
+- **DragEvent**事件对象
+
+  - 传值
+    - `e.dataTransfer.setData("data",e.target.id)`
+  - 取值
+    - `e.dataTransfer.getData("data")`
+
+- 案例1：把元素拖入到目标元素
+
+  - ```html
+    <style>
+    	#item1{
+            width: 100px;
+            height: 100px;
+            background:red;
+        }
+        #item2{
+            width: 100px;
+            height: 100px;
+            background:green;
+        }
+        #wrapper{
+            width:500px;
+            height: 500px;
+            background: orange;
+        }
+    </style>
+    
+    <div id="item1" draggable='true'></div>
+    <div id="item2" draggable='true'></div>
+    <div id="wrapper"></div>
+    
+    <script>
+        //被拖拽对象
+        var oItem1 = document.getElementById("item1");
+        var oItem2 = document.getElementById("item2");
+        //目标对象
+        var oWrapper = document.getElementById("wrapper");
+        oItem1.addEventListener('dragstart',function(e){
+            e.dataTransfer.setData('data',this.id);
+    
+        },false);
+    
+        oItem2.addEventListener('dragstart',function(e){
+            e.dataTransfer.setData('data',this.id);
+        },false);
+    
+        //阻止dragover的默认行为
+        oWrapper.addEventListener('dragover',function(e){
+            e.preventDefault();
+        })
+    
+        oWrapper.addEventListener('drop', function(e){
+            //调用PreventDefault()来避免浏览器对数据的默认处理（drop事件的默认行为是以链接形式打开）
+            e.preventDefault();
+            //获取得到的对象，插入到目标对象
+            var data = e.dataTransfer.getData('data');
+            oWrapper.appendChild(document.getElementById(data));
+        }, false)
+    </script>
+    ```
+
+- 案例2：拖拽插入、[**删除元素**]()
+
+  - ```html
+     <style>
+         *{
+             padding: 0;
+             margin: 0;
+             list-style: none;
+         }
+         ul{
+             margin: 35px;
+         }
+         li{
+             width: 200px;
+             height: 30px;
+             margin: 10px;
+             background:#ccc;
+             text-align: center;
+             line-height: 30px;
+             font-size: 25px;
+         }
+         .wrapper{
+             width:300px;
+             height: 300px;
+             background: black;
+         }
+    </style>
+    
+    
+    <ul>
+        <li draggable='true'>1</li>
+        <li draggable='true'>2</li>
+        <li draggable='true'>3</li>
+        <li draggable='true'>4</li>
+        <li draggable='true'>5</li>
+    </ul>
+    <div class="wrapper"></div>
+    
+    <script>
+        var oLi = document.getElementsByTagName('li'),
+            oUl = document.getElementsByTagName('ul')[0],
+            len = oLi.length,
+            oWrapper = document.getElementsByClassName('wrapper')[0];
+    
+        function bindLiEvent(){
+            for(var i = 0;i < len;i ++){
+                oLi[i].addEventListener('dragstart',function(e){
+                    //根据当前dom元素的顺序重新获取i值
+                    var index = getIndex(this);
+                    //添加参数
+                    e.dataTransfer.setData('data',index);
+                },false);
+    
+                oLi[i].addEventListener('dragover',function(e){
+                    //取消dragover默认事件，让drop生效
+                    e.preventDefault();
+                },false);
+    
+                oLi[i].addEventListener('drop',function(e){
+                    //取出参数i,把第i个元素插入到目标元素的前面
+                    var i = e.dataTransfer.getData('data');
+                    console.log(i);
+                    oUl.insertBefore(oLi[i], this);
+                },false);
+            }  
+        }
+    
+        //查找当前这个元素拖拽的索引值
+        function getIndex(dom){
+            for(var i = 0;i < len;i++){
+                if(oLi[i] == dom){
+                    return i;
+                }
+            }
+        }
+        bindLiEvent();
+    
+        //删除元素
+        function removeLi(){
+            oWrapper.addEventListener('dragover',function(e){
+                e.preventDefault();
+            },false);
+            oWrapper.addEventListener('drop',function(e){
+                var index = e.dataTransfer.getData('data');
+                oLi[index].remove();
+            },false);
+        }
+        removeLi();
+    </script>
+    ```
+
+- 案例3，拖拽上传文件
+
+  - ```javascript
+    var ele = document.getElementsByClassName('wrapper')[0];
+    
+    ele.addEventListener('dragover',function(e){
+    e.preventDefault();
+    },false);
+    
+    ele.addEventListener('drop',function(e){
+        e.preventDefault();
+        console.log(e);
+        var dt = e.dataTransfer;
+        var files = dt.files;
+        console.log(files);
+    },false);
+    ```
+
+[在线演示](http://codepen.io/poetries/pen/XpbEOW)
+
+### FileReader（读取文件）
+
+> 用于读取文件
+
+- 方法：
+
+  - `abort()`：终止读取
+  - `readAsBinaryString(file)`：将文件读取为二进制编码
+  - `readAsDataURL(file)`：将文件读取为二进制编码
+  - `readAsText(file,[encoding])`：将文件读取为文本
+  - `readAsArrayBuffer(file)`：将文件读取为`arraybuffer`
+
+- 事件：
+
+  - `loadstart`：读取开始时触发
+  - `progress`：读取中
+  - `loadend`： 读取中完成触发，无论成功或失败
+  - `load`：文件读取成功完成时触发
+  - `abort`：中断时触发
+  - `error`：出错时触发
+
+- 获取读取的结果
+
+  - ```js
+    fr.onload = function(){
+        this.result;
+    }
+    ```
+
+### Web Socket
+
+>*WebSocket*对象提供了一组*API*，用于创建和管理*WebSocket*连接，以及通过连接发送和接收数据。
+>
+>*WebSocket*其实是一个新协议，跟*HTTP*协议基本没有关系，只是为了兼容现有浏览器的握手规范而已，借用了*HTTP*的协议来完成握手
+>
+>>  ![](D:\Desktop\HTML5\WebHTTP.png)
+
+- 产生原因
+  - 在`HTTP/1.0`中，大多实现为每个请求/响应交换使用新的连接
+  - 在`HTTP/1.1`中，一个连接可用于一次或多次请求/响应交换
+  - `HTTP`协议中，服务端不能主动联系客户端，只能有客户端发起
+  - `WebSocket`服务器和客户端均可主动发送数据
+- 建立连接的握手
+  - 当`Web`应用程序调用`new WebSocket(url)`接口时，`Browser`就开始了与地址为`url`的`WebServer`建立握手链接的过程
+  - 1.`Browser`与`WebSocket`服务器通过`TCP`握手建立连接，如果这个建立连接失败，那么后面的过程就不会执行，`Web`应用程序将收到错误消息通知
+  - 2.在`TCP`建立连接成功后，`Browser`通过`http`协议传送`WebSocket`支持的版本号，协议的字版本号，原始地址，主机地址等等一些列字段给服务器
+  - 3.`WebSocket`服务器收到`Browser`发送来的请求后，如果数据包数据和格式正确，客户端和服务器端协议版本号匹配等等，就接受本次握手链接，并给出相应的数据回复，同样回复的数据也是采用`http`协议传输
+  - 4.`Browser`收到服务器回复的数据包后，如果数据包内容、格式都没有问题的话，就表示本次连接成功，触发`onopen`消息，此时`Web`开发者就可以在此时通过`send`接口向服务器发送数据。否则，握手连接失败，`Web`应用程序会受到`onerror`消息，并且能知道连接失败的原因
+- 三次握手
+  - 第一次握手：建立连接时，客户端`A`发送`SYN`包`（SYN=j）`到服务器`B`，并进入`SYN_SEND`状态，等待服务器`B`确认。
+  - 第二次握手：服务器`B`收到`SYN`包，必须确认客户`A`的`SYN（ACK=j+1）`，同时自己也发送一个`SYN`包`（SYN=k）`，即`SYN+ACK`包，此时服务器B进入`SYN_RECV`状态。
+  - 第三次握手：客户端`A`收到服务器`B`的`SYN＋ACK`包，向服务器`B`发送确认包`ACK（ACK=k+1）`，此包发送完毕，客户端`A`和服务器`B`进入`ESTABLISHED`状态，完成三次握手。
+  - 完成三次握手，客户端与服务器开始传送数据
+  - `WebSocket`请求头/响应头
+    - ![请求头](D:\Desktop\HTML5\socket1.png)
+    - ![响应头](D:\Desktop\HTML5\socket3.png)
+  - `HTTP`请求头/响应头
+    - ![请求头](D:\Desktop\HTML5\socket2.png)
+    - ![响应头](D:\Desktop\HTML5\socket4.png)
+  
+- 创建WebSocket
+  - `var Socket = new WebSocket(url);`
+
+- 方法
+
+  - | 方法             | 方法         | 作用                 |
+    | ---------------- | ------------ | -------------------- |
+    | `Socket.send()`  | `send(data)` | 使用连接传输数据     |
+    | `Socket.close()` | `close()`    | 用于终止任何现有连接 |
+
+- 事件
+
+  - | 事件      | 事件处理程序       | 描述                         |
+    | --------- | ------------------ | ---------------------------- |
+    | `open`    | `Socket.onopen`    | 建立socket连接时触发这个事件 |
+    | `message` | `Socket.onmessage` | 客户端从服务器接收数据时触发 |
+    | `error`   | `Socket.onerror`   | 连接发生错误时触发           |
+    | `close`   | `Socket.onclose`   | 连接被关闭时触发             |
+
+- **WebSocket**的优点
+
+  - 客户端与服务器都可以主动传送数据给对方
+  - 不用频率创建`TCP`请求及销毁请求，减少网络带宽资源的占用，同时也节省服务器资源
+
+- 注:`WebSocket.org`提供了一个专门用来测试`WebSocket`的服务器`ws://echo.websocket.org`
+
+- ```javascript
+  //ws://echo.websocket.org是一个测试websocket的服务器接口，就是你发送什么，它返回什么
+  var Socket = new WebSocket("ws://echo.websocket.org");
+  
+  Socket.onopen = function() {
+      Socket.send('Hello');
+  }
+  
+  Socket.onmessage = function(e) {
+      console.log('message');
+      console.log(e);
+      console.log(e.data);
+      Socket.close(); //发送完之后需要关闭连接，否则会报错
+  }
+  
+  Socket.onclose = function(e) {
+      console.log('close');
+      console.log(e);
+  }
+  
+  Socket.onerror = function() {
+      console.log('error')
+  }
+  ```
+
 ## HTML5新增JS方法
+
 ---
 
 
@@ -2307,309 +2609,6 @@ loadScript("js/async.js",function(){
 
 - **历史管理**
   - `onhashchange` ：改变`hash`值来管理
-
-
-
-## HTML5拖拽事件
----
-
-- 图片自带拖拽功能
-- 其他元素可设置`draggable`属性
-- **`draggable ：true`**
-    - 拖拽元素(被拖拽元素对象)事件 :  
-        - `ondragstart` : 拖拽前触发 
-        - `ondrag` :拖拽前、拖拽结束之间，连续触发
-        - `ondragend` :拖拽结束触发
-    - 目标元素(拖拽元素被拖到的对象)事件 :  
-        - `ondragenter` :进入目标元素触发
-        - `ondragover `:进入目标、离开目标之间，连续触发
-        - `ondragleave` :离开目标元素触发
-        - `ondrop` :在目标元素上释放鼠标触发
-            - 需要在`ondragover`事件里面阻止默认事件
-
-- **拖拽兼容问题**
-  - 火狐浏览器下需设置`dataTransfer`对象才可以拖拽除图片外的其他标签
-    - `dataTransfer`对象
-    - `setData()` : 设置数据 `key`和`value`(必须是字符串)
-    - `getData()` : 获取数据，根据`key`值，获取对应的`value`
-    - `effectAllowed` : 设置光标样式(`none`, `copy`, `copyLink`, `copyMove`, `link`, `linkMove`,` move`, `all` 和` uninitialized`)
-	
-    - `setDragImage` ：三个参数（指定的元素，坐标`X`，坐标`Y`）
-    - `files`： 获取外部拖拽的文件，返回一个`filesList`列表
-        - `filesList`下有个`type`属性，返回文件的类型
-- **读取文件信息**
-    - `FileReader`(读取文件信息)
-        - `readAsDataURL`
-    - 参数为要读取的文件对象
-        - `onload`当读取文件成功完成的时候触发此事件
-        - `this. result` 获取读取的文件数据
-
-- **examp01 拖拽案例**
-
-```html
-<div id="drap" draggable="true"></div>
-<div id="box"></div>
-```
-```css
-#drap {
-	width: 100px;
-	height: 100px;
-	background: red;
-}
-#box {
-	width: 500px;
-	height: 500px;
-	border: 2px solid blue;
-	margin: 50px auto;
-}
-```
-```javascript
-//被拖拽元素事件
-drap.ondragstart = function(ev){ // 拖拽前
-	var ev = ev || window.event;
-
-	//火狐浏览器下需设置dataTransfer对象才可以拖拽除图片外的其他标签
-	ev.dataTransfer.setData("key","poetries");
-
-	//effectAllowed : 设置光标样式(none, copy, copyLink, copyMove, link, linkMove,move, all 和uninitialized)
-	ev.dataTransfer.effectAllowed = "copy";
-
-	//设置被拖拽的小元素 setDragImage ：三个参数（指定的元素，坐标X，坐标Y）
-	ev.dataTransfer.setDragImage(pic,25,25);
-
-	this.style.background = "green";
-}
-
-drap.ondrag = function(){ // 拖拽过程中
-	this.innerText = "被拖拽中...";
-}
-
-drap.ondragend = function(){ // 拖拽结束
-	this.style.background = "red";
-	this.innerHTML = "";
-}
-
-//目标元素事件
-box.ondragenter = function(){ //进入目标元素触发
-	this.innerHTML = "可将文件拖放到这里!";
-}
-box.ondragover = function(ev){ //进入目标、离开目标之间，连续触发
-	var ev = ev || window.event;
-	ev.preventDefault(); 
-	this.style.background = "pink";
-}
-box.ondragleave = function(){ //离开目标元素触发
-	this.innerHTML = "";
-	this.style.background = "none";
-}
-box.ondrop = function(ev){//在目标元素上释放鼠标触发
-	//alert("拖放结束")
-	this.innerHTML = ev.dataTransfer.getData("key");
-}
-```
-
-[在线演示](http://codepen.io/poetries/pen/Ndqaxx)
-
-- **example02 拖拽相册**
-
-```html
-<h1>请拖拽图片到红框中</h1>
-<div id="box"><span>可以将文件拖放到这里！！</span></div>
-<div id="dustbin">垃圾回收站</div>
-```
-
-```css
-#box{
-	position:relative;
-	width:500px;
-	height:500px;
-	border:2px solid red;
-	margin:100px auto 0px;
-	
-}
-#box span{
-	position:absolute;
-	left:0;
-	top:0;
-	right:0;
-	bottom:0;
-	height:50px;
-	width:192px;
-	margin:auto;
-	display:none;
-}
-img{
-	width:100px;height:100px;
-}
-#dustbin{
-	width:200px;
-	height:100px;
-	background:#000;
-	color:#fff;
-	font-size:40px;
-	text-align:center;
-	line-height:100px;
-	margin:auto;
-}
-```
-
-```javascript
-var box = document.getElementById("box");
-var dusTbin = document.getElementById("dustbin");
-var span = box.getElementsByTagName("span")[0];
-//目标元素事件
-var img = '';
-box.ondragenter = function(){//进入目标元素触发
-	span.style.display = "block";
-}
-box.ondragover = function(ev){//在目标元素上连续触发
-	var ev = ev||window.event;
-	ev.preventDefault();//阻止默认事件
-	span.style.display = "block";
-}
-box.ondragleave = function(){//离开目标元素
-	span.style.display = "none";
-}
-box.ondrop = function(ev){//在目标元素上面释放鼠标触发
-	//alert("拖拽结束！！");
-	var ev = ev||window.event;
-	ev.preventDefault();//阻止默认事件
-	span.style.display = "none";
-	var file = ev.dataTransfer.files;
-	//alert(file[0].type);
-	for (var i=0; i<file.length ;i++ )
-	{
-		if (file[i].type.indexOf("image")!=-1)
-		{
-			var read = new FileReader();//新建一个读取文件对象
-			read.readAsDataURL(file[i]);//读取文件
-			read.onload = function(){//读取文件成功之后调用什么函数
-				var img = document.createElement("img");
-				//alert(this.result);
-				img.src = this.result;
-				box.appendChild(img);
-				//获取img节点 实现删除功能
-				var oImg = document.getElementsByTagName("img");
-				if (oImg)
-				{
-					for (var j=0;j<oImg.length ;j++ )
-					{
-						oImg[j].ondragstart = function(ev){
-							ev.dataTransfer.setData("data",ev.target.innerHTML);
-							img = ev.target;
-						}
-						oImg[j].ondragend = function(ev){
-							ev.dataTransfer.clearData("data");//清楚数据
-							img = null;
-						}
-					}
-
-				}
-				//实现删除功能(移除img节点)
-				dusTbin.ondragover = function(ev){
-					ev.preventDefault();
-				}
-				dusTbin.ondrop = function(){
-					if (img)
-					{
-						img.parentNode.removeChild(img);
-					}
-				}
-			}
-		}else{
-			alert("请上传图片！");
-		}
-		
-	}
-	
-}
-```
-
-[在线演示](http://codepen.io/poetries/pen/Ndqagr)
-
-
-- **example03 拖拽排序**
-
-```html
-<div class="wrap" id="wrap">
-  <ul id="box">
-    <li style="background:#f3f" draggable="true">1</li>
-    <li style="background:#ff6" draggable="true">2</li>
-    <li style="background:#c60" draggable="true">3</li>
-    <li style="background:#903" draggable="true">4</li>
-    <li style="background:#0f6" draggable="true">5</li>
-    <li style="background:#636" draggable="true">6</li>
-    <li style="background:#36f" draggable="true">7</li>
-    <li style="background:#033" draggable="true">8</li>
-  </ul>
-</div>
-```
-
-```css
-.wrap{
-  width:500px;
-  height:500px;
-  margin:50px auto;
-}
-ul li{
-  list-style:none;
-  width:500px;
-  height:50px;
-  color:#fff;
-  text-align:center;
-  line-height:50px;
-  font-size:40px;
-  font-weight:bold;
-}
-```
-```javascript
-var oUl = document.getElementById("box");
-var oLi = oUl.getElementsByTagName("li");
-var curr = 0;
-function sort(){
-  for (var i = 0;i < oLi.length;i++) {
-    oLi[i].index = i;
-    oLi[i].ondragstart = function(ev){
-      var ev = ev || window.event;
-      ev.dataTransfer.setData("data",this.innerHTML);
-      //this.innerHTML = "被拖拽中...";
-      curr = this.index;
-    }
-
-    oLi[i].ondragenter = function(){
-      for(var i = 0;i < oLi.length;i++){
-        oLi[i].style.border = "none";
-      }
-      if(curr != this.index){
-        this.style.border = "2px solid #000";
-      }
-    }
-    oLi[i].ondragover = function(e){
-      var e = e || window.event;
-      e.preventDefault();
-    }
-    oLi[i].ondrop = function(ev){ //鼠标释放的时候
-      //oUl.insertBefore(oLi[curr],this);//insertBefore(新节点，目标节点)
-      inserAfter(oLi[curr],this);
-      this.style.border = "none";
-      //oLi[curr].innerHTML = ev.DataTransfer.getData("data");
-      sort();
-    }
-  }
-}
-sort();
-
-function inserAfter(newItem,targerItem){
-  var parentItem = targerItem.parentNode;
-  if(parentItem.lastChild == targerItem){
-    parentItem.appendChild(newItem);
-  }else {
-    parentItem.insertBefore(newItem,targerItem.nextSibling);
-  }
-}
-```
-
-[在线演示](http://codepen.io/poetries/pen/XpbEOW)
 
 ## 跨文档操作
 
