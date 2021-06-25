@@ -2456,7 +2456,7 @@ window.addEventListener(deviceorientation,function(event) {
 >
 >*WebSocket*其实是一个新协议，跟*HTTP*协议基本没有关系，只是为了兼容现有浏览器的握手规范而已，借用了*HTTP*的协议来完成握手
 >
->>  ![](D:\Desktop\HTML5\WebHTTP.png)
+>>  ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/WebHTTP.png)
 
 - 产生原因
   - 在`HTTP/1.0`中，大多实现为每个请求/响应交换使用新的连接
@@ -2475,13 +2475,13 @@ window.addEventListener(deviceorientation,function(event) {
   - 第三次握手：客户端`A`收到服务器`B`的`SYN＋ACK`包，向服务器`B`发送确认包`ACK（ACK=k+1）`，此包发送完毕，客户端`A`和服务器`B`进入`ESTABLISHED`状态，完成三次握手。
   - 完成三次握手，客户端与服务器开始传送数据
   - `WebSocket`请求头/响应头
-    - ![请求头](D:\Desktop\HTML5\socket1.png)
-    - ![响应头](D:\Desktop\HTML5\socket3.png)
+    - ![请求头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket1.png)
+    - ![响应头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket3.png)
   - `HTTP`请求头/响应头
-    - ![请求头](D:\Desktop\HTML5\socket2.png)
-    - ![响应头](D:\Desktop\HTML5\socket4.png)
+    - ![请求头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket2.png)
+    - ![响应头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket4.png)
   
-- 创建WebSocket
+- 创建**WebSocket**
   - `var Socket = new WebSocket(url);`
 
 - 方法
