@@ -120,7 +120,7 @@
 ---
 
 - `input`表单`type`属性值：
-    - `type = "email" ` 限制用户输入必须为`Email`类型
+    - `type="email" ` 限制用户输入必须为`Email`类型
     - `type="url"`	      限制用户输入必须为`URL`类型
     - `type="date" `     限制用户输入必须为日期类型
     - `type="datetime"` 显示完整日期 含时区
