@@ -538,7 +538,7 @@ alert($nav.get(0) == nav);//true
       <li>5</li>
     </ul>
     <li>6</li>
-
+    
       $('li').wrappAll('div');
     ```
 
@@ -833,7 +833,7 @@ alert($nav.get(0) == nav);//true
       // 在最后还可以传参，也可以这样传参
       // $.proxy(show,obj,1,2);
       // $.proxy(show,obj,1)(2);
-
+    
       // 柯里化的思想
       function show(nianji,xuehao) {
         console.log(nianji);
@@ -879,7 +879,7 @@ alert($nav.get(0) == nav);//true
 - 这个`extend()`定义在了`prototype`上面
   
     ```js
-用来拓展一个新的工具方法，就是自己在`jQuery`方法上创建一个方法,
+    用来拓展一个新的工具方法，就是自己在`jQuery`方法上创建一个方法,
     
     $.extend({
       leftTrim: function (str) {
@@ -890,7 +890,7 @@ alert($nav.get(0) == nav);//true
     console.log($.leftTrim('         dg'));
     // 调用这个 leftTree，就和调用其他的 jQuery 方法一样
     // 作用是消除左侧空格
-
+    
     用来拓展一个新的实例方法，就是在`jQuery`方法的`prototype`上创建一个方法,
        
     $.fn.extend({
@@ -953,7 +953,7 @@ alert($nav.get(0) == nav);//true
   // once：fire函数只会执行一次
   // stopOnFalse：fn2返回了false，fn3不会被执行，和memory相抵触，没有作用
   // unique：在一个add调用函数里面，只执行一遍函数
-
+  
   cb.add(fn1,fn1); // 调用函数fn1,fn1
   cb.add(fn2); // 调用函数fn2
   cb.fire(); // 执行函数队列
@@ -962,6 +962,7 @@ alert($nav.get(0) == nav);//true
   ```
 
 - **Deferred()**
+  
   - 延迟回调对象，相当于有状态的`Callbacks()`
   - 添加函数
     - **done** 对象被受理时，调用添加的处理程序
@@ -972,19 +973,19 @@ alert($nav.get(0) == nav);//true
     - **reject** 失败的状态
     - **notity** 进行中的状态
     - **promise** 不能触发函数
-
+  
   ```js
   function demo() {
     var dtd = $.Deferred();  // 让一个变量代替Deferred，解决重复使用
-    setInterval(function () {dtd.notify()},500)// notity()，进行中的状态
-	  setInterval(function () {dtd.reje // 成功和失败的状态不会改变，如果失败就不会执行成功了，但是进行中可以改变状ct()},1000)// reject()，失败的状态
+	  setInterval(function () {dtd.notify()},500)// notity()，进行中的状态
+    setInterval(function () {dtd.reject(),1000) // reject(),成功和失败的状态不会改变，如果失败就不会执行成功了，但是进行中可以改变状失败的状态
     setInterval(function () {dtd.resolve()},2000)// resolve()，成功的状态
     return dtd.promise(); // 返回dtd函数
   }
-
+  
   var cb = demo(); // 闭包，接受dtd函数
   //cb.resolve(); 这个不可以在外面执行了，因为dtd返回的是只读的Deferred对象
-
+  
   cb.done(function () { // done，对象成功的时候调用
     console.log('OK')
   })
@@ -994,10 +995,10 @@ alert($nav.get(0) == nav);//true
   .progress(function () { // progress，正在进行时调用
     console.log('doing')
   })
-
+  
   // 成功和失败的状态不会改变，如果失败就不会执行成功了，但是进行中可以改变状态
   ```
-
+  
 - **when()**
   - 里面传的参数是`Deferred`对象
   - 执行完之后会`return`出来一个`Deferred`对象
@@ -1013,10 +1014,10 @@ alert($nav.get(0) == nav);//true
     dtd.resolve();// 成功的状态
     return dtd.promise();
   }
-
+  
   var cb = aa();
   var cb2 = bb();
-
+  
   $.when(cb,cb2)
   .done(function () {
     console.log('OK')
@@ -1034,7 +1035,7 @@ alert($nav.get(0) == nav);//true
 
 - **Ajax**简介 :
   -  `Asynchronous Javascript And XML` （异步的
-`JavaScript`和`XML`）
+  `JavaScript`和`XML`）
   - 它并不是一种单一的技术，而是有机利用一系列交互式网页应用相关的技术所形成的结合体
 - **`Ajax`优势与不足**
     - **`Ajax`优势**
@@ -1077,7 +1078,7 @@ alert($nav.get(0) == nav);//true
     - `form`表单中:
 	    - `action`:
   	    - `method`: (默认是` get`)
- 	    - `get`: 会在`url`里面以 `name=value` , 两个数据之间用 `&` 连接
+        	    - `get`: 会在`url`里面以 `name=value` , 两个数据之间用 `&` 连接
 	    - `post`:
      - `enctype`: `"application/x-www-form-urlencoded"`
 
@@ -2013,7 +2014,7 @@ iFrameDOM.find(".message").slideUp();
 ```
 - 管理搜索框的值
     - 现在各大网站都有搜索框，而搜索框通常都有默认值，当输入框获取焦点时，默认值消失。而一旦输入框失去焦点，而输入框里又没有输入新的值，输入框里的值又会恢复成默认值，如果往输入框里输入了新值，则输入框的值为新输入的值。这种特效用`JQuery`
-很容易实现
+    很容易实现
 
 ```javascript
 $("#searchbox") .focus(function(){
