@@ -1539,537 +1539,173 @@ new.target
     var oS = new Search();
     ```
 
-#### 使用ES5模拟ES6中class
+#### 手写Class
 
-- ```js
-  //class 关键字，不可以var、let，它是一个语法糖，本质还是function
-  
-  //使用class类，相当于Es5的构造函数，不用写function
-  //私有属性constructor
-  //公有属性(原型属性) 
-  //静态属性(函数本身属性)
-  class Plane {
-      //静态属性,ES6不支持非方法的静态属性，ES7支持
-      //静态属性在Plane中定义时，它就成为了Plane本身的方法
-      static alive () {
-          return true;
-      }
-      //私有属性
-      constructor (name) {
-          this.name = name || '普通飞机';
-          this.blood = 100;
-      }
-      //如果想给原型添加方法，则在constructor的同级下添加函数
-      fly () {
-          console.log('fly');
-      }
-      //ES7 私有属性
-      // name = 10;
-  }
-  
-  //target extend origin：target的prototype继承Plane的prototype
-  class AttackPlane extends Plane{
-      constructor (name) {
-          // Plane.call(this,name);
-          super(name);
-          //super就相当于把Plane的私有属性call了一下，将私有属性全部call到了constructor中
-          this.logo = 'l';
-      }
-      //公有属性
-      dan () {
-          console.log('biubiubiu');
-      }
-  }
-  
-  oAp = new AttackPlane('战斗机');
-  
-  
-  // ES5
-  
-  // 1.must be new
-  // 2.class Plane.prototype 不能枚举
-  // 3.静态属性要放到Plane函数上，非原型
-  ```
+##### ES6之模拟class
 
-- `ES5`实现模拟`ES6`之`Class`
+```js
+//class 关键字，不可以var、let，它是一个语法糖，本质还是function
 
-- ```js
-  //判断是否以new的方式构造出来的
-  function _classCallCheck(_this,_constructor) {
-      //判断_this沿着原型链寻找，是否可以找到_this,如果不能则抛出错误，instanceof 运算符用来检测 constructor.prototype 是否存在于参数 _this 的原型链上。
-      if (!(_this instanceof _constructor)) {
-          throw "TypeError: Class constructor Plane cannot be invoked without 'new'"
-      }
-  }
-  
-  //设置公有属性和静态属性
-  function _defineProperties(target,props) {
-      //Object.defineProperty
-      props.forEach(function(ele) {
-          //ele.key ele.value
-          Object.defineProperty(target,ele.key,{ 
-              value: ele.value,
-              writable: true, //可写
-              configurable: true//可配置
-          })
-      })
-  }
-  
-  //处理公有属性和静态属性
-  //参数：原型、原型属性，静态属性
-  function _createClass (_constructor,_prototypeProperties,_staticProperties){
-      //如果传_prototypeProperties数组的话，给原型上赋值
-      if (_prototypeProperties) {
-          _defineProperties(_constructor.prototype, _prototypeProperties)
-      }
-      //如果传_staticProperties数组的话，给函数本身上赋值
-      if (_staticProperties) {
-          _defineProperties(_constructor,_staticProperties);
-      }
-  }
-  
-  var Plane = (function() {
-      function Plane(name) {
-          //判断是否以new的方式来执行
-          _classCallCheck(this,Plane);
-          //把私有属性 公有属性 静态属性赋给Plane
-          this.name = name || "普通飞机";
-          this.blood = 100;
-      }
-  
-      //创建自身属性和静态属性
-      _createClass(Plane,[
-          //自身方法
-          {
-              key: 'fly',
-              value: function() {
-                  console.log('fly');
-              }
-          },
-      ],[
-          //静态属性
-          {
-              key: 'alive',
-              value: function() {
-                  return true;
-              }
-          }
-      ])
-  
-      return Plane;
-  }())
-  
-  var oP = new Plane("yzl&战斗机");
-  
-  //原型继承方法
-  function _inherit(sub,sup) {
-      Object.setPrototypeOf(sub.prototype,sup.prototype);
-  }
-  
-  var AttackPlane = (function(Plane) {
-  
-      _inherit(AttackPlane,Plane);
-  
-      function AttackPlane (name) {
-          _classCallCheck(this,Plane);
-          this.logo = 'lll';
-          var _this = this;
-          var that = Plane.call(this,name);
-          if(typeof that == 'object') {
-              _this.that;
-          }
-          _this.logo = 'duyi';
-          return _this;
-      };
-      //创建自身属性和静态属性
-      _createClass(AttackPlane,[
-          //自身方法
-          {
-              key: 'dan',
-              value: function() {
-                  console.log('biubiubiu');
-              }
-          },
-      ],[
-          //静态属性
-          {
-              key: 'alive',
-              value: function() {
-                  return true;
-              }
-          }
-      ])
-      return AttackPlane;
-  }(Plane))
-  
-  var oAp = new AttackPlane();
-  ```
+//使用class类，相当于Es5的构造函数，不用写function
+//私有属性constructor
+//公有属性(原型属性) 
+//静态属性(函数本身属性)
+class Plane {
+    //静态属性,ES6不支持非方法的静态属性，ES7支持
+    //静态属性在Plane中定义时，它就成为了Plane本身的方法
+    static alive () {
+        return true;
+    }
+    //私有属性
+    constructor (name) {
+        this.name = name || '普通飞机';
+        this.blood = 100;
+    }
+    //如果想给原型添加方法，则在constructor的同级下添加函数
+    fly () {
+        console.log('fly');
+    }
+    //ES7 私有属性
+    // name = 10;
+}
 
-## Set、Map
+//target extend origin：target的prototype继承Plane的prototype
+class AttackPlane extends Plane{
+    constructor (name) {
+        // Plane.call(this,name);
+        super(name);
+        //super就相当于把Plane的私有属性call了一下，将私有属性全部call到了constructor中
+        this.logo = 'l';
+    }
+    //公有属性
+    dan () {
+        console.log('biubiubiu');
+    }
+}
 
-### Set
+oAp = new AttackPlane('战斗机');
 
-- **set介绍**
-  - 简介：`Set`是`ES6`提供给我们的构造函数，能够造出一种新的存储数据的结构
-  - 特点：只有属性值，成员值唯一（不重复）
-  - 用途：可以转成数组，其本身具备去重、交集、并集，差集的作用等
 
-- **set基本使用**
+// ES5
 
-  - `add(prop)`：添加属性值
+// 1.must be new
+// 2.class Plane.prototype 不能枚举
+// 3.静态属性要放到Plane函数上，非原型
+```
 
-  - `delete(prop)`：删除属性值
+##### ES5模拟之Class
 
-  - `clear()`：清空`Set`所有属性
+```js
+//判断是否以new的方式构造出来的
+function _classCallCheck(_this,_constructor) {
+    //判断_this沿着原型链寻找，是否可以找到_this,如果不能则抛出错误，instanceof 运算符用来检测 constructor.prototype 是否存在于参数 _this 的原型链上。
+    if (!(_this instanceof _constructor)) {
+        throw "TypeError: Class constructor Plane cannot be invoked without 'new'"
+    }
+}
 
-  - `has(prop)`：判断`Set`中是否有`prop`
-
-  - `forEach()`：遍历属性
-
-  - ```js
-    //Set Map Proxy
-    //兼容性不是很好
-    
-    // 参数必须具有迭代接口，[] '' arguments NodeList
-    let oS = new Set([1,2,3,[1,2],true,{name: 'yzl'},1,2]);
-    
-    let oS2 = new Set('abcabd');
-    
-    oS.add(1);
-    oS.add([1,2]);
-    oS.add(true);
-    
-    oS.forEach(val => {
-        console.log(val);
+//设置公有属性和静态属性
+function _defineProperties(target,props) {
+    //Object.defineProperty
+    props.forEach(function(ele) {
+        //ele.key ele.value
+        Object.defineProperty(target,ele.key,{ 
+            value: ele.value,
+            writable: true, //可写
+            configurable: true//可配置
+        })
     })
-    //ES6新增for循环 for of，循环条件需要有迭代接口
-    for(let prop of oS) {
-        console.log(prop);
+}
+
+//处理公有属性和静态属性
+//参数：原型、原型属性，静态属性
+function _createClass (_constructor,_prototypeProperties,_staticProperties){
+    //如果传_prototypeProperties数组的话，给原型上赋值
+    if (_prototypeProperties) {
+        _defineProperties(_constructor.prototype, _prototypeProperties)
     }
-    
-    
-    //Set -> []，Set转换数组
-    let arr = [1,2,2,3,3];
-    let oS = new Set(arr);
-    //两种方法
-    // ... ，可以拓展任何一个具有迭代接口的值
-    // Array.from()，ES6新规定的数组静态方法，把类数组及具有迭代接口的数据转换为数组
-    console.log(Array.from(oS))
-    console.log([...oS]);
-    
-    ```
-
-- **set应用场景**
-
-  - ```js
-    //去重，缺陷：对象并不会按照属性值去重
-    let o = {name:'cst'}
-    let arr = [1,2,3,4,o,5,1,o,2,3,{name:'cg'}];
-    let obj = {};
-    let newArr = []; //新数组
-    for(var i = 0;i < arr.length; i++) {
-        if(!obj[arr[i]]) {
-            newArr.push(arr[i]);
-            obj[arr[i]] = true;
-        }
+    //如果传_staticProperties数组的话，给函数本身上赋值
+    if (_staticProperties) {
+        _defineProperties(_constructor,_staticProperties);
     }
-    
-    // Set去重,弥补缺陷
-    let o = {name:'cst'}
-    let arr = [1,2,3,4,o,5,1,o,2,3,{name:'cg'}];
-    let oS = new Set(arr);//就会去重返回到oS中
-    
-    
-    // 并集 交集 差集
-    // 集合
-    // arr obj set map 都是集合，存储形式不一样
-    //并集
-    let arr1 = [1,2,3,4,2,3,9];
-    let arr2 = [3,2,3,2,5];
-    let oS = new Set([...arr1,...arr2]);
-    //交集
-    let arr1 = [1,2,3,4,2,3,9];
-    let arr2 = [3,2,3,2,5];
-    let oS1 = new Set(arr1);
-    let oS2 = new Set(arr2);
-    //当oS1的ele与oS2的ele相同时则，则返回当前ele
-    let newArr = [...oS1].filter(ele => oS2.has(ele))
-    //差集
-    let arr1 = [1,2,3,4,2,3];
-    let arr2 = [3,2,3,2,5];
-    let oS1 = new Set(arr1);
-    let oS2 = new Set(arr2);
-    let newArr = [...oS1].filter(ele => !oS2.has(ele))
-    let newArr1 = [...oS2].filter(ele => !oS1.has(ele))
-    let newArr2 = [...newArr,...newArr1];
-    ```
+}
 
-
-
-### Map
-
-- 简介：
-  - `Map`是`ES6`提供给我们的构造函数，能够造出一种新的存储数据的解构。本质上是键值对的集合
-- 特点
-  - `key`对应`value`，`key`和`value`唯一，任何值都可以当属性
-- 用途
-  - 可以让对象当属性，去重等
-- 原理实现
-  - 链接链表、`hash`算法、桶
-- **api**：
-  - `set(key,value)`：添加值
-  - `get(key)`：获取值
-  - `delete(key)`：删除值
-  - `keys()`：将`value`单独提取出来
-  - `entries()`：`key`对`value`，和开始基本一样
-
-- 基本使用
-
-  - ```js
-    //初始化
-    //数组，每个元素都是一个数组,key,value
-    //对象
-    let oMp = new Map([['name','cst'],['age',18],['sex',true],[{},'----']]);
-    
-    
-    //api
-    let oMp1 = new Map();
-    // 添加值 oMp1.set(key,value);
-    oMp1.set('name','cst');
-    oMp1.set('age',18);
-    var obj = {};
-    oMp1.set(obj,'---');
-    oMp1.set({},'+++');
-    // 获取值 oMp1.get(key)
-    oMp1.get(obj);
-    // 删除值 oMp1.delete(key)
-    oMp1.delete('name');
-    // keys(),属性值单独提取了出来
-    oMp1.keys();
-    // entries() 属性名对属性值，和开始基本一样
-    oMp1.entries();
-    // has(key)
-    
-    
-    // oMp1.forEach((ele,key,self) => {
-    //     console.log(ele,key,self);
-    // })
-    
-    // for(let val of oMp1) {
-    //     console.log(val);
-    // }
-    ```
-
-- 存储原理分析
-
-  - ```js
-    //链表，将每一个对象关联起来
-    // {} {} {} {} {}
-    let node3 = {
-        key: 'name3',
-        value: '2',
-        next: null
-    };
-    
-    let node2 = {
-        key: 'name2',
-        value: '2',
-        next: node3
-    };
-    
-    let node1 = {
-        key: 'name',
-        value: '1',
-        next: node2
+var Plane = (function() {
+    function Plane(name) {
+        //判断是否以new的方式来执行
+        _classCallCheck(this,Plane);
+        //把私有属性 公有属性 静态属性赋给Plane
+        this.name = name || "普通飞机";
+        this.blood = 100;
     }
-    
-    
-    let oMp = new Map([['name1','1'],['name2','2']]);
-    
-    // hash算法 -> 将一个不定范围的值转换成一个特定范围的值来输出
-    // 在存值的时候，key值是不一定的，可能是对象，数组，字符串，数组，NaN
-    // hash 特定范围的值
-    
-    //桶有8个位置，0 - 8
-    [
+
+    //创建自身属性和静态属性
+    _createClass(Plane,[
+        //自身方法
         {
-            //如果你输入值的时候，会将你的值根据hash算法添加到桶的某个序号中，然后在特定属性next中添加你的下一个对象值
-            key:'name1',
-            value:'1',
-            next: {
-                key:'name2',
-                value:'2'
+            key: 'fly',
+            value: function() {
+                console.log('fly');
             }
         },
-        {},
-        {},
-        {},
-        {},
-        {},
-        {},
-        {}
-    ]
-    ```
-
-- 模拟实现**Map**
-
-  - ```js
-    //原生Map特性
-    //1.不重复
-    //2.属性不只是字符串，还可以是 {} null [] function number
-    //3.实现方法 delete set get has clear 
-    
-    function myMap() {
-        //桶长度 = 8
-        this.bucketLength = 8;
-        this.init();
-    }
-    
-    //初始化
-    myMap.prototype.init = function() {
-        //初始化 桶 长度8
-        this.bucket = new Array( this.bucketLength );
-        //循环遍历桶添加初始化值
-        for(var i = 0;i < this.bucket.length; i++) {
-            this.bucket[i] = {
-                type: 'bucket' + i,
-                next: null
-            }
-        }
-    }
-    
-    //hash算法
-    //1. [0,8]
-    //2. 重复算值固定
-    myMap.prototype.makeHash = function(key) {
-        let hash = 0;
-        // key 可能是 string number boolean null  NaN [] {} function(){} undefine
-        if(typeof key !== 'string') {
-            //如果为数字，hash直接等于key
-            if(typeof key == 'number') {
-                //number NaN
-                //判断key是否等于NaN
-                hash = Object.is(key,NaN) ? 0 : key;
-            } else if(typeof key == 'object') {
-                //null {} [] 
-                hash = 1;
-            } else if(typeof key == 'boolean') {
-                //true 1  |  false 0
-                hash += key;
-            } else {
-                //undefine function() {}
-                hash = 2;
-            }
-        } else {
-            //string
-            //'a' 'ab' '....很多个字符'
-            //长度大于等于3，取字符串前三个字符的ascii，累加 取余 变为0-8（规则由自己定义）
-            //长度不大于3时，就取长度位数进行计算
-            for(let i = 0;i < 3; i++) {
-                //判断如果字符没有第三位时返回0，有时就返回该位的ascii码
-                hash += key[i] ? key[i].charCodeAt(0) : 0;
-            }
-        }
-        return hash % 8; //生成0-8范围
-    }
-    
-    //set方法
-    myMap.prototype.set = function(key,value) {
-        //获取hash
-        let hash = this.makeHash(key);
-        //获取桶的序号
-        let oTempBucket = this.bucket[hash];
-        //循环条件，oTempBucket.next是否有值
-        while(oTempBucket.next) {
-            //如果next中的值与传入的值相同，那么就让next的value等于传入的value
-            if (oTempBucket.next.key == key) {
-                oTempBucket.next.value = value;
-                return;
-            //如果在key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
-            } else {
-                oTempBucket = oTempBucket.next;
-            }
-        };
-        //给最后一个oTempBucket添加值
-        oTempBucket.next = {
-            key: key,
-            value: value,
-            next: null
-        }
-    }
-    
-    //get方法
-    myMap.prototype.get = function(key) {
-        //获取hash
-        let hash = this.makeHash(key);
-        //获取桶的序号
-        let oTempBucket = this.bucket[hash];
-        //循环条件，oTempBucket.next是否有值
-        while(oTempBucket.next) {
-            //如果next中的值与传入的值相同，那么就返回next中的value
-            if(oTempBucket.next.key == key) {
-                return oTempBucket.next.value;
-            //如果在key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
-            } else {
-                oTempBucket = oTempBucket.next;
-            }
-        }
-    
-        //如果oTempBucket.next没有值，直接返回undefine
-        return undefined;
-    }
-    
-    //delete方法
-    myMap.prototype.delete = function(key) {
-        //获取hash
-        let hash = this.makeHash(key);
-        //获取桶的序号
-        let oTempBucket = this.bucket[hash];
-        //循环条件，oTempBucket.next是否有值
-        while (oTempBucket.next) {
-            //如果next中的值与传入的值相同，那么就将next的指向改变为next.next
-            if(oTempBucket.next.key == key) {
-                oTempBucket.next = oTempBucket.next.next;
+    ],[
+        //静态属性
+        {
+            key: 'alive',
+            value: function() {
                 return true;
-            //如果传入的key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
-            } else {
-                oTempBucket = oTempBucket.next;
             }
         }
-    
-        return false;
-    }
-    
-    //has方法
-    myMap.prototype.has = function(key) {
-        //获取hash
-        let hash = this.makeHash(key);
-        //获取桶的序号
-        let oTempBucket = this.bucket[hash];
-    
-        while(oTempBucket.next) {
-            if(oTempBucket.next.key == key) {
-                return true
-            } else {
-                oTempBucket = oTempBucket.next;
+    ])
+
+    return Plane;
+}())
+
+var oP = new Plane("yzl&战斗机");
+
+//原型继承方法
+function _inherit(sub,sup) {
+    Object.setPrototypeOf(sub.prototype,sup.prototype);
+}
+
+var AttackPlane = (function(Plane) {
+
+    _inherit(AttackPlane,Plane);
+
+    function AttackPlane (name) {
+        _classCallCheck(this,Plane);
+        this.logo = 'lll';
+        var _this = this;
+        var that = Plane.call(this,name);
+        if(typeof that == 'object') {
+            _this.that;
+        }
+        _this.logo = 'duyi';
+        return _this;
+    };
+    //创建自身属性和静态属性
+    _createClass(AttackPlane,[
+        //自身方法
+        {
+            key: 'dan',
+            value: function() {
+                console.log('biubiubiu');
+            }
+        },
+    ],[
+        //静态属性
+        {
+            key: 'alive',
+            value: function() {
+                return true;
             }
         }
-    
-        return false;
-    }
-    
-    //clear方法
-    myMap.prototype.clear = function(key) {
-        this.init();
-    }
-    
-    let oMp = new myMap();
-    let obj = {name:'yzl'};
-    oMp.set('name','yzl');
-    oMp.set('name1','yzl');
-    oMp.set(obj,'----');
-    oMp.set(function(){},'----');
-    ```
+    ])
+    return AttackPlane;
+}(Plane))
+
+var oAp = new AttackPlane();
+```
 
 ## 解构(destructuring)
 
@@ -2864,7 +2500,7 @@ dom.addEventListener("click", function(){
 - 理解该 `API`，最重要的，是理解它的异步模型
 
 1. `ES6` 将某一件可能发生异步操作的事情，分为两个阶段：**unsettled** 和 **settled**
-   1. ![](./ES6/2019-10-18-17-28-30.png)
+   1. ![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-17-28-30.png)
    2. **unsettled**： 未决阶段，表示事情还在进行前期的处理，并没有发生通向结果的那件事
    3. **settled**：已决阶段，事情已经有了一个结果，不管这个结果是好是坏，整件事情无法逆转
    4. 事情总是从 未决阶段 逐步发展到 已决阶段的。并且，未决阶段拥有控制何时通向已决阶段的能力。
@@ -2879,7 +2515,7 @@ dom.addEventListener("click", function(){
 
 **始终记住，无论是阶段，还是状态，是不可逆的！**
 
-![](./ES6/2019-10-18-18-10-18.png)
+![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-10-18.png)
 
 3. 当事情达到已决阶段后，通常需要进行后续处理，不同的已决状态，决定了不同的后续处理。
    1. **resolved**状态：这是一个正常的已决状态，后续处理表示为 **thenable**
@@ -2887,11 +2523,11 @@ dom.addEventListener("click", function(){
 
 后续处理可能有多个，因此会形成作业队列，这些后续处理会按照顺序，当状态到达后依次执行
 
-![](./ES6/2019-10-18-18-10-38.png)
+![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-10-38.png)
 
 4. 整件事称之为**Promise**
 
-![](./ES6/2019-10-18-18-15-52.png)
+![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-15-52.png)
 
 **理解上面的概念，对学习Promise至关重要！**
 
@@ -3773,207 +3409,6 @@ MyPromise.all = function (promiseArr) {
 };
 ```
 
-### 生成器
-
-#### Iterator
-
-##### Interator简介
-
-- 迭代模式：
-  - 提供一种方法可以顺序获得聚合对象的各个元素，是一种最简单也最常见的设计模式，它可以让用户透过特定的接口寻访集合中的每一个元素而不用了解底层的实现
-- 迭代器简介
-  - 依照与迭代模式的思想而实现，分为内部迭代器和外部迭代器
-  -  内部迭代器：
-    - 本身是函数，该函数内部定义好迭代规则，完全接手整个迭代过程，外部迭代只需要一次初始调用
-    - ` Array.prototype.forEach`，`jQuery.each`内部迭代器
-  - 外部迭代器：
-    - 本身是函数，执行返回迭代对象，迭代下一个元素必须显示调用，调用复杂度增加，但灵活性增加
-    - `function outerIterator() {}` 外部迭代器
-- 迭代器目的：
-  - 从迭代模式思想中可以看出，就是要标准化迭代操作
-  - 举个例子：服务端提供数组数据给前端，前端for循环遍历，但由于业务变化，使得数据结构发生变化，返回对象或者`set`、`map`，导致前端遍历代码大量重写
-  - 解决方案
-    - `ES6`引入`Interator`，部署在`NodeList`、`arguments`、`Array`、`Set`、Map、字符串上等数据的Symbol。iterator属性
-    - `使得这些数据``iterable`可迭代了，能进行`for of`、`...`、、`Array.from`等操作
-
-##### iterator接口
-
-- **iterator**实现规则：`next`、`value`、`done`
-
-- 对象中部署**iterator**
-
-  - ```js
-    // ES6规范：interator
-    let obj = {
-        0: 'a',
-        1: 'b',
-        2: 'c',
-        length: 3,
-        // 部署iterator，然后就可以被迭代了
-        [Symbol.iterator]: function() {
-            let curIndex = 0
-            let next = () => {
-                return {
-                    value: this[curIndex],
-                    done: this.length == curIndex++,
-                }
-            }
-            return {
-                next
-            }
-        }
-    };
-    
-    console.log(...obj); //a b c
-    
-    for(let prop of obj) {
-        console.log(prop); //a b c
-    }
-    ```
-
-#### Generator
-
-##### 简介
-
-- **Generator**简介
-
-  - 生成器，本身是函数，执行后返回迭代对象，函数内部要配合`yield`使用`Generator`函数会分段执行，遇到`yield`即暂停
-
-- 特点
-
-  - `function`和函数名之间要带`*`星号
-  - 函数体内部`yield`表达式，产出不同的内部状态（值）
-  - 遇到`yield`即暂停
-
-- 演示
-
-  - ```js
-    // 生成器函数
-    // 再function和函数名中间任意位置添加一个*号，代表生成器函数
-    function * test() {
-        // yield，当执行到yield时，会停止执行，直到再执行next时，再继续下一步
-        yield 'a';
-        console.log('1');
-        yield 'b';
-        console.log('2');
-        yield 'c';
-        console.log('3');
-        return 'd';
-    }
-    
-    let oG = test();
-    // {value: 'a',done: false}
-    // oG.next();
-    ```
-
-  - ```js
-    function * test() {
-        // 执行方式：蛇形方式，每次先执行yield，然后停止，再给value赋值，直到再遇到yield停止
-        // value的值不是在于yield中的值，而是在于下一次执行next中传入的值
-    
-        // 先执行yield 'a'，停止，下一次时再给value赋值(传参)
-        let value1 = yield 'a';
-        console.log(value1);
-    
-        let value2 = yield 'b';
-        console.log(value2);
-    
-        let value3 = yield 'c';
-        console.log(value3);
-        return 'd';
-    }
-    
-    let oG = test();
-    
-    console.log(oG.next());
-    // 传入的A，那么value1就是A
-    console.log(oG.next('A'));
-    console.log(oG.next('B'));
-    console.log(oG.next('C'));
-    ```
-
-##### Generator改写
-
-- ```js
-  // Generator改写Iterator
-  let obj = {
-      0: 'a',
-      1: 'b',
-      2: 'c',
-      length:3,
-      [Symbol.iterator]: function *() {
-          let currIndex = 0;
-          while(currIndex != this.length) {
-              yield this[currIndex];
-              currIndex ++;
-          }
-      }
-  }
-  
-  console.log([...obj])
-  ```
-
-- ```js
-  // Generator改写回调地狱
-  
-  let fs = require('fs');
-  function readFile(path) {
-      return new Promise((res,rej) => {
-          fs.readFile(path,'utf-8',(err,data) => {
-              if(data) {
-                  res(data);
-              } else {
-                  rej(err);
-              }
-          })
-      })
-  }
-  
-  //Generator 函数
-  function * read() {
-      let val1 = yield readFile('./number.txt');
-      let val2 = yield readFile(val1);
-      let val3 = yield readFile(val2);
-      return val3;
-  }
-  let oG = read();
-  
-  //第一种优化方法，但是使用这种方法还不如直接使用Promise
-  // let {value,done} = oG.next();
-  // value.then((val) => {
-  //     let {value,done} = oG.next(val);
-  //     value.then((val) => {
-  //         let {value,done} = oG.next(val);
-  //         value.then((val) => {
-  //            console.log(val);
-  //         })
-  //     })
-  // })
-  
-  // 递归优化，第二种优化方法
-  // 其实是一个库，一个叫做TJ的大神写的库，可以是使用npm来下载
-  // TJ 写的库 express koa node
-  function Co(oIt) {
-      return new Promise((res,rej) => {
-          let next = (data) => {
-              let {value,done} = oIt.next(data);
-              if(done) {
-                  res(value);
-              } else {
-                  value.then((val) => {
-                      next(val)
-                  ,rej})
-              }
-          }
-          next();
-      })
-  }
-  
-  Co(read()).then((val) => {
-      console.log(val);
-  })
-  ```
-
 ### async 和 await
 
 - `async`函数，是`Generator`语法糖，通过`babel`编译后可以看出它就是`Generator+promise+Co`思想实现的，配合`await`使用
@@ -4447,4 +3882,1687 @@ document.querySelector("button").onclick = async function() {
     img.src = result.path;
 }
 ```
+
+## 迭代器和生成器 
+
+### 迭代器(Iterator)
+
+#### 背景知识
+
+- 什么是迭代？
+  - 从一个数据集合中按照一定的顺序，不断取出数据的过程
+  
+- 迭代和遍历的区别？
+  - 迭代强调的是依次取数据，并不保证取多少，也不保证把所有的数据取完
+  - 遍历强调的是要把整个数据依次全部取出
+  
+- 迭代器
+  - 对迭代过程的封装，在不同的语言中有不同的表现形式，通常为对象
+  - 依照与迭代模式的思想而实现，分为内部迭代器和外部迭代器
+  - 内部迭代器：
+    - 本身是函数，该函数内部定义好迭代规则，完全接手整个迭代过程，外部迭代只需要一次初始调用
+    - ` Array.prototype.forEach`，`jQuery.each`内部迭代器
+  - 外部迭代器：
+    - 本身是函数，执行返回迭代对象，迭代下一个元素必须显示调用，调用复杂度增加，但灵活性增加
+    - `function outerIterator() {}` 外部迭代器
+  
+- 迭代模式
+  - 一种设计模式，用于统一迭代过程，并规范了迭代器规格：
+  - 迭代器应该具有得到下一个数据的能力
+  - 迭代器应该具有判断是否还有后续数据的能力
+  
+  - 提供一种方法可以顺序获得聚合对象的各个元素，是一种最简单也最常见的设计模式，它可以让用户透过特定的接口寻访集合中的每一个元素而不用了解底层的实现
+  
+- 迭代器目的：
+
+  - 从迭代模式思想中可以看出，就是要标准化迭代操作
+  - 举个例子：服务端提供数组数据给前端，前端for循环遍历，但由于业务变化，使得数据结构发生变化，返回对象或者`set`、`map`，导致前端遍历代码大量重写
+  - 解决方案
+    - `ES6`引入`Interator`，部署在`NodeList`、`arguments`、`Array`、`Set`、Map、字符串上等数据的Symbol。iterator属性
+    - `使得这些数据``iterable`可迭代了，能进行`for of`、`...`、、`Array.from`等操作
+
+#### JS中的迭代器
+
+JS规定，如果一个对象具有`next`方法，并且该方法返回一个对象，该对象的格式如下：
+
+```js
+{value: 值, done: 是否迭代完成}
+```
+
+则认为该对象是一个迭代器
+
+含义：
+
+- **next**方法：用于得到下一个数据
+- 返回的对象
+  - **value**：下一个数据的值
+  - **done：boolean**，是否迭代完成
+
+#### 练习
+
+- ```js
+  const arr = [1, 2, 3, 4, 5];
+  //迭代数组arr
+  const iterator = {
+      i: 0, //当前的数组下标
+      next() {
+          var result = {
+              value: arr[this.i],
+              done: this.i >= arr.length
+          }
+          this.i++;
+          return result;
+      }
+  }
+  
+  //让迭代器不断的取出下一个数据，直到没有数据为止
+  let data = iterator.next();
+  while (!data.done) { //只要没有迭代完成，则取出数据
+      console.log(data.value)
+      //进行下一次迭代
+      data = iterator.next();
+  }
+  
+  console.log("迭代完成")
+  ```
+
+- ```js
+  const arr1 = [1, 2, 3, 4, 5];
+  const arr2 = [6, 7, 8, 9];
+  
+  // 迭代器创建函数  iterator creator
+  function createIterator(arr) {
+      let i = 0;//当前的数组下标
+      return { 
+          next() {
+              var result = {
+                  value: arr[i],
+                  done: i >= arr.length
+              }
+              i++;
+              return result;
+          }
+      }
+  }
+  
+  const iter1 = createIterator(arr1);
+  const iter2 = createIterator(arr2);
+  ```
+
+- ```js
+   // 依次得到斐波拉契数列前面n位的值
+  // 1 1 2 3 5 8 13 .....
+  
+  //创建一个斐波拉契数列的迭代器
+  function createFeiboIterator() {
+      let prev1 = 1,
+          prev2 = 1, //当前位置的前1位和前2位
+          n = 1; //当前是第几位
+  
+      return {
+          next() {
+              let value;
+              if (n <= 2) {
+                  value = 1;
+              } else {
+                  value = prev1 + prev2;
+              }
+              const result = {
+                  value,
+                  done: false
+              };
+              prev2 = prev1;
+              prev1 = result.value;
+              n++;
+              return result;
+          }
+      }
+  }
+  
+  const iterator = createFeiboIterator();
+  ```
+
+### 可迭代协议 与 for-of 循环
+
+#### 可迭代协议
+
+- **概念回顾**
+  - 迭代器(**iterator**)：一个具有`next`方法的对象，`next`方法返回下一个数据并且能指示是否迭代完成
+  - 迭代器创建函数（**iterator creator**）：一个返回迭代器的函数
+
+- **可迭代协议**
+  - **ES6**规定，如果一个对象具有知名符号属性```Symbol.iterator```，并且属性值是一个迭代器创建函数，则该对象是可迭代的（**iterable**）
+
+> 思考：如何知晓一个对象是否是可迭代的？
+> 思考：如何遍历一个可迭代对象？
+
+- ```js
+  //可迭代对象
+  var obj = {
+      a: 1,
+      b: 2,
+      [Symbol.iterator]() {
+          const keys = Object.keys(this);
+          let i = 0;
+          return {
+              next: () => {
+                  const propName = keys[i];
+                  const propValue = this[propName];
+                  const result = {
+                      value: {
+                          propName,
+                          propValue
+                      },
+                      done: i >= keys.length
+                  }
+                  i++;
+                  return result;
+              }
+          }
+      }
+  }
+  
+  for (const item of obj) {
+      console.log(item); // {propName:"a", propValue:1}
+  }
+  ```
+
+#### for-of 循环
+
+**for-of** 循环用于遍历可迭代对象，格式如下
+
+```js
+//迭代完成后循环结束
+for(const item in iterable){
+    //iterable：可迭代对象
+    //item：每次迭代得到的数据
+}
+```
+
+```js
+const arr = [5, 7, 2, 3, 6];
+
+// const iterator = arr[Symbol.iterator]();
+// let result = iterator.next();
+// while (!result.done) {
+//     const item = result.value; //取出数据
+//     console.log(item);
+//     //下一次迭代
+//     result = iterator.next();
+// }
+
+for (const item of arr) {
+    console.log(item)
+}
+```
+
+```JS
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+<div>6</div>
+<div>7</div>
+<div>8</div>
+<div>9</div>
+<div>10</div>
+
+const divs = document.querySelectorAll("div");
+
+// const iterator = divs[Symbol.iterator]()
+// let result = iterator.next();
+// while (!result.done) {
+//     const item = result.value; //取出数据
+//     console.log(item);
+//     //下一次迭代
+//     result = iterator.next();
+// }
+
+for (const item of divs) {
+    console.log(item);
+}
+```
+
+
+
+#### 展开运算符与可迭代对象
+
+- 展开运算符可以作用于可迭代对象，这样，就可以轻松的将可迭代对象转换为数组
+
+```JS
+var obj = {
+    a: 1,
+    b: 2,
+    [Symbol.iterator]() {
+        const keys = Object.keys(this);
+        let i = 0;
+        return {
+            next: () => {
+                const propName = keys[i];
+                const propValue = this[propName];
+                const result = {
+                    value: {
+                        propName,
+                        propValue
+                    },
+                    done: i >= keys.length
+                }
+                i++;
+                return result;
+            }
+        }
+    }
+}
+
+const arr = [...obj];
+console.log(arr);
+
+function test(a, b) {
+    console.log(a, b)
+}
+
+test(...obj);
+```
+
+### 生成器 (Generator)
+
+- 什么是生成器？
+  - 生成器是一个通过构造函数**Generator**创建的对象，生成器既是一个迭代器，同时又是一个可迭代对象
+- 如何创建生成器？
+  - 生成器的创建，必须使用生成器函数（**Generator Function**）
+- 如何书写一个生成器函数呢？
+
+```js
+//这是一个生成器函数，该函数一定返回一个生成器，就是在function和函数名之间添加*号
+function* method(){
+
+}
+```
+
+- 生成器函数内部是如何执行的？
+
+  - 生成器函数内部是为了给生成器的每次迭代提供的数据
+  - 每次调用生成器的`next`方法，将导致生成器函数运行到下一个`yield`关键字位置
+  - `yield`是一个关键字，该关键字只能在生成器函数内部使用，表达“产生”一个迭代数据。
+  - 函数体内部`yield`表达式，产出不同的内部状态（值）
+  - 遇到`yield`即暂停
+
+- 有哪些需要注意的细节？
+
+  - 生成器函数可以有返回值，返回值出现在第一次`done`为`true`时的`value`属性中
+  - 调用生成器的`next`方法时，可以传递参数，传递的参数会交给`yield`表达式的返回值
+  - 第一次调用`next`方法时，传参没有任何意义
+  - 在生成器函数内部，可以调用其他生成器函数，但是要注意加上`*`号
+
+  - `function`和函数名之间要带`*`星号
+
+- 生成器的其他**API**
+
+  - **return**方法：调用该方法，可以提前结束生成器函数，从而提前让整个迭代过程结束
+  - **throw**方法：调用该方法，可以在生成器中产生一个错误
+
+- 实例
+
+  - ```js
+    function* test() {
+        console.log("第1次运行")
+        yield 1;
+        console.log("第2次运行")
+        yield 2;
+        console.log("第3次运行")
+    }
+    
+    const generator = test();
+    ```
+
+  - ```js
+    const arr1 = [1, 2, 3, 4, 5];
+    const arr2 = [6, 7, 8, 9];
+    
+    // 迭代器创建函数  iterator creator
+    function* createIterator(arr) {
+        for (const item of arr) {
+            yield item;
+        }
+    }
+    
+    const iter1 = createIterator(arr1);
+    const iter2 = createIterator(arr2);
+    ```
+
+  - ```js
+    //创建一个斐波拉契数列的迭代器
+    function* createFeiboIterator() {
+        let prev1 = 1,
+            prev2 = 1, //当前位置的前1位和前2位
+            n = 1; //当前是第几位
+        while (true) {
+            if (n <= 2) {
+                yield 1;
+            } else {
+                const newValue = prev1 + prev2
+                yield newValue;
+                prev2 = prev1;
+                prev1 = newValue;
+            }
+            n++;
+        }
+    }
+    
+    const iterator = createFeiboIterator();
+    ```
+
+  - ```js
+    function* test() {
+        console.log("第1次运行")
+        yield 1;
+        console.log("第2次运行")
+        yield 2;
+        console.log("第3次运行");
+        // 调用return，可以提前结束生成器函数，从而提前让整个迭代过程结束
+        return 10;
+    }
+    
+    const generator = test();
+    ```
+
+  - ```js
+     function* test() {
+         console.log("函数开始")
+    
+         let info = yield 1;
+         console.log(info)
+         info = yield 2 + info;
+         console.log(info)
+     }
+    
+    const generator = test();
+    ```
+
+  - ```js
+    function* t1(){
+        yield "a"
+        yield "b"
+    }
+    
+    function* test() {
+        yield* t1();
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+    
+    const generator = test();
+    ```
+
+- 生成器，异步任务控制
+
+  - ```js
+    function* task() {
+        const d = yield 1;
+        console.log(d)
+        // //d : 1
+        const resp = yield fetch("http://101.132.72.36:5100/api/local")
+        const result = yield resp.json();
+        console.log(result);
+    }
+    
+    run(task)
+    
+    function run(generatorFunc) {
+        const generator = generatorFunc();
+        let result = generator.next(); //启动任务（开始迭代）, 得到迭代数据
+        handleResult();
+        //对result进行处理
+        function handleResult() {
+            if (result.done) {
+                return; //迭代完成，不处理
+            }
+            //迭代没有完成，分为两种情况
+            //1. 迭代的数据是一个Promise
+            //2. 迭代的数据是其他数据
+            if (typeof result.value.then === "function") {
+                //1. 迭代的数据是一个Promise
+                //等待Promise完成后，再进行下一次迭代
+                result.value.then(data => {
+                    result = generator.next(data)
+                    handleResult();
+                })
+            } else {
+                //2. 迭代的数据是其他数据，直接进行下一次迭代
+                result = generator.next(result.value)
+                handleResult();
+            }
+        }
+    }
+    ```
+
+## 更多的集合类型
+
+### set 集合
+
+> 一直以来，`JS`只能使用数组和对象来保存多个数据，缺乏像其他语言那样拥有丰富的集合类型。因此，`ES6`新增了两种集合类型（`set` 和 `map`），用于在不同的场景中发挥作用。
+
+**set用于存放不重复的数据**
+
+- 简介：`Set`是`ES6`提供给我们的构造函数，能够造出一种新的存储数据的结构
+- 特点：只有属性值，成员值唯一（不重复）
+- 用途：可以转成数组，其本身具备去重、交集、并集，差集的作用等
+
+- 如何创建**set**集合
+
+  - ```js
+    new Set(); //创建一个没有任何内容的set集合
+    
+    new Set(iterable); //创建一个具有初始内容的set集合，内容来自于可迭代对象每一次迭代的结果
+    ```
+
+- 如何对`set`集合进行后续操作
+  - **add(数据)**: 添加一个数据到`set`集合末尾，如果数据已存在，则不进行任何操作
+    - `set`使用`Object.is`的方式判断两个数据是否相同，但是，针对`+0`和`-0`，`set`认为是相等
+  - **has(数据)**: 判断`set`中是否存在对应的数据
+  - **delete(数据)**：删除匹配的数据，返回是否删除成功
+  - **clear()**：清空整个`set`集合
+  - **size**: 获取`set`集合中的元素数量，只读属性，无法重新赋值
+
+- 如何与数组进行相互转换
+
+  - ```js
+    const s = new Set([x,x,x,x,x]);
+    // set本身也是一个可迭代对象，每次迭代的结果就是每一项的值
+    const arr = [...s];
+    ```
+
+- 如何遍历
+  - 使用`for-of`循环
+  - 使用`set`中的实例方法`forEach`
+
+- 注意：`set`集合中不存在下标，因此`forEach`中的回调的第二个参数和第一个参数是一致的，均表示`set`中的每一项
+
+- 实例
+
+  - ```js
+    const s1 = new Set();
+    console.log(s1);
+    
+    const s2 = new Set("asdfasfasf");
+    console.log(s2);
+    ```
+
+  - ```js
+    const s1 = new Set();
+    
+    s1.add(1);
+    s1.add(2);
+    s1.add(3);
+    s1.add(1); //无效
+    s1.add(+0);
+    s1.add(-0); //无效
+    
+    // for (const item of s1) {
+    //     console.log(item)
+    // }
+    
+    s1.forEach((item, index, s) => {
+        console.log(item, index, s);
+    })
+    console.log(s1);
+    console.log("总数为：", s1.size);
+    ```
+
+  - ```js
+    const arr = [45, 7, 2, 2, 34, 46, 6, 57, 8, 55, 6, 46];
+    const result = [...new Set(arr)];
+    console.log(result);
+    
+    const str = "asf23sdfgsdgfsafasdfasfasfasfsafsagfdsfg";
+    const s = [...new Set(str)].join("");
+    console.log(s);
+    ```
+
+  - ```js
+    // 两个数组的并集、交集、差集 （不能出现重复项），得到的结果是一个新数组
+    const arr1 = [33, 22, 55, 33, 11, 33, 5];
+    const arr2 = [22, 55, 77, 88, 88, 99, 99];
+    
+    //并集
+    // const result = [...new Set(arr1.concat(arr2))];
+    console.log("并集", [...new Set([...arr1, ...arr2])]);
+    
+    const cross = [...new Set(arr1)].filter(item => arr2.indexOf(item) >= 0);
+    //交集
+    console.log("交集", cross)
+    
+    //差集
+    // console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0 || arr2.indexOf(item) >= 0 && arr1.indexOf(item) < 0))
+    console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => cross.indexOf(item) < 0))
+    ```
+
+### 手写Set
+
+```js
+class MySet {
+    constructor(iterator = []) {
+        //验证是否是可迭代的对象
+        if (typeof iterator[Symbol.iterator] !== "function") {
+            throw new TypeError(`你提供的${iterator}不是一个可迭代的对象`)
+        }
+        this._datas = [];
+        for (const item of iterator) {
+            this.add(item);
+        }
+    }
+
+    get size() {
+        return this._datas.length;
+    }
+
+    add(data) {
+        if (!this.has(data)) {
+            this._datas.push(data);
+        }
+    }
+
+    has(data) {
+        for (const item of this._datas) {
+            if (this.isEqual(data, item)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    delete(data) {
+        for (let i = 0; i < this._datas.length; i++) {
+            const element = this._datas[i];
+            if (this.isEqual(element, data)) {
+                //删除
+                this._datas.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    clear() {
+        this._datas.length = 0;
+    }
+
+    *[Symbol.iterator]() {
+        for (const item of this._datas) {
+            yield item;
+        }
+    }
+
+    forEach(callback) {
+        for (const item of this._datas) {
+            callback(item, item, this);
+        }
+    }
+
+    /**
+     * 判断两个数据是否相等
+     * @param {*} data1 
+     * @param {*} data2 
+     */
+    isEqual(data1, data2) {
+        if (data1 === 0 && data2 === 0) {
+            return true;
+        }
+        return Object.is(data1, data2);
+    }
+}
+```
+
+### Map集合
+
+> 键值对（key value pair）数据集合的特点：键不可重复
+
+- **map**集合专门用于存储多个键值对数据。
+
+- 在**map**出现之前，我们使用的是对象的方式来存储键值对，键是属性名，值是属性值。
+
+- 使用对象存储有以下问题：
+  - 键名只能是字符串
+  - 获取数据的数量不方便
+  - 键名容易跟原型上的名称冲突
+
+- 如何创建**Map**
+
+  - ```js
+    new Map(); //创建一个空的map
+    new Map(iterable); //创建一个具有初始内容的map，初始内容来自于可迭代对象每一次迭代的结果，但是，它要求每一次迭代的结果必须是一个长度为2的数组，数组第一项表示键，数组的第二项表示值
+    ```
+
+- 如何进行后续操作
+  - **size**：只读属性，获取当前`map`中键的数量
+  - set(键, 值)：设置一个键值对，键和值可以是任何类型
+    - 如果键不存在，则添加一项
+    - 如果键已存在，则修改它的值
+    - 比较键的方式和`set`相同
+  - **get(键)**: 根据一个键得到对应的值
+  - has(键)：判断某个键是否存在
+  - **delete(键)**：删除指定的键
+  - **clear()**: 清空`map`
+
+- 数组互相转换和**set**一样
+
+- 遍历
+  - **for-of**，每次迭代得到的是一个长度为2的数组
+  - **forEach**，通过回调函数遍历
+    - 参数`1`：每一项的值
+    - 参数`2`：每一项的键
+    - 参数`3`：**map**本身
+
+- 实例
+
+  - ```js
+     const mp1 = new Map([["a", 3], ["b", 4], ["c", 5]]);
+    const obj = {};
+    mp1.set(obj, 6456);
+    mp1.set("a", "abc");
+    mp1.set(obj, 111);
+    
+    console.log(mp1)
+    console.log("总数：", mp1.size);
+    console.log("get('a')", mp1.get("a"));
+    console.log("has('a')", mp1.has("a"));
+    ```
+
+  - ```js
+    const mp = new Map([
+        ["a", 3],
+        ["c", 10],
+        ["b", 4],
+        ["c", 5]
+    ]);
+    const result = [...mp]
+    console.log(result);
+    
+    // for (const [key, value] of mp) {
+    //     console.log(key, value)
+    // }
+    
+    mp.forEach((value, key, mp) => {
+        console.log(value, key, mp)
+    })
+    ```
+
+### 手写Map
+
+#### ES6之实现Map
+
+```js
+class MyMap {
+    constructor(iterable = []) {
+        //验证是否是可迭代的对象
+        if (typeof iterable[Symbol.iterator] !== "function") {
+            throw new TypeError(`你提供的${iterable}不是一个可迭代的对象`)
+        }
+        this._datas = [];
+        for (const item of iterable) {
+            // item 也得是一个可迭代对象
+            if (typeof item[Symbol.iterator] !== "function") {
+                throw new TypeError(`你提供的${item}不是一个可迭代的对象`);
+            }
+            const iterator = item[Symbol.iterator]();
+            const key = iterator.next().value;
+            const value = iterator.next().value;
+            this.set(key, value);
+        }
+
+    }
+
+    set(key, value) {
+        const obj = this._getObj(key);
+        if (obj) {
+            //修改
+            obj.value = value;
+        }
+        else {
+            this._datas.push({
+                key,
+                value
+            })
+        }
+    }
+
+    get(key) {
+        const item = this._getObj(key);
+        if (item) {
+            return item.value;
+        }
+        return undefined;
+    }
+
+    get size() {
+        return this._datas.length;
+    }
+
+    delete(key) {
+        for (let i = 0; i < this._datas.length; i++) {
+            const element = this._datas[i];
+            if (this.isEqual(element.key, key)) {
+                this._datas.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    clear() {
+        this._datas.length = 0;
+    }
+
+    /**
+     * 根据key值从内部数组中，找到对应的数组项
+     * @param {*} key 
+     */
+    _getObj(key) {
+        for (const item of this._datas) {
+            if (this.isEqual(item.key, key)) {
+                return item;
+            }
+        }
+    }
+
+    has(key) {
+        return this._getObj(key) !== undefined;
+    }
+
+    /**
+     * 判断两个数据是否相等
+     * @param {*} data1 
+     * @param {*} data2 
+     */
+    isEqual(data1, data2) {
+        if (data1 === 0 && data2 === 0) {
+            return true;
+        }
+        return Object.is(data1, data2);
+    }
+
+    *[Symbol.iterator]() {
+        for (const item of this._datas) {
+            yield [item.key, item.value];
+        }
+    }
+
+    forEach(callback) {
+        for (const item of this._datas) {
+            callback(item.value, item.key, this);
+        }
+    }
+}
+
+
+
+const mp1 = new MyMap([
+    ["a", 3],
+    ["b", 4],
+    ["c", 5]
+]);
+const obj = {};
+mp1.set(obj, 6456);
+mp1.set("a", "abc");
+mp1.set(obj, 111);
+
+// for (const item of mp1) {
+//     console.log(item)
+// }
+
+// const result = [...mp1];
+// console.log(result)
+mp1.forEach((a1, a2, a3) => {
+    console.log(a1, a2, a3);
+})
+```
+
+#### ES5之实现Map
+
+```js
+//原生Map特性
+//1.不重复
+//2.属性不只是字符串，还可以是 {} null [] function number
+//3.实现方法 delete set get has clear 
+
+function myMap() {
+    //桶长度 = 8
+    this.bucketLength = 8;
+    this.init();
+}
+
+//初始化
+myMap.prototype.init = function() {
+    //初始化 桶 长度8
+    this.bucket = new Array( this.bucketLength );
+    //循环遍历桶添加初始化值
+    for(var i = 0;i < this.bucket.length; i++) {
+        this.bucket[i] = {
+            type: 'bucket' + i,
+            next: null
+        }
+    }
+}
+
+//hash算法
+//1. [0,8]
+//2. 重复算值固定
+myMap.prototype.makeHash = function(key) {
+    let hash = 0;
+    // key 可能是 string number boolean null  NaN [] {} function(){} undefine
+    if(typeof key !== 'string') {
+        //如果为数字，hash直接等于key
+        if(typeof key == 'number') {
+            //number NaN
+            //判断key是否等于NaN
+            hash = Object.is(key,NaN) ? 0 : key;
+        } else if(typeof key == 'object') {
+            //null {} [] 
+            hash = 1;
+        } else if(typeof key == 'boolean') {
+            //true 1  |  false 0
+            hash += key;
+        } else {
+            //undefine function() {}
+            hash = 2;
+        }
+    } else {
+        //string
+        //'a' 'ab' '....很多个字符'
+        //长度大于等于3，取字符串前三个字符的ascii，累加 取余 变为0-8（规则由自己定义）
+        //长度不大于3时，就取长度位数进行计算
+        for(let i = 0;i < 3; i++) {
+            //判断如果字符没有第三位时返回0，有时就返回该位的ascii码
+            hash += key[i] ? key[i].charCodeAt(0) : 0;
+        }
+    }
+    return hash % 8; //生成0-8范围
+}
+
+//set方法
+myMap.prototype.set = function(key,value) {
+    //获取hash
+    let hash = this.makeHash(key);
+    //获取桶的序号
+    let oTempBucket = this.bucket[hash];
+    //循环条件，oTempBucket.next是否有值
+    while(oTempBucket.next) {
+        //如果next中的值与传入的值相同，那么就让next的value等于传入的value
+        if (oTempBucket.next.key == key) {
+            oTempBucket.next.value = value;
+            return;
+        //如果在key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
+        } else {
+            oTempBucket = oTempBucket.next;
+        }
+    };
+    //给最后一个oTempBucket添加值
+    oTempBucket.next = {
+        key: key,
+        value: value,
+        next: null
+    }
+}
+
+//get方法
+myMap.prototype.get = function(key) {
+    //获取hash
+    let hash = this.makeHash(key);
+    //获取桶的序号
+    let oTempBucket = this.bucket[hash];
+    //循环条件，oTempBucket.next是否有值
+    while(oTempBucket.next) {
+        //如果next中的值与传入的值相同，那么就返回next中的value
+        if(oTempBucket.next.key == key) {
+            return oTempBucket.next.value;
+        //如果在key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
+        } else {
+            oTempBucket = oTempBucket.next;
+        }
+    }
+
+    //如果oTempBucket.next没有值，直接返回undefine
+    return undefined;
+}
+
+//delete方法
+myMap.prototype.delete = function(key) {
+    //获取hash
+    let hash = this.makeHash(key);
+    //获取桶的序号
+    let oTempBucket = this.bucket[hash];
+    //循环条件，oTempBucket.next是否有值
+    while (oTempBucket.next) {
+        //如果next中的值与传入的值相同，那么就将next的指向改变为next.next
+        if(oTempBucket.next.key == key) {
+            oTempBucket.next = oTempBucket.next.next;
+            return true;
+        //如果传入的key不等于next.key，就让oTempBucket自己等于自己的下一个，再次循环比较
+        } else {
+            oTempBucket = oTempBucket.next;
+        }
+    }
+
+    return false;
+}
+
+//has方法
+myMap.prototype.has = function(key) {
+    //获取hash
+    let hash = this.makeHash(key);
+    //获取桶的序号
+    let oTempBucket = this.bucket[hash];
+
+    while(oTempBucket.next) {
+        if(oTempBucket.next.key == key) {
+            return true
+        } else {
+            oTempBucket = oTempBucket.next;
+        }
+    }
+
+    return false;
+}
+
+//clear方法
+myMap.prototype.clear = function(key) {
+    this.init();
+}
+
+
+
+let oMp = new myMap();
+let obj = {name:'yzl'};
+oMp.set('name','yzl');
+oMp.set('name1','yzl');
+oMp.set(obj,'----');
+oMp.set(function(){},'----');
+```
+
+### WeakSet 和 WeakMap
+
+#### WeakSet
+
+使用该集合，可以实现和**set**一样的功能，不同的是：
+
+1. **它内部存储的对象地址不会影响垃圾回收**
+
+2. 只能添加对象
+
+3. 不能遍历（不是可迭代的对象）、没有`size`属性、没有`forEach`方法
+
+4. ```js
+    let obj = {
+        name: "yj",
+        age: 18
+    };
+   let obj2 = obj;
+   const set = new WeakSet();
+   set.add(obj);
+   
+   obj = null;
+   obj2 = null;
+   console.log(set)
+   ```
+
+#### WeakMap
+
+类似于**map**的集合，不同的是：
+
+1. **它的键存储的地址不会影响垃圾回收**
+
+2. 它的键只能是对象
+
+3. 不能遍历（不是可迭代的对象）、没有`size`属性、没有`forEach`方法
+
+4. ```html
+   <ul>
+   <!-- { id:"1", name:"姓名1" } -->
+       <li>1</li>
+   <!-- { id:"2", name:"姓名2" } -->
+       <li>2</li>
+   <!-- { id:"3", name:"姓名3" } -->
+       <li>3</li>
+   </ul>
+   
+   <script>
+       const wmap = new WeakMap();
+       let lis = document.querySelectorAll("li");
+       for (const li of lis) {
+           wmap.set(li, {
+               id: li.innerHTML,
+               name: `姓名${li.innerHTML}`
+           });
+       }
+       lis[0].remove();
+       lis = null;
+   
+       console.log(wmap);
+   </script>
+   ```
+
+## 代理与反射
+
+### 【回顾】属性描述符
+
+- **Property Descriptor** 属性描述符  是一个普通对象，用于描述一个属性的相关信息
+
+- 通过```Object.getOwnPropertyDescriptor(对象, 属性名)```可以得到一个对象的某个属性的属性描述符
+  - **value**：属性值
+  - **configurable**：该属性的描述符是否可以修改
+  - **enumerable**：该属性是否可以被枚举
+  - **writable**：该属性是否可以被重新赋值
+
+> ```Object.getOwnPropertyDescriptors(对象)```可以得到某个对象的所有属性描述符
+
+- 如果需要为某个对象添加属性时 或 修改属性时， 配置其属性描述符，可以使用下面的代码:
+
+```js
+Object.defineProperty(对象, 属性名, 描述符);
+Object.defineProperties(对象, 多个属性的描述符)
+```
+
+#### 存取器属性
+
+- 属性描述符中，如果配置了 `get` 和 `set` 中的任何一个，则该属性，不再是一个普通属性，而变成了存取器属性。
+
+- `get` 和 `set`配置均为函数，如果一个属性是存取器属性，则读取该属性时，会运行`get`方法，将`get`方法得到的返回值作为属性值；如果给该属性赋值，则会运行`set`方法。
+
+- 存取器属性最大的意义，在于可以控制属性的读取和赋值。
+
+#### 练习
+
+- ```js
+   const obj = {
+       a: 1,
+       b: 2
+   }
+  
+   // Object.defineProperty(obj, "a", {
+   //     value: 3,
+   //     configurable: false,
+   //     enumerable: false,
+   //     writable: false
+   // })
+  
+   Object.defineProperties(obj, {
+       a: {
+           value: 3,
+           configurable: false,
+           enumerable: false,
+           writable: false
+       }
+   })
+  
+  obj.a = 10;
+  console.log(obj);
+  
+  // console.log(obj)
+  // // for (const prop in obj) {
+  // //     console.log(prop);
+  // // }
+  
+  // const props = Object.keys(obj)
+  // console.log(props)
+  
+  // const values = Object.values(obj);
+  // console.log(values);
+  
+  // const desc = Object.getOwnPropertyDescriptor(obj, "a")
+  
+  // console.log(desc);
+  ```
+
+- ```js
+  const obj = {
+      b: 2
+  }
+  Object.defineProperty(obj, "a", {
+      get() {
+          console.log("运行了属性a的get函数")
+          return obj._a;
+      },
+      set(val){
+          console.log("运行了属性a的set函数", val)
+          obj._a = val;
+      }
+  })
+  // obj.a = 20 + 10; // set(20 + 10)
+  // console.log(obj.a); // console.log(get())
+  
+  // obj.a = obj.a + 1; // set(obj.a + 1)   set(get() + 1)
+  // console.log(obj.a);
+  
+  // console.log(obj.a)
+  
+  obj.a = 10;
+  console.log(obj.a);
+  ```
+
+- ```js
+  obj = {
+      name: "adsf"
+  }
+  
+  Object.defineProperty(obj, "age", {
+      get() {
+          return obj._age;
+      },
+      set(val) {
+          if (typeof val !== "number") {
+              throw new TypeError("年龄必须是一个数字")
+          }
+          if (val < 0) {
+              val = 0;
+          } else if (val > 200) {
+              val = 200;
+          }
+          obj._age = val;
+      }
+  })
+  
+  obj.age = "Asdfasasdf";
+  console.log(obj.age);
+  ```
+
+- ```js
+  <p>
+      <span>姓名：</span>
+  <span id="name"></span>
+  </p>
+  <p>
+      <span>年龄：</span>
+  <span id="age"></span>
+  </p>
+  <script>
+      const spanName = document.getElementById("name")
+  const spanAge = document.getElementById("age")
+  
+  const user = {}
+  
+  Object.defineProperties(user, {
+      name: {
+          get() {
+              return spanName.innerText;
+          },
+          set(val) {
+              spanName.innerText = val;
+          }
+      },
+      age: {
+          get() {
+              return +spanAge.innerText;
+          },
+          set(val) {
+              if (typeof val !== "number") {
+                  throw new TypeError("年龄必须是一个数字")
+              }
+              if (val < 0) {
+                  val = 0;
+              } else if (val > 200) {
+                  val = 200;
+              }
+              spanAge.innerText = val;
+          }
+      }
+  })
+  ```
+
+### Reflect
+
+- **Reflect**是什么？
+
+  - `Reflect`是一个内置的`JS`对象，它提供了一系列方法，可以让开发者通过调用这些方法，访问一些`JS`底层功能
+  - 由于它类似于其他语言的**反射**，因此取名为`Reflect`
+
+- 它可以做什么？
+
+  - 使用`Reflect`可以实现诸如 属性的赋值与取值、调用普通函数、调用构造函数、判断属性是否存在与对象中  等等功能
+
+- 这些功能不是已经存在了吗？为什么还需要用`Reflect`实现一次？
+
+  - 有一个重要的理念，在`ES5`就被提出：减少魔法、让代码更加纯粹
+  - 这种理念很大程度上是受到函数式编程的影响
+  - `ES6`进一步贯彻了这种理念，它认为，对属性内存的控制、原型链的修改、函数的调用等等，这些都属于底层实现，属于一种魔法，因此，需要将它们提取出来，形成一个正常的`API`，并高度聚合到某个对象中，于是，就造就了`Reflect`对象
+  - 因此，你可以看到`Reflect`对象中有很多的`API`都可以使用过去的某种语法或其他`API`实现。
+
+- 它里面到底提供了哪些`API`呢？
+  - **Reflect.set(target, propertyKey, value)**: 设置对象`target`的属性`propertyKey`的值为`value`，等同于给对象的属性赋值
+  - **Reflect.get(target, propertyKey)**: 读取对象`target`的属性`propertyKey`，等同于读取对象的属性值
+  - **Reflect.apply(target, thisArgument, argumentsList)**：调用一个指定的函数，并绑定this和参数列表。等同于函数调用
+  - **Reflect.deleteProperty(target, propertyKey)**：删除一个对象的属性
+  - **Reflect.defineProperty(target, propertyKey, attributes)**：类似于`Object.defineProperty`，不同的是如果配置出现问题，返回false而不是报错
+  - **Reflect.construct(target, argumentsList)**：用构造函数的方式创建一个对象
+  - **Reflect.has(target, propertyKey)**: 判断一个对象是否拥有一个属性
+  - 其他**API**：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+
+- 实例
+  - ```js
+    const obj = {
+        a: 1,
+        b: 2
+    }
+    
+    // obj.a = 10;
+    
+    Reflect.set(obj, "a", 10);
+    
+    console.log(Reflect.get(obj, "a"))
+    ```
+
+  - ```js
+    // function method(a, b){
+    //     console.log("method", a, b);
+    // }
+    
+    // // method(3, 4);
+    
+    // Reflect.apply(method, null, [3, 4])
+    
+    // const obj = {
+    //     a: 1,
+    //     b: 2
+    // }
+    
+    // // delete obj.a;
+    
+    // Reflect.deleteProperty(obj, "a");
+    
+    // console.log(obj);
+    
+    // function Test(a, b) {
+    //     this.a = a;
+    //     this.b = b;
+    // }
+    
+    // // const t = new Test(1, 3);
+    // const t = Reflect.construct(Test, [1, 3]);
+    // console.log(t)
+    
+    const obj = {
+        a: 1,
+        b: 2
+    }
+    
+    // console.log("a" in obj);
+    console.log(Reflect.has(obj, "a"));
+    ```
+
+### Proxy 代理
+
+> 代理：提供了修改底层实现的方式
+
+```js
+//代理一个目标对象
+//target：目标对象
+//handler：是一个普通对象，其中可以重写底层实现
+//返回一个代理对象
+new Proxy(target, handler)
+```
+
+```js
+const obj = {
+    a: 1,
+    b: 2
+}
+
+const proxy = new Proxy(obj, {
+    set(target, propertyKey, value) {
+        // console.log(target, propertyKey, value);
+        // target[propertyKey] = value;
+        Reflect.set(target, propertyKey, value);
+    },
+    get(target, propertyKey) {
+        if (Reflect.has(target, propertyKey)) {
+            return Reflect.get(target, propertyKey);
+        } else {
+            return -1;
+        }
+    },
+    has(target, propertyKey) {
+        return false;
+    }
+});
+// console.log(proxy);
+// proxy.a = 10;
+// console.log(proxy.a);
+
+console.log(proxy.d);
+console.log("a" in proxy);
+```
+
+### 观察者模式
+
+有一个对象，是观察者，它用于观察另外一个对象的属性值变化，当属性值变化后会收到一个通知，可能会做一些事。
+
+```js
+div.container
+
+//创建一个观察者
+function observer(target) {
+    const div = document.getElementById("container");
+    const ob = {};
+    const props = Object.keys(target);
+    for (const prop of props) {
+        Object.defineProperty(ob, prop, {
+            get() {
+                return target[prop];
+            },
+            set(val) {
+                target[prop] = val;
+                render();
+            },
+            enumerable: true
+        })
+    }
+    render();
+
+    function render() {
+        let html = "";
+        for (const prop of Object.keys(ob)) {
+            html += `
+<p><span>${prop}：</span><span>${ob[prop]}</span></p>
+`;
+        }
+        div.innerHTML = html;
+    }
+
+    return ob;
+}
+const target = {
+    a: 1,
+    b: 2
+}
+const obj = observer(target)
+```
+
+```js
+div.container
+
+//创建一个观察者
+function observer(target) {
+    const div = document.getElementById("container");
+    const proxy = new Proxy(target, {
+        set(target, prop, value) {
+            Reflect.set(target, prop, value);
+            render();
+        },
+        get(target, prop){
+            return Reflect.get(target, prop);
+        }
+    })
+    render();
+
+    function render() {
+        let html = "";
+        for (const prop of Object.keys(target)) {
+            html += `
+<p><span>${prop}：</span><span>${target[prop]}</span></p>
+`;
+        }
+        div.innerHTML = html;
+    }
+
+    return proxy;
+}
+const target = {
+    a: 1,
+    b: 2
+}
+const obj = observer(target)
+```
+
+### 偷懒的构造函数
+
+```js
+class User {
+
+}
+
+function ConstructorProxy(Class, ...propNames) {
+    return new Proxy(Class, {
+        construct(target, argumentsList) {
+            const obj = Reflect.construct(target, argumentsList)
+            propNames.forEach((name, i) => {
+                obj[name] = argumentsList[i];
+            })
+            return obj;
+        }
+    })
+}
+
+const UserProxy = ConstructorProxy(User, "firstName", "lastName", "age")
+
+const obj = new UserProxy("袁", "进", 18);
+console.log(obj)
+
+class Monster {
+
+}
+
+const MonsterProxy = ConstructorProxy(Monster, "attack", "defence", "hp", "rate", "name")
+
+const m = new MonsterProxy(10, 20, 100, 30, "怪物")
+console.log(m);
+```
+
+### 可验证的函数参数
+
+```js
+ function sum(a, b) {
+     return a + b;
+ }
+
+function validatorFunction(func, ...types) {
+    const proxy = new Proxy(func, {
+        apply(target, thisArgument, argumentsList) {
+            types.forEach((t, i) => {
+                const arg = argumentsList[i]
+                if (typeof arg !== t) {
+                    throw new TypeError(`第${i+1}个参数${argumentsList[i]}不满足类型${t}`);
+                }
+            })
+            return Reflect.apply(target, thisArgument, argumentsList);
+        }
+    })
+    return proxy;
+}
+
+const sumProxy = validatorFunction(sum, "number", "number")
+console.log(sumProxy(1, 2))
+```
+
+```js
+ function sum(a, b) {
+     return a + b;
+ }
+
+function validatorFunction(func, ...types) {
+    return function(...argumentsList) {
+        types.forEach((t, i) => {
+            const arg = argumentsList[i]
+            if (typeof arg !== t) {
+                throw new TypeError(`第${i+1}个参数${argumentsList[i]}不满足类型${t}`);
+            }
+        })
+        return func(...argumentsList)
+    }
+    return proxy;
+}
+
+const sumProxy = validatorFunction(sum, "number", "number")
+console.log(sumProxy(1, 2))
+```
+
+## 增强的数组功能
+
+### 新增的数组API
+
+#### 静态方法
+
+- **Array.of(...args)**: 使用指定的数组项创建一个新数组
+- **Array.from(arg)**: 通过给定的类数组或可迭代对象 创建一个新的数组。
+
+#### 实例方法
+
+- **find(callback)**: 用于查找满足条件的第一个元素
+- **findIndex(callback)**：用于查找满足条件的第一个元素的下标
+- **fill(data)**：用指定的数据填充满数组所有的内容
+- **copyWithin(target, start?, end?)**: 在数组内部完成复制
+- **includes(data)**：判断数组中是否包含某个值，使用`Object.is`匹配
+
+### [扩展]类型化数组
+
+#### 数字存储的前置知识
+
+- 计算机必须使用固定的位数来存储数字，无论存储的数字是大是小，在内存中占用的空间是固定的。
+- `n`位的无符号整数能表示的数字是`2^n`个，取值范围是：`0 ~ 2^n - 1`
+- `n`位的有符号整数能表示的数字是`2^n`个，取值范围是：`-2^(n-1) ~ 2^(n-1) - 1`
+- 浮点数表示法可以用于表示整数和小数，目前分为两种标准：
+  - `32`位浮点数：又称为单精度浮点数，它用`1`位表示符号，`8`位表示阶码，`23`位表示尾数
+  - `64`位浮点数：又称为双精度浮点数，它用`1`位表示符号，`11`位表示阶码，`52`位表示尾数
+- `JS`中的所有数字，均使用双精度浮点数保存
+
+#### 类型化数组
+
+类型化数组：用于优化多个数字的存储
+
+具体分为：
+
+- **Int8Array**： `8`位有符号整数（`-128 ~ 127`）
+- **Uint8Array**： `8`位无符号整数（`0 ~ 255`）
+- **Int16Array**: ...
+- **Uint16Array**: ...
+- **Int32Array**: ...
+- **Uint32Array**: ...
+- **Float32Array**:
+- **Float64Array**
+
+- 如何创建数组
+
+```js
+
+new 数组构造函数(长度)
+
+数组构造函数.of(元素...)
+
+数组构造函数.from(可迭代对象)
+
+new 数组构造函数(其他类型化数组)
+
+```
+
+- 得到长度
+
+```js
+数组.length   //得到元素数量
+数组.byteLength //得到占用的字节数
+```
+
+- 其他的用法跟普通数组一致，但是：
+  - 不能增加和删除数据，类型化数组的长度固定
+  - 一些返回数组的方法，返回的数组是同类型化的新数组
+
+#### 练习
+
+```js
+// const arr = new Int32Array(10);
+const arr = Uint8Array.of(12, 5, 6, 7);
+console.log(arr);
+// console.log(arr.length);
+// console.log(arr.byteLength);
+```
+
+```js
+const arr1 = Int32Array.of(35111, 7, 3, 11);
+
+const arr2 = new Int8Array(arr1);
+
+console.log(arr1 === arr2);
+console.log(arr1, arr2);
+```
+
+```js
+const arr = Int8Array.of(125, 7, 3, 11);
+const arr2 = arr.map(item => item * 2)
+console.log(arr2);
+
+// arr[1] = 100;
+// console.log(arr);
+// console.log(arr[1])
+// for (const item of arr) {
+//     console.log(item)
+// }
+
+// arr[4] = 1000; //无效
+// delete arr[0]; //无效
+// console.log(arr)
+```
+
+### ArrayBuffer
+
+> **ArrayBuffer**：一个对象，用于存储一块固定内存大小的数据。
+
+```js
+new ArrayBuffer(字节数)
+```
+
+- 可以通过属性```byteLength```得到字节数，可以通过方法```slice```得到新的`ArrayBuffer`
+
+#### 读写ArrayBuffer
+
+- 使用**DataView**
+  - 通常会在需要混用多种存储格式时使用`DataView`
+- 使用类型化数组
+- 实际上，每一个类型化数组都对应一个`ArrayBuffer`，如果没有手动指定`ArrayBuffer`，类型化数组创建时，会新建一个`ArrayBuffer`
+
+- 练习
+
+  - ```js
+    //创建了一个用于存储10个字节的内存空间
+    const bf = new ArrayBuffer(10);
+    
+    const bf2 = bf.slice(3, 5);
+    
+    console.log(bf, bf2);
+    ```
+
+  - ```js
+    //创建了一个用于存储10个字节的内存空间
+    const bf = new ArrayBuffer(10);
+    
+    const view = new DataView(bf, 3, 4);
+    
+    // console.log(view);
+    
+    view.setInt16(1, 3);
+    console.log(view);
+    
+    console.log(view.getInt16(1));
+    ```
+
+  - ```js
+     const bf = new ArrayBuffer(10); //10个字节的内存
+    
+    const arr1 = new Int8Array(bf);
+    const arr2 = new Int16Array(bf);
+    console.log(arr1 === arr2);
+    console.log(arr1.buffer === arr2.buffer);
+    
+    arr1[0] = 10;
+    
+    console.log(arr1)
+    console.log(arr2);
+    ```
+
+  - ```js
+    const bf = new ArrayBuffer(10); //10个字节的内存
+    const arr = new Int16Array(bf);
+    arr[0] = 2344; //操作了两个字节
+    console.log(arr);
+    ```
+
+
 
