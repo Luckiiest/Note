@@ -3636,7 +3636,7 @@ fs.readFileAsync('./number.txt','utf-8').then((val) => {
 
 > 请求测试地址：http://101.132.72.36:5100/api/local
 >
-> ​			[jsonplaceholder.typicode.com/posts](http://jsonplaceholder.typicode.com/posts)
+> ​			http://jsonplaceholder.typicode.com/posts
 
 使用 ```fetch``` 函数即可立即向服务器发送网络请求
 
@@ -4214,8 +4214,9 @@ function* method(){
     }
     
     const generator = test();
+    // generator.next()
     ```
-
+    
   - ```js
     const arr1 = [1, 2, 3, 4, 5];
     const arr2 = [6, 7, 8, 9];
@@ -4229,8 +4230,9 @@ function* method(){
     
     const iter1 = createIterator(arr1);
     const iter2 = createIterator(arr2);
+    // iter1/2.next()
     ```
-
+    
   - ```js
     //创建一个斐波拉契数列的迭代器
     function* createFeiboIterator() {
@@ -4251,8 +4253,9 @@ function* method(){
     }
     
     const iterator = createFeiboIterator();
+    // iterator.next()
     ```
-
+    
   - ```js
     function* test() {
         console.log("第1次运行")
@@ -4265,21 +4268,23 @@ function* method(){
     }
     
     const generator = test();
+    // generator.next()
     ```
-
+    
   - ```js
      function* test() {
          console.log("函数开始")
-    
+      
          let info = yield 1;
          console.log(info)
          info = yield 2 + info;
          console.log(info)
      }
-    
+      
     const generator = test();
-    ```
-
+    // generator.next()
+     ```
+     
   - ```js
     function* t1(){
         yield "a"
@@ -4294,6 +4299,7 @@ function* method(){
     }
     
     const generator = test();
+    // generator.next()
     ```
 
 - 生成器，异步任务控制
@@ -4979,14 +4985,14 @@ Object.defineProperties(对象, 多个属性的描述符)
        a: 1,
        b: 2
    }
-  
+    
    // Object.defineProperty(obj, "a", {
    //     value: 3,
    //     configurable: false,
    //     enumerable: false,
    //     writable: false
    // })
-  
+    
    Object.defineProperties(obj, {
        a: {
            value: 3,
@@ -4995,7 +5001,7 @@ Object.defineProperties(对象, 多个属性的描述符)
            writable: false
        }
    })
-  
+    
   obj.a = 10;
   console.log(obj);
   
@@ -5545,7 +5551,7 @@ new ArrayBuffer(字节数)
 
   - ```js
      const bf = new ArrayBuffer(10); //10个字节的内存
-    
+      
     const arr1 = new Int8Array(bf);
     const arr2 = new Int16Array(bf);
     console.log(arr1 === arr2);
