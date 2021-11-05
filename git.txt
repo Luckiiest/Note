@@ -1,0 +1,129 @@
+初始化本地仓库	
+git init
+
+查看远程仓库		
+git remote –v
+
+远程仓库重命名   
+git remote rename old new
+
+添加源仓库地址为远程仓库
+git remote add  <name>  <remote>
+
+克隆仓库
+git  clone <repository>
+
+提交到暂存区
+git  add <pathspec> 
+
+提交到本地仓库
+git commit -m "...”
+
+提交内容到远程仓库
+git  push <remote> <branch>
+
+查看当前文件的状态
+git status
+
+撤销工作区修改
+git checkout -- <file>
+
+暂存区文件撤销(不覆盖工作区)
+git reset HEAD <file>
+
+版本回退
+git reset --(soft | mixed | hard)  <HEAD~（num )>  | <commit ID>
+
+比较工作区与暂存区
+git diff
+
+比较暂存区与本地版本库中最近一次commit的内容
+git diff -- cached
+
+比较工作区与本地版本库中最近一次commit的内容
+git  diff  HEAD
+
+比较两个commit之间的差异
+git diff <commit-id> <commit-id>
+
+查看状态
+git status
+
+查看历史操作记录
+git reflog
+
+查看日志
+git log  <fileName>
+
+查看分支
+git  branch
+
+创建新分支
+git branch <name>
+
+切换分支
+git  checkout  <name> 
+
+创建并切换分支
+git checkout –b <name>
+
+删除本地分支
+git branche –d <name>
+
+删除远程分支
+git push -d  <origin> <branch>
+
+无冲突合并
+git merge <branch>
+Icode操作
+
+有冲突合并
+git merge <branch>
+解决冲突
+git add <pathspec>
+git commit -m "...” 
+
+展示Git命令大纲及常用命令
+git  help（--help）
+
+展示Git命令大纲及全部命令列表
+git  help  –a
+
+展示具体命令说明手册
+git  help <command>     
+
+添加改动到stash
+git stash save -a "messeag”
+
+查看stash列表
+git stash list 
+
+恢复改动
+git stash pop <stash@{id}>
+
+删除暂存
+git stash drop <stash@{id}>
+
+删除全部暂存
+git  stash clear 
+
+ssh生成
+ssh-keygen –t rsa –C “邮箱地址”
+
+本地ssh链接github远程
+将本地中的ssh密匙复制到github中的ssh keys中，添加
+
+检查ssh是否设置成功
+ssh-T git@github.com
+
+配置用户名和邮箱
+git config --global user.name "用户名"
+git config --glboal user.email "邮箱"
+
+
+
+
+
+
+
+ 
