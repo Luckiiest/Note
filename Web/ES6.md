@@ -2500,7 +2500,7 @@ dom.addEventListener("click", function(){
 - 理解该 `API`，最重要的，是理解它的异步模型
 
 1. `ES6` 将某一件可能发生异步操作的事情，分为两个阶段：**unsettled** 和 **settled**
-   1. ![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-17-28-30.png)
+   1. ![](https://raw.githubusercontent.com/haodex/Note/master/Web/Es6/2019-10-18-17-28-30.png)
    2. **unsettled**： 未决阶段，表示事情还在进行前期的处理，并没有发生通向结果的那件事
    3. **settled**：已决阶段，事情已经有了一个结果，不管这个结果是好是坏，整件事情无法逆转
    4. 事情总是从 未决阶段 逐步发展到 已决阶段的。并且，未决阶段拥有控制何时通向已决阶段的能力。
@@ -2515,7 +2515,7 @@ dom.addEventListener("click", function(){
 
 **始终记住，无论是阶段，还是状态，是不可逆的！**
 
-![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-10-18.png)
+![](https://raw.githubusercontent.com/haodex/Note/master/Web/Es6/2019-10-18-18-10-18.png)
 
 3. 当事情达到已决阶段后，通常需要进行后续处理，不同的已决状态，决定了不同的后续处理。
    1. **resolved**状态：这是一个正常的已决状态，后续处理表示为 **thenable**
@@ -2523,11 +2523,11 @@ dom.addEventListener("click", function(){
 
 后续处理可能有多个，因此会形成作业队列，这些后续处理会按照顺序，当状态到达后依次执行
 
-![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-10-38.png)
+![](https://raw.githubusercontent.com/haodex/Note/master/Web/Es6/2019-10-18-18-10-38.png)
 
 4. 整件事称之为**Promise**
 
-![](https://raw.githubusercontent.com/HAODEabcd/Note/master/Web/Es6/2019-10-18-18-15-52.png)
+![](https://raw.githubusercontent.com/haodex/Note/master/Web/Es6/2019-10-18-18-15-52.png)
 
 **理解上面的概念，对学习Promise至关重要！**
 
@@ -4283,8 +4283,8 @@ function* method(){
       
     const generator = test();
     // generator.next()
-     ```
-     
+    ```
+    
   - ```js
     function* t1(){
         yield "a"

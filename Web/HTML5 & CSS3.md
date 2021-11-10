@@ -94,11 +94,11 @@
 
 - 崭新新的页面布局
 
-![传统的布局](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/body.jpg)
+![传统的布局](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/body.jpg)
 
-![实例-from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/jia.png)
+![实例-from-dunitian](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/jia.png)
 
-![草图--from-dunitian](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/kuang.png)
+![草图--from-dunitian](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/kuang.png)
 
 ## HTML5智能表单
 ---
@@ -528,7 +528,7 @@
   - `ctx.textAline`：水平方向
   - 下图中小圆点就是x,y轴的起始位置，可以用`textBaseline`和`textAlign`更改圆点的位置
   - `x,y`轴从字体的左下角开始
-  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/text.jpg)
+  - ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/text.jpg)
 
 ### 线段样式
 
@@ -537,7 +537,7 @@
 - `lineJoin`：边界连接点样式
   - 属性：`miter`(默认值),`round`(圆角),`bevel`(斜角)
 
-- ![样式](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/line.jpg)
+- ![样式](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/line.jpg)
 
 - `ctx.miterLimit;`
   - 当`lineJoin`是`miter`时，用于控制斜接部分的长度
@@ -723,7 +723,7 @@
 
 - 判断点`p`是否在多边形内，从点`p`向外做一条射线（可以任意方向），多边形的边从左到右经过射线时环绕数减`1`，多边形的边从右往左经过射线时环绕数加`1`，最后环数不为`0`，即表示在多边形内部。  
 
-![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/ten.jpg)
+![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/ten.jpg)
 
 ### 如何解决canvas高分屏模糊问题
 
@@ -888,7 +888,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
 
 - **二次贝塞尔曲线**
 
-![二次贝塞尔曲线](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/Q2.GIF)
+![二次贝塞尔曲线](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/Q2.GIF)
 
 - **Q指令**
   - `x1，y1`：起始控制点
@@ -903,7 +903,7 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
 
 - **三次贝塞尔曲线**
 
-![三次贝塞尔曲线](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/S3.GIF)
+![三次贝塞尔曲线](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/S3.GIF)
 
 - **C指令**
   - `x1，y1`：起始控制点
@@ -1370,7 +1370,7 @@ path{
 
 - **path**：路径
 
-- ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/cookie.png)
+- ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/cookie.png)
 
 - `encodeURIComponent()`：函数可把字符串作为 `URI` 组件进行编码。
 
@@ -1394,7 +1394,7 @@ path{
 
 - https://dev.w3.org/geo/api/spec-source.html#position_error_interface
 - `window.navigator.geolocation`：`navigator`对象下面的属性
-  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/geolocation.png)
+  - ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/geolocation.png)
 
 #### getCurrentPosition
 
@@ -1437,7 +1437,7 @@ path{
 - 成功和失败返回回来的值
 
   - 成功之后返回回来的地理位置信息(`GeolocationPosition`)
-    - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/Geoposition.png)
+    - ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/Geoposition.png)
     - 经度 :  `coords.longitude`
     - 纬度 :  `coords.latitude`
     - 准确度 :  `coords.accuracy`
@@ -1450,9 +1450,9 @@ path{
     - 用户拒绝：`code=1`
     - 获取不到：`code=2`
     - 连接超时：`code=3`，一般测试不出来，可以设置`timeout`
-    - ![用户拒绝](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-1.png)
-    - ![获取不到](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-2.png)
-    - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/PositionError-3.png)
+    - ![用户拒绝](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/PositionError-1.png)
+    - ![获取不到](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/PositionError-2.png)
+    - ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/PositionError-3.png)
 
 #### watchPosition/clearWatch
 
@@ -1725,7 +1725,7 @@ window.addEventListener(deviceorientation,function(event) {
   - `alpha`：表示设备沿z轴上的旋转角度，范围为`0~360`
   - `beta`表示设备再X轴上的旋转角度，范围为`-180~180`。它描述的是设备由前向后旋转的情况
   - `gamma`表示设备在`y`轴上的旋转角度，范围为`-90~90`。它描述的是设备由左向右旋转的情况
-  - ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/direction.png)
+  - ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/direction.png)
 
 - ```html
   <p>旋转：<span id="alpha">0</span></p>
@@ -2456,7 +2456,7 @@ window.addEventListener(deviceorientation,function(event) {
 >
 >*WebSocket*其实是一个新协议，跟*HTTP*协议基本没有关系，只是为了兼容现有浏览器的握手规范而已，借用了*HTTP*的协议来完成握手
 >
->>  ![](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/WebHTTP.png)
+>>  ![](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/WebHTTP.png)
 
 - 产生原因
   - 在`HTTP/1.0`中，大多实现为每个请求/响应交换使用新的连接
@@ -2475,11 +2475,11 @@ window.addEventListener(deviceorientation,function(event) {
   - 第三次握手：客户端`A`收到服务器`B`的`SYN＋ACK`包，向服务器`B`发送确认包`ACK（ACK=k+1）`，此包发送完毕，客户端`A`和服务器`B`进入`ESTABLISHED`状态，完成三次握手。
   - 完成三次握手，客户端与服务器开始传送数据
   - `WebSocket`请求头/响应头
-    - ![请求头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket1.png)
-    - ![响应头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket3.png)
+    - ![请求头](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/socket1.png)
+    - ![响应头](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/socket3.png)
   - `HTTP`请求头/响应头
-    - ![请求头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket2.png)
-    - ![响应头](https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/H5C3/socket4.png)
+    - ![请求头](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/socket2.png)
+    - ![响应头](https://cdn.jsdelivr.net/gh/haodex/Note@master/Web/H5C3/socket4.png)
   
 - 创建**WebSocket**
   - `var Socket = new WebSocket(url);`
@@ -2537,7 +2537,7 @@ window.addEventListener(deviceorientation,function(event) {
 ---
 
 
-![H5在JavaScript中新增的方法一览](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/14.png)
+![H5在JavaScript中新增的方法一览](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/14.png)
 
 
 - **新增选择器**
@@ -2652,7 +2652,7 @@ loadScript("js/async.js",function(){
 
   - [可以查阅支持H5+CSS3的属性](http://caniuse.com/#search=canvas)
   - [HTML5 标签含义之元素周期表](http://www.html5star.com/manual/html5label-meaning/)
-  - [HTML5标签速查表](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/15.png)
+  - [HTML5标签速查表](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/15.png)
   - [展示 flexbox 属性的作用--推荐](chrome-extension://ikhdkkncnoglghljlkmcimlnlhkeamad/pdf-viewer/web/viewer.html?file=http%3A%2F%2Fjonibologna.com%2Fcontent%2Fimages%2Fflexboxsheet.pdf)
   - [Flexbox 视觉指南--更好更容易地理解 Flexbox 某个属性的作用](https://demos.scotch.io/visual-guide-to-css3-flexbox-flexbox-playground/demos/)
 
@@ -3005,7 +3005,7 @@ loadScript("js/async.js",function(){
 
 - HSL色轮
 
-    - ![HSL色轮](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/11.png)
+    - ![HSL色轮](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/11.png)
 
 
 - **透明颜色：`transparent`**
@@ -3056,7 +3056,7 @@ loadScript("js/async.js",function(){
 - **`border-image-slice`**
   - 设置或检索对象的边框背景图的分割方式
 
-![Paste_Image.png](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/12.png)
+![Paste_Image.png](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/12.png)
 
 - **`border-image-repeat`**
   - 用于指定边框背景图的重复方式
@@ -3127,11 +3127,11 @@ loadScript("js/async.js",function(){
   - `element`空间高度（盒子）= `width `+ `padding` + `border`
   - `width`为内容高度。即`width`不包括`padding`和`border`
 
-  - ![标准盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/w3c.jpg)
+  - ![标准盒子模型](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/w3c.jpg)
 - **IE6混杂模式盒模型**
   - 内容高度（盒子） = `width` - `padding` - `border`
   - `width`的数值就是`element`盒子的空间高度，`width`包括了`padding`和`border`
-  - ![IE盒子模型](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/ie.jpg)
+  - ![IE盒子模型](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/ie.jpg)
 
 - **box-shadow**:`inset` `x` `y` `blur` `spread` `color`
   - `inset`：投影方式
@@ -3235,7 +3235,7 @@ loadScript("js/async.js",function(){
     - `stretch`：（默认值）：轴线沾满整个交叉轴
 
 
-![flex布局语法篇小结](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/10.png)
+![flex布局语法篇小结](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/10.png)
 
 - 拓展阅读
   - [flex布局语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
@@ -3278,7 +3278,7 @@ loadScript("js/async.js",function(){
 	    - `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
     -  过渡完成事件   
 	
-- ![过渡完成事件](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/13.png)
+- ![过渡完成事件](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/13.png)
 	
 		- `Webkit`内核： 
 			```javascript
@@ -3653,7 +3653,7 @@ loadScript("js/async.js",function(){
 5.将这些信息渲染为屏幕上每个真实的像素点了。这个阶段称为“绘制”，或者“栅格化”（rasterizing）。
 ```
 
-![](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/H5C3/Tree.png)
+![](https://raw.sevencdn.com/haodex/Note/master/Web/H5C3/Tree.png)
 
 - 重绘、重排
 
