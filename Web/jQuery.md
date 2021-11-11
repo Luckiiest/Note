@@ -1,3 +1,12 @@
+---
+title: Jquery
+date: 2021-11-08 15:35:53
+tags: 
+  - Jquery
+categories:
+  - JavaScript框架
+---
+
 ### 第一节 jQuery初步认知
 ---
 
@@ -27,7 +36,9 @@
      - 提供基本网页特效(提供已封装的网页特效方法)
      - 快速实现通信(`ajax`)
      - 易扩展、插件丰富
+    
 
+<!--more-->
 
 - **如何引入`JQuery`包**
   - 引入本地的`JQuery`
@@ -178,9 +189,9 @@ alert($nav.get(0) == nav);//true
 - **代理模式以及代理内存结构**
 
 
-![代理内存结构1](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/daicun.png)
+![代理内存结构1](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714993.png)
 
-![代理内存结构2](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/daicun0.png)
+![代理内存结构2](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111715711.png)
 
 
 ### 第二节 选择器
@@ -759,7 +770,7 @@ alert($nav.get(0) == nav);//true
         - `linear`代表匀速（直线）运动
         - `swing`代表慢快慢的运动
         - `jQuery`当中就提供了这两种速率，如果想要更多效果，可以引入`jQuery`插件:`jquery.sasing.js`
-        - ![easing插件的效果](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/easing.jpg)
+        - ![easing插件的效果](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714656.jpg)
     - **停止元素的动画**
       - 很多时候需要停止匹配正在进行的动画，需要使用stop()
       - `stop()`语法结构：`stop([clearQueue],[gotoEnd]);`
@@ -1113,7 +1124,7 @@ xhr.onreadystatechange = function(){
 - `responseText` ：请求服务器返回的数据存在该属性里面
 - `status` : `http`状态码
 
-![HTTP状态码](https://raw.sevencdn.com/HAODEabcd/Note/master/Web/jQ/HTTP.jpg)
+![HTTP状态码](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714145.jpg)
 
 - 案例：`ajax`封装案例
 

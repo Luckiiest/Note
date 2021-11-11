@@ -1,3 +1,12 @@
+---
+title: HTML & CSS
+date: 2021-11-08 15:35:53
+tags: 
+  - HTML and CSS
+categories:
+  - HTML and CSS
+---
+
 ### 第一部分 HTML
 
 ---
@@ -505,11 +514,11 @@
 ---
 - [HTML5标签集合](http://www.html5star.com/manual/html5label-meaning/)
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/1.jpg)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111641350.jpg)
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/2.png)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111641731.png)
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/3.jpeg)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111641888.jpeg)
 
 ---
 
@@ -535,7 +544,7 @@
       - **用颜色名表示**
         - 有17个预先确定的颜色，它们是
            - `aqua`, `black`, `blue`, `fuchsia`, `gray`, `green`, `lime`, `maroon`, `navy`,
-　　`olive`, `orange,` `purple`, `red`, `silver`, `teal`, `white`, and `yellow`
+            　　`olive`, `orange,` `purple`, `red`, `silver`, `teal`, `white`, and `yellow`
 
     - **用十六进制的颜色值表示(红、绿、蓝)**
       - `#FF0000`或者`#F00 `
@@ -546,7 +555,7 @@
     - **用hsl(Hue,Saturation,Lightness)函数表示（色调、饱和度、亮度)**
 
       - 如：`hsl(120,100%,100%)`,色调0代表红色，`120`代表绿色，`240`代表
-蓝色
+  蓝色
 
      - **用`rgba(r,g,b,a)`函数表示 **
        - 其中`a`表示的是改颜色的透明度，取值范围是`0~1`，其中`0`代表完全透明
@@ -567,7 +576,7 @@
 	</div>
 ```
 
-![](http://upload-images.jianshu.io/upload_images/1480597-39e61a813f637282.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111642323.png)
 
 
 - 内部样式表
@@ -836,13 +845,13 @@
 
  - 盒子模型是`css`中一个重要的概念，理解了盒子模型才能更好的排版。其实盒子模型有两种，分别是 `ie `盒子模型和标准 `w3c` 盒子模型。他们对盒子模型的解释各不相同，先来看看我们熟知的标准盒子模型
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/w3c.jpg)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111642126.jpeg)
 
 - 从上图可以看到标准 `w3c` 盒子模型的范围包括 `margin`、`border`、`padding`、`content`，并且 `content `部分不包含其他部分
 
 - ** IE盒子模型**
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/ie.jpg)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111642885.jpeg)
 
 - 从上图可以看到 `ie `盒子模型的范围也包括 `margin`、`border`、`padding`、`content`
 - 和标准 `w3c` 盒子模型不同的是：`ie` 盒子模型的 `content` 部分包含了 `border `和 `padding`
@@ -1085,8 +1094,8 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 
 ---
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/danci.png)
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/position.png)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111643217.png)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111642515.png)
 
 ---
 
@@ -1171,19 +1180,19 @@ document.write("您的页面目前支持："+sbox+"盒子模型");
 ---
 
 ---
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/overflow.png)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111643657.png)
 
 ---
 - [原文件下载地址](https://yunpan.cn/cM9va2bHD4wwu)   访问密码 342a
 
 ---
 
-![](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/csstixi.png)
+![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111644068.png)
 
 ---
 - `css`常见简写
 
-![css简写速查](https://raw.fastgit.org/HAODEabcd/Note/main/Web/H4C2/sucha.png)
+![css简写速查](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111644519.png)
 
 
 ---
@@ -1547,25 +1556,25 @@ float:left;//如这些定位或浮动属性
     - 加入右侧的图片为：`200px 65px`的三个按钮图拼合而成的图片`button.png`，从上到下一次为按钮的普通、鼠标滑过、鼠标点击的状态。则可以使用`CSS`进行定义。
 
 ```
-    a {
-        display:block;
-        width:200px;
-        height:65px;
-        line-height:65px; /*定义状态*/
-        text-indent:-2015px; /*隐藏文字*/
-        background-image:url(button.png); /*定义背景图片*/
-        background-position:0 0;
-        /*定义链接的普通状态，此时图像显示的是顶上的部分*/
-    }
+a {
+    display:block;
+    width:200px;
+    height:65px;
+    line-height:65px; /*定义状态*/
+    text-indent:-2015px; /*隐藏文字*/
+    background-image:url(button.png); /*定义背景图片*/
+    background-position:0 0;
+    /*定义链接的普通状态，此时图像显示的是顶上的部分*/
+}
 
-    a:hover {
-        background-position:0 -66px;
-        /*定义链接的滑过状态，此时显示的为中间部分，向下取负值*/
-    }
-    a:active {
-        background-position:0 -132px;
-        /*定 义链接的普通状态，此时显示的是底部的部分，向下取负值*/
-    }
+a:hover {
+    background-position:0 -66px;
+    /*定义链接的滑过状态，此时显示的为中间部分，向下取负值*/
+}
+a:active {
+    background-position:0 -132px;
+    /*定 义链接的普通状态，此时显示的是底部的部分，向下取负值*/
+}
 ```
 
 - 更多的`CSS`雪碧，图片更复杂，背景定位更精确。可能会用到大量的数值
@@ -1837,7 +1846,7 @@ overflow:hidden;
   - `background`
   - `border`
   - `position`
-...
+  ...
 
 - 具有破坏性的元素：
 

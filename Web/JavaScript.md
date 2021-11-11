@@ -1,3 +1,12 @@
+---
+title: JavaScript
+date: 2021-11-08 15:35:53
+tags: 
+  - JavaScript
+categories:
+  - JavaScript
+---
+
 # JavaScript 历史及历程
 
 ## web 发展史
@@ -29,6 +38,8 @@ JavaScript 作为 Netscape Navigator 浏览器的一部分首次出现在 1996 �
    2 ) JS 引擎
 
    3 ) 其他模块（如异步)
+
+<!--more-->
 
 ## JS 引擎
 

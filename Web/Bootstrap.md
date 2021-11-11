@@ -1,3 +1,13 @@
+---
+title: Bootstrap
+date: 2021-11-07 15:35:53
+tags: 
+  - bootstrap
+categories:
+  - css框架
+---
+
+
 ### 一、 `bootstrap`简介
 ---
 
@@ -10,7 +20,9 @@
    - `Bootstrap`，来自`Twitter`，是目前最受欢迎的前端框架。`Bootstrap`是基于`HTML`、`CSS`、`JavaScript`的，他简介灵活，使得`Web`开发更加快捷。它由`Twitter`的设计师`Mark Otto`和`Jacob Thornton`合作开发，是一个`CSS/HTML`框架。`Bootstrap`提供了优雅的`HTML`和`CSS`规范，它既是由动态`CSS`语言`Less`写成。`Bootstrap`一经推出后颇受欢迎，一直是`GitHub`上的热门开源项目，包括`NASA`的`MASNBC`（微软全国广播公司）的`BreakingNews`都使用了该项目。国内一些移动开发者较为熟悉的框架，如`WeX5`前端开源框架等，也是基于`Bootstrap`源码进行性能优化而来
    - `Bootstrap `是基于 `HTML`、`CSS`、`JAVASCRIPT` 的开源框架，它简洁、直观、强悍、灵活，使得 `Web `开发更加快捷，
    - 用于开发响应式布局、移动设备优先的 `WEB `项目。
-   
+
+<!--more-->
+
 - **Bootstrap**特色
 
     - 适应各种技术水平`Bootstrap`适应不同技术水平的从业者，无论是设计师，还是程序设计人员，不管是骨灰级别的大牛，还是刚入门槛的菜鸟。使用`Bootstrap`既能开发简单的小东西，也能构造更为复杂的应用
@@ -1964,7 +1976,7 @@ $('#myCarousel').on('slid.bs.carousel', function () {
 });
 ```
 - bootstrap笔记总结【复制到浏览器打开放大】
-![bootstrap笔记总结](http://upload-images.jianshu.io/upload_images/1480597-0b43991d33718f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![bootstrap笔记总结](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111758712.png)
 
 
 ### 拓展阅读

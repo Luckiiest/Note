@@ -1,3 +1,12 @@
+---
+title: Touch
+date: 2021-11-08 15:35:53
+tags: 
+  - Touch
+categories:
+  - JavaScript
+---
+
 # [移动端 js touch事件](https://www.cnblogs.com/fengfan/p/4506555.html)
 
 随着智能手机和平板电脑的普及, 越来越多的人用移动设备浏览网页，我们平时在`pc`浏览器上用的鼠标事件，比如：`click`, `mouseover`等， 已经无法满足移动设备触摸屏的特点，触摸时代的到来，离不开那些触摸事件。
