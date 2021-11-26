@@ -10236,25 +10236,7 @@ DocumentFragment —— 11
 
 `dom 结构树代表的是一系列继承关系`
 
-```js
-                       |-- XMLDocument
-        |-- Document --|
-        |              |-- HTMLDocument
-        |
-        |                   |-- Text       |-- HTMLHeadElement
-        |-- characterData --|              |
-Node ---|                   |-- Comment    |-- HTMLBodyElement
-        |                                  |
-        |                                  |-- HTMLTitleElement
-        |                                  |
-        |-- Element -- HTMLElement --------|-- TMLParagraphElement
-                                           |
-                                           |-- HTMLInputElement
-                                           |
-                                           |-- HTMLTableElement
-                                           |
-                                           |-- …etc…
-```
+![DOM结构树](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111120958101.png)
 
 ```js
 `Document 和 document的关系`
@@ -11297,9 +11279,9 @@ var timer = seInterval(function(){
 
     ```js
     `例：document.compatMode`是判断是怪异模式还是标准模式
-
+    
     CSS1Compat -- 标准模式
-
+    
     BackCompat -- 怪异模式向后兼容
     ```
 
@@ -11387,9 +11369,9 @@ var timer = seInterval(function(){
 
     ```js
     例：求元素相对于文档的坐标，以`getElementPosition()`命名
-
+    
     思路：先看有没有有定位的父级，如果有，先求他与有定位父级的距离，然后把视角换到他有定位的父级上，这他这个有定位的父级上还有没有有定位的父级，一段一段的加，一直加到最后，是一个循环递归的过程
-
+    
     // 求元素相对于文档的坐标
     function getElementPosition(elem){
         if(!elem || !elem.offsetLeft){
@@ -11447,10 +11429,10 @@ var timer = seInterval(function(){
     例:
     start = document.getElementsByTagName('div')[0];
     stop = document.getElementsByTagName('div')[1];
-
+    
     var timer = 0;
     var key = true;
-
+    
     start.onclick = function(){
         if(key){
             timer = setInterval(function(){
@@ -11763,11 +11745,11 @@ var timer = setInterval(function(){
 
     ```js
     1. <div onclick="console.log('a')"></div>
-
+    
     2. div.onclick = function(){
         console.log('a');
     }
-
+    
     1 和 2 的效果是一样的，只是书写方式不一样
     ```
 
@@ -13834,7 +13816,7 @@ function startMove(obj, target) {
     timer = setInterval(function () {
         iCur = parseFloat(getStyle(obj,'opacity')) * 100;
         iSpeed = (target - iCur) / 7;
-        iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+        iSpeed += iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
         if(iCur == target){
             clearInterval(timer);
         } else {
@@ -13859,7 +13841,7 @@ function animate(obj,json,callback) { // obj是DOM对象，json是参数对象�
                 iCur = parseInt(getStyle(obj,attr));
             }
             iSpeed = (json[attr] - iCur) / 7; // 传进去的参数 - 原来的参数，查看还有多少，越来越小就代表越来越接近传进来的参数设置，就会停止，/7是因为数字太大，可以除任何一个数字
-            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed); //当 iSpeed 大于0时，使用ceil向上取整，否则floor向下取整，为了让iSpeed最后可以完美接近传进来的参数
+            iSpeed += iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed); //当 iSpeed 大于0时，使用ceil向上取整，否则floor向下取整，为了让iSpeed最后可以完美接近传进来的参数
             if(attr == 'opacity') {
                 obj.style.opacity = (iCur + iSpeed) / 100; // iCur 是原来提取的样式，iSpeed是速度，不断向传进来的参数靠近，越来越小，最终停止
             } else {

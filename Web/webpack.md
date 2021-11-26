@@ -24,64 +24,61 @@ categories:
 
 #### 模块化的代码实现
 
+- 函数
 
-- 函数写法
-
-```javascript
-//1.函数，缺点：大型功能无法实现
-//功能1
-function add(a,b) {
-return a + b;
-}
-//功能2
-function a(a) {
-console.log(a);
-}
-```
-
-- 对象写法
-
-```javascript
-//2.对象写法，缺点：外面可访问并改变ppt对象中变量
-var ppt = {
-    len:3,
-    init:function() {
-
-    },
-    crateDom: function(){ 
-        
-    }
-}
-```
-
-- 匿名函数、返回对象
-
-
-```javascript
-//匿名函数，返回对象
-var obj = (function(){ 
-    var len = 3;
+  - ```javascript
+    //1.函数，缺点：大型功能无法实现
+    //功能1
     function add(a,b) {
         return a + b;
     }
-    return {
-        add:add
+    //功能2
+    function a(a) {
+        console.log(a);
     }
-}())
-console.log(obj.add(1,2));
-```
+    ```
+
+- 对象写法
+
+  - ```javascript
+    //2.对象写法，缺点：外面可访问并改变ppt对象中变量
+    var ppt = {
+        len:3,
+        init:function() {
+    
+        },
+        crateDom: function(){ 
+    
+        }
+    }
+    ```
+
+- 匿名函数、返回对象
+
+  - ```javascript
+    //匿名函数，返回对象
+    var obj = (function(){ 
+        var len = 3;
+        function add(a,b) {
+            return a + b;
+        }
+        return {
+            add:add
+        }
+    }())
+    console.log(obj.add(1,2));
+    ```
 
 - 依赖传入实参
 
-
-```javascript
-var module1 = (function(m) {
-    md.add = function(a,b) {
-        return a + b;
-    },
-        return m;
-})(window.module || {})
-```
+  - ```javascript
+    var module1 = (function(m) {
+        md.add = function(a,b) {
+            return a + b;
+        },
+            return m;
+    })(window.module || {})
+    ```
 
 - 以上缺点依赖关系不好处理，需要按顺序加载，会阻塞页面
 

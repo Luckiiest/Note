@@ -2,11 +2,10 @@
 title: 包管理器
 date: 2021-11-08 15:35:53
 tags: 
-  - packageManager
+  - 包管理器
 categories:
-  - packageManager
+  - PackageManager
 ---
-
 
 # 包管理器
 
