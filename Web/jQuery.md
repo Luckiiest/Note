@@ -189,9 +189,9 @@ alert($nav.get(0) == nav);//true
 - **代理模式以及代理内存结构**
 
 
-![代理内存结构1](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714993.png)
+![代理内存结构1](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111714993.png)
 
-![代理内存结构2](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111715711.png)
+![代理内存结构2](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111715711.png)
 
 
 ### 第二节 选择器
@@ -423,7 +423,7 @@ alert($nav.get(0) == nav);//true
 |`appendTo()`|颠倒`append()`的操作,子元素在父元素的前面,返回的是子元素|
 |`prepend()`|插入到所有子元素的第一位,父元素在子元素的前面,返回的是父元素|
 |`prependTo()`|颠倒`prepend()`的操作,子元素在父元素的前面,返回的是子元素|
-|`after()`|剪切到元素的后面,父元素在子元素前面,返回的是父级元素|
+|`after()`|h剪切到元素的后面,父元素在子元素前面,返回的是父级元素|
 |`insertAfter()`|颠倒`after()`的操作,子元素在父元素的前面,返回的是子元素|
 |`before()`|剪切到元素的前面,和原生`js`中的`insertBefore`像,父元素在子元素前面,返回的是父元素|
 |`insertBefore()`|颠倒`before()`的操作,子元素在父元素后面,返回的是子元素|
@@ -770,7 +770,7 @@ alert($nav.get(0) == nav);//true
         - `linear`代表匀速（直线）运动
         - `swing`代表慢快慢的运动
         - `jQuery`当中就提供了这两种速率，如果想要更多效果，可以引入`jQuery`插件:`jquery.sasing.js`
-        - ![easing插件的效果](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714656.jpg)
+        - ![easing插件的效果](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111714656.jpg)
     - **停止元素的动画**
       - 很多时候需要停止匹配正在进行的动画，需要使用stop()
       - `stop()`语法结构：`stop([clearQueue],[gotoEnd]);`
@@ -1124,7 +1124,7 @@ xhr.onreadystatechange = function(){
 - `responseText` ：请求服务器返回的数据存在该属性里面
 - `status` : `http`状态码
 
-![HTTP状态码](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111714145.jpg)
+![HTTP状态码](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111714145.jpg)
 
 - 案例：`ajax`封装案例
 

@@ -88,7 +88,7 @@ categories:
 - 该规范最初是用在服务器端的node的，前端的`webpack`也是对`CommonJS`原生支持的。
 
 - `CommonJS`的核心思想就是通过 require 方法来同步加载所要依赖的其他模块，然后通过 exports 或者 `module.exports` 来导出需要暴露的接口
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111729006.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111729006.png)
 
 - 浏览器不兼容`CommonJs`，原因是浏览器缺少`module`、`exports`、`require`、`global`四个环境变量。如要使用需要工具转换
 - `CommonJS`采用同步加载不同模块文件，适用于服务器端的。因为模块文件都存放在服务器的各个硬盘上，读取加载时间快，适合服务器端，不适应浏览器。
@@ -98,23 +98,23 @@ categories:
 - `CommonJs`为服务器端而生，采用的同步加载方式。因此不适用浏览器。因为浏览器需要到服务器加载文件，请求时间远大于本机读取的时间，倘若文件较多，网络迟缓就会导致页面瘫痪，所以浏览器更希望能够时间异步加载的方式。
 - `AMD`规范则是异步加载模块，允许指定回调函数。等模块异步加载完成后即可调用回调函数。`AMD`得意的产出就是`require.js`
 - AMD的核心思想就是通过`define`来定义一个模块，然后使用require来加载一个模块。
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111730270.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111730270.png)
 
 - 使用`require.js`，提前加载所有依赖，方可使用
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111730026.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111730026.png)
 
 #### CMD
 
 - `CMD`异步加载，跟`AMD`的主要区别在于，`AMD`依赖前置，提前加载依赖。而`CMD`就近加载，按需加载。
 - 产物`seaJs`，跟`requireJs`使用有些相似。
 - `CMD`的核心思想就是通过`define`来定义一个模块，然后使用`require`来加载一个模块。
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111730812.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111730812.png)
 
 #### ES6
 
 - `ES6`自带模块化，可以使用 `import` 关键字引入模块，通过 `export` 关键字导出模块，功能较之于前几个方案更为强大，也是我们所推崇的，但是由于`ES6`目前无法在浏览器中执行，所以，我们只能通过`babel`将不被支持的`import`编译为当前受到广泛支持的 `require`。
 - 使用 `import` 关键字引入模块，通过 `export` 关键字导出模块
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111730242.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111730242.png)
 
 #### 模块化详细介绍
 
@@ -176,7 +176,7 @@ categories:
 
 这样的工具，叫做**构建工具**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111731192.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111731192.png)
 
 这样一来，开发者就可以专注于开发时态的代码结构，而不用担心运行时态遇到的问题了。
 
@@ -203,7 +203,7 @@ categories:
 - `CDN`是构建在网络之上的内容分发网络，依靠部署在各地的边缘服务器，通过中心平台的负载均衡、内容分发、调度等功能模块，使用户就近获取所需内容，降低网络拥塞，提高用户访问响应速度和命中率。`CDN`的关键技术主要有内容存储和分发技术。
 - `CDN`的基本原理是广泛采用各种缓存服务器，将这些缓存服务器分布到用户访问相对集中的地区或网络中，在用户访问网站时，利用全局负载技术将用户的访问指向距离最近的工作正常的缓存服务器上，由缓存服务器直接响应用户请求。
 - `CDN`网络是在用户和服务器之间增加`Cache`层，如何将用户的请求引导到`Cache`上获得源服务器的数据，主要是通过接管`DNS`实现，这就是`CDN`的最基本的原理
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111731009.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111731009.png)
 - 1.用户向浏览器输入`www.web.com`这个域名，浏览器第一次发现本地没有`dns`缓存，则向网站的`DNS`服务器请求；
 - 2.网站的`DNS`域名解析器设置了`CNAME`，指向了`www.web.51cdn.com`,请求指向了`CDN`网络中的智能`DNS`负载均衡系统；
 - 3.智能`DNS`负载均衡系统解析域名，把对用户响应速度最快的IP节点返回给用户；
@@ -219,17 +219,17 @@ categories:
 
 如果导出和导入使用的是同一种模块化标准，打包后的效果和之前学习的模块化没有任何差异
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111731465.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111731465.png)
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111731489.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111731489.png)
 
 ##### 不同模块化标准
 
 不同的模块化标准，`webpack`按照如下的方式处理
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111733508.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111733508.png)
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111733185.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111733185.png)
 
 ##### 最佳实践
 
@@ -237,7 +237,7 @@ categories:
 
 ### 为什么要用webpack
 
-- ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111733729.png)
+- ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111733729.png)
 
 前端需要模块化：`JS`模块化不仅仅为了提高代码复用性，多人协作开发项目，更是为了让资源文件更合理地进行缓存.
 
@@ -298,7 +298,7 @@ categories:
 
 `webpack` 的作用是将源代码编译（构建、打包）成最终代码
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111734811.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111734811.png)
 
 整个过程大致分为三个步骤
 
@@ -306,7 +306,7 @@ categories:
 2. 编译
 3. 输出
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111734083.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111734083.png)
 
 #### 初始化
 
@@ -326,7 +326,7 @@ categories:
 
 根据入口模块（默认为```https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/index.js```）创建一个chunk
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111734800.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111734800.png)
 
 每个`chunk`都有至少两个属性：
 
@@ -335,13 +335,13 @@ categories:
 
 2. **构建所有依赖模块**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111741933.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111741933.png)
 
 > AST在线测试工具：https://astexplorer.net/
 
 简图
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111741536.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111741536.png)
 
 3. **产生chunk assets**
 
@@ -349,32 +349,32 @@ categories:
 
 接下来，`webpack`会根据配置为`chunk`生成一个资源列表，即```chunk assets```，资源列表可以理解为是生成到最终文件的文件名和文件内容
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111741429.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111741429.png)
 
 > chunk hash是根据所有chunk assets的内容生成的一个hash字符串
 > hash：一种算法，具体有很多分类，特点是将一个任意长度的字符串转换为一个固定长度的字符串，而且可以保证原始内容不变，产生的hash字符串就不变
 
 简图
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742646.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742646.png)
 
 4. **合并chunk assets**
 
 将多个`chunk`的`assets`合并到一起，并产生一个总的`hash`
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742987.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742987.png)
 
 #### 输出
 
 此步骤非常简单，`webpack`将利用`node`中的`fs`模块（文件处理模块），根据编译产生的总的`assets`，生成相应的文件。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742982.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742982.png)
 
 #### 总过程
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742793.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742793.png)
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742718.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742718.png)
 
 **涉及术语**
 
@@ -390,7 +390,7 @@ categories:
 
 #### 入口和出口是什么
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742520.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742520.png)
 
 > node内置模块 - path: https://nodejs.org/dist/latest-v12.x/docs/api/path.html
 
@@ -443,7 +443,7 @@ module.exports = {
 
 ##### 一个页面一个JS
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742334.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742334.png)
 
 源码结构
 
@@ -482,7 +482,7 @@ module.exports = {
 
 ##### 一个页面多个JS
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742598.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742598.png)
 
 源码结构
 
@@ -524,7 +524,7 @@ module.exports = {
 
 所谓单页应用，是指整个网站（或网站的某一个功能块）只有一个页面，页面中的内容全部靠JS创建和控制。 `vue`和`react`都是实现单页应用的利器。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742157.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742157.png)
 
 源码结构
 
@@ -620,25 +620,25 @@ module.exports = {
 
 `webpack loader`： `loader`本质上是一个函数，它的作用是将某个源码字符串转换成另一个源码字符串返回。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111742693.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111742693.png)
 
 `loader`函数的将在模块解析的过程中被调用，以得到最终的源码。
 
 **全流程：**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743998.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743998.png)
 
 **chunk中解析模块的流程：**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743185.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743185.png)
 
 **chunk中解析模块的更详细流程：**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743967.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743967.png)
 
 **处理loaders流程：**
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743796.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743796.png)
 
 #### 安装`loader`
 
@@ -765,7 +765,7 @@ module.exports = {
 
 这种类似的功能需要把功能嵌入到`webpack`的编译流程中，而这种事情的实现是依托于`plugin`的
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743188.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743188.png)
 
 plugin`的**本质**是一个带有`apply`方法的对象
 
@@ -805,7 +805,7 @@ module.exports = {
 
 `apply`方法会在**创建好compiler对象后调用**，并向方法传入一个`compiler`对象
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111743591.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111743591.png)
 
 `compiler`对象提供了大量的钩子函数（`hooks`，可以理解为事件），`plugin`的开发者可以注册这些钩子函数，参与`webpack`编译和生成。
 
@@ -1065,7 +1065,7 @@ stats: {
 
 前端发展到现阶段，很多时候都不会直接运行源代码，可能需要对源代码进行合并、压缩、转换等操作，真正运行的是转换后的代码
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744410.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744410.png)
 
 这就给调试带来了困难，因为当运行发生错误的时候，我们更加希望能看到源代码中的错误，而不是转换后代码的错误
 
@@ -1077,9 +1077,9 @@ stats: {
 
 下面是浏览器处理`source map`的原理
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744946.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744946.png)
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744402.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744402.png)
 
 **最佳实践**：
 
@@ -1600,7 +1600,7 @@ module.exports = `.red{    color:"#f40";}`var style = module.exports;var styleEl
 
 一个完整的`BEM`类名：`block__element_modifier`，例如：```banner__dot_selected```，可以表示：轮播图中，处于选中状态的小圆点
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111750919.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111750919.png)
 
 三个部分的具体含义为：
 
@@ -1654,7 +1654,7 @@ const styles = {    backgroundColor: "#f40",    color: "#fff",    width: "400px"
 4. 同`JS`的变量一样，每个`css`模块文件中难以出现冲突的类名，冲突的类名往往发生在不同的`css`模块文件中
 5. 只需要保证构建工具在合并样式代码后不会出现类名冲突即可
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744074.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744074.png)
 
 #### 实现原理
 
@@ -1662,13 +1662,13 @@ const styles = {    backgroundColor: "#f40",    color: "#fff",    width: "400px"
 
 `css-loader`的实现方式如下：
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744020.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744020.png)
 
 原理极其简单，开启了`css module`后，`css-loader`会将样式中的类名进行转换，转换为一个唯一的`hash`值。
 
 由于`hash`值是根据模块路径和类名生成的，因此，不同的`css`模块，哪怕具有相同的类名，转换后的`hash`值也不一样。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744072.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744072.png)
 
 #### 如何应用样式
 
@@ -1676,7 +1676,7 @@ const styles = {    backgroundColor: "#f40",    color: "#fff",    width: "400px"
 
 为了解决这个问题，`css-loader`会导出原类名和最终类名的对应关系，该关系是通过一个对象描述的
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744659.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744659.png)
 
 这样一来，我们就可以在`js`代码中获取到`css`模块导出的结果，从而应用类名了
 
@@ -1763,11 +1763,11 @@ const div1 = document.getElementById("div1");div1.className = style2.c1;
 
 预编译器的原理很简单，即使用一种更加优雅的方式来书写样式代码，通过一个编译器，将其转换为可被浏览器识别的传统`css`代码
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744691.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744691.png)
 
 目前，最流行的预编译器有**LESS**和**SASS**，由于它们两者特别相似，因此仅学习一种即可（本课程学习`LESS`）
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111744904.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111744904.png)
 
 > less官网：http://lesscss.org/
 > less中文文档1（非官方）：http://lesscss.cn/
@@ -1919,17 +1919,17 @@ lessc index.less index.css
 
 `PostCss`类似于一个编译器，可以将样式源码编译成最终的`CSS`代码
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745786.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745786.png)
 
 看上去是不是和`LESS`、`SASS`一样呢？
 
 但`PostCss`和`LESS`、`SASS`的思路不同，它其实只做一些代码分析之类的事情，将分析的结果交给插件，具体的代码转换操作是插件去完成的。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745688.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745688.png)
 
 官方的一张图更能说明`postcss`的处理流程：
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745727.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745727.png)
 
 > 这一点有点像webpack，webpack本身仅做依赖分析、抽象语法树分析，其他的操作是靠插件和加载器完成的。
 
@@ -2325,7 +2325,7 @@ body {
 }
 ```
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745671.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745671.png)
 
 发生了两处错误：
 
@@ -2547,7 +2547,7 @@ module.exports = {
 
 `babel`一词来自于希伯来语，直译为巴别塔
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745841.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745841.png)
 
 巴别塔象征的统一的国度、统一的语言
 
@@ -2555,11 +2555,11 @@ module.exports = {
 
 `babel`的出现，就是用于解决这样的问题，它是一个编译器，可以把不同标准书写的语言，编译为统一的、能被各种浏览器识别的语言
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745225.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745225.png)
 
 由于语言的转换工作灵活多样，`babel`的做法和`postcss`、`webpack`差不多，它本身仅提供一些分析功能，真正的转换需要依托于插件完成
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111745908.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111745908.png)
 
 #### babel的安装
 
@@ -2975,7 +2975,7 @@ B().then(function (data) {
 
 本章所讲的性能优化主要体现在三个方面：
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746481.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746481.png)
 
 **构建性能**
 
@@ -3013,13 +3013,13 @@ B().then(function (data) {
 
 #### 什么叫做模块解析？
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746351.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746351.png)
 
 模块解析包括：抽象语法树分析、依赖分析、模块语法替换
 
 #### 不做模块解析会怎样？
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746331.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746331.png)
 
 如果某个模块不做解析，该模块经过`loader`处理后的代码就是最终代码。
 
@@ -3120,7 +3120,7 @@ module.exports = {
 
 实际上，`loader`的运行过程中，还包含一个过程，即`pitch`
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746058.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746058.png)
 
 `cache-loader`还可以实现各自自定义的配置，具体方式见文档
 
@@ -3170,11 +3170,11 @@ module.exports = {
 
 当使用`webpack-dev-server`时，考虑代码改动到效果呈现的过程
 
-![|400](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746389.png)
+![|400](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746389.png)
 
 而使用了热替换后，流程发生了变化
 
-![|400](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111746339.png)
+![|400](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111746339.png)
 
 #### 使用和原理
 
@@ -3212,7 +3212,7 @@ if(module.hot){ // 是否开启了热更新
 
 `module.hot.accept()`的作用是让`webpack-dev-server`通过`socket`管道，把服务器更新的内容发送到浏览器
 
-![|300](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111747451.png)
+![|300](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111747451.png)
 
 然后，将结果交给插件`HotModuleReplacementPlugin`注入的代码执行
 
@@ -3238,7 +3238,7 @@ if(module.hot){ // 是否开启了热更新
 
 1. 先单独的打包公共模块
 
-![单独打包公共模块](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111747630.png)
+![单独打包公共模块](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111747630.png)
 
 公共模块会被打包成为动态链接库(`dll Dynamic Link Library`)，并生成资源清单
 
@@ -3382,7 +3382,7 @@ module.exports = {
 > 实际上，webpack在内部是使用`SplitChunksPlugin`进行分包的
 > 过去有一个库`CommonsChunkPlugin`也可以实现分包，不过由于该库某些地方并不完善，到了`webpack4`之后，已被`SplitChunksPlugin`取代
 
-![分包简单流程](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111747606.png)
+![分包简单流程](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111747606.png)
 
 从分包流程中至少可以看出以下几点：
 
@@ -3880,7 +3880,7 @@ node_modules
 
 #### B/S结构中的压缩传输
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111749067.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111749067.png)
 
 优点：传输效率可能得到大幅提升
 
@@ -3890,7 +3890,7 @@ node_modules
 
 使用`compression-webpack-plugin`插件对打包结果进行预压缩，可以移除服务器的压缩时间
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111749071.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111749071.png)
 
 #### 案例
 

@@ -1015,7 +1015,7 @@ if (a > b) {
 var count = 0;
 for (var i = 1; i < 100; i++) {
   // 看一看每一个 i 是否是质数
-  for (j = 1; j <= i; i++) {
+  for (j = 1; j <= i; j++) {
     if (i % j == 0) {
       count++;
     }
@@ -10236,7 +10236,7 @@ DocumentFragment —— 11
 
 `dom 结构树代表的是一系列继承关系`
 
-![DOM结构树](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111120958101.png)
+![DOM结构树](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111120958101.png)
 
 ```js
 `Document 和 document的关系`
@@ -13782,7 +13782,7 @@ function startMove(obj, target) { // this就是对象，300就是运动距离
     clearInterval(timer); // 如果不停止，它会累加每次的速度
     var iSpeed; // 速度
     timer = setInterval(function () {
-        iSpeed = (target - obj.offsetLeft) / 8; 速度-DOM对象的offsetLeft，查看还有多少距离
+        iSpeed = (target - obj.offsetLeft) / 8; //速度-DOM对象的offsetLeft，查看还有多少距离
         iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
         if (obj.offsetLeft === target) {// 停止条件
             clearInterval(timer);

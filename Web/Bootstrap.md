@@ -1976,7 +1976,7 @@ $('#myCarousel').on('slid.bs.carousel', function () {
 });
 ```
 - bootstrap笔记总结【复制到浏览器打开放大】
-![bootstrap笔记总结](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111758712.png)
+![bootstrap笔记总结](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111758712.png)
 
 
 ### 拓展阅读

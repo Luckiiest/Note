@@ -28,7 +28,7 @@ categories:
 
 包含元数据的库，这些元数据包括：名称、描述、git主页、许可证协议、作者、依赖等等
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111717653.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111717653.png)
 
 ### 背景
 
@@ -88,7 +88,7 @@ categories:
 
 > 安装（install）即下载包
 > 由于 npm 的官方 registry 服务器位于国外，可能受网速影响导致下载缓慢或失败。因此，安装好 npm 之后，需要重新设置 registry 的地址为国内地址。目前，淘宝 https://registry.npm.taobao.org 提供了国内的 registry 地址，先设置到该地址。设置方式为```npm config set registry https://registry.npm.taobao.org```。设置好后，通过命令```npm config get registry```进行检查
-> ![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111719794.png)
+> ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111719794.png)
 
 `npm` 安装一个包，分为两种安装方式：
 
@@ -367,7 +367,7 @@ package.json
 
 如果两个包依赖同一个包的不同版本，如下图
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111720309.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111720309.png)
 
 面对这种情况，在 `node_modules` 目录中，不会使用扁平的目录结构，而会形成嵌套的目录，如下图：
 
@@ -588,7 +588,7 @@ npm config delete 配置项
 
 #### 开源协议
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111722994.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111722994.png)
 
 - 可以通过网站 http://choosealicense.online/appendix/ 选择协议，并复制协议内容
 
@@ -815,23 +815,23 @@ npm install -g pnpm
 
 在操作系统中，文件实际上是一个指针，只不过它指向的不是内存地址，而是一个外部存储地址（这里的外部存储可以是硬盘、`U`盘、甚至是网络）
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111722420.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111722420.png)
 
 当我们删除文件时，删除的实际上是指针，因此，无论删除多么大的文件，速度都非常快。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111723627.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111723627.png)
 
 2. **文件的拷贝**
 
 如果你复制一个文件，是将该文件指针指向的内容进行复制，然后产生一个新文件指向新的内容
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111723231.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111723231.png)
 
 3. **硬链接 hard link**
 
 硬链接的概念来自于 `Unix` 操作系统，它是指将一个文件`A`指针复制到另一个文件B指针中，文件`B`就是文件`A`的硬链接
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111724005.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111724005.png)
 
 通过硬链接，不会产生额外的磁盘占用，并且，两个文件都能找到相同的磁盘内容
 
@@ -851,7 +851,7 @@ mklink /h 链接名称 目标文件
 
 符号链接又称为软连接，如果为某个文件或文件夹`A`创建符号连接`B`，则B指向`A`。
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111725700.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111725700.png)
 
 `windows Vista`操作系统开始，支持了创建符号链接的操作，在`cmd`中使用下面的命令可以创建符号链接：
 
@@ -889,7 +889,7 @@ mklink /d 链接名称 目标文件
 
 假设两个包`a`和b，`a`依赖`b`：
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111726366.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111726366.png)
 
 假设我们的工程为`proj`，直接依赖`a`，则安装时，`pnpm`会做下面的处理
 
@@ -897,15 +897,15 @@ mklink /d 链接名称 目标文件
 2. 查看`a`和`b`是否已经有缓存，如果没有，下载到缓存中，如果有，则进入下一步
 3. 创建 `node_modules` 目录，并对目录进行结构初始化
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111726216.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111726216.png)
 
 4. 从缓存的对应包中使用硬链接放置文件到相应包代码目录中
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111726722.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111726722.png)
 
 5. 使用符号链接，将每个包的**直接依赖**放置到自己的目录中
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111727002.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111727002.png)
 
 这样做的目的，是为了保证`a`的代码在执行过程中，可以读取到它们的直接依赖
 
@@ -917,7 +917,7 @@ mklink /d 链接名称 目标文件
 
 7. 在工程的`node_modules`目录中使用符号链接，放置直接依赖
 
-![](https://cdn.jsdelivr.net/gh/haodex/noteImage@master/202111111727794.png)
+![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111727794.png)
 
 8. 完成
 
