@@ -155,15 +155,17 @@ top: 0
           - 第二步：使用创建好的锚点名称 `<a href="#锚点名称">内容</a>`
 - `marquee`标签
   - 可以创建一个内容滚动效果
-  ```html
-  <marquee direction="down" loop="4" onmouseover=this.stop() onmouseout=this.start()></marquee>
-  ```
-  - `direction` 表示滚动方向，取值有（left,right,up,down,默认left）
-  - `loop `表示滚动循环的次数，默认为无限循环
+  
 
-  ```js
-  onmouseover=this.stop()  onmouseover=this.start()  scrollamout="1"(滚动速度)
-  ```
+```html
+<marquee direction="down" loop="4" onmouseover=this.stop() onmouseout=this.start()></marquee>
+```
+- `direction` 表示滚动方向，取值有（left,right,up,down,默认left）
+- `loop `表示滚动循环的次数，默认为无限循环
+
+```js
+onmouseover=this.stop()  onmouseover=this.start()  scrollamout="1"(滚动速度)
+```
 
 - 表示当鼠标移上区域的时候停止滚动，鼠标移开继续滚动
 

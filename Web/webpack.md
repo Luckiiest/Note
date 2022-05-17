@@ -26,59 +26,62 @@ categories:
 
 - 函数
 
-  - ```javascript
-    //1.函数，缺点：大型功能无法实现
-    //功能1
-    function add(a,b) {
-        return a + b;
-    }
-    //功能2
-    function a(a) {
-        console.log(a);
-    }
-    ```
 
-- 对象写法
+```javascript
+//1.函数，缺点：大型功能无法实现
+//功能1
+function add(a,b) {
+    return a + b;
+}
+//功能2
+function a(a) {
+    console.log(a);
+}
+```
 
-  - ```javascript
-    //2.对象写法，缺点：外面可访问并改变ppt对象中变量
-    var ppt = {
-        len:3,
-        init:function() {
-    
-        },
-        crateDom: function(){ 
-    
-        }
+对象写法
+
+```javascript
+//2.对象写法，缺点：外面可访问并改变ppt对象中变量
+var ppt = {
+    len:3,
+    init:function() {
+
+    },
+    crateDom: function(){ 
+
     }
-    ```
+}
+```
 
 - 匿名函数、返回对象
 
-  - ```javascript
-    //匿名函数，返回对象
-    var obj = (function(){ 
-        var len = 3;
-        function add(a,b) {
-            return a + b;
-        }
-        return {
-            add:add
-        }
-    }())
-    console.log(obj.add(1,2));
-    ```
+
+```javascript
+//匿名函数，返回对象
+var obj = (function(){ 
+    var len = 3;
+    function add(a,b) {
+        return a + b;
+    }
+    return {
+        add:add
+    }
+}())
+console.log(obj.add(1,2));
+```
 
 - 依赖传入实参
 
-  - ```javascript
-    var module1 = (function(m) {
-        md.add = function(a,b) {
-            return a + b;
-        },
-            return m;
-    })(window.module || {})
-    ```
+
+```javascript
+var module1 = (function(m) {
+    md.add = function(a,b) {
+        return a + b;
+    },
+        return m;
+})(window.module || {})
+```
 
 - 以上缺点依赖关系不好处理，需要按顺序加载，会阻塞页面
 
@@ -577,29 +580,30 @@ module.exports = {
 
 3. 准备好各种项目文件，新建`webpack.config.js`，进行配置
 
-   1. ```js
-      module.exports = {
-          mode: "production",
-          //入口
-          entry: {
-              //属性名：chunk的名称， 属性值：入口模块（启动模块）
-              main: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/index.js", 
-              //启动模块有两个
-              a: ["https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/a.js", "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/index.js"] 
-          },
-          //出口
-          output: {
-              //必须配置一个绝对路径，表示资源放置的文件夹，默认是dist
-              //_dirname: 所有情况下，都表示当前运行的js文件所在的目录，它是一个绝对路径
-              path: path.resolve(__dirname, "target"), 
-              //配置的合并的js文件的规则
-              filename: "[id].[chunkhash:5].js" 
-          },
-          devtool: "source-map"
-      }
-      ```
 
-4. 配置完成后打包项目，在`cmd`文件夹路径上进行打包
+```js
+module.exports = {
+    mode: "production",
+    //入口
+    entry: {
+        //属性名：chunk的名称， 属性值：入口模块（启动模块）
+        main: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/index.js", 
+        //启动模块有两个
+        a: ["https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/a.js", "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/src/index.js"] 
+    },
+    //出口
+    output: {
+        //必须配置一个绝对路径，表示资源放置的文件夹，默认是dist
+        //_dirname: 所有情况下，都表示当前运行的js文件所在的目录，它是一个绝对路径
+        path: path.resolve(__dirname, "target"), 
+        //配置的合并的js文件的规则
+        filename: "[id].[chunkhash:5].js" 
+    },
+    devtool: "source-map"
+}
+```
+
+1. 配置完成后打包项目，在`cmd`文件夹路径上进行打包
 
    1. 全局
       1. 如：`D:\Desktop\webpack1 webpack`
@@ -652,42 +656,44 @@ module.exports = {
 
 - **完整配置**
   
-  ```js
-  module.exports = {
-      module: { //针对模块的配置，目前版本只有两个配置，rules、noParse
-          rules: [ //模块匹配规则，可以存在多个规则
-              { //每个规则是一个对象
-                  test: /\.js$/, //匹配的模块正则
-                  use: [ //匹配到后应用的规则模块
-                      {  //其中一个规则
-                          //loader模块的路径，该字符串会被放置到require中
-                          loader: "模块路径",  //如css-loader,url-loader...
-                          //向对应loader传递的额外参数
-                          options: { 
-                              
-                          }
-                      }
-                  ]
-              }
-          ]
-      }
-  }
-  ```
-  
+
+```js
+module.exports = {
+    module: { //针对模块的配置，目前版本只有两个配置，rules、noParse
+        rules: [ //模块匹配规则，可以存在多个规则
+            { //每个规则是一个对象
+                test: /\.js$/, //匹配的模块正则
+                use: [ //匹配到后应用的规则模块
+                    {  //其中一个规则
+                        //loader模块的路径，该字符串会被放置到require中
+                        loader: "模块路径",  //如css-loader,url-loader...
+                        //向对应loader传递的额外参数
+                        options: { 
+                            
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
 - **简化配置**
 
-  ```js
-  module.exports = {
-      module: { //针对模块的配置，目前版本只有两个配置，rules、noParse
-          rules: [ //模块匹配规则，可以存在多个规则
-              { //每个规则是一个对象
-                  test: /\.js$/, //匹配的模块正则
-                  use: ["模块路径1", "模块路径2"]//loader模块的路径，该字符串会被放置到require中，如css-loader,url-loader...
-              }
-          ]
-      }
-  }
-  ```
+
+```js
+module.exports = {
+    module: { //针对模块的配置，目前版本只有两个配置，rules、noParse
+        rules: [ //模块匹配规则，可以存在多个规则
+            { //每个规则是一个对象
+                test: /\.js$/, //匹配的模块正则
+                use: ["模块路径1", "模块路径2"]//loader模块的路径，该字符串会被放置到require中，如css-loader,url-loader...
+            }
+        ]
+    }
+}
+```
 
 #### 处理样式
 
@@ -695,18 +701,19 @@ module.exports = {
 
   - `npm install css-loader style-loader`
 
-- ```js
-  module.exports = {
-      mode: "development",
-      devtool: "source-map",
-      module: {
-          rules: [{
-              test: /\.css$/,
-              use: ["https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/loaders/style-loader"] //loader的路径
-          }]
-      }
-  }
-  ```
+
+```js
+module.exports = {
+    mode: "development",
+    devtool: "source-map",
+    module: {
+        rules: [{
+            test: /\.css$/,
+            use: ["https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/loaders/style-loader"] //loader的路径
+        }]
+    }
+}
+```
 
 #### 处理图片
 
@@ -716,44 +723,46 @@ module.exports = {
 
   - `npm install url-loader file-loader`
 
-- ```javascript
-  >entry.js
-  var oImg = new Image();
-  oImg.src = require('.https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/img/2.png');
-  document.body.appendChild(oImg);
-  
-  >webpack.config.js
-  module.exports = {
-      mode: "development", //开发者模式
-      devtool: "source-map", 
-      module: {
-          rules: [
-              {
-                  test: /\.(png)|(jpg)|(gif)$/, use: [{
-                      loader: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/loaders/img-loader.js",
-                      options: {
-                          limit: 3000, 
-                          //3000字节以上使用图片，3000字节以内使用base64
-                          filename: "img-[contenthash:5].[ext]"
-                      }
-                  }]
-              }
-          ]
-      }
-  }
-  ```
-  
+
+```javascript
+>entry.js
+var oImg = new Image();
+oImg.src = require('.https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/img/2.png');
+document.body.appendChild(oImg);
+
+>webpack.config.js
+module.exports = {
+    mode: "development", //开发者模式
+    devtool: "source-map", 
+    module: {
+        rules: [
+            {
+                test: /\.(png)|(jpg)|(gif)$/, use: [{
+                    loader: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/loaders/img-loader.js",
+                    options: {
+                        limit: 3000, 
+                        //3000字节以上使用图片，3000字节以内使用base64
+                        filename: "img-[contenthash:5].[ext]"
+                    }
+                }]
+            }
+        ]
+    }
+}
+```
+
 - **publicPath**
 
   - 是像图片这种静态资源 打包后的根路径，当浏览器需要引用输入静态资源文件时， 这个配置项指定输入文件的公共`URL`地址。在`loader`中它被嵌入到`script` 或者 `link` 标签或者对静态资源的引用里。当文件的`href` 或者 `url()`与它在磁盘 上的路径 不一致时就应当用`publicPath` (像`path`一样指定) ，这在你想定义把一些或者所有文件放在不同的主机或`CDN`上时会非常有用
 
-  - ```js
-    output: {
-        filename: 'index.js', //输出文件名称
-        path: __dirname + '/out/',//当前文件夹的绝对路径
-        publicPath: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/out' //公共资源地址
-    },// 输出文件
-    ```
+
+```js
+output: {
+    filename: 'index.js', //输出文件名称
+    path: __dirname + '/out/',//当前文件夹的绝对路径
+    publicPath: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/out' //公共资源地址
+},// 输出文件
+```
 
 ### plugin
 
@@ -1119,48 +1128,48 @@ stats: {
 
 #### 案例使用：
 
-- ```javascript
-  const {ClearWebpackPlugin} = require('clear-webpack-plugin');
-  const HtmlWebpackPlugin = require('html-webpack-plugin');
-  const CopyPlugin = require("copy-webpack-plugin");
-  const WebpackBundleAnalyzer = require("webpack-bundle-analyzer")
-    .BundleAnalyzerPlugin;
-  
-  module.exports = {
-      mode: 'development',
-      devtool: 'source-map',
-      output: {
-          filename: "scripts/[name].[chunkhash:5].js"
-      },
-      plugins: [
-          //清除目录
-          new ClearWebpackPlugn(),
-          //生成页面
-          new HtmlWebpackPlugin({
-              template: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public/index.html', //模板配置文件路径
-              filename: 'index.html' //新建的文件名称
-          }),
-          //复制静态文件
-          new CopyPlugin([
-              {from: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public', to:'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/'}//从哪里复制到哪里
-          ]),
-          //打包文件分析工具
-          new WebpackBundleAnalyzer({
-              analyzerMode: 'server',
-              //  将在“服务器”模式下使用的主机启动HTTP服务器。
-              analyzerHost: '127.0.0.1',
-              //  将在“服务器”模式下使用的端口启动HTTP服务器。
-              analyzerPort: 8888, 
-              //  路径捆绑，将在`static`模式下生成的报告文件。
-              //  相对于捆绑输出目录。
-              logLevel: 'info' 
-              // 日志级别。可以是'信息'，'警告'，'错误'或'沉默'。
-          });
-      ]
-  }
-  
-  //浏览器打开127.0.0.1:8888地址可以看到打包文件分析效果图：
-  ```
+```javascript
+const {ClearWebpackPlugin} = require('clear-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+const WebpackBundleAnalyzer = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
+
+module.exports = {
+    mode: 'development',
+    devtool: 'source-map',
+    output: {
+        filename: "scripts/[name].[chunkhash:5].js"
+    },
+    plugins: [
+        //清除目录
+        new ClearWebpackPlugn(),
+        //生成页面
+        new HtmlWebpackPlugin({
+            template: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public/index.html', //模板配置文件路径
+            filename: 'index.html' //新建的文件名称
+        }),
+        //复制静态文件
+        new CopyPlugin([
+            {from: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public', to:'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/'}//从哪里复制到哪里
+        ]),
+        //打包文件分析工具
+        new WebpackBundleAnalyzer({
+            analyzerMode: 'server',
+            //  将在“服务器”模式下使用的主机启动HTTP服务器。
+            analyzerHost: '127.0.0.1',
+            //  将在“服务器”模式下使用的端口启动HTTP服务器。
+            analyzerPort: 8888, 
+            //  路径捆绑，将在`static`模式下生成的报告文件。
+            //  相对于捆绑输出目录。
+            logLevel: 'info' 
+            // 日志级别。可以是'信息'，'警告'，'错误'或'沉默'。
+        });
+    ]
+}
+
+//浏览器打开127.0.0.1:8888地址可以看到打包文件分析效果图：
+```
 
 ### 开发服务器
 
@@ -1185,15 +1194,16 @@ stats: {
 
 2. 在`webpack.config.js`中添加`devServer`
 
-   1. ```javascript
-      devServer: {
-          contentBase: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/dist', //静态资源目录
-          open: true,
-          openPage: 'html/index.html', //打开的主页面
-      },
-      ```
 
-3. 执行`npm webpack server`命令
+```javascript
+devServer: {
+    contentBase: 'https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/dist', //静态资源目录
+    open: true,
+    openPage: 'html/index.html', //打开的主页面
+},
+```
+
+1. 执行`npm webpack server`命令
 
 ```webpack-dev-server```命令几乎支持所有的`webpack`命令参数，如```--config```、```-env```等等，你可以把它当作`webpack`命令使用
 
@@ -1830,65 +1840,67 @@ lessc index.less index.css
 
 - 变量：声明变量 `@a:300px` 使用变量：`.box {width:@a;}`
 
+
 - 混合
 
-  - ```less
-    @gr:yellow;
-    @height:100px;
-    .border(@width,@color);{ 
-        /*并没有这个DOM元素，但是可以把这个定义为一组变量*/   
-        border:@width solid @color;
-        //width和color属于参数，调用时可以传参
+```less
+@gr:yellow;
+@height:100px;
+.border(@width,@color);{ 
+    /*并没有这个DOM元素，但是可以把这个定义为一组变量*/   
+    border:@width solid @color;
+    //width和color属于参数，调用时可以传参
+}
+body,html{	
+    width:100%;	
+    height:100%;	
+    background:@gr;	
+    img {		
+        width:100px;		
+        height: @height;        
+        .border('5px',green);
+        //给img添加border,并传参	
     }
-    body,html{	
-        width:100%;	
-        height:100%;	
-        background:@gr;	
-        img {		
-            width:100px;		
-            height: @height;        
-            .border('5px',green);
-            //给img添加border,并传参	
-        }
-    }
-    
-    //小三角
-    .triangleStyle(@_,@color) { 
-        //@_代表公共样式，可以传入上下左右方向	
-        border: 50px solid transparent;
-    }
-    .triangleStyle(top,@color){
-        border-bottom-color:@color;
-    }
-    .triangleStyle(bottom,@color) {	
-        border-top-color:@color;
-    }
-    .triangleStyle(left,@color){	
-        border-right-color:@color;
-    }
-    .triangleStyle(right,@color){	
-        border-left-color:@color;
-    }
-    ```
+}
+
+//小三角
+.triangleStyle(@_,@color) { 
+    //@_代表公共样式，可以传入上下左右方向	
+    border: 50px solid transparent;
+}
+.triangleStyle(top,@color){
+    border-bottom-color:@color;
+}
+.triangleStyle(bottom,@color) {	
+    border-top-color:@color;
+}
+.triangleStyle(left,@color){	
+    border-right-color:@color;
+}
+.triangleStyle(right,@color){	
+    border-left-color:@color;
+}
+```
 
 - 样式属性计算
 
-  - ```less
-    .box {
-        width:300px;
-        .triangle{        
-            //属性值可以进行计算,css3也有一个方法可以计算(calc())
-            width:100px + 50px;
-            height: 0;
-            .triangleStyle(bottom,blue)
-        }
-        //需要使用伪元素的时候，使用&，代表当前元素    
-        &：hover {
-            width:500px;
-            height:500px;
-        }
+
+```less
+.box {
+    width:300px;
+    .triangle{        
+        //属性值可以进行计算,css3也有一个方法可以计算(calc())
+        width:100px + 50px;
+        height: 0;
+        .triangleStyle(bottom,blue)
     }
-    ```
+    //需要使用伪元素的时候，使用&，代表当前元素    
+    &：hover {
+        width:500px;
+        height:500px;
+    }
+}
+```
 
 ##### 具体使用
 
@@ -2127,95 +2139,100 @@ CSS的某些前沿语法正在制定过程中，没有形成真正的标准，�
 
   - 在`:root{}`中定义常用变量，使用`--`前缀命名变量
 
-  - ```css
-    :root{
-      --lightColor: #ddd;
-      --darkColor: #333;
-    }
-    a{
-        color: var(--lightColor);
-        background: var(--darkColor);
-    }
-    ```
 
-  - > 编译后，仍然可以看到原语法，因为某些新语法的存在并不会影响浏览器的渲染，尽管浏览器可能不认识
-    > 如果不希望在结果中看到新语法，可以配置`postcss-preset-env`的`preserve`为`false`
+```css
+:root{
+  --lightColor: #ddd;
+  --darkColor: #333;
+}
+a{
+    color: var(--lightColor);
+    background: var(--darkColor);
+}
+```
+
+- > 编译后，仍然可以看到原语法，因为某些新语法的存在并不会影响浏览器的渲染，尽管浏览器可能不认识
+  > 如果不希望在结果中看到新语法，可以配置`postcss-preset-env`的`preserve`为`false`
 
 - **自定义选择器**
 
-  - ```css
-    @custom-selector :--heading h1, h2, h3, h4, h5, h6;
-    @custom-selector :--enter :focus,:hover;
-    
-    a:--enter{
-        color: #f40;
-    }
-    
-    :--heading{
-        font-weight:bold;
-    }
-    
-    :--heading.active{
-        font-weight:bold;
-    }
-    ```
 
-  - 编译后
+```css
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+@custom-selector :--enter :focus,:hover;
 
-  - ```css
-    a:focus,a:hover{
-    	color: #f40;
-    }
-    
-    h1,h2,h3,h4,h5,h6{
-        font-weight:bold;
-    }
-    
-    h1.active,h2.active,h3.active,h4.active,h5.active,h6.active{
-        font-weight:bold;
-    }
-    ```
+a:--enter{
+    color: #f40;
+}
+
+:--heading{
+    font-weight:bold;
+}
+
+:--heading.active{
+    font-weight:bold;
+}
+```
+
+- 编译后
+
+
+```css
+a:focus,a:hover{
+	color: #f40;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-weight:bold;
+}
+
+h1.active,h2.active,h3.active,h4.active,h5.active,h6.active{
+    font-weight:bold;
+}
+```
 
 - **嵌套**
 
   - 与`LESS`相同，只不过嵌套的选择器前必须使用符号`&`
 
-  - ```css
-    .a {
-        color: red;
-        & .b {
-            color: green;
-        }
-      
-        & > .b {
-            color: blue;
-        }
-      
-        &:hover {
-            color: #000;
-        }
-      }
-    ```
 
-  - 编译后
-
-  - ```css
-    .a {
-        color: red
-    }
-    
-    .a .b {
+```css
+.a {
+    color: red;
+    & .b {
         color: green;
     }
-    
-    .a>.b {
+  
+    & > .b {
         color: blue;
     }
-    
-    .a:hover {
+  
+    &:hover {
         color: #000;
     }
-    ```
+  }
+```
+
+- 编译后
+
+
+```css
+.a {
+    color: red
+}
+
+.a .b {
+    color: green;
+}
+
+.a>.b {
+    color: blue;
+}
+
+.a:hover {
+    color: #000;
+}
+```
 
 ##### postcss-apply
 
@@ -2357,135 +2374,137 @@ body {
 
 - 文件结构
 
-  - ```json
-    │  .browserslistrc //兼容浏览器，配置文件(手动配置)
-    │  .stylelintrc //书写规范(自动配置)
-    │
-    │  package-lock.json //webpack的配置文件(自动生成)
-    │  package.json //webpack的初始化文件(自动生成)
-    │
-    │  postcss.config.js //postcss配置文件(手动配置)
-    │  webpack.config.js //webpack配置文件(手动配置)
+
+```json
+│  .browserslistrc //兼容浏览器，配置文件(手动配置)
+│  .stylelintrc //书写规范(自动配置)
+│
+│  package-lock.json //webpack的配置文件(自动生成)
+│  package.json //webpack的初始化文件(自动生成)
+│
+│  postcss.config.js //postcss配置文件(手动配置)
+│  webpack.config.js //webpack配置文件(手动配置)
+│  
+├─public
+│      index.html //html文件
+│      
+└─src
+    │  index.js //js文件
     │  
-    ├─public
-    │      index.html //html文件
-    │      
-    └─src
-        │  index.js //js文件
-        │  
-        └─assets
-                index.pcss //前瞻的css文件
-    ```
+    └─assets
+            index.pcss //前瞻的css文件
+```
 
 - 配置
 
-  - ```json
-    ├─├─package.json
-    
-    {
-      "name": "test",
-      "version": "1.0.0",
-      "description": "",
-      "main": "index.js",
-      "scripts": {
-        "build": "webpack",
-        "dev": "webpack-dev-server"
-      },
-      "author": "",
-      "license": "ISC",
-      "devDependencies": {
-        "css-loader": "^3.4.2",
-        "html-webpack-plugin": "^3.2.0",
-        "postcss": "^7.0.36",
-        "postcss-loader": "^3.0.0",
-        "postcss-preset-env": "^6.7.0",
-        "style-loader": "^1.1.3",
-        "stylelint-config-standard": "^19.0.0",
-        "webpack": "^4.41.5",
-        "webpack-cli": "^3.3.10",
-        "webpack-dev-server": "^3.11.2"
-      }
+
+```json
+├─├─package.json
+
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^3.4.2",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss": "^7.0.36",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "style-loader": "^1.1.3",
+    "stylelint-config-standard": "^19.0.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
+```
+
+```css
+├─├─index.html
+HTML5结构，没有内容
+
+
+
+├─├─index.pcss
+:root {
+--dangerColor: #f40;
+}
+
+.danger {
+color: var(--dangerColor);
+}
+
+
+
+├─├─index.js
+import styles from  "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/assets/index.pcss";
+console.log(styles)
+
+
+
+├─├─webpack.config.js
+module.exports = {
+    map: false, //关闭source-map
+    plugins: {
+        "postcss-preset-env": {
+            stage: 0, //哪怕是处于草案阶段的语法，也需要转换
+            preserve: false
+        }
     }
-    ```
-  
-  - ```css
-    ├─├─index.html
-    HTML5结构，没有内容
-    
-    
-    
-    ├─├─index.pcss
-    :root {
-    --dangerColor: #f40;
-    }
-    
-    .danger {
-    color: var(--dangerColor);
-    }
-    
-    
-    
-    ├─├─index.js
-    import styles from  "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/assets/index.pcss";
-    console.log(styles)
-    
-    
-    
-    ├─├─webpack.config.js
-    module.exports = {
-        map: false, //关闭source-map
-        plugins: {
-            "postcss-preset-env": {
-                stage: 0, //哪怕是处于草案阶段的语法，也需要转换
-                preserve: false
+}
+
+
+
+├─├─webpack.config.js
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+module.exports = {
+    mode: "development",
+    devtool: "source-map",
+    module: {
+        rules: [
+            {
+                test: /\.pcss$/, use: ["style-loader", "css-loader?modules", "postcss-loader"]
             }
-        }
-    }
-    
-    
-    
-    ├─├─webpack.config.js
-    const HtmlWebpackPlugin = require("html-webpack-plugin")
-    module.exports = {
-        mode: "development",
-        devtool: "source-map",
-        module: {
-            rules: [
-                {
-                    test: /\.pcss$/, use: ["style-loader", "css-loader?modules", "postcss-loader"]
-                }
-            ]
-        },
-        devServer: {
-            open: true
-        },
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public/index.html"
-            })
         ]
+    },
+    devServer: {
+        open: true
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "https://cdn.jsdelivr.net/gh/HAODEabcd/Note@master/Web/webpack/public/index.html"
+        })
+    ]
+}
+
+
+
+├─├─.stylelintrc
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "indentation": 4 //空格为4个，标准，如果不是4个，就会报错
     }
-    
-    
-    
-    ├─├─.stylelintrc
-    {
-        "extends": "stylelint-config-standard",
-        "rules": {
-            "indentation": 4 //空格为4个，标准，如果不是4个，就会报错
-        }
-    }
-    
-    
-    
-    ├─├─.browserslistrc
-    last 3 version
-    > 1%
-    not ie <= 8
-    
-    
-    然后使用webpack进行打包
-    ```
+}
+
+
+
+├─├─.browserslistrc
+last 3 version
+> 1%
+not ie <= 8
+
+
+然后使用webpack进行打包
+```
 
 ### 分离css文件
 

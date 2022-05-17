@@ -55,17 +55,18 @@ top: 0
 
     - **.babelrc**文件，严格`json`
 
-    - ```js
-      {
-          "presets": [
-              "@babel/preset-env"
-          ],
-          "plugins": [
-      
-          ],
-          ……
-      }
-      ```
+
+```js
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+
+    ],
+    ……
+}
+```
 
 ### 声明变量的问题
 
@@ -132,16 +133,17 @@ arr[7]();
 
    1. 常量不可变，是指声明的常量的内存空间不可变，并不保证内存空间中的地址指向的其他空间不可变。
 
-      1. ```js
-         const PI = {};
-         PI.name = 20;
-         //PI = 20;
-         ```
 
-   1. 常量的命名
-      1. 特殊的常量：该常量从字面意义上，一定是不可变的，比如圆周率、月地距地或其他一些绝不可能变化的配置。通常，**该常量的名称全部使用大写，多个单词之间用下划线分割**
-      2. 普通的常量：使用和之前一样的命名即可
-   2. 在`for`循环中，循环变量不可以使用常量
+```js
+const PI = {};
+PI.name = 20;
+//PI = 20;
+```
+
+1. 常量的命名
+   1. 特殊的常量：该常量从字面意义上，一定是不可变的，比如圆周率、月地距地或其他一些绝不可能变化的配置。通常，**该常量的名称全部使用大写，多个单词之间用下划线分割**
+   2. 普通的常量：使用和之前一样的命名即可
+2. 在`for`循环中，循环变量不可以使用常量
 
 ## 字符串和正则表达式
 
@@ -155,47 +157,48 @@ arr[7]();
 
 - 同时，`ES6`为正则表达式添加了一个`flag: u`，如果添加了该配置，则匹配时，使用码点匹配
 
-- ```js
-  const text = '𠮷';
-  
-  console.log("字符串长度：", text.length);
-  console.log("使用正则测试：", /^.$/u.test(text));
-  console.log("得到第一个码元：", text.charCodeAt(0));
-  console.log("得到第二个码元：", text.charCodeAt(1));
-  
-  //𠮷：\ud842\udfb7
-  console.log("得到第一个码点：", text.codePointAt(0));
-  console.log("得到第二个码点：", text.codePointAt(1));
-  
-  /**
-   * 判断字符串char，是32位，还是16位
-   * @param {*} char 
-   */
-  function is32bit(char, i) {
-      //如果码点大于了16位二进制的最大值，则其是32位的
-      return char.codePointAt(i) > 0xffff;
-  }
-  
-  /**
-   * 得到一个字符串码点的真实长度
-   * @param {*} str 
-   */
-  function getLengthOfCodePoint(str) {
-      var len = 0;
-      for (let i = 0; i < str.length; i++) {
-          //i在索引码元
-          if (is32bit(str, i)) {
-              //当前字符串，在i这个位置，占用了两个码元
-              i++;
-          }
-          len++;
-      }
-      return len;
-  }
-  
-  console.log("𠮷是否是32位的：", is32bit("𠮷", 0))
-  console.log("ab𠮷ab的码点长度：", getLengthOfCodePoint("ab𠮷ab"))
-  ```
+
+```js
+const text = '𠮷';
+
+console.log("字符串长度：", text.length);
+console.log("使用正则测试：", /^.$/u.test(text));
+console.log("得到第一个码元：", text.charCodeAt(0));
+console.log("得到第二个码元：", text.charCodeAt(1));
+
+//𠮷：\ud842\udfb7
+console.log("得到第一个码点：", text.codePointAt(0));
+console.log("得到第二个码点：", text.codePointAt(1));
+
+/**
+ * 判断字符串char，是32位，还是16位
+ * @param {*} char 
+ */
+function is32bit(char, i) {
+    //如果码点大于了16位二进制的最大值，则其是32位的
+    return char.codePointAt(i) > 0xffff;
+}
+
+/**
+ * 得到一个字符串码点的真实长度
+ * @param {*} str 
+ */
+function getLengthOfCodePoint(str) {
+    var len = 0;
+    for (let i = 0; i < str.length; i++) {
+        //i在索引码元
+        if (is32bit(str, i)) {
+            //当前字符串，在i这个位置，占用了两个码元
+            i++;
+        }
+        len++;
+    }
+    return len;
+}
+
+console.log("𠮷是否是32位的：", is32bit("𠮷", 0))
+console.log("ab𠮷ab的码点长度：", getLengthOfCodePoint("ab𠮷ab"))
+```
 
 ### 更多的字符串API
 
@@ -209,14 +212,15 @@ arr[7]();
 
 - **repeat**：将字符串重复指定的次数，然后返回一个新字符串。
 
-- ```js
-  const text = "成哥是狠人";
-  
-  console.log("是否包含“狠”：", text.includes("狠"));
-  console.log("是否以“成哥”开头：", text.startsWith("成哥"));
-  console.log("是否以“狠人”结尾：", text.endsWith("狠人"));
-  console.log("重复4次：", text.repeat(4));
-  ```
+
+```js
+const text = "成哥是狠人";
+
+console.log("是否包含“狠”：", text.includes("狠"));
+console.log("是否以“成哥”开头：", text.startsWith("成哥"));
+console.log("是否以“狠人”结尾：", text.endsWith("狠人"));
+console.log("重复4次：", text.repeat(4));
+```
 
 ### 模板字符串
 
@@ -228,13 +232,14 @@ arr[7]();
 
 - 如果要在字符串中拼接`js`表达式，只需要在模板字符串中使用```${JS表达式}```
 
-- ```js
-  let val = "我是"
-  var text = `${val}人` 
-  //等同于
-  var text = "我是" + "人";
-  //${表达式}，表达式可以是任何表达式
-  ```
+
+```js
+let val = "我是"
+var text = `${val}人` 
+//等同于
+var text = "我是" + "人";
+//${表达式}，表达式可以是任何表达式
+```
 
 
 
@@ -248,59 +253,62 @@ arr[7]();
 
   - 这样一来，当调用函数时，如果没有给对应的参数赋值（给它的值是`undefined`），则会自动使用默认值。
 
-  - ```js
-    function sum(a, b = 1, c = 2) {
-        return a + b + c;
-    }
-    console.log(sum(10, undefined, undefined))
-    console.log(sum(11))
-    console.log(sum(1, undefined, 5))
-    ```
+
+```js
+function sum(a, b = 1, c = 2) {
+    return a + b + c;
+}
+console.log(sum(10, undefined, undefined))
+console.log(sum(11))
+console.log(sum(1, undefined, 5))
+```
 
 - [扩展]对**arguments**的影响
 
   - 只要给函数加上参数默认值，该函数会自动变量严格模式下的规则：arguments和形参脱离
 
-  - ```js
-    function getContainer() {
-        console.log("abc");
-        return document.getElementById("container");
+
+```js
+function getContainer() {
+    console.log("abc");
+    return document.getElementById("container");
+}
+
+/**
+ * 创建一个元素
+ * @param {*} name 元素的名称 
+ * @param {*} container 元素的父元素
+ * @param {*} content 元素的内容 
+ */
+function createElement(name = "div", container = getContainer(), content = "") {
+    const ele = document.createElement(name)
+    if (content) {
+        ele.innerHTML = content;
     }
-    
-    /**
-     * 创建一个元素
-     * @param {*} name 元素的名称 
-     * @param {*} container 元素的父元素
-     * @param {*} content 元素的内容 
-     */
-    function createElement(name = "div", container = getContainer(), content = "") {
-        const ele = document.createElement(name)
-        if (content) {
-            ele.innerHTML = content;
-        }
-        container.appendChild(ele);
-    }
-    
-    createElement(undefined, undefined, "手动阀手动阀十分")
-    createElement(undefined, undefined, "234242342424")
-    createElement(undefined, document.getElementById("container"), "234242342424")
-    ```
+    container.appendChild(ele);
+}
+
+createElement(undefined, undefined, "手动阀手动阀十分")
+createElement(undefined, undefined, "234242342424")
+createElement(undefined, document.getElementById("container"), "234242342424")
+```
 
 - [扩展]留意暂时性死区
 
   - 形参和`ES6`中的`let`或`const`声明一样，具有作用域，并且根据参数的声明顺序，存在暂时性死区。
 
-  - ```js
-    function test(a, b = 1) {
-        console.log("arugments", arguments[0], arguments[1]);
-        console.log("a:", a, "b:", b);
-        a = 3;
-        console.log("arugments", arguments[0], arguments[1]);
-        console.log("a:", a, "b:", b);
-    }
-    
-    test(1, 2);
-    ```
+
+```js
+function test(a, b = 1) {
+    console.log("arugments", arguments[0], arguments[1]);
+    console.log("a:", a, "b:", b);
+    a = 3;
+    console.log("arugments", arguments[0], arguments[1]);
+    console.log("a:", a, "b:", b);
+}
+
+test(1, 2);
+```
 
 ### 剩余参数
 
@@ -313,47 +321,49 @@ arr[7]();
 
   - 语法:
 
-  - ```js
-    function (...形参名){
-    
-    }
-    ```
+
+```js
+function (...形参名){
+
+}
+```
 
 - 实例
 
-  - ```js
-    function test(a, b, ...args) {
-        
-    }
-    
-    test(1, 32, 46, 7, 34); 
-    ```
 
-  - ```js
-    function sum(...args) {
-        //args收集了所有的参数，形成的一个数组
-        let sum = 0;
-        for (let i = 0; i < args.length; i++) {
-            sum += args[i];
-        }
-        return sum;
-    }
+```js
+function test(a, b, ...args) {
     
-    console.log(sum())
-    console.log(sum(1))
-    console.log(sum(1, 2))
-    console.log(sum(1, 2, 3))
-    console.log(sum(1, 2, 3, 4))
-    ```
+}
 
-  - ```js
-    function test(...args1, ...args2) {
-        console.log(args1)
-        console.log(args2)
+test(1, 32, 46, 7, 34); 
+```
+
+```js
+function sum(...args) {
+    //args收集了所有的参数，形成的一个数组
+    let sum = 0;
+    for (let i = 0; i < args.length; i++) {
+        sum += args[i];
     }
-    
-    test(1, 32, 46, 7, 34);
-    ```
+    return sum;
+}
+
+console.log(sum())
+console.log(sum(1))
+console.log(sum(1, 2))
+console.log(sum(1, 2, 3))
+console.log(sum(1, 2, 3, 4))
+```
+
+```js
+function test(...args1, ...args2) {
+    console.log(args1)
+    console.log(args2)
+}
+
+test(1, 32, 46, 7, 34);
+```
 
 - **细节：**
   - 一个函数，仅能出现一个剩余参数
@@ -365,102 +375,106 @@ arr[7]();
 
 - 对数组展开 **ES6**
 
-  - ```js
-    const arr1 = [3, 67, 8, 5];
-    
-    //克隆arr1数组到arr2
-    
-    const arr2 = [0, ...arr1, 1];
-    
-    console.log(arr2, arr1 === arr2)
-    ```
+
+```js
+const arr1 = [3, 67, 8, 5];
+
+//克隆arr1数组到arr2
+
+const arr2 = [0, ...arr1, 1];
+
+console.log(arr2, arr1 === arr2)
+```
 
 - 对对象展开 **ES7**
 
-  - ```js
-    const obj1 = {
-        name: "成哥",
-        age: 18,
-        love: "邓嫂",
-        address: {
-            country: "中国",
-            province: "黑龙江",
-            city: "哈尔滨"
-        }
+
+```js
+const obj1 = {
+    name: "成哥",
+    age: 18,
+    love: "邓嫂",
+    address: {
+        country: "中国",
+        province: "黑龙江",
+        city: "哈尔滨"
     }
-    
-    // 浅克隆到obj2
-    
-    const obj2 = {
-        ...obj1,
-        name: "邓哥"
-    };
-    
-    console.log(obj2)
-    
-    console.log(obj1.address === obj2.address)
-    ```
+}
+
+// 浅克隆到obj2
+
+const obj2 = {
+    ...obj1,
+    name: "邓哥"
+};
+
+console.log(obj2)
+
+console.log(obj1.address === obj2.address)
+```
 
 - 实例
 
-  - ```js
-    const obj1 = {
-        name: "成哥",
-        age: 18,
-        loves: ["邓嫂", "成嫂1", "成嫂2"],
-        address: {
-            country: "中国",
-            province: "黑龙江",
-            city: "哈尔滨"
-        }
-    }
-    
-    // 浅克隆到obj2
-    const obj2 = {
-        ...obj1,
-        name: "邓哥",
-        address: {
-            ...obj1.address
-        },
-        loves: [...obj1.loves, "成嫂3"]
-    };
-    
-    console.log(obj2)
-    
-    console.log(obj1.loves === obj2.loves)
-    ```
 
-  - ```js
-    /**
-     * 对所有数字求和
-     * @param  {...any} args 
-     */
-    function sum(...args) {
-        let sum = 0;
-        for (let i = 0; i < args.length; i++) {
-            sum += args[i];
-        }
-        return sum;
+```js
+const obj1 = {
+    name: "成哥",
+    age: 18,
+    loves: ["邓嫂", "成嫂1", "成嫂2"],
+    address: {
+        country: "中国",
+        province: "黑龙江",
+        city: "哈尔滨"
     }
-    
-    /**
-     * 获取一个指定长度的随机数组成的数组
-     * @param {*} length 
-     */
-    function getRandomNumbers(length) {
-        const arr = [];
-        for (let i = 0; i < length; i++) {
-            arr.push(Math.random());
-        }
-        return arr;
+}
+
+// 浅克隆到obj2
+const obj2 = {
+    ...obj1,
+    name: "邓哥",
+    address: {
+        ...obj1.address
+    },
+    loves: [...obj1.loves, "成嫂3"]
+};
+
+console.log(obj2)
+
+console.log(obj1.loves === obj2.loves)
+```
+
+```js
+/**
+ * 对所有数字求和
+ * @param  {...any} args 
+ */
+function sum(...args) {
+    let sum = 0;
+    for (let i = 0; i < args.length; i++) {
+        sum += args[i];
     }
-    
-    const numbers = getRandomNumbers(10);
-    //将数组的每一项展开，依次作为参数传递，而不是把整个数组作为一个参数传递
-    // sum(numbers)
-    
-    console.log(sum(...numbers))//相当于传递了10个参数
-    console.log(sum(1, 3, ...numbers, 3, 5))
+    return sum;
+}
+
+/**
+ * 获取一个指定长度的随机数组成的数组
+ * @param {*} length 
+ */
+function getRandomNumbers(length) {
+    const arr = [];
+    for (let i = 0; i < length; i++) {
+        arr.push(Math.random());
+    }
+    return arr;
+}
+
+const numbers = getRandomNumbers(10);
+//将数组的每一项展开，依次作为参数传递，而不是把整个数组作为一个参数传递
+// sum(numbers)
+
+console.log(sum(...numbers))//相当于传递了10个参数
+console.log(sum(1, 3, ...numbers, 3, 5))
+```
 
 ### 确函数的双重用途
 
@@ -472,34 +486,34 @@ new.target
 //如果使用new调用函数，则得到的是new关键字后面的函数本身
 ```
 
-- ```js
-  function Person(firstName, lastName) {
-      //判断是否是使用new的方式来调用的函数
-  
-      // //过去的判断方式
-      // if (!(this instanceof Person)) {
-      //     throw new Error("该函数没有使用new来调用")
-      // }
-  
-      if (new.target === undefined) {
-          throw new Error("该函数没有使用new来调用")
-      }
-      this.firstName = firstName;
-      this.lastName = lastName;
-      this.fullName = `${firstName} ${lastName}`;
-  }
-  
-  const p1 = new Person("袁", "进");
-  console.log(p1)
-  
-  
-  
-  const p2 = Person("袁", "进");
-  console.log(p2);
-  
-  const p3 = Person.call(p1, "袁", "进")
-  console.log(p3);
-  ```
+```js
+function Person(firstName, lastName) {
+    //判断是否是使用new的方式来调用的函数
+
+    // //过去的判断方式
+    // if (!(this instanceof Person)) {
+    //     throw new Error("该函数没有使用new来调用")
+    // }
+
+    if (new.target === undefined) {
+        throw new Error("该函数没有使用new来调用")
+    }
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.fullName = `${firstName} ${lastName}`;
+}
+
+const p1 = new Person("袁", "进");
+console.log(p1)
+
+
+
+const p2 = Person("袁", "进");
+console.log(p2);
+
+const p3 = Person.call(p1, "袁", "进")
+console.log(p3);
+```
 
 ### 箭头函数
 
@@ -521,33 +535,36 @@ new.target
 
   - 完整语法：
 
-    - ```js
-      (参数1, 参数2, ...)=>{
-          //函数体
-      }
-      
-      const isOdd = (num) => {
-          return num % 2 !== 0;
-      }
-      ```
 
-  - 如果参数只有一个，可以省略小括号
+```js
+(参数1, 参数2, ...)=>{
+    //函数体
+}
 
-    - ```js
-      参数 => const print = num => {console.log("给我的数字是：", num)}
-      ```
+const isOdd = (num) => {
+    return num % 2 !== 0;
+}
+```
 
-  - 如果箭头函数只有一条返回语句，可以省略大括号，和`return`关键字
+- 如果参数只有一个，可以省略小括号
 
-    - ```js
-      参数 => 返回值
-      ```
 
-  - 注意细节
+```js
+参数 => const print = num => {console.log("给我的数字是：", num)}
+```
 
-    - 箭头函数中，不存在`this`、`arguments`、`new.target`，如果使用了，则使用的是函数外层的对应的`this`、`arguments`、`new.target`
-    - 箭头函数没有原型
-    - 箭头函数不能作用构造函数使用
+- 如果箭头函数只有一条返回语句，可以省略大括号，和`return`关键字
+
+
+```js
+参数 => 返回值
+```
+
+- 注意细节
+
+  - 箭头函数中，不存在`this`、`arguments`、`new.target`，如果使用了，则使用的是函数外层的对应的`this`、`arguments`、`new.target`
+  - 箭头函数没有原型
+  - 箭头函数不能作用构造函数使用
 
 - 应用场景
 
@@ -560,166 +577,172 @@ new.target
 
 - 实例
 
-  - ```js
-    //原来的函数
-    function sum(a,b) {
-        return a + b;
+
+```js
+//原来的函数
+function sum(a,b) {
+    return a + b;
+}
+
+//箭头函数
+//求和,可以不写return，但是函数体需要在箭头后面
+let sum = (a,b) => a + b;
+
+//对象,如果想返回对象，则需要将对象变为函数表达式，大括号外面加一层括号,({})
+let sum = (a,b) => ({a:a,b:b});
+```
+
+- 例：高阶函数
+
+
+```js
+//高阶函数：如果一个函数接受一个参数以后，如果返回一个函数的话就是高阶函数，或者这个函数能够接受一个参数，这个参数是一个函数的话也是高阶函数
+
+//普通形式
+function sum(x) {
+	return function(y) {
+        return function (z) {
+            return x + y + z;
+        }
     }
+}
+var sum1 = sum(1);
+var sum2 = sum1(2);
+console.log(sum2(3));
+
+//箭头函数形式
+let sum = (x) => {
+    return (y) => {
+        return (z) => {
+            return x + y + z;
+        }
+    }
+}
+//当去掉return时就变为下面的形式了
+//当箭头函数的形参只有一个时，是可以去掉参数的括号，但是当形参有一个以上的情况下，需要括上括号
+let sum = (x) => (y) => (z) => x + y + z;
+sum(1)(2)(3);
+```
+
+- 不能`new`
+
+
+```js
+let sum = () => {
+    this.a = 10;
+}
+
+new sum();//会报错
+//arrow.js:33 Uncaught TypeError: sum is not a constructor at arrow.js:33
+//sum.prototype => undefined
+```
+
+- 形式区分：
+
+
+```js
+//函数形式
+let sum = () => {
     
-    //箭头函数
-    //求和,可以不写return，但是函数体需要在箭头后面
-    let sum = (a,b) => a + b;
-    
-    //对象,如果想返回对象，则需要将对象变为函数表达式，大括号外面加一层括号,({})
-    let sum = (a,b) => ({a:a,b:b});
-    ```
+};
+sum();
 
-  - 例：高阶函数
+//对象形式
+let obj = {
+    fn: () => {
+        
+    }
+}
+obj.fn();
 
-    - ```js
-      //高阶函数：如果一个函数接受一个参数以后，如果返回一个函数的话就是高阶函数，或者这个函数能够接受一个参数，这个参数是一个函数的话也是高阶函数
-      
-      //普通形式
-      function sum(x) {
-      	return function(y) {
-              return function (z) {
-                  return x + y + z;
-              }
-          }
-      }
-      var sum1 = sum(1);
-      var sum2 = sum1(2);
-      console.log(sum2(3));
-      
-      //箭头函数形式
-      let sum = (x) => {
-          return (y) => {
-              return (z) => {
-                  return x + y + z;
-              }
-          }
-      }
-      //当去掉return时就变为下面的形式了
-      //当箭头函数的形参只有一个时，是可以去掉参数的括号，但是当形参有一个以上的情况下，需要括上括号
-      let sum = (x) => (y) => (z) => x + y + z;
-      sum(1)(2)(3);
-      ```
+//数组形式
+let arr = [() => {}]
+arr[0()];
 
-  - 不能`new`
+//同时也可以返回值也可以是箭头函数
+return () => {}
+```
 
-    - ```js
-      let sum = () => {
-          this.a = 10;
-      }
-      
-      new sum();//会报错
-      //arrow.js:33 Uncaught TypeError: sum is not a constructor at arrow.js:33
-      //sum.prototype => undefined
-      ```
+- **arguments**特点
 
-  - 形式区分：
 
-    - ```js
-      //函数形式
-      let sum = () => {
-          
-      };
-      sum();
-      
-      //对象形式
-      let obj = {
-          fn: () => {
-              
-          }
-      }
-      obj.fn();
-      
-      //数组形式
-      let arr = [() => {}]
-      arr[0()];
-      
-      //同时也可以返回值也可以是箭头函数
-      return () => {}
-      ```
+```js
+//内部arguments、this 由定义时外围最接近一层的非箭头函数的arguments和this决定其值，也就是说箭头函数的外围不是箭头函数才会有arguments
 
-  - **arguments**特点
+function outer() {
+    //arguments
+    //9 10 11
+    let sum = (a,b) => {
+        console.log(arguments,a,b);
+        //这个输出的argument就是outer的arguments，箭头函数本身没有arguments
+    };
+    sum(1,2);
+}
+outer(9,10,11);
 
-    - ```js
-      //内部arguments、this 由定义时外围最接近一层的非箭头函数的arguments和this决定其值，也就是说箭头函数的外围不是箭头函数才会有arguments
-      
-      function outer() {
-          //arguments
-          //9 10 11
-          let sum = (a,b) => {
-              console.log(arguments,a,b);
-              //这个输出的argument就是outer的arguments，箭头函数本身没有arguments
-          };
-          sum(1,2);
-      }
-      outer(9,10,11);
-      
-      
-      //当函数需要返回外围函数的arguments时，可以使用箭头函数
-      
-      function Curry() {
-          /* 
-          var arg = arguments;
-          return function() {
-             console.log(arg,arguments)
-          	//如果不使用箭头函数，这个arguments就是这个函数本身的arguments，就需要外围声明一个变量储存arguments
-          } 
-          */
-          return () => {
-              console.log(arguments);
-          }
-      }
-      Curry(1,2,3);
-      ```
 
-  - **this**特点
+//当函数需要返回外围函数的arguments时，可以使用箭头函数
 
-    - ```js
-      //当箭头函数外围没有非箭头函数时，则this等于window
-      var a = 'outerObj';
-      let obj = {
-          a:"innserObj",
-          fn: () => {
-              // this => window
-              console.log(this.a);//outerObj
-          }
-      }
-      obj.fn();
-      ```
+function Curry() {
+    /* 
+    var arg = arguments;
+    return function() {
+       console.log(arg,arguments)
+    	//如果不使用箭头函数，这个arguments就是这个函数本身的arguments，就需要外围声明一个变量储存arguments
+    } 
+    */
+    return () => {
+        console.log(arguments);
+    }
+}
+Curry(1,2,3);
+```
 
-    - ```js
-      var a = 'outerObj';
-      let obj = {
-          a: 'innerObj',
-          //fn() {}就相当于fn: function(){}
-          fn() {
-              let sum = () => {
-                  //this => window，这时外围就有了非箭头函数了，this指向也就变味了obj
-                  console.log(this.a); //innserObj
-              }
-              return sum;
-          }
-      }
-      let outerSum = obj.fn();
-      outerSum();
-      ```
+- **this**特点
 
-    - ```js
-      let obj = {
-          ms: 'abc',
-          fn() {
-              // var self = this;
-              setTimeout(() => {
-                  console.log(this.ms);
-              },500)
-          }
-      };
-      obj.fn();
-      ```
+
+```js
+//当箭头函数外围没有非箭头函数时，则this等于window
+var a = 'outerObj';
+let obj = {
+    a:"innserObj",
+    fn: () => {
+        // this => window
+        console.log(this.a);//outerObj
+    }
+}
+obj.fn();
+```
+
+```js
+var a = 'outerObj';
+let obj = {
+    a: 'innerObj',
+    //fn() {}就相当于fn: function(){}
+    fn() {
+        let sum = () => {
+            //this => window，这时外围就有了非箭头函数了，this指向也就变味了obj
+            console.log(this.a); //innserObj
+        }
+        return sum;
+    }
+}
+let outerSum = obj.fn();
+outerSum();
+```
+
+```js
+let obj = {
+    ms: 'abc',
+    fn() {
+        // var self = this;
+        setTimeout(() => {
+            console.log(this.ms);
+        },500)
+    }
+};
+obj.fn();
+```
 
 ## 对象
 
@@ -736,24 +759,25 @@ new.target
 
   - 有的时候，初始化对象时，某些属性名可能来自于某个表达式的值，在`ES6`，可以使用中括号来表示该属性名是通过计算得到的。
 
-- ```js
-  const prop1 = "name2";
-  const prop2 = "age2";
-  const prop3 = "sayHello2";
-  
-  const user = {
-      [prop1]: "姬成",
-      [prop2]: 100,
-      // 方法可以省略冒号和关键字
-      [prop3](){
-          console.log(this[prop1], this[prop2])
-      }
-  }
-  
-  user[prop3]();
-  
-  console.log(user)
-  ```
+
+```js
+const prop1 = "name2";
+const prop2 = "age2";
+const prop3 = "sayHello2";
+
+const user = {
+    [prop1]: "姬成",
+    [prop2]: 100,
+    // 方法可以省略冒号和关键字
+    [prop3](){
+        console.log(this[prop1], this[prop2])
+    }
+}
+
+user[prop3]();
+
+console.log(user)
+```
 
 ### Object的新增API
 
@@ -774,26 +798,27 @@ new.target
 
 - 实例
 
-  - ```js
-    console.log(NaN === NaN); // false
-    console.log(+0 === -0);  // true
-    
-    console.log(Object.is(NaN, NaN)) //true
-    console.log(Object.is(+0, -0)) // false
-    ```
 
-  - ```js
-    const obj1 = {
-        a: 1
-    }
-    const obj2 = {
-        b: 2
-    }
-    
-    // obj1.__proto__ = obj2
-    Object.setPrototypeOf(obj1, obj2)
-    console.log(obj1)
-    ```
+```js
+console.log(NaN === NaN); // false
+console.log(+0 === -0);  // true
+
+console.log(Object.is(NaN, NaN)) //true
+console.log(Object.is(+0, -0)) // false
+```
+
+```js
+const obj1 = {
+    a: 1
+}
+const obj2 = {
+    b: 2
+}
+
+// obj1.__proto__ = obj2
+Object.setPrototypeOf(obj1, obj2)
+console.log(obj1)
+```
 
 ### Object.defineProperty
 
@@ -818,92 +843,96 @@ new.target
 
       - **enumerable**：`true` 是否可枚举。默认`false`
 
-      - ```js
-        let obj = {
-            name: 'cst'
-        }
-        
-        //value,对象中的值
-        console.log(obj.name);
-        //writable true(可写)
-        obj.name = 'yz'
-        //configurable true,delete对象(可配置)
-        delete obj.name
-        //enumerable true,枚举(可枚举)
-        for(var prop in obj) {
-            console.log(prop);
-        }
-        
-        
-        //writable false(不可写)
-        Function.prototype
-        //configurable false(不可配置)
-        var a = 10; window.a;//window全局变量不可被删
-        //enumerable false(不可枚举)
-        Object.prototype
-        ```
 
-    - 存取描述符
+```js
+let obj = {
+    name: 'cst'
+}
 
-      - **set**：`function(){}` 属性访问器 进行写操作时调用该方法
+//value,对象中的值
+console.log(obj.name);
+//writable true(可写)
+obj.name = 'yz'
+//configurable true,delete对象(可配置)
+delete obj.name
+//enumerable true,枚举(可枚举)
+for(var prop in obj) {
+    console.log(prop);
+}
 
-        - ```js
-          var obj = {
-              tempValue: 'duyi',
-              //set更改时需要传入value，进行更改
-              set name(value) {
-                 this.tempValue = value;
-                  //将原属性更改为value
-              }
-          }
-          obj.name = 10;//传入value
-          ```
 
-      - **get**：`function(){}` 属性访问器 进行读操作时调用该方法
+//writable false(不可写)
+Function.prototype
+//configurable false(不可配置)
+var a = 10; window.a;//window全局变量不可被删
+//enumerable false(不可枚举)
+Object.prototype
+```
 
-        - ```js
-          var obj = {
-              tempValue: 'duyi',
-              get name() {
-                  return this.tempValue;
-                  //get取出的是方法返回的值
-              }
-          }
-          ```
+- 存取描述符
 
-    - 注意：
+  - **set**：`function(){}` 属性访问器 进行写操作时调用该方法
 
-      - 如果描述中同时出现`value`、`writable`和`set`、`get`两组的话，会出现异常，切记不要同时使用
 
-    - 作用：
+```js
+var obj = {
+    tempValue: 'duyi',
+    //set更改时需要传入value，进行更改
+    set name(value) {
+       this.tempValue = value;
+        //将原属性更改为value
+    }
+}
+obj.name = 10;//传入value
+```
 
-      - 双向数据绑定的核心方法，主要做数据劫持操作（监控属性变化），同时是后期`ES6`中很多语法糖底层实现的核心方法
+- **get**：`function(){}` 属性访问器 进行读操作时调用该方法
 
-  - 实例
 
-    - ```js
-      var obj = {
-      
-      };
-      
-      var tempValue = '';
-      
-      Object.defineProperty(obj,'name',{
-          //value: 'cst', //value
-          //writable: false, //不可写
-          configurable: true, //可配置
-          enumerable: true, //可枚举
-          //有get和set就不能有value和writable，二者取其一
-          get: function() {
-              return tempValue;
-          },
-          set: function(value) {
-              tempValue = value;
-          }
-      });
-      
-      obj.name = 10;
-      ```
+```js
+var obj = {
+    tempValue: 'duyi',
+    get name() {
+        return this.tempValue;
+        //get取出的是方法返回的值
+    }
+}
+```
+
+- 注意：
+
+  - 如果描述中同时出现`value`、`writable`和`set`、`get`两组的话，会出现异常，切记不要同时使用
+
+- 作用：
+
+  - 双向数据绑定的核心方法，主要做数据劫持操作（监控属性变化），同时是后期`ES6`中很多语法糖底层实现的核心方法
+
+- 实例
+
+
+```js
+var obj = {
+
+};
+
+var tempValue = '';
+
+Object.defineProperty(obj,'name',{
+    //value: 'cst', //value
+    //writable: false, //不可写
+    configurable: true, //可配置
+    enumerable: true, //可枚举
+    //有get和set就不能有value和writable，二者取其一
+    get: function() {
+        return tempValue;
+    },
+    set: function(value) {
+        tempValue = value;
+    }
+});
+
+obj.name = 10;
+```
 
 ### 数据劫持
 
@@ -912,64 +941,65 @@ new.target
   - `Observer`:检测数据变化进行相应回调（数据劫持）
   - 实现一个简单的数据劫持，作为`Object.defineProperty`的练习。从而引出`Proxy`&`Reflect`
 
-- ```js
-  <input type="text" id="demo">
-  <div id="show"></div>
-  
-  var oDiv = document.getElementById('show'),
-      oInput = document.getElementById('demo');
-  
-  var oData = {
-      valueObj: {
-          value:'cc'
-      },
-      value: 'duyi'
-  };
-  
-  oInput.oninput = function() {
-      oData.value = this.value;
-  }
-  
-  //更新显示函数
-  function upDate() {
-      oDiv.innerText = oData.value;
-      // oDiv.innerText = oData.valueObj.value; //监控对象中的对象
-  }
-  upDate();
-  
-  
-  //监控对象的某个属性是否发生改变
-  function Observer(data) {
-      //判断是否是对象
-      if(!data || typeof data != 'object') {
-          return data;
-      };
-      //循环判断
-      // for(var prop in data) {}
-      //Object.keys(data)，可以将对象中的每个属性都放到数组中
-      Object.keys(data).forEach(function(key) {
-          defineRective(data,key,data[key]);
-      })
-  }
-  
-  //监控函数
-  function defineRective(data,key,val) {
-      //AO
-      Observer(val);
-      Object.defineProperty(data,key,{
-          get () {
-              return val;
-          },
-          set (newValue) {
-              if(newValue == val) return;
-              val = newValue;
-              upDate();
-          }
-      })
-  }
-  
-  Observer(oData);
-  ```
+
+```js
+<input type="text" id="demo">
+<div id="show"></div>
+
+var oDiv = document.getElementById('show'),
+    oInput = document.getElementById('demo');
+
+var oData = {
+    valueObj: {
+        value:'cc'
+    },
+    value: 'duyi'
+};
+
+oInput.oninput = function() {
+    oData.value = this.value;
+}
+
+//更新显示函数
+function upDate() {
+    oDiv.innerText = oData.value;
+    // oDiv.innerText = oData.valueObj.value; //监控对象中的对象
+}
+upDate();
+
+
+//监控对象的某个属性是否发生改变
+function Observer(data) {
+    //判断是否是对象
+    if(!data || typeof data != 'object') {
+        return data;
+    };
+    //循环判断
+    // for(var prop in data) {}
+    //Object.keys(data)，可以将对象中的每个属性都放到数组中
+    Object.keys(data).forEach(function(key) {
+        defineRective(data,key,data[key]);
+    })
+}
+
+//监控函数
+function defineRective(data,key,val) {
+    //AO
+    Observer(val);
+    Object.defineProperty(data,key,{
+        get () {
+            return val;
+        },
+        set (newValue) {
+            if(newValue == val) return;
+            val = newValue;
+            upDate();
+        }
+    })
+}
+
+Observer(oData);
+```
 
 ### proxy & reflect
 
@@ -1000,42 +1030,43 @@ new.target
 - 总结
   - 利用内置的`set`、`get`方法控制属性的读写功能用处比较大，其余`has`、`deleProperty`...等方法不太在工作开发中使用，但是兼容性不太好
 
-- ```js
-  //初始对象
-  let oData = {
-      val: 'duyi',
-      _val: 'zzz'
-  }
-  
-  //代理函数,oProxyData
-  let oProxyData = new Proxy(oData,{
-      //进行参数读写控制
-      set (target,key,value,receiver) {
-          //传入参数
-          Reflect.set(target.key,value);
-          upData();
-      },
-      get (target,key,value,receiver) {
-          //获取对象并获取其中的属性值
-          Reflect.get(target,key);
-      },
-      has (target,key) {
-          //判断属性是否有_，如果有则为false，否则key in oData
-          return key.indexOf('_') != -1 ? false : key in oData;
-      }
-  })
-  
-  //读写 控制
-  console.log('_val' in oProxy);
-  //读
-  console.log(oProxy.val);
-  //写
-  oProxy.val = 10;
-  
-  function upData() {
-      console.log('更新了');
-  }
-  ```
+
+```js
+//初始对象
+let oData = {
+    val: 'duyi',
+    _val: 'zzz'
+}
+
+//代理函数,oProxyData
+let oProxyData = new Proxy(oData,{
+    //进行参数读写控制
+    set (target,key,value,receiver) {
+        //传入参数
+        Reflect.set(target.key,value);
+        upData();
+    },
+    get (target,key,value,receiver) {
+        //获取对象并获取其中的属性值
+        Reflect.get(target,key);
+    },
+    has (target,key) {
+        //判断属性是否有_，如果有则为false，否则key in oData
+        return key.indexOf('_') != -1 ? false : key in oData;
+    }
+})
+
+//读写 控制
+console.log('_val' in oProxy);
+//读
+console.log(oProxy.val);
+//写
+oProxy.val = 10;
+
+function upData() {
+    console.log('更新了');
+}
+```
 
 ### 面向对象简介
 
@@ -1054,51 +1085,52 @@ new.target
     - 相对于复杂业务为了做到功能复用，降低项目开发的复杂度，需要这种思想，比如，前端校验和写一个校验器，而不是面向过程每次需要验证都一条线的下来编写
     - 目前前端主流框架`vue`、`react`都是采用面向对象的方式来做，以及进入公司进行高级开发，组件研发，制作功能模块，也需要采取这样的思想做事
 
-- ```js
-  /**
-   * 大象
-   */
-  function Elephant() {
-  
-  }
-  
-  /**
-   * 冰箱
-   */
-  function Frige() {
-  
-  }
-  
-  Frige.prototype.openDoor = function () {
-  
-  }
-  
-  Frige.prototype.closeDoor = function () {
-  
-  }
-  
-  Frige.prototype.join = function(something){
-      this.openDoor();
-      //装东西
-  
-      this.closeDoor();
-  }
-  
-  //1. 冰箱门打开
-  // var frig = new Frige();
-  // frig.openDoor();
-  
-  // //2. 大象装进去
-  // var ele = new Elephant();
-  // frig.join(ele);
-  
-  // //3. 冰箱门关上
-  // frig.closeDoor();
-  
-  var frig = new Frige();
-  
-  frig.join(new Elephant());
-  ```
+
+```js
+/**
+ * 大象
+ */
+function Elephant() {
+
+}
+
+/**
+ * 冰箱
+ */
+function Frige() {
+
+}
+
+Frige.prototype.openDoor = function () {
+
+}
+
+Frige.prototype.closeDoor = function () {
+
+}
+
+Frige.prototype.join = function(something){
+    this.openDoor();
+    //装东西
+
+    this.closeDoor();
+}
+
+//1. 冰箱门打开
+// var frig = new Frige();
+// frig.openDoor();
+
+// //2. 大象装进去
+// var ele = new Elephant();
+// frig.join(ele);
+
+// //3. 冰箱门关上
+// frig.closeDoor();
+
+var frig = new Frige();
+
+frig.join(new Elephant());
+```
 
 ### 类-Class
 
@@ -1117,34 +1149,35 @@ new.target
   - 类的所有方法都无法被当作构造函数使用
   - 类的构造器必须使用 `new` 来调用
 
-- ```js
-  // 类 class
-  // 不可以 var、let，它是一个语法糖，本质还是function
-  class Animal {
-      // 私有属性 cunstructor
-      constructor(type, name, age, sex) {
-          this.type = type;
-          this.name = name;
-          this.age = age;
-          this.sex = sex;
-      }
-  
-      // 公有属性（相当于给原型添加属性）
-      print() {
-          console.log(`【种类】：${this.type}`);
-          console.log(`【名字】：${this.name}`);
-          console.log(`【年龄】：${this.age}`);
-          console.log(`【性别】：${this.sex}`);
-      }
-  }
-  
-  const a = new Animal("狗", "旺财", 3, "男");
-  a.print();
-  
-  for (const prop in a) {
-      console.log(prop)
-  }
-  ```
+
+```js
+// 类 class
+// 不可以 var、let，它是一个语法糖，本质还是function
+class Animal {
+    // 私有属性 cunstructor
+    constructor(type, name, age, sex) {
+        this.type = type;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+
+    // 公有属性（相当于给原型添加属性）
+    print() {
+        console.log(`【种类】：${this.type}`);
+        console.log(`【名字】：${this.name}`);
+        console.log(`【年龄】：${this.age}`);
+        console.log(`【性别】：${this.sex}`);
+    }
+}
+
+const a = new Animal("狗", "旺财", 3, "男");
+a.print();
+
+for (const prop in a) {
+    console.log(prop)
+}
+```
 
 #### 类的其他书写方式
 
@@ -1164,81 +1197,82 @@ new.target
 
 - 实例
 
-  - ```js
-    // getter setter
-    
-    const printName = "print";
-    
-    class Animal {
-        constructor(type, name, age, sex) {
-            this.type = type;
-            this.name = name;
-            this.age = age;
-            this.sex = sex;
-        }
-    
-        //创建一个age属性，并给它加上getter，读取该属性时，会运行该函数
-        get age() {
-            return this._age + "岁";
-        }
-    
-        //创建一个age属性，并给它加上setter，给该属性赋值时，会运行该函数
-        set age(age) {
-            if (typeof age !== "number") {
-                throw new TypeError("age property must be a number");
-            }
-            if (age < 0) {
-                age = 0;
-            }
-            else if (age > 1000) {
-                age = 1000;
-            }
-            this._age = age;
-        }
-    
-        [printName]() {
-            console.log(`【种类】：${this.type}`);
-            console.log(`【名字】：${this.name}`);
-            console.log(`【年龄】：${this.age}`);
-            console.log(`【性别】：${this.sex}`);
-        }
-    }
-    
-    var a = new Animal("狗", "旺财", 3, "男");
-    ```
 
-  - ```js
-    // static 静态属性
-    
-    class Chess {
-        constructor(name) {
-            this.name = name;
-        }
-    	// static 静态属性
-        static width = 50;
-        static height = 50;
-        static method() {
-    
-        }
-    }
-    
-    console.log(Chess.width)
-    console.log(Chess.height)
-    
-    Chess.method();
-    ```
+```js
+// getter setter
 
-  - ```js
-    // 类表达式
-    
-    const A = class { //匿名类，类表达式
-        a = 1;
-        b = 2;
+const printName = "print";
+
+class Animal {
+    constructor(type, name, age, sex) {
+        this.type = type;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
     }
-    
-    const a = new A();
-    console.log(a)
-    ```
+
+    //创建一个age属性，并给它加上getter，读取该属性时，会运行该函数
+    get age() {
+        return this._age + "岁";
+    }
+
+    //创建一个age属性，并给它加上setter，给该属性赋值时，会运行该函数
+    set age(age) {
+        if (typeof age !== "number") {
+            throw new TypeError("age property must be a number");
+        }
+        if (age < 0) {
+            age = 0;
+        }
+        else if (age > 1000) {
+            age = 1000;
+        }
+        this._age = age;
+    }
+
+    [printName]() {
+        console.log(`【种类】：${this.type}`);
+        console.log(`【名字】：${this.name}`);
+        console.log(`【年龄】：${this.age}`);
+        console.log(`【性别】：${this.sex}`);
+    }
+}
+
+var a = new Animal("狗", "旺财", 3, "男");
+```
+
+```js
+// static 静态属性
+
+class Chess {
+    constructor(name) {
+        this.name = name;
+    }
+	// static 静态属性
+    static width = 50;
+    static height = 50;
+    static method() {
+
+    }
+}
+
+console.log(Chess.width)
+console.log(Chess.height)
+
+Chess.method();
+```
+
+```js
+// 类表达式
+
+const A = class { //匿名类，类表达式
+    a = 1;
+    b = 2;
+}
+
+const a = new A();
+console.log(a)
+```
 
 #### 类的继承
 
@@ -1265,238 +1299,239 @@ new.target
     - 抽象类：一般是父类，不能通过该类创建对象
   - 正常情况下，`this`的指向，`this`始终指向具体的类的对象
 
-- ```js
-  // ES5构造函数
-  function Animal(type, name, age, sex) {
-      this.type = type;
-      this.name = name;
-      this.age = age;
-      this.sex = sex;
-  }
-  Animal.prototype.print = function () {
-      console.log(`【种类】：${this.type}`);
-      console.log(`【名字】：${this.name}`);
-      console.log(`【年龄】：${this.age}`);
-      console.log(`【性别】：${this.sex}`);
-  }
-  
-  function Dog(name, age, sex) {
-      //借用父类的构造函数
-      Animal.call(this, "犬类", name, age, sex);
-  }
-  
-  Object.setPrototypeOf(Dog.prototype, Animal.prototype);
-  
-  const d = new Dog("旺财", 3, "公");
-  d.print();
-  console.log(d);
-  ```
 
-- ```js
-  // ES6 class
-  class Animal {
-      constructor(type, name, age, sex) {
-          if (new.target === Animal) {
-              throw new TypeError("你不能直接创建Animal的对象，应该通过子类创建")
-          }
-          this.type = type;
-          this.name = name;
-          this.age = age;
-          this.sex = sex;
-      }
-  
-      print() {
-          console.log(`【种类】：${this.type}`);
-          console.log(`【名字】：${this.name}`);
-          console.log(`【年龄】：${this.age}`);
-          console.log(`【性别】：${this.sex}`);
-      }
-  
-      jiao() {
-          throw new Error("动物怎么叫的？");
-      }
-  }
-  
-  // 类Dog的prototype继承类Animal的prototype 
-  class Dog extends Animal {
-      constructor(name, age, sex) {
-          // 调用父类的私有属性
-          super("犬类", name, age, sex);
-          // 子类特有的属性
-          this.loves = "吃骨头";
-      }
-  
-      print() {
-          // 调用父类的print
-          super.print();
-          // 自己特有的代码
-          console.log(`【爱好】：${this.loves}`);
-      }
-  
-  
-      //同名方法，会覆盖父类
-      jiao() {
-          console.log("旺旺！");
-      }
-  }
-  
-  //下面的代码逻辑有误
-  const a = new Dog("旺财", 3, "公")
-  a.print();
-  ```
+```js
+// ES5构造函数
+function Animal(type, name, age, sex) {
+    this.type = type;
+    this.name = name;
+    this.age = age;
+    this.sex = sex;
+}
+Animal.prototype.print = function () {
+    console.log(`【种类】：${this.type}`);
+    console.log(`【名字】：${this.name}`);
+    console.log(`【年龄】：${this.age}`);
+    console.log(`【性别】：${this.sex}`);
+}
+
+function Dog(name, age, sex) {
+    //借用父类的构造函数
+    Animal.call(this, "犬类", name, age, sex);
+}
+
+Object.setPrototypeOf(Dog.prototype, Animal.prototype);
+
+const d = new Dog("旺财", 3, "公");
+d.print();
+console.log(d);
+```
+
+```js
+// ES6 class
+class Animal {
+    constructor(type, name, age, sex) {
+        if (new.target === Animal) {
+            throw new TypeError("你不能直接创建Animal的对象，应该通过子类创建")
+        }
+        this.type = type;
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+
+    print() {
+        console.log(`【种类】：${this.type}`);
+        console.log(`【名字】：${this.name}`);
+        console.log(`【年龄】：${this.age}`);
+        console.log(`【性别】：${this.sex}`);
+    }
+
+    jiao() {
+        throw new Error("动物怎么叫的？");
+    }
+}
+
+// 类Dog的prototype继承类Animal的prototype 
+class Dog extends Animal {
+    constructor(name, age, sex) {
+        // 调用父类的私有属性
+        super("犬类", name, age, sex);
+        // 子类特有的属性
+        this.loves = "吃骨头";
+    }
+
+    print() {
+        // 调用父类的print
+        super.print();
+        // 自己特有的代码
+        console.log(`【爱好】：${this.loves}`);
+    }
+
+
+    //同名方法，会覆盖父类
+    jiao() {
+        console.log("旺旺！");
+    }
+}
+
+//下面的代码逻辑有误
+const a = new Dog("旺财", 3, "公")
+a.print();
+```
 
 #### Decorator(装饰器)
 
-- ```js
-  class Test {
-  
-      @Obsolete
-      print() {
-          console.log("print方法")
-      }
-  }
-  
-  function Obsolete(target, methodName, descriptor) {
-      // function Test
-      // print
-      // { value: function print(){}, ... }
-      // console.log(target, methodName, descriptor);
-      const oldFunc = descriptor.value
-      descriptor.value = function (...args) {
-          console.warn(`${methodName}方法已过时`);
-          oldFunc.apply(this, args);
-      }
-  }
-  ```
+```js
+class Test {
 
-- ```js
-  //面向对象
-  //张三
-  let oInput = document.getElementById('inp'),
-      oBtn = document.getElementById('btn');
-  
-  @Skin //修饰类
-  class Search {
-      //静态属性
-          //ES6规范 static num() {return 10;}
-          //ES7规范 static num = 10;
-      //私有属性
-      constructor() {
-          this.keyValue = '';
-      }
-      //装饰器
-      // @名称
-      @myReadOnly //修饰url属性，给url加了装饰器
-      //私有属性
-      url = 'urlA-';
-      
-      @dealData('张三') //修饰原型属性，给getContent加了装饰器
-      //原型属性
-      getContent (a, b) {
-          console.log('向' + this.url + '发送网络请求，数据：' + this.keyValue,a,b);
-          return 10;
-      }
-  }
-  
-  //target：类本身
-  function Skin(target) {
-      target.aa = 10;
-  }
-  
-  let oS = new Search();
-  
-  oInput.oninput = function () {
-      oS.keyValue = this.value;
-  };
-  
-  oBtn.onclick = function () {
-      oS.getContent();
-  };
-  
-  
-  //李四
-  //装饰器
-  //修饰私有属性的描述符属性
-      //configurable
-       //enumerable
-       //initializer
-       //writable
-  //装饰原型上的属性的描述符属性
-      //configurable
-      //enumerable
-      //initializer
-      //writable
-  
-  //装饰私有属性
-  //参数：原型 修饰属性名称 描述符属性
-  function myReadOnly(proto,key,descriptor) {
-      //
-      // console.log(proto,key,descriptor);
-      //可不可写
-      descriptor.writable = false;
-      //initializer()的返回值决定了属性url的值
-      descriptor.initializer = function() {
-          return "urlA-";
-      };
-       //描述符属性：
-       //configurable
-       //enumerable
-       //initializer
-       //writable
-  }
-  //修饰原型属性
-  function dealData (ms) {
-      return function (proto,key,descriptor) {
-          // console.log(proto,key,descriptor);
-          let oldValue = descriptor.value;
-          //代理思想
-          descriptor.value = function() {
-      
-              var urlB = 'urlB-';
-              console.log("向" + urlB + "发送网络请求，数据：" + this.keyValue + " 发送人 " + ms);
-      
-              //先把本来的getContent函数执行一遍，将arguments传给this（oS对象）
-              return oldValue.apply(this,arguments);
-          }
-          //原型描述符属性：
-           //configurable
-           //enumerable
-           //value
-           //writable
-      }
-  }
-  
-  
-  
-  // //面向过程
-  // // 张三
-  // var keyValue = '';
-  // oInput.oninput = function () {
-  //     keyValue = this.value
-  // }
-  // oBtn.onclick = function () {
-  //     newGetContent(keyValue)
-  // }
-  
-  // function getContent (data) {
-  //     //模拟发送网络请求
-  //     var url = 'urlA-';
-  //     console.log('向' + url + '发送网络请求，数据：' + data);
-  // }
-  
-  // //代理
-  // var newGetContent = dealFunc(getContent);
-  
-  // //李四
-  // function dealFunc(func) {
-  //     return function(data) {
-  //         //
-  //         var urlB = 'urlB-';
-  //         console.log('向' + urlB + '发送网络请求，数据：' + data)
-  //         return func.apply(this,arguments);
-  //     }
-  // }
-  ```
+    @Obsolete
+    print() {
+        console.log("print方法")
+    }
+}
+
+function Obsolete(target, methodName, descriptor) {
+    // function Test
+    // print
+    // { value: function print(){}, ... }
+    // console.log(target, methodName, descriptor);
+    const oldFunc = descriptor.value
+    descriptor.value = function (...args) {
+        console.warn(`${methodName}方法已过时`);
+        oldFunc.apply(this, args);
+    }
+}
+```
+
+```js
+//面向对象
+//张三
+let oInput = document.getElementById('inp'),
+    oBtn = document.getElementById('btn');
+
+@Skin //修饰类
+class Search {
+    //静态属性
+        //ES6规范 static num() {return 10;}
+        //ES7规范 static num = 10;
+    //私有属性
+    constructor() {
+        this.keyValue = '';
+    }
+    //装饰器
+    // @名称
+    @myReadOnly //修饰url属性，给url加了装饰器
+    //私有属性
+    url = 'urlA-';
+    
+    @dealData('张三') //修饰原型属性，给getContent加了装饰器
+    //原型属性
+    getContent (a, b) {
+        console.log('向' + this.url + '发送网络请求，数据：' + this.keyValue,a,b);
+        return 10;
+    }
+}
+
+//target：类本身
+function Skin(target) {
+    target.aa = 10;
+}
+
+let oS = new Search();
+
+oInput.oninput = function () {
+    oS.keyValue = this.value;
+};
+
+oBtn.onclick = function () {
+    oS.getContent();
+};
+
+
+//李四
+//装饰器
+//修饰私有属性的描述符属性
+    //configurable
+     //enumerable
+     //initializer
+     //writable
+//装饰原型上的属性的描述符属性
+    //configurable
+    //enumerable
+    //initializer
+    //writable
+
+//装饰私有属性
+//参数：原型 修饰属性名称 描述符属性
+function myReadOnly(proto,key,descriptor) {
+    //
+    // console.log(proto,key,descriptor);
+    //可不可写
+    descriptor.writable = false;
+    //initializer()的返回值决定了属性url的值
+    descriptor.initializer = function() {
+        return "urlA-";
+    };
+     //描述符属性：
+     //configurable
+     //enumerable
+     //initializer
+     //writable
+}
+//修饰原型属性
+function dealData (ms) {
+    return function (proto,key,descriptor) {
+        // console.log(proto,key,descriptor);
+        let oldValue = descriptor.value;
+        //代理思想
+        descriptor.value = function() {
+    
+            var urlB = 'urlB-';
+            console.log("向" + urlB + "发送网络请求，数据：" + this.keyValue + " 发送人 " + ms);
+    
+            //先把本来的getContent函数执行一遍，将arguments传给this（oS对象）
+            return oldValue.apply(this,arguments);
+        }
+        //原型描述符属性：
+         //configurable
+         //enumerable
+         //value
+         //writable
+    }
+}
+
+
+
+// //面向过程
+// // 张三
+// var keyValue = '';
+// oInput.oninput = function () {
+//     keyValue = this.value
+// }
+// oBtn.onclick = function () {
+//     newGetContent(keyValue)
+// }
+
+// function getContent (data) {
+//     //模拟发送网络请求
+//     var url = 'urlA-';
+//     console.log('向' + url + '发送网络请求，数据：' + data);
+// }
+
+// //代理
+// var newGetContent = dealFunc(getContent);
+
+// //李四
+// function dealFunc(func) {
+//     return function(data) {
+//         //
+//         var urlB = 'urlB-';
+//         console.log('向' + urlB + '发送网络请求，数据：' + data)
+//         return func.apply(this,arguments);
+//     }
+// }
+```
 
 #### ES7之Class提案属性
 
@@ -1512,44 +1547,46 @@ new.target
 
 - 需要配置
 
-  - ```js
-    {
-        "plugin": [
-            ["@babel/plugin-proposal-decorators",{"legacy":true}]
-            ["@babel/plugin-proposal-class-properties",{"loose":true}]
-        ]
-    }
-    ```
+
+```js
+{
+    "plugin": [
+        ["@babel/plugin-proposal-decorators",{"legacy":true}]
+        ["@babel/plugin-proposal-class-properties",{"loose":true}]
+    ]
+}
+```
 
 - 实例
 
-  - ```js
-    class Search {
-        //静态属性
-        //ES6规范
-            // static num() {
-            //     return 10;
-            // }
-        //ES7规范
-        static num = 10;
-    
+
+```js
+class Search {
+    //静态属性
+    //ES6规范
+        // static num() {
+        //     return 10;
+        // }
+    //ES7规范
+    static num = 10;
+
+    //私有属性
+    constructor () {
         //私有属性
-        constructor () {
-            //私有属性
-            this.keyValue = '';
-        }
-        //装饰器
-        // @readOnly
-        //私有属性
-        url = 'urlA-';
-        //原型属性
-        getCount () {
-            console.log('发送请求');
-        }
+        this.keyValue = '';
     }
-    
-    var oS = new Search();
-    ```
+    //装饰器
+    // @readOnly
+    //私有属性
+    url = 'urlA-';
+    //原型属性
+    getCount () {
+        console.log('发送请求');
+    }
+}
+
+var oS = new Search();
+```
 
 #### 手写Class
 
@@ -1744,203 +1781,203 @@ var oAp = new AttackPlane();
 
 ### 对象解构
 
-- ```js
-  const user = {
-      name: "kevin",
-      age: 11,
-      sex: "男",
-      address: {
-          province: "四川",
-          city: "成都"
-      }
-  }
-  
-  // let name, age, sex, address;
-  // name = user.name;
-  // age = user.age;
-  // sex = user.sex;
-  // address = user.address;
-  
-  // let name, age, sex, address, abc;
-  // ({ name, age, sex, address } = user);
-  
-  // 先定义5个变量，然后从对象中读取同名属性，放到变量中
-  let { name, age, sex, address, abc = 123 } = user
-  
-  console.log(name, age, sex, address, abc)
-  ```
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
 
-- ```js
-  const user = {
-      name: "kevin",
-      age: 11,
-      sex: "男",
-      address: {
-          province: "四川",
-          city: "成都"
-      }
-  }
-  // 先定义4个变量：name、age、gender、address
-  // 再从对象user中读取同名属性赋值（其中gender读取的是sex属性）
-  let { name, age, sex: gender = 123, address } = user
-  
-  console.log(name, age, gender, address)
-  ```
+// let name, age, sex, address;
+// name = user.name;
+// age = user.age;
+// sex = user.sex;
+// address = user.address;
 
-- ```js
-  const user = {
-      name: "kevin",
-      age: 11,
-      sex: "男",
-      address: {
-          province: "四川",
-          city: "成都"
-      }
-  }
-  //解构出user中的name、province
-  //定义两个变量name、province
-  //再解构
-  const { name, address: { province } } = user;
-  
-  console.log(name, address, province)
-  ```
+// let name, age, sex, address, abc;
+// ({ name, age, sex, address } = user);
+
+// 先定义5个变量，然后从对象中读取同名属性，放到变量中
+let { name, age, sex, address, abc = 123 } = user
+
+console.log(name, age, sex, address, abc)
+```
+
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+// 先定义4个变量：name、age、gender、address
+// 再从对象user中读取同名属性赋值（其中gender读取的是sex属性）
+let { name, age, sex: gender = 123, address } = user
+
+console.log(name, age, gender, address)
+```
+
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+//解构出user中的name、province
+//定义两个变量name、province
+//再解构
+const { name, address: { province } } = user;
+
+console.log(name, address, province)
+```
 
 ### 数组解构
 
-- ```js
-  const numbers = ["a", "b", "c", "d"];
-  
-  // const {
-  //     0: n1,
-  //     1: n2
-  // } = numbers;
-  
-  // let n1, n2;
-  // ([n1, n2] = numbers);
-  
-  // 只获得数组前两位
-  const [n1, n2] = numbers;
-  
-  console.log(n1, n2) // a b
-  ```
+```js
+const numbers = ["a", "b", "c", "d"];
 
-- ```js
-  const numbers = ["a", "b", "c", "d"];
-  
-  const [n1, , , n4, n5 = 123] = numbers;
-  
-  console.log(n1, n4, n5) // a d 123
-  ```
+// const {
+//     0: n1,
+//     1: n2
+// } = numbers;
 
-- ```js
-  // const numbers = ["a", "b", "c", "d", [1, 2, 3, 4]];
-  
-  // // 得到numbers下标为4的数组中的下标为2的数据，放到变量n中
-  // const [, , , , [, , n]] = numbers;
-  
-  // console.log(n)
-  
-  const numbers = ["a", "b", "c", "d", {
-      a: 1,
-      b: 2
-  }];
-  
-  //得到numbers下标为4的数组的属性a，赋值给变量A
-  // const [, , , , { a: A }] = numbers;
-  
-  const { a: A } = numbers[4];
-  
-  console.log(A)
-  ```
+// let n1, n2;
+// ([n1, n2] = numbers);
 
-- ```js
-  const user = {
-      name: "kevin",
-      age: 11,
-      sex: "男",
-      address: {
-          province: "四川",
-          city: "成都"
-      }
-  }
-  
-  //解构出name，然后，剩余的所有属性，放到一个新的对象中，变量名为obj
-  // name: kevin
-  // obj : {age:11, sex:"男", address:{...}}
-  
-  const { name, ...obj } = user;
-  
-  console.log(name, obj)
-  ```
+// 只获得数组前两位
+const [n1, n2] = numbers;
 
-- ```js
-  const numbers = [324, 7, 23, 5, 3243];
-  
-  // 得到数组前两项，分别放到变量a和b中，然后剩余的所有数据放到数组nums
-  
-  // const [a, b, ...nums] = numbers;
-  
-  const a = numbers[0], b = numbers[1], nums = numbers.slice(2);
-  
-  console.log(a, b, nums);
-  ```
+console.log(n1, n2) // a b
+```
+
+```js
+const numbers = ["a", "b", "c", "d"];
+
+const [n1, , , n4, n5 = 123] = numbers;
+
+console.log(n1, n4, n5) // a d 123
+```
+
+```js
+// const numbers = ["a", "b", "c", "d", [1, 2, 3, 4]];
+
+// // 得到numbers下标为4的数组中的下标为2的数据，放到变量n中
+// const [, , , , [, , n]] = numbers;
+
+// console.log(n)
+
+const numbers = ["a", "b", "c", "d", {
+    a: 1,
+    b: 2
+}];
+
+//得到numbers下标为4的数组的属性a，赋值给变量A
+// const [, , , , { a: A }] = numbers;
+
+const { a: A } = numbers[4];
+
+console.log(A)
+```
+
+```js
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+
+//解构出name，然后，剩余的所有属性，放到一个新的对象中，变量名为obj
+// name: kevin
+// obj : {age:11, sex:"男", address:{...}}
+
+const { name, ...obj } = user;
+
+console.log(name, obj)
+```
+
+```js
+const numbers = [324, 7, 23, 5, 3243];
+
+// 得到数组前两项，分别放到变量a和b中，然后剩余的所有数据放到数组nums
+
+// const [a, b, ...nums] = numbers;
+
+const a = numbers[0], b = numbers[1], nums = numbers.slice(2);
+
+console.log(a, b, nums);
+```
 
 ### 参数结构
 
-- ```js
-  // function ajax(options) {
-  //     const defaultOptions = {
-  //         method: "get",
-  //         url: "/"
-  //     }
-  //     const opt = {
-  //         ...defaultOptions,
-  //         ...options
-  //     }
-  //     console.log(opt)
-  // }
-  
-  function ajax({
-      method = "get",
-      url = "/"
-  } = {}) {
-      console.log(method, url)
-  }
-  
-  ajax()
-  ```
+```js
+// function ajax(options) {
+//     const defaultOptions = {
+//         method: "get",
+//         url: "/"
+//     }
+//     const opt = {
+//         ...defaultOptions,
+//         ...options
+//     }
+//     console.log(opt)
+// }
 
-- ```js
-  // function print(user) {
-  //     console.log(`姓名：${user.name}`)
-  //     console.log(`年龄：${user.age}`)
-  //     console.log(`性别：${user.sex}`)
-  //     console.log(`身份：${user.address.province}`)
-  //     console.log(`城市：${user.address.city}`)
-  // }
-  
-  function print({ name, age, sex, address: {
-      province,
-      city
-  } }) {
-      console.log(`姓名：${name}`)
-      console.log(`年龄：${age}`)
-      console.log(`性别：${sex}`)
-      console.log(`身份：${province}`)
-      console.log(`城市：${city}`)
-  }
-  
-  const user = {
-      name: "kevin",
-      age: 11,
-      sex: "男",
-      address: {
-          province: "四川",
-          city: "成都"
-      }
-  }
-  print(user)
-  ```
+function ajax({
+    method = "get",
+    url = "/"
+} = {}) {
+    console.log(method, url)
+}
+
+ajax()
+```
+
+```js
+// function print(user) {
+//     console.log(`姓名：${user.name}`)
+//     console.log(`年龄：${user.age}`)
+//     console.log(`性别：${user.sex}`)
+//     console.log(`身份：${user.address.province}`)
+//     console.log(`城市：${user.address.city}`)
+// }
+
+function print({ name, age, sex, address: {
+    province,
+    city
+} }) {
+    console.log(`姓名：${name}`)
+    console.log(`年龄：${age}`)
+    console.log(`性别：${sex}`)
+    console.log(`身份：${province}`)
+    console.log(`城市：${city}`)
+}
+
+const user = {
+    name: "kevin",
+    age: 11,
+    sex: "男",
+    address: {
+        province: "四川",
+        city: "成都"
+    }
+}
+print(user)
+```
 
 
 
@@ -1970,132 +2007,134 @@ var oAp = new AttackPlane();
 
 - 创建一个符号
 
-  - ```js
-    // 创建一个符号
-    const syb1 = Symbol();
-    const syb2 = Symbol("abc");
-    console.log(syb1, syb2);
-    // typeof类型
-    console.log(typeof syb1 === "symbol", typeof syb2 === "symbol")
-    
-    // 创建一个符号
-    const syb1 = Symbol("这是随便写的一个符号");
-    const syb2 = Symbol("这是随便写的一个符号");
-    console.log(syb1, syb2);
-    console.log(syb1 === syb2)
-    ```
 
-  - ```js
-    //创建一个符号
-    
-    const syb1 = Symbol("这是用于对象的一个属性");
-    
-    const obj = {
-        a: 1,
-        b: 2,
-        [syb1]: 3  //符号属性
-    }
-    
-    console.log(obj);
-    ```
+```js
+// 创建一个符号
+const syb1 = Symbol();
+const syb2 = Symbol("abc");
+console.log(syb1, syb2);
+// typeof类型
+console.log(typeof syb1 === "symbol", typeof syb2 === "symbol")
+
+// 创建一个符号
+const syb1 = Symbol("这是随便写的一个符号");
+const syb2 = Symbol("这是随便写的一个符号");
+console.log(syb1, syb2);
+console.log(syb1 === syb2)
+```
+
+```js
+//创建一个符号
+
+const syb1 = Symbol("这是用于对象的一个属性");
+
+const obj = {
+    a: 1,
+    b: 2,
+    [syb1]: 3  //符号属性
+}
+
+console.log(obj);
+```
 
 - 实例
 
-  - ```js
-    // const hero = (function () {
-    //     const getRandom = Symbol();
-    
-    //     return {
-    //         attack: 30,
-    //         hp: 300,
-    //         defence: 10,
-    //         gongji() { //攻击
-    //             //伤害：攻击力*随机数（0.8~1.1)
-    //             const dmg = this.attack * this[getRandom](0.8, 1.1);
-    //             console.log(dmg);
-    //         },
-    //         [getRandom](min, max) { //根据最小值和最大值产生一个随机数
-    //             return Math.random() * (max - min) + min;
-    //         }
-    //     }
-    // })()
-    
-    // console.log(hero);
-    
-    const Hero = (() => {
-        const getRandom = Symbol();
-    
-        return class {
-            constructor(attack, hp, defence) {
-                this.attack = attack;
-                this.hp = hp;
-                this.defence = defence;
-            }
-    
-            gongji() {
-                //伤害：攻击力*随机数（0.8~1.1)
-                const dmg = this.attack * this[getRandom](0.8, 1.1);
-                console.log(dmg);
-            }
-    
-            [getRandom](min, max) { //根据最小值和最大值产生一个随机数
-                return Math.random() * (max - min) + min;
-            }
-        }
-    })();
-    
-    const h = new Hero(3, 6, 3);
-    console.log(h);
-    ```
 
-  - ```js
-    const syb = Symbol();
-    
-    const obj = {
-        [syb]: 1,
-        a: 2,
-        b: 3
-    }
-    
-    for (const prop in obj) {
-        console.log(prop)
-    }
-    
-    console.log(Object.keys(obj))
-    console.log(Object.getOwnPropertyNames(obj))
-    //得到的是一个符号属性的数组
-    const sybs = Object.getOwnPropertySymbols(obj);
-    console.log(sybs, sybs[0] === syb)
-    ```
+```js
+// const hero = (function () {
+//     const getRandom = Symbol();
 
-  - ```js
-    const Hero = (() => {
-        const getRandom = Symbol();
-    
-        return class {
-            constructor(attack, hp, defence) {
-                this.attack = attack;
-                this.hp = hp;
-                this.defence = defence;
-            }
-    
-            gongji() {
-                //伤害：攻击力*随机数（0.8~1.1)
-                const dmg = this.attack * this[getRandom](0.8, 1.1);
-                console.log(dmg);
-            }
-    
-            [getRandom](min, max) { //根据最小值和最大值产生一个随机数
-                return Math.random() * (max - min) + min;
-            }
+//     return {
+//         attack: 30,
+//         hp: 300,
+//         defence: 10,
+//         gongji() { //攻击
+//             //伤害：攻击力*随机数（0.8~1.1)
+//             const dmg = this.attack * this[getRandom](0.8, 1.1);
+//             console.log(dmg);
+//         },
+//         [getRandom](min, max) { //根据最小值和最大值产生一个随机数
+//             return Math.random() * (max - min) + min;
+//         }
+//     }
+// })()
+
+// console.log(hero);
+
+const Hero = (() => {
+    const getRandom = Symbol();
+
+    return class {
+        constructor(attack, hp, defence) {
+            this.attack = attack;
+            this.hp = hp;
+            this.defence = defence;
         }
-    })();
-    
-    const h = new Hero(3, 6, 3);
-    const sybs = Object.getOwnPropertySymbols(Hero.prototype);
-    const prop = sybs[0];
-    console.log(h[prop](3, 5))
-    ```
+
+        gongji() {
+            //伤害：攻击力*随机数（0.8~1.1)
+            const dmg = this.attack * this[getRandom](0.8, 1.1);
+            console.log(dmg);
+        }
+
+        [getRandom](min, max) { //根据最小值和最大值产生一个随机数
+            return Math.random() * (max - min) + min;
+        }
+    }
+})();
+
+const h = new Hero(3, 6, 3);
+console.log(h);
+```
+
+```js
+const syb = Symbol();
+
+const obj = {
+    [syb]: 1,
+    a: 2,
+    b: 3
+}
+
+for (const prop in obj) {
+    console.log(prop)
+}
+
+console.log(Object.keys(obj))
+console.log(Object.getOwnPropertyNames(obj))
+//得到的是一个符号属性的数组
+const sybs = Object.getOwnPropertySymbols(obj);
+console.log(sybs, sybs[0] === syb)
+```
+
+```js
+const Hero = (() => {
+    const getRandom = Symbol();
+
+    return class {
+        constructor(attack, hp, defence) {
+            this.attack = attack;
+            this.hp = hp;
+            this.defence = defence;
+        }
+
+        gongji() {
+            //伤害：攻击力*随机数（0.8~1.1)
+            const dmg = this.attack * this[getRandom](0.8, 1.1);
+            console.log(dmg);
+        }
+
+        [getRandom](min, max) { //根据最小值和最大值产生一个随机数
+            return Math.random() * (max - min) + min;
+        }
+    }
+})();
+
+const h = new Hero(3, 6, 3);
+const sybs = Object.getOwnPropertySymbols(Hero.prototype);
+const prop = sybs[0];
+console.log(h[prop](3, 5))
+```
 
 ### 共享符号
 
@@ -2107,54 +2146,55 @@ Symbol.for("符号名/符号描述")  //获取共享符号
 
 - 实例
 
-  - ```js
-    const obj = {
-        a: 1,
-        b: 2,
-        [Symbol.for("c")]: 3
-    }
-    
-    console.log(obj[Symbol.for("c")]);
-    ```
 
-  - ```js
-    const syb1 = Symbol.for("abc");
-    const syb2 = Symbol.for("abc");
-    console.log(syb1 === syb2)
-    const obj1 = {
-        a: 1,
-        b: 2,
-        [syb1]: 3
-    }
-    
-    const obj2 = {
-        a: "a",
-        b: "b",
-        [syb2]: "c"
-    }
-    
-    console.log(obj1, obj2);
-    ```
+```js
+const obj = {
+    a: 1,
+    b: 2,
+    [Symbol.for("c")]: 3
+}
 
-  - ```js
-    const SymbolFor = (() => {
-        const global = {};//用于记录有哪些共享符号
-        return function (name) {
-            console.log(global)
-            if (!global[name]) {
-                global[name] = Symbol(name);
-            }
-            console.log(global);
-            return global[name];
+console.log(obj[Symbol.for("c")]);
+```
+
+```js
+const syb1 = Symbol.for("abc");
+const syb2 = Symbol.for("abc");
+console.log(syb1 === syb2)
+const obj1 = {
+    a: 1,
+    b: 2,
+    [syb1]: 3
+}
+
+const obj2 = {
+    a: "a",
+    b: "b",
+    [syb2]: "c"
+}
+
+console.log(obj1, obj2);
+```
+
+```js
+const SymbolFor = (() => {
+    const global = {};//用于记录有哪些共享符号
+    return function (name) {
+        console.log(global)
+        if (!global[name]) {
+            global[name] = Symbol(name);
         }
-    })();
-    
-    const syb1 = SymbolFor("abc");
-    
-    const syb2 = SymbolFor("abc");
-    
-    console.log(syb1 === syb2);
-    ```
+        console.log(global);
+        return global[name];
+    }
+})();
+
+const syb1 = SymbolFor("abc");
+
+const syb2 = SymbolFor("abc");
+
+console.log(syb1 === syb2);
+```
 
 ### 知名（公共、具名）符号
 
@@ -2166,109 +2206,113 @@ Symbol.for("符号名/符号描述")  //获取共享符号
 
 #### Symbol.hasInstance
 
-- 该符号用于定义构造函数的静态成员，它将影响 `instanceof` 的判定
+- 该符号用于定义构造函数的静态成员，它将影响 `instanceof` 的判定	
 
-  ```js
-  obj instanceof A
-  //等效于
-  A[Symbol.hasInstance](obj) // Function.prototype[Symbol.hasInstance]
-  ```
 
-- ```js
-  function A() {
-  
-  }
-  
-  Object.defineProperty(A, Symbol.hasInstance, {
-      value: function (obj) {
-          return false;
-      }
-  })
-  
-  const obj = new A();
-  
-  console.log(obj instanceof A);
-  // console.log(A[Symbol.hasInstance](obj));
-  ```
+```js
+obj instanceof A
+//等效于
+A[Symbol.hasInstance](obj) // Function.prototype[Symbol.hasInstance]
+```
+
+```js
+function A() {
+
+}
+
+Object.defineProperty(A, Symbol.hasInstance, {
+    value: function (obj) {
+        return false;
+    }
+})
+
+const obj = new A();
+
+console.log(obj instanceof A);
+// console.log(A[Symbol.hasInstance](obj));
+```
 
 #### Symbol.isConcatSpreadable
 
 - 该知名符号会影响数组的 `concat` 方法
 
-- ```js
-  const arr = [3];
-  const arr2 = [5, 6, 7, 8];
-  
-  arr2[Symbol.isConcatSpreadable] = false;
-  
-  const result = arr.concat(56, arr2)
-  
-  //  [3, 56, [5,6,7,8]]
-  //  [3, 56, 5, 6, 7, 8]
-  
-  console.log(result)
-  ```
 
-- ```js
-  const arr = [1];
-  const obj = {
-      0: 3,
-      1: 4,
-      length: 2,
-      [Symbol.isConcatSpreadable]: true
-  }
-  
-  const result = arr.concat(2, obj)
-  
-  console.log(result)
-  ```
+```js
+const arr = [3];
+const arr2 = [5, 6, 7, 8];
+
+arr2[Symbol.isConcatSpreadable] = false;
+
+const result = arr.concat(56, arr2)
+
+//  [3, 56, [5,6,7,8]]
+//  [3, 56, 5, 6, 7, 8]
+
+console.log(result)
+```
+
+```js
+const arr = [1];
+const obj = {
+    0: 3,
+    1: 4,
+    length: 2,
+    [Symbol.isConcatSpreadable]: true
+}
+
+const result = arr.concat(2, obj)
+
+console.log(result)
+```
 
 #### Symbol.toPrimitive
 
 - 该知名符号会影响类型转换的结果
 
-- ```js
-  class Temperature {
-      constructor(degree) {
-          this.degree = degree;
-      }
-  
-      [Symbol.toPrimitive](type) {
-          if (type === "default") {
-              return this.degree + "摄氏度";
-          }
-          else if (type === "number") {
-              return this.degree;
-          }
-          else if (type === "string") {
-              return this.degree + "℃";
-          }
-      }
-  }
-  
-  const t = new Temperature(30);
-  
-  console.log(t + "!");
-  console.log(t / 2);
-  console.log(String(t));
-  ```
+
+```js
+class Temperature {
+    constructor(degree) {
+        this.degree = degree;
+    }
+
+    [Symbol.toPrimitive](type) {
+        if (type === "default") {
+            return this.degree + "摄氏度";
+        }
+        else if (type === "number") {
+            return this.degree;
+        }
+        else if (type === "string") {
+            return this.degree + "℃";
+        }
+    }
+}
+
+const t = new Temperature(30);
+
+console.log(t + "!");
+console.log(t / 2);
+console.log(String(t));
+```
 
 #### Symbol.toStringTag
   - 该知名符号会影响 `Object.prototype.toString` 的返回值
 
-  - ```js
-    class Person {
-    
-        [Symbol.toStringTag] = "Person"
-    }
-    
-    const p = new Person();
-    
-    const arr = [32424, 45654, 32]
-    
-    console.log(Object.prototype.toString.apply(p));
-    console.log(Object.prototype.toString.apply(arr))
-    ```
+```js
+class Person {
+
+    [Symbol.toStringTag] = "Person"
+}
+
+const p = new Person();
+
+const arr = [32424, 45654, 32]
+
+console.log(Object.prototype.toString.apply(p));
+console.log(Object.prototype.toString.apply(arr))
+```
+
 #### 其他知名符号
 
 ## 异步处理
@@ -2304,68 +2348,69 @@ Symbol.for("符号名/符号描述")  //获取共享符号
 
 - 实例
 
-  - ```js
-    function a() {
-        console.log("a")
-        b();
-    }
-    
-    function b() {
-        console.log("b");
-        c();
-    }
-    
-    function c() {
-        console.log("c")
-    }
-    
-    console.log("global");
-    a();
-    // global a b c
-    ```
 
-  - ```js
+```js
+function a() {
     console.log("a")
-    
-    setTimeout(() => {
-        console.log("b")
-    }, 0);
-    
-    for (let i = 0; i < 1000; i++) {
-        console.log("c")
-    }
-    // a c*1000 b
-    ```
+    b();
+}
 
-  - ```js
-    <ul id="container"></ul>
-    <button id="btn">点击</button>
-    
-    let count = 1;
-    const ul = document.getElementById("container");
-    document.getElementById("btn").onclick = function A() {
-        setTimeout(function C() {
-            console.log("添加了一个li")
-        }, 0);
-        var li = document.createElement("li")
-        li.innerText = count++;
-        ul.appendChild(li);
-    }
-    
-    //监听ul
-    const observer = new MutationObserver(function B() {
-        //当监听的dom元素发生变化时运行的回调函数
-        console.log("ul元素发生了变化")
-    })
-    //监听ul
-    observer.observe(ul, {
-        attributes: true, //监听属性的变化
-        childList: true, //监听子元素的变化
-        subtree: true //监听子树的变化
-    })
-    //取消监听
-    // observer.disconnect();
-    ```
+function b() {
+    console.log("b");
+    c();
+}
+
+function c() {
+    console.log("c")
+}
+
+console.log("global");
+a();
+// global a b c
+```
+
+```js
+console.log("a")
+
+setTimeout(() => {
+    console.log("b")
+}, 0);
+
+for (let i = 0; i < 1000; i++) {
+    console.log("c")
+}
+// a c*1000 b
+```
+
+```js
+<ul id="container"></ul>
+<button id="btn">点击</button>
+
+let count = 1;
+const ul = document.getElementById("container");
+document.getElementById("btn").onclick = function A() {
+    setTimeout(function C() {
+        console.log("添加了一个li")
+    }, 0);
+    var li = document.createElement("li")
+    li.innerText = count++;
+    ul.appendChild(li);
+}
+
+//监听ul
+const observer = new MutationObserver(function B() {
+    //当监听的dom元素发生变化时运行的回调函数
+    console.log("ul元素发生了变化")
+})
+//监听ul
+observer.observe(ul, {
+    attributes: true, //监听属性的变化
+    childList: true, //监听子元素的变化
+    subtree: true //监听子树的变化
+})
+//取消监听
+// observer.disconnect();
+```
 
 ### 事件和回调函数的缺陷
 
@@ -2400,108 +2445,109 @@ dom.addEventListener("click", function(){
 
 - 回调地狱实例
 
-  - ```js
-    const btn1 = document.getElementById("btn1"),
-          btn2 = document.getElementById("btn2"),
-          btn3 = document.getElementById("btn3");
-    btn1.addEventListener("click", function() {
-        //按钮1的其他事情
-        btn2.addEventListener("click", function() {
-            //按钮2的其他事情
-            btn3.addEventListener("click", function() {
-                alert("hello");
-            })
+
+```js
+const btn1 = document.getElementById("btn1"),
+      btn2 = document.getElementById("btn2"),
+      btn3 = document.getElementById("btn3");
+btn1.addEventListener("click", function() {
+    //按钮1的其他事情
+    btn2.addEventListener("click", function() {
+        //按钮2的其他事情
+        btn3.addEventListener("click", function() {
+            alert("hello");
         })
     })
-    ```
+})
+```
 
-  - ```js
-    /*
-    邓哥心中有三个女神
-    有一天，邓哥决定向第一个女神表白，如果女神拒绝，则向第二个女神表白，直到所有的女神都拒绝，或有一个女神同意为止
-    用代码模拟上面的场景
-    */
-    function biaobai(god, callback) {
-        console.log(`邓哥向女神【${god}】发出了表白短信`);
-        setTimeout(() => {
-            if (Math.random() < 0.1) {
-                //女神同意拉
-                //resolve
-                callback(true);
-            } else {
-                //resolve
-                callback(false);
-            }
-        }, 1000);
-    }
-    
-    biaobai("女神1", function(result) {
-        if (result) {
-            console.log("女神1答应了，邓哥很开心!")
+```js
+/*
+邓哥心中有三个女神
+有一天，邓哥决定向第一个女神表白，如果女神拒绝，则向第二个女神表白，直到所有的女神都拒绝，或有一个女神同意为止
+用代码模拟上面的场景
+*/
+function biaobai(god, callback) {
+    console.log(`邓哥向女神【${god}】发出了表白短信`);
+    setTimeout(() => {
+        if (Math.random() < 0.1) {
+            //女神同意拉
+            //resolve
+            callback(true);
         } else {
-            console.log("女神1拒绝了，邓哥表示无压力，然后向女神2表白");
-            biaobai("女神2", function(result) {
-                if (result) {
-                    console.log("女神2答应了，邓哥很开心!")
-                } else {
-                    console.log("女神2十分感动，然后拒绝了邓哥，邓哥向女神3表白");
-                    biaobai("女神3", function(result) {
-                        if (result) {
-                            console.log("女神3答应了，邓哥很开心!")
-                        } else {
-                            console.log("邓哥表示生无可恋!!");
-                        }
-                    })
-                }
-            })
+            //resolve
+            callback(false);
+        }
+    }, 1000);
+}
+
+biaobai("女神1", function(result) {
+    if (result) {
+        console.log("女神1答应了，邓哥很开心!")
+    } else {
+        console.log("女神1拒绝了，邓哥表示无压力，然后向女神2表白");
+        biaobai("女神2", function(result) {
+            if (result) {
+                console.log("女神2答应了，邓哥很开心!")
+            } else {
+                console.log("女神2十分感动，然后拒绝了邓哥，邓哥向女神3表白");
+                biaobai("女神3", function(result) {
+                    if (result) {
+                        console.log("女神3答应了，邓哥很开心!")
+                    } else {
+                        console.log("邓哥表示生无可恋!!");
+                    }
+                })
+            }
+        })
+    }
+})
+```
+
+```js
+/*
+    邓哥心中有二十个女神，他决定用更加高效的办法
+    他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
+    并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
+    用代码模拟上面的场景
+*/
+
+function biaobai(god, callback) {
+    console.log(`邓哥向女神【${god}】发出了表白短信`);
+    setTimeout(() => {
+        if (Math.random() < 0.05) {
+            //女神同意拉
+            callback(true);
+        } else {
+            callback(false);
+        }
+    }, Math.floor(Math.random() * (3000 - 1000) + 1000));
+}
+let agreeGod = null; //同意邓哥的第一个女神
+const results = []; //用于记录回复结果的数组
+for (let i = 1; i <= 20; i++) {
+    biaobai(`女神${i}`, result => {
+        results.push(result);
+
+        if (result) {
+            console.log(`女神${i}同意了`)
+            if (agreeGod) {
+                console.log(`邓哥回复女神${i}: 不好意思，刚才朋友用我手机，乱发的`)
+            } else {
+                agreeGod = `女神${i}`;
+                console.log(`邓哥终于找到了真爱`);
+            }
+        } else {
+            console.log(`女神${i}拒绝了`)
+        }
+
+
+        if (results.length === 20) {
+            console.log("日志记录", results)
         }
     })
-    ```
-
-  - ```js
-    /*
-        邓哥心中有二十个女神，他决定用更加高效的办法
-        他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
-        并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
-        用代码模拟上面的场景
-    */
-    
-    function biaobai(god, callback) {
-        console.log(`邓哥向女神【${god}】发出了表白短信`);
-        setTimeout(() => {
-            if (Math.random() < 0.05) {
-                //女神同意拉
-                callback(true);
-            } else {
-                callback(false);
-            }
-        }, Math.floor(Math.random() * (3000 - 1000) + 1000));
-    }
-    let agreeGod = null; //同意邓哥的第一个女神
-    const results = []; //用于记录回复结果的数组
-    for (let i = 1; i <= 20; i++) {
-        biaobai(`女神${i}`, result => {
-            results.push(result);
-    
-            if (result) {
-                console.log(`女神${i}同意了`)
-                if (agreeGod) {
-                    console.log(`邓哥回复女神${i}: 不好意思，刚才朋友用我手机，乱发的`)
-                } else {
-                    agreeGod = `女神${i}`;
-                    console.log(`邓哥终于找到了真爱`);
-                }
-            } else {
-                console.log(`女神${i}拒绝了`)
-            }
-    
-    
-            if (results.length === 20) {
-                console.log("日志记录", results)
-            }
-        })
-    }
-    ```
+}
+```
 
 ### 异步处理的通用模型
 
@@ -2870,161 +2916,162 @@ for (let i = 0; i < gods.length; i++) {
 - **race(iterable)**：当`iterable`参数里的任意一个子`promise`被成功或失败后，父`promise`马上也会用子`promise`的成功返回值或失败详情作为参数调用父`promise`绑定的相应句柄，并返回该`promise`对象
 - 例
 
-- ```js
-  // const pro = new Promise((resolve, reject) => {
-  //     resolve(1);
-  // })
-  //等效于：
-  // const pro = Promise.resolve(1);
-  
-  // const pro = new Promise((resolve, reject) => {
-  //     reject(1);
-  // })
-  //等效于：
-  // const pro = Promise.reject(1);
-  
-  const p = new Promise((resolve, reject) => {
-      resolve(3);
-  })
-  // const pro = Promise.resolve(p);
-  //等效于
-  const pro = p;
-  console.log(pro === p)
-  ```
 
-- ```js
-  function getRandom(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-  }
-  const proms = [];
-  for (let i = 0; i < 10; i++) {
-      proms.push(new Promise((resolve, reject) => {
-          setTimeout(() => {
-              if (Math.random() < 0.5) {
-                  console.log(i, "完成");
-                  resolve(i);
-              } else {
-                  console.log(i, "失败")
-                  reject(i);
-              }
-          }, getRandom(1000, 5000));
-      }))
-  }
-  //等到所有的promise变成resolved状态后输出: 全部完成
-  const pro = Promise.all(proms)
-  pro.then(datas => {
-      console.log("全部完成", datas);
-  })
-  pro.catch(err => {
-      console.log("有失败的", err);
-  })
-  console.log(proms);
-  ```
+```js
+// const pro = new Promise((resolve, reject) => {
+//     resolve(1);
+// })
+//等效于：
+// const pro = Promise.resolve(1);
 
-- ```js
-  function getRandom(min, max) {
-      return Math.floor(Math.random() * (max - min)) + min;
-  }
-  const proms = [];
-  for (let i = 0; i < 10; i++) {
-      proms.push(new Promise((resolve, reject) => {
-          setTimeout(() => {
-              if (Math.random() < 0.5) {
-                  console.log(i, "完成");
-                  resolve(i);
-              } else {
-                  console.log(i, "失败")
-                  reject(i);
-              }
-          }, getRandom(1000, 5000));
-      }))
-  }
-  //等到所有的promise变成resolved状态后输出: 全部完成
-  const pro = Promise.race(proms)
-  pro.then(data => {
-      console.log("有人完成了", data);
-  })
-  pro.catch(err => {
-      console.log("有人失败了", err);
-  })
-  console.log(proms);
-  ```
+// const pro = new Promise((resolve, reject) => {
+//     reject(1);
+// })
+//等效于：
+// const pro = Promise.reject(1);
 
-- ```js
-  /*
-  邓哥心中有二十个女神，他决定用更加高效的办法
-  他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
-  并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
-  用代码模拟上面的场景
-  */
-  function biaobai(god) {
-      return new Promise((resolve, reject) => {
-          console.log(`邓哥向女神【${god}】发出了表白短信`);
-          setTimeout(() => {
-              if (Math.random() < 0.05) {
-                  //女神同意拉
-                  console.log(god, "同意")
-                  resolve(true);
-              } else {
-                  console.log(god, "拒绝")
-                  resolve(false);
-              }
-          }, Math.floor(Math.random() * (3000 - 1000) + 1000));
-      })
-  }
-  const proms = [];
-  let hasAgree = false; //是否有女神同意
-  
-  for (let i = 1; i <= 20; i++) {
-      const pro = biaobai(`女神${i}`).then(resp => {
-          if (resp) {
-              if (hasAgree) {
-                  console.log("发错了短信，邓哥很机智的拒绝了")
-              } else {
-                  hasAgree = true;
-                  console.log("邓哥很开心，终于成功了！");
-              }
-          }
-          return resp;
-      })
-      proms.push(pro);
-  }
-  
-  Promise.all(proms).then(results => {
-      console.log("日志记录", results);
-  })
-  ```
+const p = new Promise((resolve, reject) => {
+    resolve(3);
+})
+// const pro = Promise.resolve(p);
+//等效于
+const pro = p;
+console.log(pro === p)
+```
 
-- ```js
-  // Promise.all可以将多个Promise实例包装成一个新的Promise实例
-  // 同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组
-  // 而失败的时候则返回最先被reject失败状态的值
-  
-  function test(x) {
-      return new Promise((reason,reject) => {
-          setTimeout(() => {
-              Math.random() * 100 > 50 ? reason(x) : reject(x)
-          },100)
-      })
-  }
-  
-  let oP = Promise.all([test('a'),test('b'),test('c')]);
-  oP.then((val) => {
-      console.log(val);
-  },(reason) => {
-      console.log(reason);
-  });
-  
-  
-  // 顾名思义：Promise.race就是赛跑的意思，意思就是说
-  // Promise.race([p1,p2,p3])里那个结果获得的快，就返回那个结果
-  // 不管结果本身是成功状态还是失败状态
-  Promise.race([test('a'),test('b'),test('c')]).then((val) =>{
-      console.log(val,'ok')
-  },(reason) => {
-      console.log(reason,'no');
-  });
-  ```
+```js
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+const proms = [];
+for (let i = 0; i < 10; i++) {
+    proms.push(new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Math.random() < 0.5) {
+                console.log(i, "完成");
+                resolve(i);
+            } else {
+                console.log(i, "失败")
+                reject(i);
+            }
+        }, getRandom(1000, 5000));
+    }))
+}
+//等到所有的promise变成resolved状态后输出: 全部完成
+const pro = Promise.all(proms)
+pro.then(datas => {
+    console.log("全部完成", datas);
+})
+pro.catch(err => {
+    console.log("有失败的", err);
+})
+console.log(proms);
+```
+
+```js
+function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+const proms = [];
+for (let i = 0; i < 10; i++) {
+    proms.push(new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Math.random() < 0.5) {
+                console.log(i, "完成");
+                resolve(i);
+            } else {
+                console.log(i, "失败")
+                reject(i);
+            }
+        }, getRandom(1000, 5000));
+    }))
+}
+//等到所有的promise变成resolved状态后输出: 全部完成
+const pro = Promise.race(proms)
+pro.then(data => {
+    console.log("有人完成了", data);
+})
+pro.catch(err => {
+    console.log("有人失败了", err);
+})
+console.log(proms);
+```
+
+```js
+/*
+邓哥心中有二十个女神，他决定用更加高效的办法
+他同时给二十个女神表白，如果有女神同意，就拒绝其他的女神
+并且，当所有的女神回复完成后，他要把所有的回复都记录到日志进行分析
+用代码模拟上面的场景
+*/
+function biaobai(god) {
+    return new Promise((resolve, reject) => {
+        console.log(`邓哥向女神【${god}】发出了表白短信`);
+        setTimeout(() => {
+            if (Math.random() < 0.05) {
+                //女神同意拉
+                console.log(god, "同意")
+                resolve(true);
+            } else {
+                console.log(god, "拒绝")
+                resolve(false);
+            }
+        }, Math.floor(Math.random() * (3000 - 1000) + 1000));
+    })
+}
+const proms = [];
+let hasAgree = false; //是否有女神同意
+
+for (let i = 1; i <= 20; i++) {
+    const pro = biaobai(`女神${i}`).then(resp => {
+        if (resp) {
+            if (hasAgree) {
+                console.log("发错了短信，邓哥很机智的拒绝了")
+            } else {
+                hasAgree = true;
+                console.log("邓哥很开心，终于成功了！");
+            }
+        }
+        return resp;
+    })
+    proms.push(pro);
+}
+
+Promise.all(proms).then(results => {
+    console.log("日志记录", results);
+})
+```
+
+```js
+// Promise.all可以将多个Promise实例包装成一个新的Promise实例
+// 同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组
+// 而失败的时候则返回最先被reject失败状态的值
+
+function test(x) {
+    return new Promise((reason,reject) => {
+        setTimeout(() => {
+            Math.random() * 100 > 50 ? reason(x) : reject(x)
+        },100)
+    })
+}
+
+let oP = Promise.all([test('a'),test('b'),test('c')]);
+oP.then((val) => {
+    console.log(val);
+},(reason) => {
+    console.log(reason);
+});
+
+
+// 顾名思义：Promise.race就是赛跑的意思，意思就是说
+// Promise.race([p1,p2,p3])里那个结果获得的快，就返回那个结果
+// 不管结果本身是成功状态还是失败状态
+Promise.race([test('a'),test('b'),test('c')]).then((val) =>{
+    console.log(val,'ok')
+},(reason) => {
+    console.log(reason,'no');
+});
+```
 
 #### [扩展手写Promise]
 
@@ -3503,79 +3550,80 @@ test2();
 
 - 实例
 
-  - ```js
-    function biaobai(god) {
-        return new Promise(resolve => {
-            console.log(`邓哥向${god}发出了表白短信`);
-            setTimeout(() => {
-                if (Math.random() < 0.3) {
-                    //女神同意拉
-                    resolve(true)
-                } else {
-                    //resolve
-                    resolve(false);
-                }
-            }, 500);
-        })
-    }
-    
-    /*
-                邓哥心中有三个女神
-                有一天，邓哥决定向第一个女神表白，如果女神拒绝，则向第二个女神表白，直到所有的女神都拒绝，或有一个女神同意为止
-                用代码模拟上面的场景
-            */
-    (async () => {
-        const gods = ["女神1", "女神2", "女神3", "女神4", "女神5"];
-        for (let i = 0; i < gods.length; i++) {
-            const g = gods[i];
-            // 当前循环等待的Promise没有resolve，下一次循环不运行
-            const result = await biaobai(g);
-            if (result) {
-                console.log(`${g}同意了，不用再表白了！！！`);
-                break;
-            } else {
-                console.log(`${g}没有同意`)
-            }
-        }
-    })()
-    ```
 
-  - ```js
-    async function getPromise() {
-        if (Math.random() < 0.5) {
-            return 1;
-        } else {
-            throw 2;
-        }
-    }
-    
-    async function test() {
-        try {
-            const result = await getPromise();
-            console.log("正常状态", result)
-        } catch (err) {
-            console.log("错误状态", err);
-        }
-    }
-    
-    test();
-    ```
-
-  - ```js
-    function delay(duration) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve();
-            }, duration);
-        })
-    }
-    
-    async function biaobai(god) {
+```js
+function biaobai(god) {
+    return new Promise(resolve => {
         console.log(`邓哥向${god}发出了表白短信`);
-        await delay(500);
-        return Math.random() < 0.3;
+        setTimeout(() => {
+            if (Math.random() < 0.3) {
+                //女神同意拉
+                resolve(true)
+            } else {
+                //resolve
+                resolve(false);
+            }
+        }, 500);
+    })
+}
+
+/*
+   邓哥心中有三个女神
+   有一天，邓哥决定向第一个女神表白，如果女神拒绝，则向第二个女神表白，直到所有的女神都拒绝，或有一个女神同意为止
+   用代码模拟上面的场景
+*/
+(async () => {
+    const gods = ["女神1", "女神2", "女神3", "女神4", "女神5"];
+    for (let i = 0; i < gods.length; i++) {
+        const g = gods[i];
+        // 当前循环等待的Promise没有resolve，下一次循环不运行
+        const result = await biaobai(g);
+        if (result) {
+            console.log(`${g}同意了，不用再表白了！！！`);
+            break;
+        } else {
+            console.log(`${g}没有同意`)
+        }
     }
-    ```
+})()
+```
+
+```js
+async function getPromise() {
+    if (Math.random() < 0.5) {
+        return 1;
+    } else {
+        throw 2;
+    }
+}
+
+async function test() {
+    try {
+        const result = await getPromise();
+        console.log("正常状态", result)
+    } catch (err) {
+        console.log("错误状态", err);
+    }
+}
+
+test();
+```
+
+```js
+function delay(duration) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, duration);
+    })
+}
+
+async function biaobai(god) {
+    console.log(`邓哥向${god}发出了表白短信`);
+    await delay(500);
+    return Math.random() < 0.3;
+}
+```
 
 ##### promise函数化
 
@@ -3952,87 +4000,87 @@ JS规定，如果一个对象具有`next`方法，并且该方法返回一个对
 
 #### 练习
 
-- ```js
-  const arr = [1, 2, 3, 4, 5];
-  //迭代数组arr
-  const iterator = {
-      i: 0, //当前的数组下标
-      next() {
-          var result = {
-              value: arr[this.i],
-              done: this.i >= arr.length
-          }
-          this.i++;
-          return result;
-      }
-  }
-  
-  //让迭代器不断的取出下一个数据，直到没有数据为止
-  let data = iterator.next();
-  while (!data.done) { //只要没有迭代完成，则取出数据
-      console.log(data.value)
-      //进行下一次迭代
-      data = iterator.next();
-  }
-  
-  console.log("迭代完成")
-  ```
+```js
+const arr = [1, 2, 3, 4, 5];
+//迭代数组arr
+const iterator = {
+    i: 0, //当前的数组下标
+    next() {
+        var result = {
+            value: arr[this.i],
+            done: this.i >= arr.length
+        }
+        this.i++;
+        return result;
+    }
+}
 
-- ```js
-  const arr1 = [1, 2, 3, 4, 5];
-  const arr2 = [6, 7, 8, 9];
-  
-  // 迭代器创建函数  iterator creator
-  function createIterator(arr) {
-      let i = 0;//当前的数组下标
-      return { 
-          next() {
-              var result = {
-                  value: arr[i],
-                  done: i >= arr.length
-              }
-              i++;
-              return result;
-          }
-      }
-  }
-  
-  const iter1 = createIterator(arr1);
-  const iter2 = createIterator(arr2);
-  ```
+//让迭代器不断的取出下一个数据，直到没有数据为止
+let data = iterator.next();
+while (!data.done) { //只要没有迭代完成，则取出数据
+    console.log(data.value)
+    //进行下一次迭代
+    data = iterator.next();
+}
 
-- ```js
-   // 依次得到斐波拉契数列前面n位的值
-  // 1 1 2 3 5 8 13 .....
-  
-  //创建一个斐波拉契数列的迭代器
-  function createFeiboIterator() {
-      let prev1 = 1,
-          prev2 = 1, //当前位置的前1位和前2位
-          n = 1; //当前是第几位
-  
-      return {
-          next() {
-              let value;
-              if (n <= 2) {
-                  value = 1;
-              } else {
-                  value = prev1 + prev2;
-              }
-              const result = {
-                  value,
-                  done: false
-              };
-              prev2 = prev1;
-              prev1 = result.value;
-              n++;
-              return result;
-          }
-      }
-  }
-  
-  const iterator = createFeiboIterator();
-  ```
+console.log("迭代完成")
+```
+
+```js
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [6, 7, 8, 9];
+
+// 迭代器创建函数  iterator creator
+function createIterator(arr) {
+    let i = 0;//当前的数组下标
+    return { 
+        next() {
+            var result = {
+                value: arr[i],
+                done: i >= arr.length
+            }
+            i++;
+            return result;
+        }
+    }
+}
+
+const iter1 = createIterator(arr1);
+const iter2 = createIterator(arr2);
+```
+
+```js
+// 依次得到斐波拉契数列前面n位的值
+// 1 1 2 3 5 8 13 .....
+
+//创建一个斐波拉契数列的迭代器
+function createFeiboIterator() {
+    let prev1 = 1,
+        prev2 = 1, //当前位置的前1位和前2位
+        n = 1; //当前是第几位
+
+    return {
+        next() {
+            let value;
+            if (n <= 2) {
+                value = 1;
+            } else {
+                value = prev1 + prev2;
+            }
+            const result = {
+                value,
+                done: false
+            };
+            prev2 = prev1;
+            prev1 = result.value;
+            n++;
+            return result;
+        }
+    }
+}
+
+const iterator = createFeiboIterator();
+```
 
 ### 可迭代协议 与 for-of 循环
 
@@ -4048,36 +4096,36 @@ JS规定，如果一个对象具有`next`方法，并且该方法返回一个对
 > 思考：如何知晓一个对象是否是可迭代的？
 > 思考：如何遍历一个可迭代对象？
 
-- ```js
-  //可迭代对象
-  var obj = {
-      a: 1,
-      b: 2,
-      [Symbol.iterator]() {
-          const keys = Object.keys(this);
-          let i = 0;
-          return {
-              next: () => {
-                  const propName = keys[i];
-                  const propValue = this[propName];
-                  const result = {
-                      value: {
-                          propName,
-                          propValue
-                      },
-                      done: i >= keys.length
-                  }
-                  i++;
-                  return result;
-              }
-          }
-      }
-  }
-  
-  for (const item of obj) {
-      console.log(item); // {propName:"a", propValue:1}
-  }
-  ```
+```js
+//可迭代对象
+var obj = {
+    a: 1,
+    b: 2,
+    [Symbol.iterator]() {
+        const keys = Object.keys(this);
+        let i = 0;
+        return {
+            next: () => {
+                const propName = keys[i];
+                const propValue = this[propName];
+                const result = {
+                    value: {
+                        propName,
+                        propValue
+                    },
+                    done: i >= keys.length
+                }
+                i++;
+                return result;
+            }
+        }
+    }
+}
+
+for (const item of obj) {
+    console.log(item); // {propName:"a", propValue:1}
+}
+```
 
 #### for-of 循环
 
@@ -4216,145 +4264,147 @@ function* method(){
 
 - 实例
 
-  - ```js
-    function* test() {
-        console.log("第1次运行")
-        yield 1;
-        console.log("第2次运行")
-        yield 2;
-        console.log("第3次运行")
+
+```js
+function* test() {
+    console.log("第1次运行")
+    yield 1;
+    console.log("第2次运行")
+    yield 2;
+    console.log("第3次运行")
+}
+
+const generator = test();
+// generator.next()
+```
+
+```js
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [6, 7, 8, 9];
+
+// 迭代器创建函数  iterator creator
+function* createIterator(arr) {
+    for (const item of arr) {
+        yield item;
     }
-    
-    const generator = test();
-    // generator.next()
-    ```
-    
-  - ```js
-    const arr1 = [1, 2, 3, 4, 5];
-    const arr2 = [6, 7, 8, 9];
-    
-    // 迭代器创建函数  iterator creator
-    function* createIterator(arr) {
-        for (const item of arr) {
-            yield item;
+}
+
+const iter1 = createIterator(arr1);
+const iter2 = createIterator(arr2);
+// iter1/2.next()
+```
+
+```js
+//创建一个斐波拉契数列的迭代器
+function* createFeiboIterator() {
+    let prev1 = 1,
+        prev2 = 1, //当前位置的前1位和前2位
+        n = 1; //当前是第几位
+    while (true) {
+        if (n <= 2) {
+            yield 1;
+        } else {
+            const newValue = prev1 + prev2
+            yield newValue;
+            prev2 = prev1;
+            prev1 = newValue;
         }
+        n++;
     }
-    
-    const iter1 = createIterator(arr1);
-    const iter2 = createIterator(arr2);
-    // iter1/2.next()
-    ```
-    
-  - ```js
-    //创建一个斐波拉契数列的迭代器
-    function* createFeiboIterator() {
-        let prev1 = 1,
-            prev2 = 1, //当前位置的前1位和前2位
-            n = 1; //当前是第几位
-        while (true) {
-            if (n <= 2) {
-                yield 1;
-            } else {
-                const newValue = prev1 + prev2
-                yield newValue;
-                prev2 = prev1;
-                prev1 = newValue;
-            }
-            n++;
-        }
-    }
-    
-    const iterator = createFeiboIterator();
-    // iterator.next()
-    ```
-    
-  - ```js
-    function* test() {
-        console.log("第1次运行")
-        yield 1;
-        console.log("第2次运行")
-        yield 2;
-        console.log("第3次运行");
-        // 调用return，可以提前结束生成器函数，从而提前让整个迭代过程结束
-        return 10;
-    }
-    
-    const generator = test();
-    // generator.next()
-    ```
-    
-  - ```js
-     function* test() {
-         console.log("函数开始")
-      
-         let info = yield 1;
-         console.log(info)
-         info = yield 2 + info;
-         console.log(info)
-     }
-      
-    const generator = test();
-    // generator.next()
-    ```
-    
-  - ```js
-    function* t1(){
-        yield "a"
-        yield "b"
-    }
-    
-    function* test() {
-        yield* t1();
-        yield 1;
-        yield 2;
-        yield 3;
-    }
-    
-    const generator = test();
-    // generator.next()
-    ```
+}
+
+const iterator = createFeiboIterator();
+// iterator.next()
+```
+
+```js
+function* test() {
+    console.log("第1次运行")
+    yield 1;
+    console.log("第2次运行")
+    yield 2;
+    console.log("第3次运行");
+    // 调用return，可以提前结束生成器函数，从而提前让整个迭代过程结束
+    return 10;
+}
+
+const generator = test();
+// generator.next()
+```
+
+```js
+function* test() {
+    console.log("函数开始")
+ 
+    let info = yield 1;
+    console.log(info)
+    info = yield 2 + info;
+    console.log(info)
+}
+ 
+const generator = test();
+// generator.next()
+```
+
+```js
+function* t1(){
+    yield "a"
+    yield "b"
+}
+
+function* test() {
+    yield* t1();
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+const generator = test();
+// generator.next()
+```
 
 - 生成器，异步任务控制
 
-  - ```js
-    function* task() {
-        const d = yield 1;
-        console.log(d)
-        // //d : 1
-        const resp = yield fetch("http://101.132.72.36:5100/api/local")
-        const result = yield resp.json();
-        console.log(result);
-    }
-    
-    run(task)
-    
-    function run(generatorFunc) {
-        const generator = generatorFunc();
-        let result = generator.next(); //启动任务（开始迭代）, 得到迭代数据
-        handleResult();
-        //对result进行处理
-        function handleResult() {
-            if (result.done) {
-                return; //迭代完成，不处理
-            }
-            //迭代没有完成，分为两种情况
+
+```js
+function* task() {
+    const d = yield 1;
+    console.log(d)
+    // //d : 1
+    const resp = yield fetch("http://101.132.72.36:5100/api/local")
+    const result = yield resp.json();
+    console.log(result);
+}
+
+run(task)
+
+function run(generatorFunc) {
+    const generator = generatorFunc();
+    let result = generator.next(); //启动任务（开始迭代）, 得到迭代数据
+    handleResult();
+    //对result进行处理
+    function handleResult() {
+        if (result.done) {
+            return; //迭代完成，不处理
+        }
+        //迭代没有完成，分为两种情况
+        //1. 迭代的数据是一个Promise
+        //2. 迭代的数据是其他数据
+        if (typeof result.value.then === "function") {
             //1. 迭代的数据是一个Promise
-            //2. 迭代的数据是其他数据
-            if (typeof result.value.then === "function") {
-                //1. 迭代的数据是一个Promise
-                //等待Promise完成后，再进行下一次迭代
-                result.value.then(data => {
-                    result = generator.next(data)
-                    handleResult();
-                })
-            } else {
-                //2. 迭代的数据是其他数据，直接进行下一次迭代
-                result = generator.next(result.value)
+            //等待Promise完成后，再进行下一次迭代
+            result.value.then(data => {
+                result = generator.next(data)
                 handleResult();
-            }
+            })
+        } else {
+            //2. 迭代的数据是其他数据，直接进行下一次迭代
+            result = generator.next(result.value)
+            handleResult();
         }
     }
-    ```
+}
+```
 
 ## 更多的集合类型
 
@@ -4370,11 +4420,12 @@ function* method(){
 
 - 如何创建**set**集合
 
-  - ```js
-    new Set(); //创建一个没有任何内容的set集合
-    
-    new Set(iterable); //创建一个具有初始内容的set集合，内容来自于可迭代对象每一次迭代的结果
-    ```
+
+```js
+new Set(); //创建一个没有任何内容的set集合
+
+new Set(iterable); //创建一个具有初始内容的set集合，内容来自于可迭代对象每一次迭代的结果
+```
 
 - 如何对`set`集合进行后续操作
   - **add(数据)**: 添加一个数据到`set`集合末尾，如果数据已存在，则不进行任何操作
@@ -4386,11 +4437,12 @@ function* method(){
 
 - 如何与数组进行相互转换
 
-  - ```js
-    const s = new Set([x,x,x,x,x]);
-    // set本身也是一个可迭代对象，每次迭代的结果就是每一项的值
-    const arr = [...s];
-    ```
+
+```js
+const s = new Set([x,x,x,x,x]);
+// set本身也是一个可迭代对象，每次迭代的结果就是每一项的值
+const arr = [...s];
+```
 
 - 如何遍历
   - 使用`for-of`循环
@@ -4400,62 +4452,63 @@ function* method(){
 
 - 实例
 
-  - ```js
-    const s1 = new Set();
-    console.log(s1);
-    
-    const s2 = new Set("asdfasfasf");
-    console.log(s2);
-    ```
 
-  - ```js
-    const s1 = new Set();
-    
-    s1.add(1);
-    s1.add(2);
-    s1.add(3);
-    s1.add(1); //无效
-    s1.add(+0);
-    s1.add(-0); //无效
-    
-    // for (const item of s1) {
-    //     console.log(item)
-    // }
-    
-    s1.forEach((item, index, s) => {
-        console.log(item, index, s);
-    })
-    console.log(s1);
-    console.log("总数为：", s1.size);
-    ```
+```js
+const s1 = new Set();
+console.log(s1);
 
-  - ```js
-    const arr = [45, 7, 2, 2, 34, 46, 6, 57, 8, 55, 6, 46];
-    const result = [...new Set(arr)];
-    console.log(result);
-    
-    const str = "asf23sdfgsdgfsafasdfasfasfasfsafsagfdsfg";
-    const s = [...new Set(str)].join("");
-    console.log(s);
-    ```
+const s2 = new Set("asdfasfasf");
+console.log(s2);
+```
 
-  - ```js
-    // 两个数组的并集、交集、差集 （不能出现重复项），得到的结果是一个新数组
-    const arr1 = [33, 22, 55, 33, 11, 33, 5];
-    const arr2 = [22, 55, 77, 88, 88, 99, 99];
-    
-    //并集
-    // const result = [...new Set(arr1.concat(arr2))];
-    console.log("并集", [...new Set([...arr1, ...arr2])]);
-    
-    const cross = [...new Set(arr1)].filter(item => arr2.indexOf(item) >= 0);
-    //交集
-    console.log("交集", cross)
-    
-    //差集
-    // console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0 || arr2.indexOf(item) >= 0 && arr1.indexOf(item) < 0))
-    console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => cross.indexOf(item) < 0))
-    ```
+```js
+const s1 = new Set();
+
+s1.add(1);
+s1.add(2);
+s1.add(3);
+s1.add(1); //无效
+s1.add(+0);
+s1.add(-0); //无效
+
+// for (const item of s1) {
+//     console.log(item)
+// }
+
+s1.forEach((item, index, s) => {
+    console.log(item, index, s);
+})
+console.log(s1);
+console.log("总数为：", s1.size);
+```
+
+```js
+const arr = [45, 7, 2, 2, 34, 46, 6, 57, 8, 55, 6, 46];
+const result = [...new Set(arr)];
+console.log(result);
+
+const str = "asf23sdfgsdgfsafasdfasfasfasfsafsagfdsfg";
+const s = [...new Set(str)].join("");
+console.log(s);
+```
+
+```js
+// 两个数组的并集、交集、差集 （不能出现重复项），得到的结果是一个新数组
+const arr1 = [33, 22, 55, 33, 11, 33, 5];
+const arr2 = [22, 55, 77, 88, 88, 99, 99];
+
+//并集
+// const result = [...new Set(arr1.concat(arr2))];
+console.log("并集", [...new Set([...arr1, ...arr2])]);
+
+const cross = [...new Set(arr1)].filter(item => arr2.indexOf(item) >= 0);
+//交集
+console.log("交集", cross)
+
+//差集
+// console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => arr1.indexOf(item) >= 0 && arr2.indexOf(item) < 0 || arr2.indexOf(item) >= 0 && arr1.indexOf(item) < 0))
+console.log("差集", [...new Set([...arr1, ...arr2])].filter(item => cross.indexOf(item) < 0))
+```
 
 ### 手写Set
 
@@ -4548,10 +4601,11 @@ class MySet {
 
 - 如何创建**Map**
 
-  - ```js
-    new Map(); //创建一个空的map
-    new Map(iterable); //创建一个具有初始内容的map，初始内容来自于可迭代对象每一次迭代的结果，但是，它要求每一次迭代的结果必须是一个长度为2的数组，数组第一项表示键，数组的第二项表示值
-    ```
+
+```js
+new Map(); //创建一个空的map
+new Map(iterable); //创建一个具有初始内容的map，初始内容来自于可迭代对象每一次迭代的结果，但是，它要求每一次迭代的结果必须是一个长度为2的数组，数组第一项表示键，数组的第二项表示值
+```
 
 - 如何进行后续操作
   - **size**：只读属性，获取当前`map`中键的数量
@@ -4575,37 +4629,38 @@ class MySet {
 
 - 实例
 
-  - ```js
-     const mp1 = new Map([["a", 3], ["b", 4], ["c", 5]]);
-    const obj = {};
-    mp1.set(obj, 6456);
-    mp1.set("a", "abc");
-    mp1.set(obj, 111);
-    
-    console.log(mp1)
-    console.log("总数：", mp1.size);
-    console.log("get('a')", mp1.get("a"));
-    console.log("has('a')", mp1.has("a"));
-    ```
 
-  - ```js
-    const mp = new Map([
-        ["a", 3],
-        ["c", 10],
-        ["b", 4],
-        ["c", 5]
-    ]);
-    const result = [...mp]
-    console.log(result);
-    
-    // for (const [key, value] of mp) {
-    //     console.log(key, value)
-    // }
-    
-    mp.forEach((value, key, mp) => {
-        console.log(value, key, mp)
-    })
-    ```
+```js
+const mp1 = new Map([["a", 3], ["b", 4], ["c", 5]]);
+const obj = {};
+mp1.set(obj, 6456);
+mp1.set("a", "abc");
+mp1.set(obj, 111);
+
+console.log(mp1)
+console.log("总数：", mp1.size);
+console.log("get('a')", mp1.get("a"));
+console.log("has('a')", mp1.has("a"));
+```
+
+```js
+const mp = new Map([
+    ["a", 3],
+    ["c", 10],
+    ["b", 4],
+    ["c", 5]
+]);
+const result = [...mp]
+console.log(result);
+
+// for (const [key, value] of mp) {
+//     console.log(key, value)
+// }
+
+mp.forEach((value, key, mp) => {
+    console.log(value, key, mp)
+})
+```
 
 ### 手写Map
 
@@ -4911,19 +4966,20 @@ oMp.set(function(){},'----');
 
 3. 不能遍历（不是可迭代的对象）、没有`size`属性、没有`forEach`方法
 
-4. ```js
-    let obj = {
-        name: "yj",
-        age: 18
-    };
-   let obj2 = obj;
-   const set = new WeakSet();
-   set.add(obj);
-   
-   obj = null;
-   obj2 = null;
-   console.log(set)
-   ```
+
+```js
+let obj = {
+    name: "yj",
+    age: 18
+};
+let obj2 = obj;
+const set = new WeakSet();
+set.add(obj);
+
+obj = null;
+obj2 = null;
+console.log(set)
+```
 
 #### WeakMap
 
@@ -4935,31 +4991,32 @@ oMp.set(function(){},'----');
 
 3. 不能遍历（不是可迭代的对象）、没有`size`属性、没有`forEach`方法
 
-4. ```html
-   <ul>
-   <!-- { id:"1", name:"姓名1" } -->
-       <li>1</li>
-   <!-- { id:"2", name:"姓名2" } -->
-       <li>2</li>
-   <!-- { id:"3", name:"姓名3" } -->
-       <li>3</li>
-   </ul>
-   
-   <script>
-       const wmap = new WeakMap();
-       let lis = document.querySelectorAll("li");
-       for (const li of lis) {
-           wmap.set(li, {
-               id: li.innerHTML,
-               name: `姓名${li.innerHTML}`
-           });
-       }
-       lis[0].remove();
-       lis = null;
-   
-       console.log(wmap);
-   </script>
-   ```
+
+```html
+<ul>
+<!-- { id:"1", name:"姓名1" } -->
+    <li>1</li>
+<!-- { id:"2", name:"姓名2" } -->
+    <li>2</li>
+<!-- { id:"3", name:"姓名3" } -->
+    <li>3</li>
+</ul>
+
+<script>
+    const wmap = new WeakMap();
+    let lis = document.querySelectorAll("li");
+    for (const li of lis) {
+        wmap.set(li, {
+            id: li.innerHTML,
+            name: `姓名${li.innerHTML}`
+        });
+    }
+    lis[0].remove();
+    lis = null;
+
+    console.log(wmap);
+</script>
+```
 
 ## 代理与反射
 
@@ -4992,141 +5049,141 @@ Object.defineProperties(对象, 多个属性的描述符)
 
 #### 练习
 
-- ```js
-   const obj = {
-       a: 1,
-       b: 2
-   }
-    
-   // Object.defineProperty(obj, "a", {
-   //     value: 3,
-   //     configurable: false,
-   //     enumerable: false,
-   //     writable: false
-   // })
-    
-   Object.defineProperties(obj, {
-       a: {
-           value: 3,
-           configurable: false,
-           enumerable: false,
-           writable: false
-       }
-   })
-    
-  obj.a = 10;
-  console.log(obj);
-  
-  // console.log(obj)
-  // // for (const prop in obj) {
-  // //     console.log(prop);
-  // // }
-  
-  // const props = Object.keys(obj)
-  // console.log(props)
-  
-  // const values = Object.values(obj);
-  // console.log(values);
-  
-  // const desc = Object.getOwnPropertyDescriptor(obj, "a")
-  
-  // console.log(desc);
-  ```
+```js
+const obj = {
+    a: 1,
+    b: 2
+}
+ 
+// Object.defineProperty(obj, "a", {
+//     value: 3,
+//     configurable: false,
+//     enumerable: false,
+//     writable: false
+// })
+ 
+Object.defineProperties(obj, {
+    a: {
+        value: 3,
+        configurable: false,
+        enumerable: false,
+        writable: false
+    }
+})
+ 
+obj.a = 10;
+console.log(obj);
 
-- ```js
-  const obj = {
-      b: 2
-  }
-  Object.defineProperty(obj, "a", {
-      get() {
-          console.log("运行了属性a的get函数")
-          return obj._a;
-      },
-      set(val){
-          console.log("运行了属性a的set函数", val)
-          obj._a = val;
-      }
-  })
-  // obj.a = 20 + 10; // set(20 + 10)
-  // console.log(obj.a); // console.log(get())
-  
-  // obj.a = obj.a + 1; // set(obj.a + 1)   set(get() + 1)
-  // console.log(obj.a);
-  
-  // console.log(obj.a)
-  
-  obj.a = 10;
-  console.log(obj.a);
-  ```
+// console.log(obj)
+// // for (const prop in obj) {
+// //     console.log(prop);
+// // }
 
-- ```js
-  obj = {
-      name: "adsf"
-  }
-  
-  Object.defineProperty(obj, "age", {
-      get() {
-          return obj._age;
-      },
-      set(val) {
-          if (typeof val !== "number") {
-              throw new TypeError("年龄必须是一个数字")
-          }
-          if (val < 0) {
-              val = 0;
-          } else if (val > 200) {
-              val = 200;
-          }
-          obj._age = val;
-      }
-  })
-  
-  obj.age = "Asdfasasdf";
-  console.log(obj.age);
-  ```
+// const props = Object.keys(obj)
+// console.log(props)
 
-- ```js
-  <p>
-      <span>姓名：</span>
-  <span id="name"></span>
-  </p>
-  <p>
-      <span>年龄：</span>
-  <span id="age"></span>
-  </p>
-  <script>
-      const spanName = document.getElementById("name")
-  const spanAge = document.getElementById("age")
-  
-  const user = {}
-  
-  Object.defineProperties(user, {
-      name: {
-          get() {
-              return spanName.innerText;
-          },
-          set(val) {
-              spanName.innerText = val;
-          }
-      },
-      age: {
-          get() {
-              return +spanAge.innerText;
-          },
-          set(val) {
-              if (typeof val !== "number") {
-                  throw new TypeError("年龄必须是一个数字")
-              }
-              if (val < 0) {
-                  val = 0;
-              } else if (val > 200) {
-                  val = 200;
-              }
-              spanAge.innerText = val;
-          }
-      }
-  })
-  ```
+// const values = Object.values(obj);
+// console.log(values);
+
+// const desc = Object.getOwnPropertyDescriptor(obj, "a")
+
+// console.log(desc);
+```
+
+```js
+const obj = {
+    b: 2
+}
+Object.defineProperty(obj, "a", {
+    get() {
+        console.log("运行了属性a的get函数")
+        return obj._a;
+    },
+    set(val){
+        console.log("运行了属性a的set函数", val)
+        obj._a = val;
+    }
+})
+// obj.a = 20 + 10; // set(20 + 10)
+// console.log(obj.a); // console.log(get())
+
+// obj.a = obj.a + 1; // set(obj.a + 1)   set(get() + 1)
+// console.log(obj.a);
+
+// console.log(obj.a)
+
+obj.a = 10;
+console.log(obj.a);
+```
+
+```js
+obj = {
+    name: "adsf"
+}
+
+Object.defineProperty(obj, "age", {
+    get() {
+        return obj._age;
+    },
+    set(val) {
+        if (typeof val !== "number") {
+            throw new TypeError("年龄必须是一个数字")
+        }
+        if (val < 0) {
+            val = 0;
+        } else if (val > 200) {
+            val = 200;
+        }
+        obj._age = val;
+    }
+})
+
+obj.age = "Asdfasasdf";
+console.log(obj.age);
+```
+
+```js
+<p>
+    <span>姓名：</span>
+<span id="name"></span>
+</p>
+<p>
+    <span>年龄：</span>
+<span id="age"></span>
+</p>
+<script>
+    const spanName = document.getElementById("name")
+const spanAge = document.getElementById("age")
+
+const user = {}
+
+Object.defineProperties(user, {
+    name: {
+        get() {
+            return spanName.innerText;
+        },
+        set(val) {
+            spanName.innerText = val;
+        }
+    },
+    age: {
+        get() {
+            return +spanAge.innerText;
+        },
+        set(val) {
+            if (typeof val !== "number") {
+                throw new TypeError("年龄必须是一个数字")
+            }
+            if (val < 0) {
+                val = 0;
+            } else if (val > 200) {
+                val = 200;
+            }
+            spanAge.innerText = val;
+        }
+    }
+})
+```
 
 ### Reflect
 
@@ -5157,56 +5214,57 @@ Object.defineProperties(对象, 多个属性的描述符)
   - 其他**API**：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
 
 - 实例
-  - ```js
-    const obj = {
-        a: 1,
-        b: 2
-    }
-    
-    // obj.a = 10;
-    
-    Reflect.set(obj, "a", 10);
-    
-    console.log(Reflect.get(obj, "a"))
-    ```
 
-  - ```js
-    // function method(a, b){
-    //     console.log("method", a, b);
-    // }
-    
-    // // method(3, 4);
-    
-    // Reflect.apply(method, null, [3, 4])
-    
-    // const obj = {
-    //     a: 1,
-    //     b: 2
-    // }
-    
-    // // delete obj.a;
-    
-    // Reflect.deleteProperty(obj, "a");
-    
-    // console.log(obj);
-    
-    // function Test(a, b) {
-    //     this.a = a;
-    //     this.b = b;
-    // }
-    
-    // // const t = new Test(1, 3);
-    // const t = Reflect.construct(Test, [1, 3]);
-    // console.log(t)
-    
-    const obj = {
-        a: 1,
-        b: 2
-    }
-    
-    // console.log("a" in obj);
-    console.log(Reflect.has(obj, "a"));
-    ```
+```js
+const obj = {
+    a: 1,
+    b: 2
+}
+
+// obj.a = 10;
+
+Reflect.set(obj, "a", 10);
+
+console.log(Reflect.get(obj, "a"))
+```
+
+```js
+// function method(a, b){
+//     console.log("method", a, b);
+// }
+
+// // method(3, 4);
+
+// Reflect.apply(method, null, [3, 4])
+
+// const obj = {
+//     a: 1,
+//     b: 2
+// }
+
+// // delete obj.a;
+
+// Reflect.deleteProperty(obj, "a");
+
+// console.log(obj);
+
+// function Test(a, b) {
+//     this.a = a;
+//     this.b = b;
+// }
+
+// // const t = new Test(1, 3);
+// const t = Reflect.construct(Test, [1, 3]);
+// console.log(t)
+
+const obj = {
+    a: 1,
+    b: 2
+}
+
+// console.log("a" in obj);
+console.log(Reflect.has(obj, "a"));
+```
 
 ### Proxy 代理
 
@@ -5538,49 +5596,50 @@ new ArrayBuffer(字节数)
 
 - 练习
 
-  - ```js
-    //创建了一个用于存储10个字节的内存空间
-    const bf = new ArrayBuffer(10);
-    
-    const bf2 = bf.slice(3, 5);
-    
-    console.log(bf, bf2);
-    ```
 
-  - ```js
-    //创建了一个用于存储10个字节的内存空间
-    const bf = new ArrayBuffer(10);
-    
-    const view = new DataView(bf, 3, 4);
-    
-    // console.log(view);
-    
-    view.setInt16(1, 3);
-    console.log(view);
-    
-    console.log(view.getInt16(1));
-    ```
+```js
+//创建了一个用于存储10个字节的内存空间
+const bf = new ArrayBuffer(10);
 
-  - ```js
-     const bf = new ArrayBuffer(10); //10个字节的内存
-      
-    const arr1 = new Int8Array(bf);
-    const arr2 = new Int16Array(bf);
-    console.log(arr1 === arr2);
-    console.log(arr1.buffer === arr2.buffer);
-    
-    arr1[0] = 10;
-    
-    console.log(arr1)
-    console.log(arr2);
-    ```
+const bf2 = bf.slice(3, 5);
 
-  - ```js
-    const bf = new ArrayBuffer(10); //10个字节的内存
-    const arr = new Int16Array(bf);
-    arr[0] = 2344; //操作了两个字节
-    console.log(arr);
-    ```
+console.log(bf, bf2);
+```
+
+```js
+//创建了一个用于存储10个字节的内存空间
+const bf = new ArrayBuffer(10);
+
+const view = new DataView(bf, 3, 4);
+
+// console.log(view);
+
+view.setInt16(1, 3);
+console.log(view);
+
+console.log(view.getInt16(1));
+```
+
+```js
+const bf = new ArrayBuffer(10); //10个字节的内存
+ 
+const arr1 = new Int8Array(bf);
+const arr2 = new Int16Array(bf);
+console.log(arr1 === arr2);
+console.log(arr1.buffer === arr2.buffer);
+
+arr1[0] = 10;
+
+console.log(arr1)
+console.log(arr2);
+```
+
+```js
+const bf = new ArrayBuffer(10); //10个字节的内存
+const arr = new Int16Array(bf);
+arr[0] = 2344; //操作了两个字节
+console.log(arr);
+```
 
 
 

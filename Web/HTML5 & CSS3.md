@@ -17,26 +17,27 @@ categories:
   
     - 新的结构标签			
     
-    ```html
-      <!--文档申明 文档类型申明，html代表html5的文档类型-->
-      <!DOCTYPE html>
-      <html>
-      <!--字符编码，charset='utf-8'-->
-        <meta charset='utf-8'>
-      <!--
-      	版本兼容
-      
-      		1.省略引号，当属性值（<、>、=、单引号、双引号、空字符串）时，属性两边的引号可以省略，如<input type=text>
-      
-      		2.省略属性值，具有布尔值的属性，比如disabled，readonly，致谢属性值代表true，如：<input type=checkbox checked>
-      -->
-        <head>
-        </head>
-        <body>
-        </body>
-      </html>
-      		
-    ```
+
+```html
+  <!--文档申明 文档类型申明，html代表html5的文档类型-->
+  <!DOCTYPE html>
+  <html>
+  <!--字符编码，charset='utf-8'-->
+    <meta charset='utf-8'>
+  <!--
+  	版本兼容
+  
+  		1.省略引号，当属性值（<、>、=、单引号、双引号、空字符串）时，属性两边的引号可以省略，如<input type=text>
+  
+  		2.省略属性值，具有布尔值的属性，比如disabled，readonly，致谢属性值代表true，如：<input type=checkbox checked>
+  -->
+    <head>
+    </head>
+    <body>
+    </body>
+  </html>
+  		
+```
 
 <!--more-->
 
@@ -218,19 +219,20 @@ categories:
 
 - 多类型资源，兼容方法
 
-  - ```html
-    <audio id='music'>
-        <source src='./成都.mp3' type='audio/mpeg'>
-        <source src='成都.ogg' type='audio/ogg'>
-        您的浏览器暂不支持audio标签。播放音乐
-    </audio>
-    
-    <video controls="controls"  width="300">
-        <source src='./成都.mp4' type='video/mpeg'>
-        <source src='成都.avi' type='video/ogg'>
-        您的浏览器暂不支持video标签。播放视频
-    </video>
-    ```
+
+```html
+<audio id='music'>
+    <source src='./成都.mp3' type='audio/mpeg'>
+    <source src='成都.ogg' type='audio/ogg'>
+    您的浏览器暂不支持audio标签。播放音乐
+</audio>
+
+<video controls="controls"  width="300">
+    <source src='./成都.mp4' type='video/mpeg'>
+    <source src='成都.avi' type='video/ogg'>
+    您的浏览器暂不支持video标签。播放视频
+</video>
+```
 
 ### 标签属性
 
@@ -255,21 +257,22 @@ categories:
 
 - 脚本化
 
-  - ```js
-    var audio = document.getElementById('audio');
-    var audio = new Audio('./laojie.mp3');
-    var video= document.createElement('video');
-    
-    //audio可以通过new来创建，video不可以通过new来创建
-    ```
 
-  - 设置属性值
+```js
+var audio = document.getElementById('audio');
+var audio = new Audio('./laojie.mp3');
+var video= document.createElement('video');
 
-    - `controls = true`
-    - `loop = 'loop'`
-    - `preload = 'none/metadata/auto'`
-    - `autoplay = true`
-    - `currentSrc = '媒体数据的url地址'`
+//audio可以通过new来创建，video不可以通过new来创建
+```
+
+- 设置属性值
+
+  - `controls = true`
+  - `loop = 'loop'`
+  - `preload = 'none/metadata/auto'`
+  - `autoplay = true`
+  - `currentSrc = '媒体数据的url地址'`
 
 ### 方法
 
@@ -285,13 +288,14 @@ categories:
 
   - 检测浏览器是否能播放指定的音频/视频类型
 
-  - ```js
-    var a = new Audio();
-    if(a.canPlayType("audio/mp3")){
-        a.src="./成都.mp3";
-        a.play();
-    }
-    ```
+
+```js
+var a = new Audio();
+if(a.canPlayType("audio/mp3")){
+    a.src="./成都.mp3";
+    a.play();
+}
+```
 
 ### 属性
 
@@ -380,15 +384,16 @@ categories:
 
 - `ctx`是画笔，就是`canvas`的上下文对象
 
-- ```javascript
-  <!-- 画布 -->
-  <canvas id='myCanvas' width='' height=''></canvas>
-  
-  <script>
-      var myCanvas = document.getElementById('myCanvas'); //获取canvas对象
-  	var ctx = myCanvas.getContext('2d'); //获取mycanvas的上下文对象
-  </script>
-  ```
+
+```javascript
+<!-- 画布 -->
+<canvas id='myCanvas' width='' height=''></canvas>
+
+<script>
+    var myCanvas = document.getElementById('myCanvas'); //获取canvas对象
+	var ctx = myCanvas.getContext('2d'); //获取mycanvas的上下文对象
+</script>
+```
 
 ### 线段
 
@@ -456,25 +461,26 @@ categories:
 
 - 不止可以添加`img`元素，还可以添加`canvas`元素
 
-- ```javascript
-  img元素(image对象),canvas元素，video元素（有图型的）
-  
-  <canvas id="canvas1" width="500" height="500"></canvas>
-  
-  var oCanvas1 = document.getElementById('canvas1');
-  var ctx = oCanvas1.getContext('2d');
-  var w = oCanvas1.width; //画布的宽
-  var h = oCanvas1.height; //画布的高
-  
-  var oImg = new Image();
-  oImg.src = '图片的路径';
-  
-  oImg.onload = function() {
-      var fill = ctx.createPattern(oImg,'repeat');//oImg元素和是否重复
-      ctx.fillStyle = fill;
-      ctx.fillRect(0,0,w,h); //坐标点和宽高
-  }
-  ```
+
+```javascript
+img元素(image对象),canvas元素，video元素（有图型的）
+
+<canvas id="canvas1" width="500" height="500"></canvas>
+
+var oCanvas1 = document.getElementById('canvas1');
+var ctx = oCanvas1.getContext('2d');
+var w = oCanvas1.width; //画布的宽
+var h = oCanvas1.height; //画布的高
+
+var oImg = new Image();
+oImg.src = '图片的路径';
+
+oImg.onload = function() {
+    var fill = ctx.createPattern(oImg,'repeat');//oImg元素和是否重复
+    ctx.fillStyle = fill;
+    ctx.fillRect(0,0,w,h); //坐标点和宽高
+}
+```
 
 ### 渐变
 
@@ -494,36 +500,37 @@ categories:
 
   - `bg.addColorStop(p,color)` ：添加颜色
 
-  - ```javascript
-    //线性渐变
-    <canvas id="canvas1" width="500" height="500"></canvas>
-    
-    var oCanvas1 = document.getElementById('canvas1');
-    var ctx = oCanvas1.getContext('2d');
-    var w = oCanvas1.width; //画布的宽
-    var h = oCanvas1.height; //画布的高
-    var bg = ctx.createLinearGradient(0,0,0,h); //背景渐变
-    
-    bg.addColorStop(0,'red'); 
-    bg.addColorStop(1,'green');
-    ctx.fillStyle = bg;
-    ctx.fillRect(0,0,w,h);
-    
-    //径向渐变
-    <canvas id="canvas1" width="500" height="500"></canvas>
-    
-    var oCanvas1 = document.getElementById('canvas1');
-    var ctx = oCanvas1.getContext('2d');
-    var w = oCanvas1.width; //画布的宽
-    var h = oCanvas1.height; //画布的高
-    var bg = ctx.createRadialGradient(250,250,50,250,250,100);
-    
-    bg.addColorStop(0,'red');
-    bg.addColorStop(0.5,'green');
-    bg.addColorStop(1,'white');
-    ctx.fillStyle = bg;
-    ctx.fillRect(0,0,500,500);
-    ```
+
+```javascript
+//线性渐变
+<canvas id="canvas1" width="500" height="500"></canvas>
+
+var oCanvas1 = document.getElementById('canvas1');
+var ctx = oCanvas1.getContext('2d');
+var w = oCanvas1.width; //画布的宽
+var h = oCanvas1.height; //画布的高
+var bg = ctx.createLinearGradient(0,0,0,h); //背景渐变
+
+bg.addColorStop(0,'red'); 
+bg.addColorStop(1,'green');
+ctx.fillStyle = bg;
+ctx.fillRect(0,0,w,h);
+
+//径向渐变
+<canvas id="canvas1" width="500" height="500"></canvas>
+
+var oCanvas1 = document.getElementById('canvas1');
+var ctx = oCanvas1.getContext('2d');
+var w = oCanvas1.width; //画布的宽
+var h = oCanvas1.height; //画布的高
+var bg = ctx.createRadialGradient(250,250,50,250,250,100);
+
+bg.addColorStop(0,'red');
+bg.addColorStop(0.5,'green');
+bg.addColorStop(1,'white');
+ctx.fillStyle = bg;
+ctx.fillRect(0,0,500,500);
+```
 
 ### 阴影
 
@@ -567,17 +574,18 @@ categories:
 
 - `ctx.clip()`：当前路径外的区域不再绘制
 
-- ```javascript
-  var oCanvas1 = document.getElementById('canvas1');
-  var ctx = oCanvas1.getContext('2d');
-  
-  ctx.beginPath()
-  ctx.arc(200,200,50,0,Math.PI*2,0);
-  ctx.closePath();
-  ctx.clip();
-  ctx.fillRect(100,100,300,300);
-  ```
-  
+
+```javascript
+var oCanvas1 = document.getElementById('canvas1');
+var ctx = oCanvas1.getContext('2d');
+
+ctx.beginPath()
+ctx.arc(200,200,50,0,Math.PI*2,0);
+ctx.closePath();
+ctx.clip();
+ctx.fillRect(100,100,300,300);
+```
+
 - 注：可在`clip()` 前用 `save()` 方法保存，后续通过 `restore()` 方法恢复
 
 ### 合成
@@ -624,20 +632,21 @@ categories:
     -  前四个写完之后，可以插入后面四个参数写的区域里面
     -  后四个为控制`canvas`绘制的起始点和大小
 
-- ```js
-  <img src="./demo/js/slideBox/carousel/img/2.jpg" alt="" id="myImg">
-  
-  <script>
-      var myCanvas = document.getElementById('myCanvas');
-      var ctx = myCanvas.getContext('2d');
-  
-      var myImg = document.getElementById('myImg');
-      myImg.onload = function() {
-          ctx.drawImage(myImg,80,80,80,80,300,300,200,200);
-          //ctx.drawImage(图片，x坐标轴，y坐标轴，宽，高，canvas的x标轴，canvas的y轴，宽，高)
-      }
-  </script>
-  ```
+
+```js
+<img src="./demo/js/slideBox/carousel/img/2.jpg" alt="" id="myImg">
+
+<script>
+    var myCanvas = document.getElementById('myCanvas');
+    var ctx = myCanvas.getContext('2d');
+
+    var myImg = document.getElementById('myImg');
+    myImg.onload = function() {
+        ctx.drawImage(myImg,80,80,80,80,300,300,200,200);
+        //ctx.drawImage(图片，x坐标轴，y坐标轴，宽，高，canvas的x标轴，canvas的y轴，宽，高)
+    }
+</script>
+```
 
 - 设置背景
   - `createPattern(img,平铺方式)`
@@ -655,23 +664,24 @@ categories:
 
 - 将`canvas`的内容放入`img`元素里
 
-- ```js
-  var myCanvas = document.getElementById('myCanvas');
-  var ctx = myCanvas.getContext('2d');
-  
-  var oImg = new Image(); //声明了图片对象
-  
-  ctx.arc(250,250,50,0,Math.PI*2,0);
-  ctx.fillStyle = 'red';
-  ctx.fill();
-  ctx.closePath();
-  ctx.stroke();
-  
-  var data = myCanvas.toDataURL(); //把canvas转换为base64编码格式的图片信息
-  
-  oImg.src = data; //让img图片的src等于data数据
-  document.body.appendChild(oImg);
-  ```
+
+```js
+var myCanvas = document.getElementById('myCanvas');
+var ctx = myCanvas.getContext('2d');
+
+var oImg = new Image(); //声明了图片对象
+
+ctx.arc(250,250,50,0,Math.PI*2,0);
+ctx.fillStyle = 'red';
+ctx.fill();
+ctx.closePath();
+ctx.stroke();
+
+var data = myCanvas.toDataURL(); //把canvas转换为base64编码格式的图片信息
+
+oImg.src = data; //让img图片的src等于data数据
+document.body.appendChild(oImg);
+```
 
 ### 获取canvas像素信息
 
@@ -695,26 +705,27 @@ categories:
 
   - 一般将处理完成的`getImageData()`数据放回`canvas`中
 
-- ```js
-  //白色变成灰色
-  var myCanvas = document.getElementById('myCanvas');
-  var ctx = myCanvas.getContext('2d');
-  
-  ctx.fillRect(0,0,500,500);
-  var pixel = ctx.getImageData(0,0,10,10);//获取画布的像素数据
-  var row = pixel.width;
-  var col = pixel.height;
-  var d = pixel.data;
-  
-  for(var i = 0;i < row; i++){
-      var c = i * col * 4;
-      for(var j = 0;j < col; j++){
-          d[c + j * 4 + 3] = 100;
-      }
-  }
-  //将处理过的数据放回canvas
-  ctx.putImageData(pixel,10,10);
-  ```
+
+```js
+//白色变成灰色
+var myCanvas = document.getElementById('myCanvas');
+var ctx = myCanvas.getContext('2d');
+
+ctx.fillRect(0,0,500,500);
+var pixel = ctx.getImageData(0,0,10,10);//获取画布的像素数据
+var row = pixel.width;
+var col = pixel.height;
+var d = pixel.data;
+
+for(var i = 0;i < row; i++){
+    var c = i * col * 4;
+    for(var j = 0;j < col; j++){
+        d[c + j * 4 + 3] = 100;
+    }
+}
+//将处理过的数据放回canvas
+ctx.putImageData(pixel,10,10);
+```
 
 ### 命中检测
 
@@ -724,19 +735,20 @@ categories:
 
 - 还可以通过检测当前点的像素值，如果为透明，则该点不在路径上
 
-- ```javascript
-  var myCanvas = document.getElementById('myCanvas');
-  var ctx = myCanvas.getContext('2d');
-  
-  ctx.moveTo(100,100);
-  ctx.lineTo(200,100);
-  ctx.lineTo(200,200);
-  ctx.closePath();
-  ctx.stroke();
-  
-  console.log(ctx.isPointInPath(180,120));
-  console.log(ctx.isPointInStroke(200,200));
-  ```
+
+```javascript
+var myCanvas = document.getElementById('myCanvas');
+var ctx = myCanvas.getContext('2d');
+
+ctx.moveTo(100,100);
+ctx.lineTo(200,100);
+ctx.lineTo(200,200);
+ctx.closePath();
+ctx.stroke();
+
+console.log(ctx.isPointInPath(180,120));
+console.log(ctx.isPointInStroke(200,200));
+```
 
 ### 非零绕数准则
 
@@ -965,15 +977,17 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
     - `offset`：颜色节点的位置，定义渐变色开始和结束
     - `stop-color`：颜色节点的颜色
 
-  - ```html
-    <defs>
-        <linearGradient id="bg1" x1="0" y1="0" x2="0" y2 ="100%">
-        	<stop offset="0%" style="stop-color:rgb(255,255,0);"></stop>
-            <stop offset="100%" style="stop-color:rgb(255,0,0);"></stop>
-        </linearGradient>
-    </defs>
-    
-    <rect x="0" y="0" width="500" height="500" style="fill:url(#bg1)"></rect>
+
+```html
+<defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2 ="100%">
+    	<stop offset="0%" style="stop-color:rgb(255,255,0);"></stop>
+        <stop offset="100%" style="stop-color:rgb(255,0,0);"></stop>
+    </linearGradient>
+</defs>
+
+<rect x="0" y="0" width="500" height="500" style="fill:url(#bg1)"></rect>
+```
 
 
 - 径向渐变
@@ -992,30 +1006,29 @@ Graphics/SVG/1.1/DTD/svg11.dtd">
     - `offset`：颜色节点的位置，定义渐变色开始和结束
     - `stop-color`：颜色节点的颜色
 
-  - ```html
-    <defs>
-    	<radialGradient id="bg2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-    		<stop offset="0%" style="stop-color:green;"/>
-    		<stop offset="100%" style="stop-color:red;"/>
-    	</radialGradient>
-    </defs>
-    
-    <rect x="0" y="0" width="500" height="500" style="fill:url(#bg2)"/>
+```html
+<defs>
+	<radialGradient id="bg2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+		<stop offset="0%" style="stop-color:green;"/>
+		<stop offset="100%" style="stop-color:red;"/>
+	</radialGradient>
+</defs>
+
+<rect x="0" y="0" width="500" height="500" style="fill:url(#bg2)"/>
 ```
 
 ### svg滤镜
 
 - 高斯滤镜
 
-  - ```html
-    <defs>
-        <filter id="Gaussian_Blur">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="20"/>
-        </filter>
-    </defs>
-    
-    <rect x="0" y="0" width="500" height="500" fill="yellow" style="filter:url(#Gaussian_Blur)"/>
-    
+```html
+<defs>
+    <filter id="Gaussian_Blur">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="20"/>
+    </filter>
+</defs>
+
+<rect x="0" y="0" width="500" height="500" fill="yellow" style="filter:url(#Gaussian_Blur)"/>
 ```
 
 - 其他滤镜
@@ -1062,19 +1075,19 @@ path{
 
   - `viewBox`属性的值是一个包含4个参数的列表 `min-x`, `min-y`, `width` and `height`， 以空格或者逗号分隔开，`viewBox`的四个参数分别代表：最小X轴数值，最小y轴数值，宽度，高度。
 
-  - ```html
-    例：
-    <svg width=400 height=300 viewBox="0,0,40,30"></svg>
-    
-    ViewBox后两个参数的意思是，虽然在画布设置的宽有400，高有300，但实际的单位宽只有40个单位宽，高只有30单位高，也就是说设置上ViewBox之后，虽然你设置的宽不管有多大，最后都是要按照ViewBox设置的宽高来决定比例的
-    ```
 
-  - **preserveAspectRatio**对齐、填充方式
+```html
+<svg width=400 height=300 viewBox="0,0,40,30"></svg>
 
-    - `xMin`、`xMid`、`xMax`：`x`轴-左中右对齐
-    - `YMin`、`YMid`、`YMax`：`y`轴-上中下对齐
-    - `meet`、`slice`、`none`：撑开、撑满、形变（设置填充方式）
-    - 例：`svg.setAttribute("preserveAspectRatio", "xMinYMin slice")`
+ViewBox后两个参数的意思是，虽然在画布设置的宽有400，高有300，但实际的单位宽只有40个单位宽，高只有30单位高，也就是说设置上ViewBox之后，虽然你设置的宽不管有多大，最后都是要按照ViewBox设置的宽高来决定比例的
+```
+
+- **preserveAspectRatio**对齐、填充方式
+
+  - `xMin`、`xMid`、`xMax`：`x`轴-左中右对齐
+  - `YMin`、`YMid`、`YMax`：`y`轴-上中下对齐
+  - `meet`、`slice`、`none`：撑开、撑满、形变（设置填充方式）
+  - 例：`svg.setAttribute("preserveAspectRatio", "xMinYMin slice")`
 
 ### 用JS生成svg元素
 
@@ -1082,221 +1095,222 @@ path{
 
 - `svg`元素对象一般通过调用`setAttribute()`方法来设定属性值
 
-- ```javascript
-  var char = 'http://www.w3.org/2000/svg', 
-      //命名空间的名称，固定好的
-      svg = document.createElementNS(char,'svg');
-  
-  svg.setAttribute('width',500);
-  svg.setAttribute('height',500);
-  svg.setAttribute('viewBox','0 0 500 500');
-  
-  var rect = document.createElementNS(char,'rect');
-  
-  rect.setAttribute('x',100);
-  rect.setAttribute('y',100);
-  rect.setAttribute('width',100);
-  rect.setAttribute('height',100);
-  rect.setAttribute('fill','#0fc');
-  svg.appendChild(rect);
-  document.body.appendChild(svg);
-  ```
+
+```javascript
+var char = 'http://www.w3.org/2000/svg', 
+    //命名空间的名称，固定好的
+    svg = document.createElementNS(char,'svg');
+
+svg.setAttribute('width',500);
+svg.setAttribute('height',500);
+svg.setAttribute('viewBox','0 0 500 500');
+
+var rect = document.createElementNS(char,'rect');
+
+rect.setAttribute('x',100);
+rect.setAttribute('y',100);
+rect.setAttribute('width',100);
+rect.setAttribute('height',100);
+rect.setAttribute('fill','#0fc');
+svg.appendChild(rect);
+document.body.appendChild(svg);
+```
 
 
 
 ### 练习
 
-- ```html
-  输入数字，进度条占用
-  <style>
-      svg {
-          border: 1px solid black;
-      }
-      path{
-          fill: none;
-          stroke-width:10px;
-          stroke-linecap: round;
-      }
-      #path1 {
-          stroke:#ccc;
-      }
-      #path2{
-          stroke:orange;
-          stroke-dasharray:1000px;
-          stroke-dashoffset:1000px;
-      }
-      .active {
-          transition:  all 1s linear;
-      }
-  </style>
-  </head>
-  <body>
-  
-      <input id="btn" type="text">
-      <svg width=500 height=500>
-          <path id="path1" d="M 200 300 A 100 100 0 1 1 300 300"></path>
-          <path id="path2" d="M 200 300 A 100 100 0 1 1 300 300"></path>
-      </svg>
-  
-      <script>
-          //获取path长度
-          var len = path2.getTotalLength();
-  
-          btn.onblur = function() {
-              var value = this.value;
-              var total = len * value / 100; //变成百分比
-              path2.classList.add('active'); //单独设置动画class类名
-              path2.style.strokeDashoffset = 1000 - total + 'px';
-          }
-          btn.onfocus = function() {
-              path2.classRemove('active');//失去焦点之后删除class，立即消失
-              path2.style.strokeDashOffset='1000px';
-          }
-      </script>
-  </body>
-  ```
+```html
+输入数字，进度条占用
+<style>
+    svg {
+        border: 1px solid black;
+    }
+    path{
+        fill: none;
+        stroke-width:10px;
+        stroke-linecap: round;
+    }
+    #path1 {
+        stroke:#ccc;
+    }
+    #path2{
+        stroke:orange;
+        stroke-dasharray:1000px;
+        stroke-dashoffset:1000px;
+    }
+    .active {
+        transition:  all 1s linear;
+    }
+</style>
+</head>
+<body>
 
-- ```html
-  loading效果
-  <style>
-      	svg {
-      		border: 1px solid black;
-      	}
-      	circle,path {
-      		fill:transparent;
-      		stroke:#ff6700;
-      		stroke-width:10px;
-      		stroke-linecap: round;
-      	}
-      	circle {
-      		stroke: rgba(255,150,0,.5);
-      	}
-      </style>
-  </head>
-  <body>
-  	<svg width=100 height=100>
-  		<circle r=40 cx=50 cy=50></circle>
-  		<path d="M 10 50 A 40 40 0 0 1 50 10">
-  			<animateTransform attributeName="transform" type="rotate" from='0 50 50' to='360 50 50' dur='0.5s' repeatCount='indefinite'>/</animateTransform>
-  		</path>
-  	</svg>
-  </body>
-  ```
+    <input id="btn" type="text">
+    <svg width=500 height=500>
+        <path id="path1" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+        <path id="path2" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+    </svg>
 
-- ```html
-  叮当猫
-  <head>
-      <style>
-      	svg {
-      		border: 1px solid black;
-      	}
-      	.face {
-      		fill: white;
-      	}
-  
-      	.eye{
-      		fill: white;
-      	}
-  
-  		.line-black {
-  			stroke: black;
-  		}
-  		.fill-blue {
-  			fill:#2E87FD;
-  		}
-  		.mouth {
-  			fill: none;
-  		}
-  		.nose {
-  			fill: #FD0100;
-  		}
-  		.nose-light {
-  			fill: white;
-  		}
-  		.sling {
-  			stroke-width: 20px;
-  			stroke: red;
-  			stroke-linecap: round;
-  		}
-  		.bell {
-  			fill: #cece1b;
-  			fill-opacity: .7;;
-  		}
-  		.body {
-  			stroke: black;
-  		}
-  		.fist {
-  			fill: white;
-  		}
-  		.pocket {
-  			fill: white;
-  		}
-  		.pocket-line {
-  			fill: none;
-  		}
-  		.foot {
-  			stroke: black;
-  			fill: white;
-  		}
-  		.foot-y {
-  			fill: white;
-  		}
-      </style>
-  </head>
-  <body>
-  	<svg width='510' height=510>
-  		<!-- 头部蓝色背景 -->
-  		<path class='line-black fill-blue head-back' d="M 150 300 A 160 160 0 1 1 350 300"></path>
-  		<!-- 脸部白色背景 -->
-  		<ellipse rx=130 ry=110 cx=250 cy=220 class="face line-black "></ellipse>
-  		<!-- 眼睛-右 -->
-  		<ellipse rx=35 ry=45 cx=215 cy=110 class="eye line-black "></ellipse>
-  		<!-- 眼睛-左 -->
-  		<ellipse rx=35 ry=45 cx=285 cy=110 class="eye line-black "></ellipse>
-  		<!-- 眼珠-右 -->
-  		<ellipse rx=8 ry=10 cx=225 cy=120></ellipse>
-  		<!-- 眼珠-左 -->
-  		<ellipse rx=8 ry=10 cx=275 cy=120></ellipse>
-  		<!-- 胡须-右 -->
-  		<path d="M 150 180 L 210 190" class="line-black "></path>
-  		<path d="M 145 205 L 210 205" class="line-black "></path>
-  		<path d="M 150 230 L 210 220" class="line-black "></path>
-  		<!-- 胡须-左 -->
-  		<path d="M 280 190 L 350 180" class="line-black "></path>
-  		<path d="M 280 205 L 345 205" class="line-black "></path>
-  		<path d="M 280 220 L 350 230" class="line-black "></path>
-  		<!-- 嘴巴 -->
-  		<line class="mouth line-black " x1=250 y1=165 x2=250 y2=270></line>
-  		<path class="mouth line-black " d="M 180 240 A 80 50 0 0 0 325 240"></path>
-  		<!-- 鼻子 -->
-  		<ellipse class="nose line-black " rx=15 ry=15 cx=250 cy=160></ellipse>
-  		<ellipse class="nose-light line-black " rx=5 ry=7 cx=257 cy=155></ellipse>
-  		<!-- 身体背景 -->
-  		<rect class="body fill-blue" x=150 y=300 width=200 height=170></rect>
-  		<!-- 左胳膊 -->
-  		<path class="arm fill-blue" d="M 90 290 L 180 330 170 365 90 330 90 290"></path>
-  		<ellipse class="line-black fist" rx=22 ry=22 cx=97 cy=312></ellipse>
-  		<!-- 右胳膊 -->
-  		<path class="arm fill-blue" d="M 320 330 L 410 305 410 340 320 365 320 360"></path>
-  		<ellipse class="line-black fist" rx=22 ry=22 cx=410 cy=320></ellipse>
-  		<!-- 口袋 -->
-  		<path class="pocket" d="M 180 310 A 80 85 0 1 0 320 310"></path>
-  		<path class="line-black pocket-line" d="M 200 370 A 40 40 0 1 0 300 370 z"></path>
-  		<!-- 挂绳 -->
-  		<path class="sling" d="M 150 300 L 350 300"></path>
-  		<!-- 铃铛 -->
-  		<ellipse class="bell line-black " rx=20 ry=20 cx=250 cy=315></ellipse>
-  		<ellipse rx=7 ry=7 cx=250 cy=325></ellipse>
-  		<path class="line-black" d="M 250 325 L 250 335"></path>
-  		<!-- 脚 -->
-  		<ellipse class="foot-y" rx=15 ry=20 cx=255 cy=480></ellipse>
-  		<!-- 左脚 -->
-  		<ellipse class="foot" rx=60 ry=20 cx=190 cy=480></ellipse>
-  		<!-- 右脚 -->
-  		<ellipse class="foot" rx=60 ry=20 cx=320 cy=480></ellipse>
-      </svg>
-  </body>
-  ```
+    <script>
+        //获取path长度
+        var len = path2.getTotalLength();
+
+        btn.onblur = function() {
+            var value = this.value;
+            var total = len * value / 100; //变成百分比
+            path2.classList.add('active'); //单独设置动画class类名
+            path2.style.strokeDashoffset = 1000 - total + 'px';
+        }
+        btn.onfocus = function() {
+            path2.classRemove('active');//失去焦点之后删除class，立即消失
+            path2.style.strokeDashOffset='1000px';
+        }
+    </script>
+</body>
+```
+
+```html
+loading效果
+<style>
+    	svg {
+    		border: 1px solid black;
+    	}
+    	circle,path {
+    		fill:transparent;
+    		stroke:#ff6700;
+    		stroke-width:10px;
+    		stroke-linecap: round;
+    	}
+    	circle {
+    		stroke: rgba(255,150,0,.5);
+    	}
+    </style>
+</head>
+<body>
+	<svg width=100 height=100>
+		<circle r=40 cx=50 cy=50></circle>
+		<path d="M 10 50 A 40 40 0 0 1 50 10">
+			<animateTransform attributeName="transform" type="rotate" from='0 50 50' to='360 50 50' dur='0.5s' repeatCount='indefinite'>/</animateTransform>
+		</path>
+	</svg>
+</body>
+```
+
+```html
+叮当猫
+<head>
+    <style>
+    	svg {
+    		border: 1px solid black;
+    	}
+    	.face {
+    		fill: white;
+    	}
+
+    	.eye{
+    		fill: white;
+    	}
+
+		.line-black {
+			stroke: black;
+		}
+		.fill-blue {
+			fill:#2E87FD;
+		}
+		.mouth {
+			fill: none;
+		}
+		.nose {
+			fill: #FD0100;
+		}
+		.nose-light {
+			fill: white;
+		}
+		.sling {
+			stroke-width: 20px;
+			stroke: red;
+			stroke-linecap: round;
+		}
+		.bell {
+			fill: #cece1b;
+			fill-opacity: .7;;
+		}
+		.body {
+			stroke: black;
+		}
+		.fist {
+			fill: white;
+		}
+		.pocket {
+			fill: white;
+		}
+		.pocket-line {
+			fill: none;
+		}
+		.foot {
+			stroke: black;
+			fill: white;
+		}
+		.foot-y {
+			fill: white;
+		}
+    </style>
+</head>
+<body>
+	<svg width='510' height=510>
+		<!-- 头部蓝色背景 -->
+		<path class='line-black fill-blue head-back' d="M 150 300 A 160 160 0 1 1 350 300"></path>
+		<!-- 脸部白色背景 -->
+		<ellipse rx=130 ry=110 cx=250 cy=220 class="face line-black "></ellipse>
+		<!-- 眼睛-右 -->
+		<ellipse rx=35 ry=45 cx=215 cy=110 class="eye line-black "></ellipse>
+		<!-- 眼睛-左 -->
+		<ellipse rx=35 ry=45 cx=285 cy=110 class="eye line-black "></ellipse>
+		<!-- 眼珠-右 -->
+		<ellipse rx=8 ry=10 cx=225 cy=120></ellipse>
+		<!-- 眼珠-左 -->
+		<ellipse rx=8 ry=10 cx=275 cy=120></ellipse>
+		<!-- 胡须-右 -->
+		<path d="M 150 180 L 210 190" class="line-black "></path>
+		<path d="M 145 205 L 210 205" class="line-black "></path>
+		<path d="M 150 230 L 210 220" class="line-black "></path>
+		<!-- 胡须-左 -->
+		<path d="M 280 190 L 350 180" class="line-black "></path>
+		<path d="M 280 205 L 345 205" class="line-black "></path>
+		<path d="M 280 220 L 350 230" class="line-black "></path>
+		<!-- 嘴巴 -->
+		<line class="mouth line-black " x1=250 y1=165 x2=250 y2=270></line>
+		<path class="mouth line-black " d="M 180 240 A 80 50 0 0 0 325 240"></path>
+		<!-- 鼻子 -->
+		<ellipse class="nose line-black " rx=15 ry=15 cx=250 cy=160></ellipse>
+		<ellipse class="nose-light line-black " rx=5 ry=7 cx=257 cy=155></ellipse>
+		<!-- 身体背景 -->
+		<rect class="body fill-blue" x=150 y=300 width=200 height=170></rect>
+		<!-- 左胳膊 -->
+		<path class="arm fill-blue" d="M 90 290 L 180 330 170 365 90 330 90 290"></path>
+		<ellipse class="line-black fist" rx=22 ry=22 cx=97 cy=312></ellipse>
+		<!-- 右胳膊 -->
+		<path class="arm fill-blue" d="M 320 330 L 410 305 410 340 320 365 320 360"></path>
+		<ellipse class="line-black fist" rx=22 ry=22 cx=410 cy=320></ellipse>
+		<!-- 口袋 -->
+		<path class="pocket" d="M 180 310 A 80 85 0 1 0 320 310"></path>
+		<path class="line-black pocket-line" d="M 200 370 A 40 40 0 1 0 300 370 z"></path>
+		<!-- 挂绳 -->
+		<path class="sling" d="M 150 300 L 350 300"></path>
+		<!-- 铃铛 -->
+		<ellipse class="bell line-black " rx=20 ry=20 cx=250 cy=315></ellipse>
+		<ellipse rx=7 ry=7 cx=250 cy=325></ellipse>
+		<path class="line-black" d="M 250 325 L 250 335"></path>
+		<!-- 脚 -->
+		<ellipse class="foot-y" rx=15 ry=20 cx=255 cy=480></ellipse>
+		<!-- 左脚 -->
+		<ellipse class="foot" rx=60 ry=20 cx=190 cy=480></ellipse>
+		<!-- 右脚 -->
+		<ellipse class="foot" rx=60 ry=20 cx=320 cy=480></ellipse>
+    </svg>
+</body>
+```
 
 ## 客户端存储
 
@@ -1308,20 +1322,22 @@ path{
 
 - 存储数据
 
-  - ```javascript
-    localStorage.name = 'aimee';
-    localStorage.info = `JSON.stringify({
-    	name:'aimee',
-    	company:'diyi'
-    })`
-    ```
+
+```javascript
+localStorage.name = 'aimee';
+localStorage.info = `JSON.stringify({
+	name:'aimee',
+	company:'diyi'
+})`
+```
 
 - 取出数据
 
-  - ```javascript
-    localStorage.name
-    localStorage.info
-    ```
+
+```javascript
+localStorage.name
+localStorage.info
+```
 
 - 作用域
 
@@ -1687,47 +1703,48 @@ window.addEventListener('devicemotion', function(e){
   - `interval`：获取的时间间隔
   - 注意：都是只读属性
 
-- ```js
-  //重力感应
-  window.addEventListener('devicemotion',function(e) {
-      		item.innerHTML = e.accelerationIncludingGravity.x + '-' +e.accelerationIncludingGravity.y + '-' + e.accelerationIncludingGravity.z;
-      	})
-  ```
 
-- ```js
-  微信摇一摇
-  var SHAKE_THRESHOLD = 800; //基准值800
-          var last_update = 0; //上一次更新的时间为0
-  		//当前x,y,z和上一次的x,y,z
-          var x, y, z, last_x=0, last_y=0, last_z=0;
-          function deviceMotionHeadler(eventData) {
-          	// 加速度
-              var acceleration = eventData.accelerationIncludingGravity;
-              //时间戳
-              var curTime = new Date().getTime();
-              //300毫秒判断一次，300毫秒执行一次
-              if((curTime - last_update) > 300) {
-                  var diffTime = curTime - last_update;
-                  last_update = curTime;
-                  x = acceleration.x;
-                  y = acceleration.y;
-                  z = acceleration.z;
-                  
-                  var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
-                  if(speed > SHAKE_THRESHOLD) {
-                      alert('shaked~!');
-                      var div = document.createElement('div');
-                      div.innerText = '11';
-                      document.body.appendChild(div);
-                  }
-                  last_x = x;
-                  last_y = y;
-                  last_z = z;
-              }
-          }
-          //监听加速度的变化，当加速度变化时，执行deviceMotionHeadler函数
-          window.addEventListener('devicemotion', deviceMotionHeadler, false);
-  ```
+```js
+//重力感应
+window.addEventListener('devicemotion',function(e) {
+    		item.innerHTML = e.accelerationIncludingGravity.x + '-' +e.accelerationIncludingGravity.y + '-' + e.accelerationIncludingGravity.z;
+    	})
+```
+
+```js
+微信摇一摇
+var SHAKE_THRESHOLD = 800; //基准值800
+        var last_update = 0; //上一次更新的时间为0
+		//当前x,y,z和上一次的x,y,z
+        var x, y, z, last_x=0, last_y=0, last_z=0;
+        function deviceMotionHeadler(eventData) {
+        	// 加速度
+            var acceleration = eventData.accelerationIncludingGravity;
+            //时间戳
+            var curTime = new Date().getTime();
+            //300毫秒判断一次，300毫秒执行一次
+            if((curTime - last_update) > 300) {
+                var diffTime = curTime - last_update;
+                last_update = curTime;
+                x = acceleration.x;
+                y = acceleration.y;
+                z = acceleration.z;
+                
+                var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
+                if(speed > SHAKE_THRESHOLD) {
+                    alert('shaked~!');
+                    var div = document.createElement('div');
+                    div.innerText = '11';
+                    document.body.appendChild(div);
+                }
+                last_x = x;
+                last_y = y;
+                last_z = z;
+            }
+        }
+        //监听加速度的变化，当加速度变化时，执行deviceMotionHeadler函数
+        window.addEventListener('devicemotion', deviceMotionHeadler, false);
+```
 
 ### deviceorientation（监听方向变化）
 
@@ -1746,79 +1763,80 @@ window.addEventListener(deviceorientation,function(event) {
   - `gamma`表示设备在`y`轴上的旋转角度，范围为`-90~90`。它描述的是设备由左向右旋转的情况
   - ![](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111704446.png)
 
-- ```html
-  <p>旋转：<span id="alpha">0</span></p>
-  <p>前后：<span id="beta">0</span></p>
-  <p>扭转：<span id="gamma">0</span></p>
-  
-  
-  <script>
-      function DeviceOrientationHandler(event){
-          var alpha = event.alpha,
-              beta = event.beta,
-              gamma = event.gamma,
-              webkitCompassHeading = event.webkitCompassHeading;
-  
-          if(alpha != null || beta != null || gamma != null){
-              //判断屏幕方向
-              var html = "";
-              if( gamma > 0 ){
-                  html = "向右倾斜" + gamma;
-              }else{
-                  html = "向左倾斜" + gamma;
-              }
-              document.getElementById("gamma").innerHTML = html;
-  
-              var str = '';
-              if( beta > 0 ){
-                  str = "向前倾斜" + beta;
-              }else{
-                  str = "向后倾斜" + beta;
-              }
-  
-              var head = '';
-              var headNum = Math.round(Math.round(webkitCompassHeading/45) + 7)%8;
-              switch (headNum) {
-                  case 0:
-                      head = '东北';
-                      break;
-                  case 1:
-                      head = '东';
-                      break;
-                  case 2:
-                      head = '东南';
-                      break;
-                  case 3:
-                      head = '南';
-                      break;
-                  case 4:
-                      head = '西南';
-                      break;
-                  case 5:
-                      head = '西';
-                      break;
-                  case 6:
-                      head = '西北';
-                      break;
-                  case 7:
-                      head = '北';
-              }
-  
-              document.getElementById("beta").innerHTML = str;
-              document.getElementById("alpha").innerHTML = alpha;
-              document.getElementById('heading').innerHTML = head + '   ' + webkitCompassHeading;
-          }else{
-              document.body.innerHTML = "当前浏览器不支持DeviceOrientation";
-          }
-      }
-      //判断有没有这个事件，如果有的话才监听
-      if(window.DeviceOrientationEvent){
-          window.addEventListener('deviceorientation',DeviceOrientationHandler, false);
-      }else{
-          alert("您的浏览器不支持DeviceOrientation");
-      }
-  </script>
-  ```
+
+```html
+<p>旋转：<span id="alpha">0</span></p>
+<p>前后：<span id="beta">0</span></p>
+<p>扭转：<span id="gamma">0</span></p>
+
+
+<script>
+    function DeviceOrientationHandler(event){
+        var alpha = event.alpha,
+            beta = event.beta,
+            gamma = event.gamma,
+            webkitCompassHeading = event.webkitCompassHeading;
+
+        if(alpha != null || beta != null || gamma != null){
+            //判断屏幕方向
+            var html = "";
+            if( gamma > 0 ){
+                html = "向右倾斜" + gamma;
+            }else{
+                html = "向左倾斜" + gamma;
+            }
+            document.getElementById("gamma").innerHTML = html;
+
+            var str = '';
+            if( beta > 0 ){
+                str = "向前倾斜" + beta;
+            }else{
+                str = "向后倾斜" + beta;
+            }
+
+            var head = '';
+            var headNum = Math.round(Math.round(webkitCompassHeading/45) + 7)%8;
+            switch (headNum) {
+                case 0:
+                    head = '东北';
+                    break;
+                case 1:
+                    head = '东';
+                    break;
+                case 2:
+                    head = '东南';
+                    break;
+                case 3:
+                    head = '南';
+                    break;
+                case 4:
+                    head = '西南';
+                    break;
+                case 5:
+                    head = '西';
+                    break;
+                case 6:
+                    head = '西北';
+                    break;
+                case 7:
+                    head = '北';
+            }
+
+            document.getElementById("beta").innerHTML = str;
+            document.getElementById("alpha").innerHTML = alpha;
+            document.getElementById('heading').innerHTML = head + '   ' + webkitCompassHeading;
+        }else{
+            document.body.innerHTML = "当前浏览器不支持DeviceOrientation";
+        }
+    }
+    //判断有没有这个事件，如果有的话才监听
+    if(window.DeviceOrientationEvent){
+        window.addEventListener('deviceorientation',DeviceOrientationHandler, false);
+    }else{
+        alert("您的浏览器不支持DeviceOrientation");
+    }
+</script>
+```
 
 - `webkitCompassHeading`：与正北方向的角度差值。正北为`0`度，正东为`90`度，正南为`180`度，正西为`270`度。因为`0`度是正北，所以叫指北针。
 
@@ -1848,99 +1866,100 @@ window.addEventListener(deviceorientation,function(event) {
 
 - `canvelAnimationFrame`：取消动画
 
-- ```js
-  //简单兼容
-  //设置AnimationFrame
-  window.requestAnimFrame = (function(){ 
-  	return window.requestAnimationFrame || 
-          window.webkitRequestAnimationFrame || 
-          window.mozRequestAnimationFrame || 
-          function(callback) {
-              window.setTimeout(callback,1000/60);
-          };
-  })();
-  
-  //取消AnimationFrame
-  window.cancelAnimFrame = (function() {
-      return window.cancelAnimationFrame ||
-          window.webkitCancelAnimationFrame ||
-          window.mozCancelAnimationFrame ||
-          function(id) {
-              window.clearTimeout(id);
-          }
-  })();
-  ```
 
-- ```js
-  // 完美兼容
-  (function() {
-      var lastTime = 0;
-          var vendors = ['webkit', 'moz'];
-          for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-              window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-              window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
-                                            window[vendors[x] + 'CancelRequestAnimationFrame'];
-          }
-      if (!window.requestAnimationFrame) {
-          window.requestAnimationFrame = function(callback, element) {
-              var currTime = new Date().getTime();
-              var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
-              var id = window.setTimeout(function() {
-                  callback(currTime + timeToCall);
-              }, timeToCall);
-              lastTime = currTime + timeToCall;
-              return id;
-          };
-      }
-      if (!window.cancelAnimationFrame) {
-          window.cancelAnimationFrame = function(id) {
-              clearTimeout(id);
-          };
-      }
-  }());
-  ```
+```js
+//简单兼容
+//设置AnimationFrame
+window.requestAnimFrame = (function(){ 
+	return window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestAnimationFrame || 
+        function(callback) {
+            window.setTimeout(callback,1000/60);
+        };
+})();
 
-- ```js
-  例：
-  
-  <div id="btn"></div>
-  
-  //requestAnimationFrame兼容函数
-  window.requestAnimationFrame = (function() {
-      return window.requestAnimationFrame || 
-          window.webkitRequestAnimationFrame || 
-          window.mozRequestionAnimationFrame || 
-          function(callback) {
-              window.setTimeout(callback,1000/60);
-          }
-  })();
-  //cancelAnimationFrame兼容函数
-  window.cancelAnimationFrame = (function() {
-      return window.cancelAnimationFrame ||
-          window.webkitCancelAnimationFrame || 
-          window.mozCancelAnimationFrame || 
-          function(id) {
-              window.clearTimeout(id);
-          }
-  })();
-  
-  var req; //标识
-  
-  function move() {
-      btn.style.left = btn.offsetLeft + 10 + 'px';
-      if(btn.offsetLeft >= 300) {
-          // clearTimeout(timer);
-          cancelAnimationFrame(req);
-          btn.style.left = '300px';
-      } else {
-          // req = setTimeout(function() {
-          // 	move();
-          // },10)
-          req = requestAnimationFrame(move);
-      }
-  }
-  move();
-  ```
+//取消AnimationFrame
+window.cancelAnimFrame = (function() {
+    return window.cancelAnimationFrame ||
+        window.webkitCancelAnimationFrame ||
+        window.mozCancelAnimationFrame ||
+        function(id) {
+            window.clearTimeout(id);
+        }
+})();
+```
+
+```js
+// 完美兼容
+(function() {
+    var lastTime = 0;
+        var vendors = ['webkit', 'moz'];
+        for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+            window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+            window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // Webkit中此取消方法的名字变了
+                                          window[vendors[x] + 'CancelRequestAnimationFrame'];
+        }
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+}());
+```
+
+```js
+例：
+
+<div id="btn"></div>
+
+//requestAnimationFrame兼容函数
+window.requestAnimationFrame = (function() {
+    return window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame || 
+        window.mozRequestionAnimationFrame || 
+        function(callback) {
+            window.setTimeout(callback,1000/60);
+        }
+})();
+//cancelAnimationFrame兼容函数
+window.cancelAnimationFrame = (function() {
+    return window.cancelAnimationFrame ||
+        window.webkitCancelAnimationFrame || 
+        window.mozCancelAnimationFrame || 
+        function(id) {
+            window.clearTimeout(id);
+        }
+})();
+
+var req; //标识
+
+function move() {
+    btn.style.left = btn.offsetLeft + 10 + 'px';
+    if(btn.offsetLeft >= 300) {
+        // clearTimeout(timer);
+        cancelAnimationFrame(req);
+        btn.style.left = '300px';
+    } else {
+        // req = setTimeout(function() {
+        // 	move();
+        // },10)
+        req = requestAnimationFrame(move);
+    }
+}
+move();
+```
 
 ### history(历史记录)
 
@@ -1973,7 +1992,7 @@ window.addEventListener(deviceorientation,function(event) {
 - 简介
   - `Web Worker` (工作线程) 是 `HTML5` 中提出的概念，分为两种类型，专用线程（`Dedicated Web Worker`） 和共享线程（`Shared Web Worker`）。专用线程仅能被创建它的脚本所使用（一个专用线程对应一个主线程），而共享线程能够在不同的脚本中使用（一个共享线程对应多个主线程）。
   - 专用线程可以看做是默认情况的 `Web Worker`，其加上修饰词的目的是为了与共享线程进行区分。本文会较为严格地区分两者，可能较为累赘，但个人认为这是必要的。如果单纯以 `Web Worker` 字样出现的地方指的是两者都会有的情况。
-  
+
 - 用途
   - `Web Worker` 的意义在于可以将一些耗时的数据处理操作从主线程中剥离，使主线程更加专注于页面渲染和交互。
   - 懒加载
@@ -1982,14 +2001,14 @@ window.addEventListener(deviceorientation,function(event) {
   - `canvas` 图形绘制
   - 图像处理
   - ...
-  
+
 - 需要注意的点
   - 有同源限制
   - 无法访问 `DOM` 节点
   - 运行在另一个上下文中，无法使用`Window`对象
   - `Web Worker` 的运行不会影响主线程，但与主线程交互时仍受到主线程单线程的瓶颈制约。换言之，如果 Worker 线程频繁与主线程进行交互，主线程由于需要处理交互，仍有可能使页面发生阻塞
   - 共享线程可以被多个浏览上下文（`Browsing context`）调用，但所有这些浏览上下文必须同源（相同的协议，主机和端口号）
-  
+
 - 浏览器支持度
   - 根据 `CanI Use` 网站的统计，目前约有 `93.05%` 的浏览器支持专用线程。
 
@@ -1999,20 +2018,22 @@ window.addEventListener(deviceorientation,function(event) {
 
   - 专用线程
 
-  - ```js
-    //专用线程由 Worker()方法创建，可以接收两个参数，第一个参数是必填的脚本的位置，第二个参数是可选的配置对象，可以指定 type、credentials、name 三个属性。
-    
-    专用线程
-    var worker = new Worker('worker.js')//worker.js是自己的js文件
-    // var worker = new Worker('worker.js', { name: 'dedicatedWorker'})
-    ```
 
-  - 共享线程
+```js
+//专用线程由 Worker()方法创建，可以接收两个参数，第一个参数是必填的脚本的位置，第二个参数是可选的配置对象，可以指定 type、credentials、name 三个属性。
 
-  - ```js
-    //共享线程使用 Shared Worker() 方法创建，同样支持两个参数，用法与 Worker() 一致。
-    var sharedWorker = new SharedWorker('shared-worker.js')//shared-worker.js是自己的js文件
-    ```
+专用线程
+var worker = new Worker('worker.js')//worker.js是自己的js文件
+// var worker = new Worker('worker.js', { name: 'dedicatedWorker'})
+```
+
+- 共享线程
+
+
+```js
+//共享线程使用 Shared Worker() 方法创建，同样支持两个参数，用法与 Worker() 一致。
+var sharedWorker = new SharedWorker('shared-worker.js')//shared-worker.js是自己的js文件
+```
 
 - 数据传递
 
@@ -2022,141 +2043,147 @@ window.addEventListener(deviceorientation,function(event) {
 
   - `Worker` 线程和主线程都通过 `postMessage()` 方法发送消息，通过 `onmessage` 事件接收消息。在这个过程中数据并不是被共享的，而是被复制的。值得注意的是 `Error` 和 `Function` 对象不能被结构化克隆算法复制，如果尝试这么做的话会导致抛出 `DATA_CLONE_ERR` 的异常。另外，`postMessage()` 一次只能发送一个对象， 如果需要发送多个参数可以将参数包装为数组或对象再进行传递。
 
-  - ```js
-    // 主线程
-    //创建一个worker
-    var worker = new Worker('worker.js')
-    //worker postMessage
-    worker.postMessage(10)
-    //给worker绑定message事件
-    worker.onmessage = function(e) {
-        console.log(e.data)
+
+```js
+// 主线程
+//创建一个worker
+var worker = new Worker('worker.js')
+//worker postMessage
+worker.postMessage(10)
+//给worker绑定message事件
+worker.onmessage = function(e) {
+    console.log(e.data)
+}
+
+// Worker.js 线程
+//绑定onmessage事件
+onmessage = function(e) {
+    console.log(e.data);
+    //向主线程发送数据
+    postMessage(deal(e.data));
+}
+
+function deal(data) {
+    return data * data;
+}
+```
+
+- 在 `Worker` 线程中，`self` 和 `this` 都代表子线程的全局对象。对于监听 message 事件，以下的四种写法是等同的。
+
+
+```js
+// 写法 1
+self.addEventListener('message', function (e) {
+    // ...
+})
+
+// 写法 2
+this.addEventListener('message', function (e) {
+    // ...
+})
+
+// 写法 3
+addEventListener('message', function (e) {
+    // ...
+})
+
+// 写法 4
+onmessage = function (e) {
+    // ...
+}
+```
+
+- 主线程通过 `MessagePort` 访问专用线程和共享线程。专用线程的 `port` 会在线程创建时自动设置，并且不会暴露出来。与专用线程不同的是，共享线程在传递消息之前，端口必须处于打开状态。`MDN` 上的 `MessagePort` 关于 `start()` 方法的描述是：
+
+  - > Starts the sending of messages queued on the port (only needed when using EventTarget.addEventListener; it is implied when using MessagePort.onmessage.)
+    >
+    > 开始发送在端口上排队的消息（仅在使用EventTarget.addEventListener时需要）；当使用MessagePort.onmessage时，它是隐含的。）
+
+  - 这句话经过试验，可以理解为 `start()` 方法是与 `addEventListener` 配套使用的。如果我们选择 `onmessage` 进行事件监听，那么将隐含调用 `start()` 方法。
+
+
+```js
+// 主线程
+var sharedWorker = new SharedWorker('shared-worker.js')
+sharedWorker.port.onmessage = function(e) {
+    // 业务逻辑
+}
+
+var sharedWorker = new SharedWorker('shared-worker.js')
+sharedWorker.port.addEventListener('message', function(e) {
+    // 业务逻辑
+}, false)
+sharedWorker.port.start() // 需要显式打开
+```
+
+- 在传递消息时，`postMessage()` 方法和 `onmessage` 事件必须通过端口对象调用。另外，在 `Worker` 线程中，需要使用 `onconnect` 事件监听端口的变化，并使用端口的消息处理函数进行响应。
+
+
+```js
+// 主线程
+sharedWorker.port.postMessage([10, 24])
+sharedWorker.port.onmessage = function (e) {
+    console.log(e.data)
+}
+
+// Worker 线程
+onconnect = function (e) {
+    let port = e.ports[0]
+
+    port.onmessage = function (e) {
+        if (e.data.length > 1) {
+            port.postMessage(e.data[1] - e.data[0])
+        }
     }
-    
-    // Worker.js 线程
-    //绑定onmessage事件
-    onmessage = function(e) {
-        console.log(e.data);
-        //向主线程发送数据
-        postMessage(deal(e.data));
-    }
-    
-    function deal(data) {
-        return data * data;
-    }
-    ```
-    
-  - 在 `Worker` 线程中，`self` 和 `this` 都代表子线程的全局对象。对于监听 message 事件，以下的四种写法是等同的。
-
-  - ```js
-    // 写法 1
-    self.addEventListener('message', function (e) {
-        // ...
-    })
-    
-    // 写法 2
-    this.addEventListener('message', function (e) {
-        // ...
-    })
-    
-    // 写法 3
-    addEventListener('message', function (e) {
-        // ...
-    })
-    
-    // 写法 4
-    onmessage = function (e) {
-        // ...
-    }
-    ```
-
-  - 主线程通过 `MessagePort` 访问专用线程和共享线程。专用线程的 `port` 会在线程创建时自动设置，并且不会暴露出来。与专用线程不同的是，共享线程在传递消息之前，端口必须处于打开状态。`MDN` 上的 `MessagePort` 关于 `start()` 方法的描述是：
-
-    - > Starts the sending of messages queued on the port (only needed when using EventTarget.addEventListener; it is implied when using MessagePort.onmessage.)
-      >
-      > 开始发送在端口上排队的消息（仅在使用EventTarget.addEventListener时需要）；当使用MessagePort.onmessage时，它是隐含的。）
-
-    - 这句话经过试验，可以理解为 `start()` 方法是与 `addEventListener` 配套使用的。如果我们选择 `onmessage` 进行事件监听，那么将隐含调用 `start()` 方法。
-
-    - ```js
-      // 主线程
-      var sharedWorker = new SharedWorker('shared-worker.js')
-      sharedWorker.port.onmessage = function(e) {
-          // 业务逻辑
-      }
-      
-      var sharedWorker = new SharedWorker('shared-worker.js')
-      sharedWorker.port.addEventListener('message', function(e) {
-          // 业务逻辑
-      }, false)
-      sharedWorker.port.start() // 需要显式打开
-      ```
-
-    - 在传递消息时，`postMessage()` 方法和 `onmessage` 事件必须通过端口对象调用。另外，在 `Worker` 线程中，需要使用 `onconnect` 事件监听端口的变化，并使用端口的消息处理函数进行响应。
-
-    - ```js
-      // 主线程
-      sharedWorker.port.postMessage([10, 24])
-      sharedWorker.port.onmessage = function (e) {
-          console.log(e.data)
-      }
-      
-      // Worker 线程
-      onconnect = function (e) {
-          let port = e.ports[0]
-      
-          port.onmessage = function (e) {
-              if (e.data.length > 1) {
-                  port.postMessage(e.data[1] - e.data[0])
-              }
-          }
-      }
-      ```
+}
+```
 
 - 关闭 **Worker**
-  
+
   - **close()**：在`worker`作用域中调用，自己关闭
     
   - **terminate()**：在`worker`对象上调用(主进程的`worker`对象上`worker.terminate`)，上级关闭`worker`
     
   - 可以在主线程中使用 `terminate()` 方法或在 `Worker` 线程中使用 `close()` 方法关闭 `worker`。这两种方法是等效的，但比较推荐的用法是使用 `close()`，防止意外关闭正在运行的 `Worker` 线程。`Worker` 线程一旦关闭 `Worker` 后 `Worker` 将不再响应。
-  
-  - ```js
-    // 主线程
-    worker.terminate()
-    
-    // Dedicated Worker 线程中
-    self.close()
-    
-    // Shared Worker 线程中
-    self.port.close()
-    ```
-  
+
+
+```js
+// 主线程
+worker.terminate()
+
+// Dedicated Worker 线程中
+self.close()
+
+// Shared Worker 线程中
+self.port.close()
+```
+
 - 错误处理
 
   - 可以通过在主线程或 `Worker` 线程中设置 `onerror` 和 `onmessageerror` 的回调函数对错误进行处理。其中，`onerror` 在 `Worker` 的 `error` 事件触发并冒泡时执行，`onmessageerror` 在 `Worker` 收到的消息不能进行反序列化时触发(本人经过尝试没有办法触发 `onmessageerror` 事件，如果在 `worker` 线程使用 `postMessage` 方法传递一个 Error 或 Function 对象会因为无法序列化优先被 `onerror` 方法捕获，而根本不会进入反序列化的过程)
 
-  - ```js
-    // 主线程
-    worker.onerror = function () {
-        // ...
-    }
-    
-    // 主线程使用专用线程
-    worker.onmessageerror = function () {
-        // ...
-    }
-    
-    // 主线程使用共享线程
-    worker.port.onmessageerror = function () {
-        // ...
-    }
-    
-    // worker 线程
-    onerror = function () {
-    
-    }
-    ```
+
+```js
+// 主线程
+worker.onerror = function () {
+    // ...
+}
+
+// 主线程使用专用线程
+worker.onmessageerror = function () {
+    // ...
+}
+
+// 主线程使用共享线程
+worker.port.onmessageerror = function () {
+    // ...
+}
+
+// worker 线程
+onerror = function () {
+
+}
+```
 
 - 加载外部脚本
 
@@ -2164,13 +2191,14 @@ window.addEventListener(deviceorientation,function(event) {
 
   - `worker`只是`window`的子集，只能实现部分功能，不能获取到`window`，`documennt`，所以这里不要引入`jquery`，可以引入一些计算的库
 
-    ```js
-    importScripts('script1.js')
-    importScripts('script2.js')
-    
-    // 以上写法等价于
-    importScripts('script1.js', 'script2.js')
-    ```
+
+```js
+importScripts('script1.js')
+importScripts('script2.js')
+
+// 以上写法等价于
+importScripts('script1.js', 'script2.js')
+```
 
 - 子线程
 
@@ -2182,18 +2210,19 @@ window.addEventListener(deviceorientation,function(event) {
 
   - 目前没有一类标签可以使 `Worker` 的代码像 `<script>` 元素一样嵌入网页中，但我们可以通过 `Blob()` 将页面中的 `Worker` 代码进行解析。
 
-  - ```js
-    <script id="worker" type="javascript/worker">
-    // 这段代码不会被 JS 引擎直接解析，因为类型是 'javascript/worker'
-    
-    // 在这里写 Worker 线程的逻辑
-    </script>
-    <script>
-        var workerScript = document.querySelector('#worker').textContent
-        var blob = new Blob(workerScript, {type: "text/javascript"})
-        var worker = new Worker(window.URL.createObjectURL(blob))
-    </script>
-    ```
+
+```js
+<script id="worker" type="javascript/worker">
+// 这段代码不会被 JS 引擎直接解析，因为类型是 'javascript/worker'
+
+// 在这里写 Worker 线程的逻辑
+</script>
+<script>
+    var workerScript = document.querySelector('#worker').textContent
+    var blob = new Blob(workerScript, {type: "text/javascript"})
+    var worker = new Worker(window.URL.createObjectURL(blob))
+</script>
+```
 
 - 关于 **postMessage**
 
@@ -2201,16 +2230,18 @@ window.addEventListener(deviceorientation,function(event) {
 
   - 但是，一次数据传输就需要同时经过序列化和反序列化，如果数据量大的话，这个过程本身也可能造成性能问题。因此， `Worker` 中提出了 `Transferable Objects` 的概念，当数据量较大时，我们可以选择在将主线程中的数据直接移交给 `Worker` 线程。值得注意的是，这种转移是彻底的，一旦数据成功转移，主线程将不能访问该数据。这个移交的过程仍然通过 `postMessage` 进行传递。
 
-  - ```js
-    postMessage(message, transferList)
-    ```
 
-  - 例如，传递一个 `ArrayBuffer` 对象
+```js
+postMessage(message, transferList)
+```
 
-  - ```js
-    var aBuffer = new ArrayBuffer(1)
-    worker.postMessage({ data: aBuffer }, [aBuffer])
-    ```
+- 例如，传递一个 `ArrayBuffer` 对象
+
+
+```js
+var aBuffer = new ArrayBuffer(1)
+worker.postMessage({ data: aBuffer }, [aBuffer])
+```
 
 - 上下文，作用域
 
@@ -2244,7 +2275,7 @@ window.addEventListener(deviceorientation,function(event) {
   - `Fetch`
   - `WebSocket`
   - `XMLHttpRequest`：可以发送`ajax`对象
-  
+
 - 作用域**globalWorkerScope**
 
   - `navigator`：可以使用`navigator`中的一些对象
@@ -2276,167 +2307,170 @@ window.addEventListener(deviceorientation,function(event) {
 
 - 案例1：把元素拖入到目标元素
 
-  - ```html
-    <style>
-    	#item1{
-            width: 100px;
-            height: 100px;
-            background:red;
-        }
-        #item2{
-            width: 100px;
-            height: 100px;
-            background:green;
-        }
-        #wrapper{
-            width:500px;
-            height: 500px;
-            background: orange;
-        }
-    </style>
-    
-    <div id="item1" draggable='true'></div>
-    <div id="item2" draggable='true'></div>
-    <div id="wrapper"></div>
-    
-    <script>
-        //被拖拽对象
-        var oItem1 = document.getElementById("item1");
-        var oItem2 = document.getElementById("item2");
-        //目标对象
-        var oWrapper = document.getElementById("wrapper");
-        oItem1.addEventListener('dragstart',function(e){
-            e.dataTransfer.setData('data',this.id);
-    
-        },false);
-    
-        oItem2.addEventListener('dragstart',function(e){
-            e.dataTransfer.setData('data',this.id);
-        },false);
-    
-        //阻止dragover的默认行为
-        oWrapper.addEventListener('dragover',function(e){
-            e.preventDefault();
-        })
-    
-        oWrapper.addEventListener('drop', function(e){
-            //调用PreventDefault()来避免浏览器对数据的默认处理（drop事件的默认行为是以链接形式打开）
-            e.preventDefault();
-            //获取得到的对象，插入到目标对象
-            var data = e.dataTransfer.getData('data');
-            oWrapper.appendChild(document.getElementById(data));
-        }, false)
-    </script>
-    ```
+
+```html
+<style>
+	#item1{
+        width: 100px;
+        height: 100px;
+        background:red;
+    }
+    #item2{
+        width: 100px;
+        height: 100px;
+        background:green;
+    }
+    #wrapper{
+        width:500px;
+        height: 500px;
+        background: orange;
+    }
+</style>
+
+<div id="item1" draggable='true'></div>
+<div id="item2" draggable='true'></div>
+<div id="wrapper"></div>
+
+<script>
+    //被拖拽对象
+    var oItem1 = document.getElementById("item1");
+    var oItem2 = document.getElementById("item2");
+    //目标对象
+    var oWrapper = document.getElementById("wrapper");
+    oItem1.addEventListener('dragstart',function(e){
+        e.dataTransfer.setData('data',this.id);
+
+    },false);
+
+    oItem2.addEventListener('dragstart',function(e){
+        e.dataTransfer.setData('data',this.id);
+    },false);
+
+    //阻止dragover的默认行为
+    oWrapper.addEventListener('dragover',function(e){
+        e.preventDefault();
+    })
+
+    oWrapper.addEventListener('drop', function(e){
+        //调用PreventDefault()来避免浏览器对数据的默认处理（drop事件的默认行为是以链接形式打开）
+        e.preventDefault();
+        //获取得到的对象，插入到目标对象
+        var data = e.dataTransfer.getData('data');
+        oWrapper.appendChild(document.getElementById(data));
+    }, false)
+</script>
+```
 
 - 案例2：拖拽插入、[**删除元素**]()
 
-  - ```html
-     <style>
-         *{
-             padding: 0;
-             margin: 0;
-             list-style: none;
-         }
-         ul{
-             margin: 35px;
-         }
-         li{
-             width: 200px;
-             height: 30px;
-             margin: 10px;
-             background:#ccc;
-             text-align: center;
-             line-height: 30px;
-             font-size: 25px;
-         }
-         .wrapper{
-             width:300px;
-             height: 300px;
-             background: black;
-         }
-    </style>
-    
-    
-    <ul>
-        <li draggable='true'>1</li>
-        <li draggable='true'>2</li>
-        <li draggable='true'>3</li>
-        <li draggable='true'>4</li>
-        <li draggable='true'>5</li>
-    </ul>
-    <div class="wrapper"></div>
-    
-    <script>
-        var oLi = document.getElementsByTagName('li'),
-            oUl = document.getElementsByTagName('ul')[0],
-            len = oLi.length,
-            oWrapper = document.getElementsByClassName('wrapper')[0];
-    
-        function bindLiEvent(){
-            for(var i = 0;i < len;i ++){
-                oLi[i].addEventListener('dragstart',function(e){
-                    //根据当前dom元素的顺序重新获取i值
-                    var index = getIndex(this);
-                    //添加参数
-                    e.dataTransfer.setData('data',index);
-                },false);
-    
-                oLi[i].addEventListener('dragover',function(e){
-                    //取消dragover默认事件，让drop生效
-                    e.preventDefault();
-                },false);
-    
-                oLi[i].addEventListener('drop',function(e){
-                    //取出参数i,把第i个元素插入到目标元素的前面
-                    var i = e.dataTransfer.getData('data');
-                    console.log(i);
-                    oUl.insertBefore(oLi[i], this);
-                },false);
-            }  
-        }
-    
-        //查找当前这个元素拖拽的索引值
-        function getIndex(dom){
-            for(var i = 0;i < len;i++){
-                if(oLi[i] == dom){
-                    return i;
-                }
-            }
-        }
-        bindLiEvent();
-    
-        //删除元素
-        function removeLi(){
-            oWrapper.addEventListener('dragover',function(e){
+
+```html
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    ul{
+        margin: 35px;
+    }
+    li{
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+        background:#ccc;
+        text-align: center;
+        line-height: 30px;
+        font-size: 25px;
+    }
+    .wrapper{
+        width:300px;
+        height: 300px;
+        background: black;
+    }
+</style>
+
+
+<ul>
+    <li draggable='true'>1</li>
+    <li draggable='true'>2</li>
+    <li draggable='true'>3</li>
+    <li draggable='true'>4</li>
+    <li draggable='true'>5</li>
+</ul>
+<div class="wrapper"></div>
+
+<script>
+    var oLi = document.getElementsByTagName('li'),
+        oUl = document.getElementsByTagName('ul')[0],
+        len = oLi.length,
+        oWrapper = document.getElementsByClassName('wrapper')[0];
+
+    function bindLiEvent(){
+        for(var i = 0;i < len;i ++){
+            oLi[i].addEventListener('dragstart',function(e){
+                //根据当前dom元素的顺序重新获取i值
+                var index = getIndex(this);
+                //添加参数
+                e.dataTransfer.setData('data',index);
+            },false);
+
+            oLi[i].addEventListener('dragover',function(e){
+                //取消dragover默认事件，让drop生效
                 e.preventDefault();
             },false);
-            oWrapper.addEventListener('drop',function(e){
-                var index = e.dataTransfer.getData('data');
-                oLi[index].remove();
+
+            oLi[i].addEventListener('drop',function(e){
+                //取出参数i,把第i个元素插入到目标元素的前面
+                var i = e.dataTransfer.getData('data');
+                console.log(i);
+                oUl.insertBefore(oLi[i], this);
             },false);
+        }  
+    }
+
+    //查找当前这个元素拖拽的索引值
+    function getIndex(dom){
+        for(var i = 0;i < len;i++){
+            if(oLi[i] == dom){
+                return i;
+            }
         }
-        removeLi();
-    </script>
-    ```
+    }
+    bindLiEvent();
+
+    //删除元素
+    function removeLi(){
+        oWrapper.addEventListener('dragover',function(e){
+            e.preventDefault();
+        },false);
+        oWrapper.addEventListener('drop',function(e){
+            var index = e.dataTransfer.getData('data');
+            oLi[index].remove();
+        },false);
+    }
+    removeLi();
+</script>
+```
 
 - 案例3，拖拽上传文件
 
-  - ```javascript
-    var ele = document.getElementsByClassName('wrapper')[0];
-    
-    ele.addEventListener('dragover',function(e){
+
+```javascript
+var ele = document.getElementsByClassName('wrapper')[0];
+
+ele.addEventListener('dragover',function(e){
+e.preventDefault();
+},false);
+
+ele.addEventListener('drop',function(e){
     e.preventDefault();
-    },false);
-    
-    ele.addEventListener('drop',function(e){
-        e.preventDefault();
-        console.log(e);
-        var dt = e.dataTransfer;
-        var files = dt.files;
-        console.log(files);
-    },false);
-    ```
+    console.log(e);
+    var dt = e.dataTransfer;
+    var files = dt.files;
+    console.log(files);
+},false);
+```
 
 [在线演示](http://codepen.io/poetries/pen/XpbEOW)
 
@@ -2463,11 +2497,12 @@ window.addEventListener(deviceorientation,function(event) {
 
 - 获取读取的结果
 
-  - ```js
-    fr.onload = function(){
-        this.result;
-    }
-    ```
+
+```js
+fr.onload = function(){
+    this.result;
+}
+```
 
 ### Web Socket
 
@@ -2526,30 +2561,31 @@ window.addEventListener(deviceorientation,function(event) {
 
 - 注:`WebSocket.org`提供了一个专门用来测试`WebSocket`的服务器`ws://echo.websocket.org`
 
-- ```javascript
-  //ws://echo.websocket.org是一个测试websocket的服务器接口，就是你发送什么，它返回什么
-  var Socket = new WebSocket("ws://echo.websocket.org");
-  
-  Socket.onopen = function() {
-      Socket.send('Hello');
-  }
-  
-  Socket.onmessage = function(e) {
-      console.log('message');
-      console.log(e);
-      console.log(e.data);
-      Socket.close(); //发送完之后需要关闭连接，否则会报错
-  }
-  
-  Socket.onclose = function(e) {
-      console.log('close');
-      console.log(e);
-  }
-  
-  Socket.onerror = function() {
-      console.log('error')
-  }
-  ```
+
+```javascript
+//ws://echo.websocket.org是一个测试websocket的服务器接口，就是你发送什么，它返回什么
+var Socket = new WebSocket("ws://echo.websocket.org");
+
+Socket.onopen = function() {
+    Socket.send('Hello');
+}
+
+Socket.onmessage = function(e) {
+    console.log('message');
+    console.log(e);
+    console.log(e.data);
+    Socket.close(); //发送完之后需要关闭连接，否则会报错
+}
+
+Socket.onclose = function(e) {
+    console.log('close');
+    console.log(e);
+}
+
+Socket.onerror = function() {
+    console.log('error')
+}
+```
 
 ## HTML5新增JS方法
 
@@ -2914,40 +2950,40 @@ loadScript("js/async.js",function(){
 ---
 
 - **CSS背景属性复习**
-  
-	- `background`:
-	  - `background-color`:背景颜色
-	  - `background-image`:背景图片
-	  - `background-repeat`:背景重复
-	  - `background-position`:背景定位
+
+  - `background`:
+    - `background-color`:背景颜色
+    - `background-image`:背景图片
+    - `background-repeat`:背景重复
+    - `background-position`:背景定位
   - `background-attachment`:背景固定(`scroll/fixed)`
-  
+
 - **CSS3新增背景属性**
 
 - **bakground-size**：背景尺寸
-	
-	- 设置背景图片的大小，以长度值或百分值或百分比显示，还可以通过`cover`和`contain`来对图片进行伸缩
-	- 语法：
+
+  - 设置背景图片的大小，以长度值或百分值或百分比显示，还可以通过`cover`和`contain`来对图片进行伸缩
+  - 语法：
     - **background-size**:` auto `| `<长度值>` | `<百分比> `| `cover` | `contain`
 - 属性：
-	  - `auto`：默认值，不改变背景图片的原始高度和宽度
-	  - `<长度值>`: 成对出现如`200px` `50px`，将背景图片宽高一次设置为前面两个值，当设置一个值时，将其作为图片宽度值来等比缩放
-	  - `<百分比>`: `0%~100%`之间的任何值，将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值，当设置一个值时同上；
-	  - `cover`: 用一张图片铺满整个背景，如果比例不符，则截断图片
-	  - `contain`: 尽量让背景内，存在一整张图片
-	
+    - `auto`：默认值，不改变背景图片的原始高度和宽度
+      - `<长度值>`: 成对出现如`200px` `50px`，将背景图片宽高一次设置为前面两个值，当设置一个值时，将其作为图片宽度值来等比缩放
+      - `<百分比>`: `0%~100%`之间的任何值，将背景图片宽高依次设置为所在元素宽高乘以前面百分比得出的数值，当设置一个值时同上；
+      - `cover`: 用一张图片铺满整个背景，如果比例不符，则截断图片
+      - `contain`: 尽量让背景内，存在一整张图片
+
 - 多背景
-  
+
   - `background-image:url(1.jpg),url(2.jpg)`;
-  
+
 - **background-origin** ：背景区域定位
-  
+
   - 背景图片的起始位置
   - 原来的背景图片是从`padding`区域开始引入的，可以使用这个属性来更改引入区域
   - `border-box`： 从`border`区域开始显示背景。 
   - `padding-box`： 从`padding`区域开始显示背景。 
   - `content-box`： 从`content`内容区域开始显示背景。
-  
+
 - **background-clip** ：背景绘制区域
 
   - 裁剪背景
@@ -2965,11 +3001,12 @@ loadScript("js/async.js",function(){
 
     - 注意它是-webkit-独有的属性，且必须配合`-text-fill-color-`属性
 
-    - ```css
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-fill-color: -webkit-background-clip;
-        ```
+
+```css
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-fill-color: -webkit-background-clip;
+```
 
 - **颜色渐变**
   - **线性渐变**：`linear-gradient`(起点/角度 半径，颜色 位置，...,)
@@ -3052,12 +3089,13 @@ loadScript("js/async.js",function(){
   
   - `border-radius: 2em 1em 4em / 0.5em 3em;`
   - 等价于
-    ```css
-    border-top-left-radius: 2em 0.5em;
-    border-top-right-radius: 1em 3em;
-    border-bottom-right-radius: 4em 0.5em;
-    border-bottom-left-radius: 1em 3em;
-    ```
+```css
+border-top-left-radius: 2em 0.5em;
+border-top-right-radius: 1em 3em;
+border-bottom-right-radius: 4em 0.5em;
+border-bottom-left-radius: 1em 3em;
+```
+
 ### 边框系列-图片
 ---
 
@@ -3276,39 +3314,45 @@ loadScript("js/async.js",function(){
     - `transition: property duration timing-function delay`;
     - **transition-property**：过渡属性的名称
       
-      	- `none `  没有过渡属性
-      	- `all  `      所有属性都过渡(默认值)
-      	- `property `   具体属性名称(`property1`,`property2`...)
-      
-    - **transition-duration**：过渡属性花费的时间
     
-        - `time `  秒或毫秒
-    
-    - **transition-delay**：过渡效果延迟时间
-    
-    - **transition-timing-function**：过渡效果速度曲线
-    
-        - `time `  秒或毫秒
-        - `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
-        - `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
-    - `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
-	    - `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
-	    - `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
-	    - `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
-    -  过渡完成事件   
-	
+
+```
+- `none `  没有过渡属性
+- `all  `      所有属性都过渡(默认值)
+- `property `   具体属性名称(`property1`,`property2`...)
+```
+
+- **transition-duration**：过渡属性花费的时间
+
+    - `time `  秒或毫秒
+
+- **transition-delay**：过渡效果延迟时间
+
+- **transition-timing-function**：过渡效果速度曲线
+
+    - `time `  秒或毫秒
+    - `linear`:规定以相同速度开始至结束的过渡效果（等于 `cubic-bezier(0,0,1,1)`）。
+    - `ease`:规定慢速开始，然后变快，然后慢速结束的过渡效果（`cubic-bezier(0.25,0.1,0.25,1)`）。
+- `ease-in`:规定以慢速开始的过渡效果（等于 `cubic-bezier(0.42,0,1,1)`）。
+    - `ease-out`	:规定以慢速结束的过渡效果（等于 `cubic-bezier(0,0,0.58,1)`）。
+    - `ease-in-out` :规定以慢速开始和结束的过渡效果（等于 `cubic-bezier(0.42,0,0.58,1)`）。
+    - `cubic-bezier(n,n,n,n)`:在 `cubic-bezier` 函数中定义自己的值。可能的值是 `0 `至 `1` 之间的数值。
+- 过渡完成事件   
 - ![过渡完成事件](https://cdn.jsdelivr.net/gh/Luckiiest/noteImage@master/202111111708489.png)
-	
-		- `Webkit`内核： 
-			```javascript
-				obj.addEventListener('webkitTransitionEnd',function(){})
-			```
-		
-		- 标准: 
-		
-			```javascript
-				obj.addEventListener('transitionend',function(){})
-			```
+
+
+```
+- `Webkit`内核： 
+	```javascript
+		obj.addEventListener('webkitTransitionEnd',function(){})
+	```
+
+- 标准: 
+
+	```javascript
+		obj.addEventListener('transitionend',function(){})
+	```
+```
 
 ### 动画
 ---
@@ -3466,21 +3510,22 @@ loadScript("js/async.js",function(){
 
   - **link**标签
 
-    - ```css
-      <link rel='stylesheet' media='screen and (max-width:800px)' href='index.css'> 
-      
-      媒体类型（Media Type）：all（全部）、screen（屏幕）、print（页面打印或打印预览模式）
-      
-      媒体特性（Media features）：width（渲染区宽度）、device-width（设备宽度）
-      ```
 
-    - `Media Query`是`CSS3`对`Media Type`的增强版，其实可以将`Media Query`堪称`Media Type`（判断条件）+ `CSS`（符合条件的样式规则）
+```css
+<link rel='stylesheet' media='screen and (max-width:800px)' href='index.css'> 
 
-  - **@import**
+媒体类型（Media Type）：all（全部）、screen（屏幕）、print（页面打印或打印预览模式）
 
-    - **@media**
+媒体特性（Media features）：width（渲染区宽度）、device-width（设备宽度）
+```
 
-      - `@media screen and (max-width:800px) and (min-width:600px) {}`
+- `Media Query`是`CSS3`对`Media Type`的增强版，其实可以将`Media Query`堪称`Media Type`（判断条件）+ `CSS`（符合条件的样式规则）
+
+- **@import**
+
+  - **@media**
+
+    - `@media screen and (max-width:800px) and (min-width:600px) {}`
 
 ### **媒体类型（Media Type）**
 
@@ -3550,7 +3595,7 @@ loadScript("js/async.js",function(){
   - `device-width`/`heighta`	`width`/`height`
   - `device-width`/`height`是设备的宽度（比如电脑手机的宽度，不是浏览器的宽度）
   - `width/height是documentElement.clinetWidth`/`Height`即`viewport`的值
-  
+
 - **尺寸单位**
 
   - **px**
@@ -3567,46 +3612,48 @@ loadScript("js/async.js",function(){
 
     - `em`会继承父级元素的字体大小
 
-    - ```javascript
-      注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。
-      
-      所以我们在写CSS的时候，需要注意两点：
-      
-      1. body选择器中声明Font-size=62.5%；
-      2. 将你的原来的px数值除以10，然后换上em作为单位；
-      3. 重新计算那些被放大的字体的em数值。避免字体大小的重复声明。
-      
-      也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。      
-      ```
-      
-    - `1em` = `1 * font-size` = `1 * 16px`
 
-    - `font-size`默认的是`16`像素
+```javascript
+注意：任意浏览器的默认字体高都是16px。所有未经调整的浏览器都符合: 1em=16px。那么12px=0.75em,10px=0.625em。为了简化font-size的换算，需要在css中的body选择器中声明Font-size=62.5%，这就使em值变为 16px*62.5%=10px, 这样12px=1.2em, 10px=1em, 也就是说只需要将你的原来的px数值除以10，然后换上em作为单位就行了。
 
-  - **rem**
+所以我们在写CSS的时候，需要注意两点：
 
-    - 相对单位，相对的只是`HTML`根元素的字体大小
+1. body选择器中声明Font-size=62.5%；
+2. 将你的原来的px数值除以10，然后换上em作为单位；
+3. 重新计算那些被放大的字体的em数值。避免字体大小的重复声明。
 
-    - `font size of the root element `（根元素的字体大小)
+也就是避免1.2 * 1.2= 1.44的现象。比如说你在#content中声明了字体大小为1.2em，那么在声明p的字体大小时就只能是1em，而不是1.2em, 因为此em非彼em，它因继承#content的字体高而变为了1em=12px。      
+```
 
-    - `rem`是一种相对长度单位。相对于根元素(即`html`元素)`font-size`计算值的倍数。
+- `1em` = `1 * font-size` = `1 * 16px`
 
-    - 和`em`不同的是`rem`总是相对于根元素(如:`root`{})，而不像em一样使用级联的方式来计算尺寸。这种相对单位使用起来更简单。
+- `font-size`默认的是`16`像素
 
-    - `rem`支持`IE9`及以上，意思是相对于根元素`html`（网页），不会像`em`那样，依赖于父元素的字体大小，而造成混乱。使用起来安全了很多。
+- **rem**
 
-    - **注意：** *选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。*
+  - 相对单位，相对的只是`HTML`根元素的字体大小
 
-    - ```javascript
-      html {
-      	font-size: 10px;
-      }
-      
-      .wrap {
-      	font-size: 1.5rem;
-      	// 这个时候，.wrap这个元素里面的字体大小就是1.5 * 10px，也就是1.5rem了
-      }
-      ```
+  - `font size of the root element `（根元素的字体大小)
+
+  - `rem`是一种相对长度单位。相对于根元素(即`html`元素)`font-size`计算值的倍数。
+
+  - 和`em`不同的是`rem`总是相对于根元素(如:`root`{})，而不像em一样使用级联的方式来计算尺寸。这种相对单位使用起来更简单。
+
+  - `rem`支持`IE9`及以上，意思是相对于根元素`html`（网页），不会像`em`那样，依赖于父元素的字体大小，而造成混乱。使用起来安全了很多。
+
+  - **注意：** *选择使用什么字体单位主要由你的项目来决定，如果你的用户群都使用最新版的浏览器，那推荐使用rem，如果要考虑兼容性，那就使用px,或者两者同时使用。*
+
+
+```javascript
+html {
+	font-size: 10px;
+}
+
+.wrap {
+	font-size: 1.5rem;
+	// 这个时候，.wrap这个元素里面的字体大小就是1.5 * 10px，也就是1.5rem了
+}
+```
 
 
 ## 附录一 像素单位
@@ -3621,33 +3668,35 @@ loadScript("js/async.js",function(){
 
   - `dpr`在一些屏幕上是2：1的比例，所以像素值在不同屏幕上的占比是不同的
 
-  - ```
-    1.设备宽高为375*667，可以理解为设备独立像素（或css像素）
-    2.dpr为2，根据上面的计算公式，其物理像素就应该 2 ，为750*1334.
-    
-    1css像素在PC端显示器需要用（1*1）个栅格点表示 在iPhone6中则需要4（2*2）个
-    
-    也就是在不同的屏幕上（普通屏幕 vs retina屏幕），css像素所呈现的大小（物理尺寸）是一致的，不同的是一个css像素所对象的物理像素个数是不一致
-    
-    在普通的屏幕下，1个css像素对应的1个物理像素 为1:1 。在retina屏幕下，1个css像素对应4个物理像素 1:4
-    ```
 
-    
+```
+1.设备宽高为375*667，可以理解为设备独立像素（或css像素）
+2.dpr为2，根据上面的计算公式，其物理像素就应该 2 ，为750*1334.
 
-  - **位图像素**
+1css像素在PC端显示器需要用（1*1）个栅格点表示 在iPhone6中则需要4（2*2）个
 
-  - 1个位图像素是栅格图像（如：`png`，`jpg`，`gif`等）最小的数据单元，每一个位图像素都包括着一些资深的现实信息（如：显示位置，颜色值，透明度等）
+也就是在不同的屏幕上（普通屏幕 vs retina屏幕），css像素所呈现的大小（物理尺寸）是一致的，不同的是一个css像素所对象的物理像素个数是不一致
 
-  - 在普通屏幕下是没有问题的，但是在`retina`屏幕下就会出现位图像素点不够，从而导致图片模糊的情况
+在普通的屏幕下，1个css像素对应的1个物理像素 为1:1 。在retina屏幕下，1个css像素对应4个物理像素 1:4
+```
 
-  - ```
-    对于dpr=2的，1个位图像素对应4个物理像素，由于单个位图像素不以再进一步分割，所以只能就近取色，从而导致图片模糊
-    
-    解决办法，使用分辨率大两倍的图片，如200*300 img 标签，就需要提供400*600的图片.由此一来位图像素点的个数是原来的4倍，在retina屏幕下，位图像素点个数就可以物理像素点个数形成1:1 的比例，图片自然就清晰了。
-    
-    如果普通屏幕下，也用了两倍的图片，会怎么样，很明显，在普通屏幕下，200*300(css pixel)img标签，所对应的物理像素个数就是200*300个，而两倍图片的位图像素个数则是200*300*4，所以就出现了一个像物理像素点对应4个为图像素点，所以它的取色也只能通过——定的算法（显示结果就是一张只有原图像素总数四分之一，我们称这个过程叫做downsampling），肉眼看上去这个图片不会模糊，但是会觉得图片缺少一些锐利度，或者是有点色差（还是可以接受的）
-    
-    ```
+
+
+- **位图像素**
+
+- 1个位图像素是栅格图像（如：`png`，`jpg`，`gif`等）最小的数据单元，每一个位图像素都包括着一些资深的现实信息（如：显示位置，颜色值，透明度等）
+
+- 在普通屏幕下是没有问题的，但是在`retina`屏幕下就会出现位图像素点不够，从而导致图片模糊的情况
+
+
+```
+对于dpr=2的，1个位图像素对应4个物理像素，由于单个位图像素不以再进一步分割，所以只能就近取色，从而导致图片模糊
+
+解决办法，使用分辨率大两倍的图片，如200*300 img 标签，就需要提供400*600的图片.由此一来位图像素点的个数是原来的4倍，在retina屏幕下，位图像素点个数就可以物理像素点个数形成1:1 的比例，图片自然就清晰了。
+
+如果普通屏幕下，也用了两倍的图片，会怎么样，很明显，在普通屏幕下，200*300(css pixel)img标签，所对应的物理像素个数就是200*300个，而两倍图片的位图像素个数则是200*300*4，所以就出现了一个像物理像素点对应4个为图像素点，所以它的取色也只能通过——定的算法（显示结果就是一张只有原图像素总数四分之一，我们称这个过程叫做downsampling），肉眼看上去这个图片不会模糊，但是会觉得图片缺少一些锐利度，或者是有点色差（还是可以接受的）
+
+```
 
 
 
@@ -3696,41 +3745,42 @@ loadScript("js/async.js",function(){
 
     - 提高网页性能，就是要降低“重排”和重绘的频率和成本，尽量少触发重新渲染。DOM变动和样式变动，都会触发重新渲染。但是，浏览器已经很智能了，会尽量把所有的变动集中在一起，排成一个队列，然后一次性执行，尽量避免多次重新渲染
 
-    - ```js
-      div.style.color='red'
-      div.style.background="yellow"
-      div.style.left='10px'
-      div.style.width='20px'
-      
-      浏览器最低触发一次重排和重绘
-      
-      一般来说，样式的写操作之后，如果有上面那些属性的读操作，都会引发浏览器立即重排，这种重排，不会形成之前队列优化
-      
-      div.style.color = ‘red’;
-      var height = div.offseHeight;
-      div.style.height = height + ‘px’;
-      
-      Bad：
-      div.style.left = div.offsetLeft + ‘px’;
-      div.style.top = div.offsetTop + ‘px’;
-      重排重绘两次
-      Good:
-      Var left = div.offsetLeft + ‘px’;
-      Var top = div.offsetTop + ‘px’;
-      
-      div.style.left = left;
-      div.style.top = top;
-      放到队列，一起执行重排重绘一次
-      
-      我们来测试一下js动态添加10000个li 不同颜色而且设置宽度 所耗费render painting 的时间吧
-      ```
 
-    - 理论上的结局优化方法
+```js
+div.style.color='red'
+div.style.background="yellow"
+div.style.left='10px'
+div.style.width='20px'
 
-      - 说到的`DOM`的多个读写操作，应该放在一起，不要两个读操作之间，加入一个写操作
-      - 离线操作`DOM`如使用隐藏元素 `document.createDocumentFragment()`/ `cloneNode() `
-      - 修改样式的时候添加类名，或一次性添加到`dom.style.cssText`上等
-      - 以上都是理论上的加速方法
+浏览器最低触发一次重排和重绘
+
+一般来说，样式的写操作之后，如果有上面那些属性的读操作，都会引发浏览器立即重排，这种重排，不会形成之前队列优化
+
+div.style.color = ‘red’;
+var height = div.offseHeight;
+div.style.height = height + ‘px’;
+
+Bad：
+div.style.left = div.offsetLeft + ‘px’;
+div.style.top = div.offsetTop + ‘px’;
+重排重绘两次
+Good:
+Var left = div.offsetLeft + ‘px’;
+Var top = div.offsetTop + ‘px’;
+
+div.style.left = left;
+div.style.top = top;
+放到队列，一起执行重排重绘一次
+
+我们来测试一下js动态添加10000个li 不同颜色而且设置宽度 所耗费render painting 的时间吧
+```
+
+- 理论上的结局优化方法
+
+  - 说到的`DOM`的多个读写操作，应该放在一起，不要两个读操作之间，加入一个写操作
+  - 离线操作`DOM`如使用隐藏元素 `document.createDocumentFragment()`/ `cloneNode() `
+  - 修改样式的时候添加类名，或一次性添加到`dom.style.cssText`上等
+  - 以上都是理论上的加速方法
 
 ## 附录三 css3响应式布局
 
